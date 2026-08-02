@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageShell } from "@/components/PageShell";
-import { ProjectVisual } from "@/components/ProjectVisual";
 import {
   getCaseStudyProjects,
   getProject,
@@ -27,7 +26,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${project.title} — Jason Kim`,
+    title: `${project.title} — Xiaoye Lin`,
     description: project.caseStudy.lead,
   };
 }
@@ -47,36 +46,33 @@ export default async function CaseStudyPage({ params }: PageProps) {
       <article className="pb-8">
         <p className="reveal">
           <Link
-            href={`/#${project.slug}`}
+            href="/"
             className="font-sans text-[15px] font-medium text-foreground/55 transition-opacity hover:opacity-100"
           >
             ← Work
           </Link>
         </p>
 
-        <div className="reveal reveal-delay-1 mt-10">
-          {project.visual ? <ProjectVisual visual={project.visual} /> : null}
+        <div className="reveal reveal-delay-1 mt-10 overflow-hidden rounded-2xl bg-[#d9d9d9]">
+          <div className="aspect-[16/9] w-full" />
         </div>
 
-        <header className="reveal reveal-delay-2">
-          <h1 className="font-serif text-[clamp(2rem,5vw,2.75rem)] font-normal leading-[1.1] tracking-tight text-foreground">
+        <header className="reveal reveal-delay-2 mt-10">
+          <h1 className="font-sans text-[clamp(2rem,5vw,2.75rem)] font-semibold leading-[1.1] tracking-tight text-foreground">
             {project.title}
           </h1>
-          <p className="mt-3 font-mono text-[13px] text-foreground/45">
-            {project.company} · {project.date}
-          </p>
           <p className="mt-6 max-w-2xl font-sans text-[17px] leading-[1.65] text-foreground/80">
             {caseStudy.lead}
           </p>
         </header>
 
-        <div className="mt-16 space-y-14 border-t border-black/[0.06] pt-14 dark:border-white/10 md:mt-20 md:pt-16">
+        <div className="mt-16 space-y-14 border-t border-black/[0.06] pt-14 md:mt-20 md:pt-16">
           {caseStudy.sections.map((section, index) => (
             <section
               key={section.heading}
               className={`reveal reveal-delay-${Math.min(index + 1, 3)}`}
             >
-              <h2 className="font-serif text-[clamp(1.35rem,3vw,1.65rem)] font-normal tracking-tight text-foreground">
+              <h2 className="font-sans text-[clamp(1.25rem,3vw,1.5rem)] font-semibold tracking-tight text-foreground">
                 {section.heading}
               </h2>
               <p className="mt-4 max-w-2xl font-sans text-[17px] leading-[1.65] text-foreground/80">
@@ -86,10 +82,10 @@ export default async function CaseStudyPage({ params }: PageProps) {
           ))}
         </div>
 
-        <p className="reveal mt-20 border-t border-black/[0.06] pt-10 dark:border-white/10">
+        <p className="reveal mt-20 border-t border-black/[0.06] pt-10">
           <Link
             href="/"
-            className="font-sans text-[15px] font-medium text-foreground underline decoration-black/20 underline-offset-4 transition-colors hover:decoration-foreground/40 dark:decoration-white/20"
+            className="font-sans text-[15px] font-medium text-foreground underline decoration-black/20 underline-offset-4 transition-colors hover:decoration-foreground/40"
           >
             ← Back home
           </Link>

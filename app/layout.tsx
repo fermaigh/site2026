@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -12,16 +12,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const instrumentSerif = Instrument_Serif({
-  variable: "--font-instrument-serif",
-  subsets: ["latin"],
-  weight: "400",
-});
-
 export const metadata: Metadata = {
-  title: "Jason Kim — Product Designer",
+  title: "Xiaoye Lin — Product Designer",
   description:
-    "Product Designer at Google DeepMind. Previously at Figma, Instagram, Microsoft.",
+    "AI native, design thoughtful, strategic and useful products.",
 };
 
 export default function RootLayout({
@@ -32,9 +26,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} h-full scroll-smooth antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full scroll-smooth antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans">{children}</body>
+      <body className="flex min-h-full flex-col bg-[#f7f7f7] font-sans text-foreground">
+        {children}
+      </body>
     </html>
   );
 }

@@ -7,7 +7,7 @@ export function SiteHeader() {
         href="/"
         className="font-sans text-[15px] font-medium tracking-tight text-foreground transition-opacity hover:opacity-60"
       >
-        jason kim
+        Xiaoye Lin
       </Link>
       <nav>
         <Link
