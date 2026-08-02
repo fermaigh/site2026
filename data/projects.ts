@@ -15,6 +15,8 @@ export type Project = {
   description: string;
   /** Grey placeholder until a real thumbnail is added */
   thumbnail?: string;
+  /** Autoplaying muted loop video shown in place of the still thumbnail when set */
+  video?: string;
   /** When present, the project has a dedicated case study page at /work/[slug] */
   caseStudy?: CaseStudy;
 };
@@ -40,6 +42,7 @@ export const projects: Project[] = [
     description:
       "An AI-powered hiring platform helping franchise businesses recruit faster and retain employees longer. Led end-to-end product design, simplifying hiring across employers and candidates while reducing time-to-hire and improving employee retention.",
     thumbnail: "/projects/hiring-app.webp",
+    video: "/projects/hiring-app.mp4",
     caseStudy: {
       lead: "Case study details coming soon.",
       sections: [

@@ -27,7 +27,19 @@ export function ProjectRow({
           aria-label={`${project.title} case study`}
         >
           <div className="relative aspect-[16/10] w-full">
-            {project.thumbnail ? (
+            {project.video ? (
+              <video
+                className="absolute inset-0 size-full object-cover"
+                src={project.video}
+                poster={project.thumbnail}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                aria-hidden
+              />
+            ) : project.thumbnail ? (
               <Image
                 src={project.thumbnail}
                 alt=""
