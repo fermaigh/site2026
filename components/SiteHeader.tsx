@@ -1,32 +1,32 @@
-import Link from "next/link";
+import { TransitionLink } from "@/components/TransitionLink";
 import { HoverBackArrow } from "@/components/HoverBackArrow";
 
 const LINKEDIN_URL = "https://www.linkedin.com/in/xiaoyelin/";
-const MESSAGE_HREF = "mailto:fermaigh@gmail.com";
+const EMAIL_HREF = "mailto:fermaigh@gmail.com";
 
 export function SiteHeader({ backHref = "/" }: { backHref?: string }) {
   return (
     <header className="flex w-full items-center justify-between gap-4 py-5 sm:py-6 md:py-7">
-      <Link
+      <TransitionLink
         href={backHref}
         className="group inline-flex min-h-11 items-center gap-1.5 font-sans text-[15px] font-medium tracking-tight text-foreground transition-opacity hover:opacity-70 active:opacity-60"
       >
         <HoverBackArrow />
         <span>Back</span>
-      </Link>
+      </TransitionLink>
 
       <nav className="flex items-center gap-4 sm:gap-6 md:gap-8">
-        <Link
+        <TransitionLink
           href="/about"
           className="inline-flex min-h-11 items-center font-sans text-[14px] tracking-tight text-foreground transition-opacity hover:opacity-60 active:opacity-50 sm:text-[15px]"
         >
           About me
-        </Link>
+        </TransitionLink>
         <a
-          href={MESSAGE_HREF}
+          href={EMAIL_HREF}
           className="inline-flex min-h-11 items-center font-sans text-[14px] tracking-tight text-foreground transition-opacity hover:opacity-60 active:opacity-50 sm:text-[15px]"
         >
-          Message me
+          Email me
         </a>
         <a
           href={LINKEDIN_URL}

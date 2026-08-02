@@ -150,11 +150,11 @@
   }
 }
 
-/* Quiet entrance motion — hierarchy without noise */
+/* Quiet, faster entrance motion */
 @keyframes reveal-up {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(6px);
   }
   to {
     opacity: 1;
@@ -162,27 +162,73 @@
   }
 }
 
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes vt-fade-out {
+  to {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.995);
+  }
+}
+
+@keyframes vt-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.995);
+  }
+}
+
 .reveal {
-  animation: reveal-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: reveal-up 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .reveal-delay-1 {
-  animation-delay: 80ms;
+  animation-delay: 40ms;
 }
 
 .reveal-delay-2 {
-  animation-delay: 160ms;
+  animation-delay: 80ms;
 }
 
 .reveal-delay-3 {
-  animation-delay: 240ms;
+  animation-delay: 120ms;
+}
+
+.page-shell-enter {
+  animation: page-enter 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Modern cross-page view transitions (Chromium + supporting browsers) */
+@supports (view-transition-name: none) {
+  ::view-transition-old(root) {
+    animation: vt-fade-out 0.16s ease-out both;
+  }
+
+  ::view-transition-new(root) {
+    animation: vt-fade-in 0.24s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .reveal,
   .reveal-delay-1,
   .reveal-delay-2,
-  .reveal-delay-3 {
+  .reveal-delay-3,
+  .page-shell-enter {
     animation: none;
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
   }
 }
