@@ -1,27 +1,29 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Figtree } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { AstryxProviders } from "@/components/AstryxProviders";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const figtree = Figtree({
+  variable: "--font-figtree",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const instrumentSerif = Instrument_Serif({
-  variable: "--font-instrument-serif",
-  subsets: ["latin"],
-  weight: "400",
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "Jason Kim — Product Designer",
+  title: "Xiaoye Lin — Product Designer",
   description:
-    "Product Designer at Google DeepMind. Previously at Figma, Instagram, Microsoft.",
+    "AI native, design thoughtful, strategic and useful products.",
+  icons: {
+    icon: [{ url: "/site-icon.png", type: "image/png" }],
+    apple: [{ url: "/apple-icon.png", type: "image/png" }],
+  },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({
@@ -32,9 +34,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} h-full scroll-smooth antialiased`}
+      data-theme="light"
+      className={`${figtree.variable} h-full scroll-smooth antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans">{children}</body>
+      <body className="flex min-h-full flex-col overflow-x-hidden bg-body font-sans text-primary">
+        <AstryxProviders>{children}</AstryxProviders>
+        <Analytics />
+      </body>
     </html>
   );
 }
