@@ -1,3 +1,14 @@
+export type CaseStudySection = {
+  heading: string;
+  body: string;
+};
+
+export type CaseStudy = {
+  /** One-line outcome shown under the title */
+  lead: string;
+  sections: CaseStudySection[];
+};
+
 export type Project = {
   slug: string;
   title: string;
@@ -9,6 +20,8 @@ export type Project = {
   tags?: string[];
   /** Visual variant for the mock strip above the title */
   visual?: "rail" | "interop" | "reels" | "music" | "business" | "keyboard" | "lamp";
+  /** When present, the project has a dedicated case study page at /work/[slug] */
+  caseStudy?: CaseStudy;
 };
 
 export const projects: Project[] = [
@@ -21,6 +34,27 @@ export const projects: Project[] = [
       "A scalable file navigation pattern unlocking critical workflows for Figma Design, Sites, and Buzz. Led the product from concept to launch, aligning 5+ teams, driving leadership reviews, and delivering designs.",
     tags: ["Left Rail", "Sites", "Buzz"],
     visual: "rail",
+    caseStudy: {
+      lead: "One navigation pattern that scales across Design, Sites, and Buzz — without forcing every surface into the same mold.",
+      sections: [
+        {
+          heading: "Context",
+          body: "Figma’s product surface was expanding beyond the classic design file. Sites and Buzz needed first-class homes in the product, but file navigation still assumed a single mental model. Teams were inventing local workarounds; people lost context switching between products.",
+        },
+        {
+          heading: "Problem",
+          body: "How do you introduce a shared left-rail pattern that unlocks critical workflows for multiple products, stays familiar to existing users, and still leaves room for each surface to feel distinct?",
+        },
+        {
+          heading: "Approach",
+          body: "I framed the rail as a system: a stable skeleton for hierarchy and switching, with pluggable regions for product-specific actions. Early prototypes focused on orientation and recoverability — knowing where you are, what you can open next, and how to get back. I partnered with Design, Sites, and Buzz to pressure-test edge cases, then used leadership reviews to lock scope and sequencing.",
+        },
+        {
+          heading: "Outcome",
+          body: "Shipped a scalable navigation pattern that unblocks cross-product workflows, reduces one-off nav inventiveness, and gives each team a clear place to extend without rewriting the shell. The work aligned five-plus teams from concept through launch.",
+        },
+      ],
+    },
   },
   {
     slug: "interop",
@@ -83,3 +117,11 @@ export const projects: Project[] = [
     visual: "lamp",
   },
 ];
+
+export function getProject(slug: string): Project | undefined {
+  return projects.find((project) => project.slug === slug);
+}
+
+export function getCaseStudyProjects(): Project[] {
+  return projects.filter((project) => project.caseStudy);
+}

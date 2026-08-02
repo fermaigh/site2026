@@ -1,16 +1,28 @@
+import Link from "next/link";
 import type { Project } from "@/data/projects";
 import { ProjectVisual } from "@/components/ProjectVisual";
 
 export function ProjectSection({ project }: { project: Project }) {
+  const hasCaseStudy = Boolean(project.caseStudy);
+
   return (
     <section
       id={project.slug}
-      className="scroll-mt-24 border-t border-black/[0.06] py-16 first:border-t-0 first:pt-0 dark:border-white/10 md:py-20"
+      className="reveal scroll-mt-24 border-t border-black/[0.06] py-16 first:border-t-0 first:pt-0 dark:border-white/10 md:py-20"
     >
       {project.visual ? <ProjectVisual visual={project.visual} /> : null}
 
       <h2 className="font-serif text-[clamp(1.75rem,4vw,2.25rem)] font-normal leading-tight tracking-tight text-foreground">
-        {project.title}
+        {hasCaseStudy ? (
+          <Link
+            href={`/work/${project.slug}`}
+            className="transition-opacity hover:opacity-60"
+          >
+            {project.title}
+          </Link>
+        ) : (
+          project.title
+        )}
       </h2>
 
       <p className="mt-3 font-mono text-[13px] text-foreground/45">
@@ -47,17 +59,19 @@ export function ProjectSection({ project }: { project: Project }) {
         </ul>
       ) : null}
 
-      <div className="mt-8">
-        <a
-          href={`#${project.slug}`}
-          className="inline-flex items-center gap-1 font-sans text-[14px] font-medium text-foreground transition-opacity hover:opacity-60"
-        >
-          go to
-          <span aria-hidden className="text-foreground/40">
-            →
-          </span>
-        </a>
-      </div>
+      {hasCaseStudy ? (
+        <div className="mt-8">
+          <Link
+            href={`/work/${project.slug}`}
+            className="inline-flex items-center gap-1 font-sans text-[14px] font-medium text-foreground transition-opacity hover:opacity-60"
+          >
+            View case study
+            <span aria-hidden className="text-foreground/40">
+              →
+            </span>
+          </Link>
+        </div>
+      ) : null}
     </section>
   );
 }
