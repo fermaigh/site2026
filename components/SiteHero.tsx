@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { LocalTime } from "@/components/LocalTime";
 
 export function SiteHero() {
@@ -7,12 +8,18 @@ export function SiteHero() {
         <LocalTime />
       </div>
 
-      <div className="flex items-start gap-4 sm:items-center sm:gap-6 md:gap-7">
-        <div
-          className="size-14 shrink-0 rounded-full bg-[#d9d9d9] sm:size-20 md:size-[96px]"
-          role="img"
-          aria-label="Avatar placeholder"
-        />
+      <div className="flex items-start gap-4 sm:items-center sm:gap-6 md:gap-8">
+        {/* ~2× previous avatar sizes (56/80/96 → 112/160/192) */}
+        <div className="relative size-28 shrink-0 overflow-hidden rounded-full bg-[#d9d9d9] sm:size-40 md:size-48">
+          <Image
+            src="/avatar.webp"
+            alt="Xiaoye Lin"
+            fill
+            priority
+            sizes="(max-width: 640px) 112px, (max-width: 768px) 160px, 192px"
+            className="object-cover object-[50%_20%]"
+          />
+        </div>
 
         <div className="min-w-0 flex-1">
           <h1 className="font-sans text-[clamp(1.5rem,5.5vw,2.25rem)] font-semibold leading-tight tracking-tight text-foreground">
