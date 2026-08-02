@@ -7,15 +7,15 @@ export function SiteHero() {
         <LocalTime />
       </div>
 
-      <div className="flex flex-col gap-5 min-[480px]:flex-row min-[480px]:items-center min-[480px]:gap-6 md:gap-7">
+      <div className="flex items-start gap-4 sm:items-center sm:gap-6 md:gap-7">
         <div
-          className="size-16 shrink-0 rounded-full bg-[#d9d9d9] sm:size-20 md:size-[96px]"
+          className="size-14 shrink-0 rounded-full bg-[#d9d9d9] sm:size-20 md:size-[96px]"
           role="img"
           aria-label="Avatar placeholder"
         />
 
         <div className="min-w-0 flex-1">
-          <h1 className="font-sans text-[clamp(1.625rem,6vw,2.25rem)] font-semibold leading-tight tracking-tight text-foreground">
+          <h1 className="font-sans text-[clamp(1.5rem,5.5vw,2.25rem)] font-semibold leading-tight tracking-tight text-foreground">
             Xiaoye Lin{" "}
             <span aria-hidden className="font-normal">
               👋
