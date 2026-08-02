@@ -131,6 +131,16 @@
     @apply bg-[#f7f7f7] text-foreground;
     overflow-x: hidden;
   }
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+    orphans: 2;
+    widows: 2;
+  }
   img,
   video,
   canvas,

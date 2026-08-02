@@ -8,7 +8,7 @@ export default function AboutPage() {
         <h1 className="reveal font-sans text-[clamp(2rem,5vw,2.75rem)] font-semibold leading-tight tracking-tight text-foreground">
           About
         </h1>
-        <p className="reveal reveal-delay-1 mt-8 max-w-lg font-sans text-[17px] leading-[1.65] text-foreground/80">
+        <p className="reveal reveal-delay-1 mt-8 max-w-lg font-sans text-[17px] leading-[1.65] text-pretty text-foreground/80">
           AI native, design thoughtful, strategic and useful products. More
           about me coming soon — replace this with your story, resume, and
           links.

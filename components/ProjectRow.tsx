@@ -49,7 +49,7 @@ export function ProjectRow({
               <HoverArrow />
             </Link>
           </h2>
-          <p className="mt-2 max-w-md font-sans text-[14px] leading-relaxed text-foreground/55 sm:mt-3 sm:text-[15px] md:text-[16px]">
+          <p className="mt-2 max-w-md font-sans text-[14px] leading-relaxed text-pretty text-foreground/55 sm:mt-3 sm:text-[15px] md:text-[16px]">
             {project.description}
           </p>
         </div>

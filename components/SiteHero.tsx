@@ -24,8 +24,8 @@ export function SiteHero() {
           <p className="mt-1 font-sans text-[14px] italic text-foreground/45 sm:text-[15px]">
             shall-yay
           </p>
-          <p className="mt-2 max-w-xl font-sans text-[14px] leading-relaxed text-foreground/70 sm:text-[15px] md:text-[16px]">
-            AI native, design thoughtful, strategic and useful products
+          <p className="mt-2 max-w-xl font-sans text-[14px] leading-relaxed text-pretty text-foreground/70 sm:text-[15px] md:text-[16px]">
+            AI native, design thoughtful, strategic and useful&nbsp;products
           </p>
         </div>
       </div>

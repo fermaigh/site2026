@@ -61,7 +61,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
           <h1 className="font-sans text-[clamp(1.75rem,6vw,2.75rem)] font-semibold leading-[1.1] tracking-tight text-foreground">
             {project.title}
           </h1>
-          <p className="mt-4 max-w-2xl font-sans text-[15px] leading-[1.65] text-foreground/80 sm:mt-6 sm:text-[17px]">
+          <p className="mt-4 max-w-2xl font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-6 sm:text-[17px]">
             {caseStudy.lead}
           </p>
         </header>
@@ -75,7 +75,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
               <h2 className="font-sans text-[clamp(1.125rem,4vw,1.5rem)] font-semibold tracking-tight text-foreground">
                 {section.heading}
               </h2>
-              <p className="mt-3 max-w-2xl font-sans text-[15px] leading-[1.65] text-foreground/80 sm:mt-4 sm:text-[17px]">
+              <p className="mt-3 max-w-2xl font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-4 sm:text-[17px]">
                 {section.body}
               </p>
             </section>
