@@ -8,16 +8,16 @@ export function SiteHero() {
         <LocalTime />
       </div>
 
-      <div className="flex items-start gap-4 sm:items-center sm:gap-6 md:gap-8">
-        {/* ~2× previous avatar sizes (56/80/96 → 112/160/192) */}
-        <div className="relative size-28 shrink-0 overflow-hidden rounded-full bg-[#d9d9d9] sm:size-40 md:size-48">
+      <div className="flex items-start gap-4 sm:items-center sm:gap-6 md:gap-7">
+        {/* Previous sizes ÷ 1.5 (112/160/192 → 75/107/128) */}
+        <div className="relative size-[75px] shrink-0 overflow-hidden rounded-full bg-[#d9d9d9] sm:size-[107px] md:size-32">
           <Image
             src="/avatar.webp"
             alt="Xiaoye Lin"
             fill
             priority
-            sizes="(max-width: 640px) 112px, (max-width: 768px) 160px, 192px"
-            className="object-cover object-[50%_20%]"
+            sizes="(max-width: 640px) 75px, (max-width: 768px) 107px, 128px"
+            className="scale-[1.45] object-cover object-[48%_12%]"
           />
         </div>
 
