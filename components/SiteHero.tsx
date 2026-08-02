@@ -17,7 +17,7 @@ export function SiteHero() {
             fill
             priority
             sizes="(max-width: 640px) 75px, (max-width: 768px) 107px, 128px"
-            className="scale-[1.45] object-cover object-[48%_12%]"
+            className="scale-[1.45] object-cover object-[48%_12%] translate-x-[15%]"
           />
         </div>
 
