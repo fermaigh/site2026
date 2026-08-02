@@ -37,7 +37,8 @@ export const projects: Project[] = [
   {
     slug: "hiring-app",
     title: "Hiring app",
-    description: "Description goes here for about 2-4 paragraph",
+    description:
+      "An AI-powered hiring platform helping franchise businesses recruit faster and retain employees longer. Led end-to-end product design, simplifying hiring across employers and candidates while reducing time-to-hire and improving employee retention.",
     thumbnail: "/projects/hiring-app.webp",
     caseStudy: {
       lead: "Case study details coming soon.",
