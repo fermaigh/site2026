@@ -19,12 +19,14 @@ export function SiteHero() {
         <AspectRatio
           ratio={1}
           shape="ellipse"
+          fit="cover"
           className="size-[75px] shrink-0 bg-muted sm:size-[107px] md:size-32"
         >
           <Image
             src="/avatar.webp"
             alt="Xiaoye Lin"
-            fill
+            width={256}
+            height={256}
             priority
             sizes="(max-width: 640px) 75px, (max-width: 768px) 107px, 128px"
             className="hero-avatar-image"

@@ -30,13 +30,13 @@ export function ProjectRow({
           className="block overflow-hidden rounded-xl bg-muted transition-opacity hover:opacity-90 active:opacity-80 sm:rounded-2xl"
           aria-label={`${project.title} case study`}
         >
-          <AspectRatio ratio={16 / 10}>
+          <AspectRatio ratio={16 / 10} fit="cover">
             {project.thumbnail ? (
               <Image
                 src={project.thumbnail}
                 alt=""
-                fill
-                className="object-cover"
+                width={1080}
+                height={675}
                 sizes="(max-width: 768px) 100vw, 540px"
               />
             ) : null}

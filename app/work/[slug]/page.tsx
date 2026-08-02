@@ -51,15 +51,16 @@ export default async function CaseStudyPage({ params }: PageProps) {
       <VStack as="article" gap={8} className="pb-8">
         <AspectRatio
           ratio={16 / 9}
+          fit="cover"
           className="reveal overflow-hidden rounded-xl bg-muted sm:rounded-2xl"
         >
           {project.thumbnail ? (
             <Image
               src={project.thumbnail}
               alt=""
-              fill
+              width={1600}
+              height={900}
               priority
-              className="object-cover"
               sizes="(max-width: 1080px) 100vw, 1080px"
             />
           ) : null}
