@@ -25,7 +25,17 @@ export default function AboutPage() {
           operational efficiency, and business growth across global&nbsp;markets.
         </p>
 
-        <section className="reveal reveal-delay-2 mt-12 max-w-2xl sm:mt-14">
+        <p className="reveal reveal-delay-2 mt-8">
+          <a
+            href="/Resume_2026.pdf"
+            download="Resume_2026.pdf"
+            className="inline-flex min-h-11 items-center rounded-full border border-foreground/15 bg-foreground px-5 font-sans text-[14px] font-medium text-background transition-opacity hover:opacity-80 active:opacity-70"
+          >
+            Download resume
+          </a>
+        </p>
+
+        <section className="reveal reveal-delay-3 mt-12 max-w-2xl sm:mt-14">
           <h2 className="font-sans text-[clamp(1.125rem,3vw,1.35rem)] font-semibold tracking-tight text-foreground">
             Highlights
           </h2>
