@@ -38,6 +38,7 @@ export const projects: Project[] = [
     slug: "hiring-app",
     title: "Hiring app",
     description: "Description goes here for about 2-4 paragraph",
+    thumbnail: "/projects/hiring-app.webp",
     caseStudy: {
       lead: "Case study details coming soon.",
       sections: [
