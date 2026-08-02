@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageShell } from "@/components/PageShell";
 import {
@@ -44,20 +43,11 @@ export default async function CaseStudyPage({ params }: PageProps) {
   return (
     <PageShell>
       <article className="pb-8">
-        <p className="reveal">
-          <Link
-            href="/"
-            className="inline-flex min-h-11 items-center font-sans text-[15px] font-medium text-foreground/55 transition-opacity hover:opacity-100 active:opacity-80"
-          >
-            ← Work
-          </Link>
-        </p>
-
-        <div className="reveal reveal-delay-1 mt-6 overflow-hidden rounded-xl bg-[#d9d9d9] sm:mt-10 sm:rounded-2xl">
+        <div className="reveal overflow-hidden rounded-xl bg-[#d9d9d9] sm:rounded-2xl">
           <div className="aspect-[16/10] w-full sm:aspect-[16/9]" />
         </div>
 
-        <header className="reveal reveal-delay-2 mt-8 sm:mt-10">
+        <header className="reveal reveal-delay-1 mt-8 sm:mt-10">
           <h1 className="font-sans text-[clamp(1.75rem,6vw,2.75rem)] font-semibold leading-[1.1] tracking-tight text-foreground">
             {project.title}
           </h1>
@@ -81,15 +71,6 @@ export default async function CaseStudyPage({ params }: PageProps) {
             </section>
           ))}
         </div>
-
-        <p className="reveal mt-14 border-t border-black/[0.06] pt-8 sm:mt-20 sm:pt-10">
-          <Link
-            href="/"
-            className="inline-flex min-h-11 items-center font-sans text-[15px] font-medium text-foreground underline decoration-black/20 underline-offset-4 transition-colors hover:decoration-foreground/40"
-          >
-            ← Back home
-          </Link>
-        </p>
       </article>
     </PageShell>
   );

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { PageShell } from "@/components/PageShell";
 
 const highlights = [
@@ -38,15 +37,6 @@ export default function AboutPage() {
             ))}
           </ul>
         </section>
-
-        <p className="reveal reveal-delay-3 mt-12 sm:mt-14">
-          <Link
-            href="/"
-            className="inline-flex min-h-11 items-center font-sans text-[15px] font-medium text-foreground underline decoration-black/20 underline-offset-4 transition-colors hover:decoration-foreground/40"
-          >
-            ← Back home
-          </Link>
-        </p>
       </article>
     </PageShell>
   );
