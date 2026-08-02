@@ -10,7 +10,7 @@ export function LandingTopBar() {
         width={24}
         height={24}
         priority
-        className="size-6 rounded-full"
+        className="block size-6 rounded-full"
       />
       <LocalTime />
     </div>
