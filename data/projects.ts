@@ -15,6 +15,8 @@ export type Project = {
   description: string;
   /** Grey placeholder until a real thumbnail is added */
   thumbnail?: string;
+  /** When set, landing links open this URL in a new tab instead of /work/[slug] */
+  externalUrl?: string;
   /** When present, the project has a dedicated case study page at /work/[slug] */
   caseStudy?: CaseStudy;
 };
@@ -40,15 +42,7 @@ export const projects: Project[] = [
     description:
       "An AI-powered hiring platform helping franchise businesses recruit faster and retain employees longer. Led end-to-end product design, simplifying hiring across employers and candidates while reducing time-to-hire and improving employee retention.",
     thumbnail: "/projects/hiring-app.webp",
-    caseStudy: {
-      lead: "Case study details coming soon.",
-      sections: [
-        {
-          heading: "Overview",
-          body: "Description goes here for about 2-4 paragraph. Full case study content will be added later.",
-        },
-      ],
-    },
+    externalUrl: "https://sprockets.ai/time-to-hire/",
   },
 ];
 
