@@ -10,7 +10,7 @@ export function SiteHero() {
 
       <div className="flex items-start gap-4 sm:items-center sm:gap-6 md:gap-7">
         {/* Previous sizes ÷ 1.5 (112/160/192 → 75/107/128) */}
-        <div className="relative size-[75px] shrink-0 overflow-hidden rounded-full bg-[#d9d9d9] sm:size-[107px] md:size-32">
+        <div className="relative size-[75px] shrink-0 translate-x-[15%] overflow-hidden rounded-full bg-[#d9d9d9] sm:size-[107px] md:size-32">
           <Image
             src="/avatar.webp"
             alt="Xiaoye Lin"
