@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Text } from "@astryxdesign/core/Text";
 
 const TIME_ZONE = "America/Los_Angeles";
 
@@ -24,8 +25,8 @@ export function LocalTime() {
   }, []);
 
   return (
-    <p className="font-sans text-[12px] text-foreground/40 sm:text-[13px]">
+    <Text type="supporting" size="sm" color="secondary" display="block">
       {time ? `${time} · Bellevue` : "(Local time in Bellevue)"}
-    </p>
+    </Text>
   );
 }

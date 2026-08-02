@@ -1,15 +1,25 @@
+import { Divider } from "@astryxdesign/core/Divider";
+import { Text } from "@astryxdesign/core/Text";
+import { VStack } from "@astryxdesign/core/VStack";
+
 export function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="w-full border-t border-black/[0.06] py-10 sm:py-12 md:py-14">
-      <p className="w-full font-sans text-[13px] leading-relaxed text-pretty text-foreground/70 sm:text-[15px]">
+    <VStack as="footer" gap={3} width="100%" className="py-10 sm:py-12 md:py-14">
+      <Divider />
+      <Text
+        type="supporting"
+        color="secondary"
+        display="block"
+        textWrap="pretty"
+      >
         Made with Cursor, hosted on Github, Deployed on Vercel and Designed
         with&nbsp;Xiaoye&nbsp;Lin.
-      </p>
-      <p className="mt-3 font-sans text-[12px] text-foreground/40 sm:mt-4 sm:text-[13px]">
+      </Text>
+      <Text type="supporting" size="sm" color="secondary" display="block">
         © {year} Xiaoye&nbsp;Lin
-      </p>
-    </footer>
+      </Text>
+    </VStack>
   );
 }

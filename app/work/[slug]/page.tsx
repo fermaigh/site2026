@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { AspectRatio } from "@astryxdesign/core/AspectRatio";
+import { Divider } from "@astryxdesign/core/Divider";
+import { Heading } from "@astryxdesign/core/Heading";
+import { Text } from "@astryxdesign/core/Text";
+import { VStack } from "@astryxdesign/core/VStack";
 import { PageShell } from "@/components/PageShell";
 import {
   getCaseStudyProjects,
@@ -43,47 +48,59 @@ export default async function CaseStudyPage({ params }: PageProps) {
 
   return (
     <PageShell>
-      <article className="pb-8">
-        <div className="reveal relative overflow-hidden rounded-xl bg-[#d9d9d9] sm:rounded-2xl">
-          <div className="relative aspect-[16/10] w-full sm:aspect-[16/9]">
-            {project.thumbnail ? (
-              <Image
-                src={project.thumbnail}
-                alt=""
-                fill
-                priority
-                className="object-cover"
-                sizes="(max-width: 1080px) 100vw, 1080px"
-              />
-            ) : null}
-          </div>
-        </div>
+      <VStack as="article" gap={8} className="pb-8">
+        <AspectRatio
+          ratio={16 / 9}
+          className="reveal overflow-hidden rounded-xl bg-muted sm:rounded-2xl"
+        >
+          {project.thumbnail ? (
+            <Image
+              src={project.thumbnail}
+              alt=""
+              fill
+              priority
+              className="object-cover"
+              sizes="(max-width: 1080px) 100vw, 1080px"
+            />
+          ) : null}
+        </AspectRatio>
 
-        <header className="reveal reveal-delay-1 mt-8 sm:mt-10">
-          <h1 className="font-sans text-[clamp(1.75rem,6vw,2.75rem)] font-semibold leading-[1.1] tracking-tight text-foreground">
-            {project.title}
-          </h1>
-          <p className="mt-4 max-w-2xl font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-6 sm:text-[17px]">
+        <VStack gap={4} className="reveal reveal-delay-1 sm:gap-6">
+          <Heading level={1}>{project.title}</Heading>
+          <Text
+            type="large"
+            color="secondary"
+            display="block"
+            textWrap="pretty"
+            className="max-w-2xl"
+          >
             {caseStudy.lead}
-          </p>
-        </header>
+          </Text>
+        </VStack>
 
-        <div className="mt-12 space-y-10 border-t border-black/[0.06] pt-10 sm:mt-16 sm:space-y-14 sm:pt-14 md:mt-20 md:pt-16">
+        <Divider />
+
+        <VStack gap={10} className="sm:gap-14">
           {caseStudy.sections.map((section, index) => (
-            <section
+            <VStack
               key={section.heading}
-              className={`reveal reveal-delay-${Math.min(index + 1, 3)}`}
+              gap={3}
+              className={`reveal reveal-delay-${Math.min(index + 1, 3)} sm:gap-4`}
             >
-              <h2 className="font-sans text-[clamp(1.125rem,4vw,1.5rem)] font-semibold tracking-tight text-foreground">
-                {section.heading}
-              </h2>
-              <p className="mt-3 max-w-2xl font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-4 sm:text-[17px]">
+              <Heading level={2}>{section.heading}</Heading>
+              <Text
+                type="large"
+                color="secondary"
+                display="block"
+                textWrap="pretty"
+                className="max-w-2xl"
+              >
                 {section.body}
-              </p>
-            </section>
+              </Text>
+            </VStack>
           ))}
-        </div>
-      </article>
+        </VStack>
+      </VStack>
     </PageShell>
   );
 }

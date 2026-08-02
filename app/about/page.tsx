@@ -1,3 +1,7 @@
+import { Button } from "@astryxdesign/core/Button";
+import { Heading } from "@astryxdesign/core/Heading";
+import { Text } from "@astryxdesign/core/Text";
+import { VStack } from "@astryxdesign/core/VStack";
 import { PageShell } from "@/components/PageShell";
 
 const highlights = [
@@ -10,12 +14,18 @@ const highlights = [
 export default function AboutPage() {
   return (
     <PageShell>
-      <article className="pb-16 sm:pb-24">
-        <h1 className="reveal font-sans text-[clamp(2rem,5vw,2.75rem)] font-semibold leading-tight tracking-tight text-foreground">
+      <VStack as="article" gap={8} className="pb-16 sm:pb-24">
+        <Heading level={1} className="reveal">
           About
-        </h1>
+        </Heading>
 
-        <p className="reveal reveal-delay-1 mt-8 max-w-2xl font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]">
+        <Text
+          type="large"
+          color="secondary"
+          display="block"
+          textWrap="pretty"
+          className="reveal reveal-delay-1 max-w-2xl"
+        >
           I&apos;ve been designing products for one of the world&apos;s largest
           creator commerce platforms. I lead the design of complex B2B
           experiences that enable sellers, creators, and agencies to collaborate
@@ -23,31 +33,34 @@ export default function AboutPage() {
           seller tools. My work combines systems thinking, product strategy, and
           execution to ship scalable solutions that improve user adoption,
           operational efficiency, and business growth across global&nbsp;markets.
-        </p>
+        </Text>
 
-        <p className="reveal reveal-delay-2 mt-8">
-          <a
+        <VStack className="reveal reveal-delay-2">
+          <Button
+            label="Download resume"
+            variant="primary"
             href="/Resume_2026.pdf"
-            download="Resume_2026.pdf"
-            className="inline-flex min-h-11 items-center rounded-full border border-foreground/15 bg-foreground px-5 font-sans text-[14px] font-medium text-background transition-opacity hover:opacity-80 active:opacity-70"
-          >
-            Download resume
-          </a>
-        </p>
+          />
+        </VStack>
 
-        <section className="reveal reveal-delay-3 mt-12 max-w-2xl sm:mt-14">
-          <h2 className="font-sans text-[clamp(1.125rem,3vw,1.35rem)] font-semibold tracking-tight text-foreground">
-            Highlights
-          </h2>
-          <ul className="mt-5 list-disc space-y-4 pl-5 font-sans text-[15px] leading-[1.65] text-foreground/80 marker:text-foreground/35 sm:text-[17px]">
+        <VStack gap={5} className="reveal reveal-delay-3 max-w-2xl sm:mt-2">
+          <Heading level={2}>Highlights</Heading>
+          <ul className="flex list-disc flex-col gap-4 pl-5 marker:text-secondary">
             {highlights.map((item) => (
-              <li key={item} className="ps-1 text-pretty">
-                {item}
+              <li key={item} className="ps-1">
+                <Text
+                  type="large"
+                  color="secondary"
+                  display="block"
+                  textWrap="pretty"
+                >
+                  {item}
+                </Text>
               </li>
             ))}
           </ul>
-        </section>
-      </article>
+        </VStack>
+      </VStack>
     </PageShell>
   );
 }
