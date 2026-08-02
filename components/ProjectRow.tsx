@@ -23,13 +23,15 @@ export function ProjectRow({
       <div className="grid grid-cols-1 items-start gap-4 sm:gap-5 md:grid-cols-2 md:gap-10 lg:gap-14">
         <TransitionLink
           href={href}
-          className="block overflow-hidden rounded-xl bg-[#d9d9d9] transition-opacity hover:opacity-90 active:opacity-80 sm:rounded-2xl"
+          className={`block overflow-hidden rounded-xl transition-opacity hover:opacity-90 active:opacity-80 sm:rounded-2xl ${
+            project.video ? "bg-black" : "bg-[#d9d9d9]"
+          }`}
           aria-label={`${project.title} case study`}
         >
           <div className="relative aspect-[16/10] w-full">
             {project.video ? (
               <video
-                className="absolute inset-0 size-full object-cover"
+                className="absolute inset-0 size-full scale-[0.85] object-contain"
                 src={project.video}
                 poster={project.thumbnail}
                 autoPlay
