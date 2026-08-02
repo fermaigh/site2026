@@ -4,7 +4,11 @@ export type CaseStudySection = {
 };
 
 export type CaseStudy = {
-  /** One-line outcome shown under the title */
+  /** FAANG-style role line shown under the title */
+  role?: string;
+  /** FAANG-style scope line shown under the title */
+  scope?: string;
+  /** Intro paragraph shown under the title (and under role/scope when set) */
   lead: string;
   sections: CaseStudySection[];
 };

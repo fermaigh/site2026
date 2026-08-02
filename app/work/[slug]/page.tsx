@@ -63,9 +63,25 @@ export default async function CaseStudyPage({ params }: PageProps) {
           <h1 className="font-sans text-[clamp(1.75rem,6vw,2.75rem)] font-semibold leading-[1.1] tracking-tight text-foreground">
             {project.title}
           </h1>
-          <p className="mt-4 max-w-2xl font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-6 sm:text-[17px]">
-            {caseStudy.lead}
-          </p>
+          <div className="mt-4 max-w-2xl space-y-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-6 sm:space-y-5 sm:text-[17px]">
+            {caseStudy.role || caseStudy.scope ? (
+              <div className="space-y-1">
+                {caseStudy.role ? (
+                  <p>
+                    <span className="font-medium text-foreground">Role:</span>{" "}
+                    {caseStudy.role}
+                  </p>
+                ) : null}
+                {caseStudy.scope ? (
+                  <p>
+                    <span className="font-medium text-foreground">Scope:</span>{" "}
+                    {caseStudy.scope}
+                  </p>
+                ) : null}
+              </div>
+            ) : null}
+            <p>{caseStudy.lead}</p>
+          </div>
         </header>
 
         <div className="mt-12 space-y-10 border-t border-black/[0.06] pt-10 sm:mt-16 sm:space-y-14 sm:pt-14 md:mt-20 md:pt-16">
