@@ -1,16 +1,14 @@
 import Image from "next/image";
-import { LocalTime } from "@/components/LocalTime";
+import { LandingTopBar } from "@/components/LandingTopBar";
 
 export function SiteHero() {
   return (
-    <header className="reveal pb-8 pt-6 sm:pb-10 sm:pt-10 md:pb-12 md:pt-14">
-      <div className="mb-6 flex justify-end sm:mb-8 md:mb-10">
-        <LocalTime />
-      </div>
+    <header>
+      <LandingTopBar />
 
-      <div className="flex items-start gap-4 sm:items-center sm:gap-6 md:gap-7">
+      <div className="reveal reveal-delay-1 flex items-start gap-4 pb-8 sm:items-center sm:gap-6 sm:pb-10 md:gap-7 md:pb-12">
         {/* Previous sizes ÷ 1.5 (112/160/192 → 75/107/128) */}
-        <div className="relative size-[75px] shrink-0 translate-x-[15%] overflow-hidden rounded-full bg-[#d9d9d9] sm:size-[107px] md:size-32">
+        <div className="relative size-[75px] shrink-0 overflow-hidden rounded-full bg-[#d9d9d9] sm:size-[107px] md:size-32">
           <Image
             src="/avatar.webp"
             alt="Xiaoye Lin"

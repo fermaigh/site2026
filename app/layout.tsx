@@ -16,6 +16,10 @@ export const metadata: Metadata = {
   title: "Xiaoye Lin — Product Designer",
   description:
     "AI native, design thoughtful, strategic and useful products.",
+  icons: {
+    icon: [{ url: "/site-icon.png", type: "image/png" }],
+    apple: [{ url: "/apple-icon.png", type: "image/png" }],
+  },
 };
 
 export const viewport: Viewport = {
