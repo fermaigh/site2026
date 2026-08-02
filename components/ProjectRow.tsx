@@ -20,10 +20,10 @@ export function ProjectRow({
 
   return (
     <article className={`reveal ${delayClass} group`}>
-      <div className="grid grid-cols-1 items-start gap-6 md:grid-cols-2 md:gap-10 lg:gap-14">
+      <div className="grid grid-cols-1 items-start gap-4 sm:gap-5 md:grid-cols-2 md:gap-10 lg:gap-14">
         <Link
           href={href}
-          className="block overflow-hidden rounded-2xl bg-[#d9d9d9] transition-opacity hover:opacity-90"
+          className="block overflow-hidden rounded-xl bg-[#d9d9d9] transition-opacity hover:opacity-90 active:opacity-80 sm:rounded-2xl"
           aria-label={`${project.title} case study`}
         >
           <div className="relative aspect-[16/10] w-full">
@@ -33,23 +33,23 @@ export function ProjectRow({
                 alt=""
                 fill
                 className="object-cover"
-                sizes="(max-width: 768px) 100vw, 480px"
+                sizes="(max-width: 768px) 100vw, 540px"
               />
             ) : null}
           </div>
         </Link>
 
-        <div className="md:pt-1">
-          <h2 className="font-sans text-[clamp(1.25rem,2.5vw,1.5rem)] font-semibold tracking-tight text-foreground">
+        <div className="min-w-0 md:pt-1">
+          <h2 className="font-sans text-[clamp(1.125rem,4vw,1.5rem)] font-semibold tracking-tight text-foreground">
             <Link
               href={href}
-              className="inline-flex items-center gap-1.5 transition-opacity hover:opacity-70"
+              className="inline-flex max-w-full items-center gap-1.5 transition-opacity hover:opacity-70 active:opacity-60"
             >
-              {project.title}
+              <span className="min-w-0">{project.title}</span>
               <HoverArrow />
             </Link>
           </h2>
-          <p className="mt-3 max-w-md font-sans text-[15px] leading-relaxed text-foreground/55 md:text-[16px]">
+          <p className="mt-2 max-w-md font-sans text-[14px] leading-relaxed text-foreground/55 sm:mt-3 sm:text-[15px] md:text-[16px]">
             {project.description}
           </p>
         </div>

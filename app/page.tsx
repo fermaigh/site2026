@@ -14,7 +14,7 @@ export default function Home() {
         aria-hidden
       />
 
-      <main className="flex flex-col gap-12 py-12 md:gap-16 md:py-16">
+      <main className="flex flex-col gap-10 py-8 sm:gap-12 sm:py-12 md:gap-16 md:py-16">
         {projects.map((project, index) => (
           <ProjectRow key={project.slug} project={project} index={index} />
         ))}

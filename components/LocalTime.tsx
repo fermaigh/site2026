@@ -24,7 +24,7 @@ export function LocalTime() {
   }, []);
 
   return (
-    <p className="font-sans text-[13px] text-foreground/40">
+    <p className="font-sans text-[12px] text-foreground/40 sm:text-[13px]">
       {time ? `${time} · Bellevue` : "(Local time in Bellevue)"}
     </p>
   );

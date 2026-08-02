@@ -122,11 +122,21 @@
   * {
     @apply border-border outline-ring/50;
   }
-  body {
-    @apply bg-[#f7f7f7] text-foreground;
-  }
   html {
     @apply font-sans;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-[#f7f7f7] text-foreground;
+    overflow-x: hidden;
+  }
+  img,
+  video,
+  canvas,
+  svg {
+    max-width: 100%;
+    height: auto;
   }
 }
 
