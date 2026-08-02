@@ -44,8 +44,19 @@ export default async function CaseStudyPage({ params }: PageProps) {
   return (
     <PageShell>
       <article className="pb-8">
-        <div className="reveal overflow-hidden rounded-xl bg-[#d9d9d9] sm:rounded-2xl">
-          <div className="aspect-[16/10] w-full sm:aspect-[16/9]" />
+        <div className="reveal relative overflow-hidden rounded-xl bg-[#d9d9d9] sm:rounded-2xl">
+          <div className="relative aspect-[16/10] w-full sm:aspect-[16/9]">
+            {project.thumbnail ? (
+              <Image
+                src={project.thumbnail}
+                alt=""
+                fill
+                priority
+                className="object-cover"
+                sizes="(max-width: 1080px) 100vw, 1080px"
+              />
+            ) : null}
+          </div>
         </div>
 
         <header className="reveal reveal-delay-1 mt-8 sm:mt-10">
