@@ -121,11 +121,36 @@ export const projects: Project[] = [
     video: "/projects/dark-web-monitoring.mp4",
     videoBackground: "#D1DFE3",
     caseStudy: {
-      lead: "Case study details coming soon.",
+      role: "Role goes here",
+      team: "Team composition goes here",
+      duration: "Duration goes here",
+      ownership: "Ownership / product surfaces go here",
+      lead:
+        "Intro paragraph goes here. Context on joining the work, partnership with stakeholders, and how the design effort shaped Dark Web Monitoring for Dashlane Business.",
       sections: [
         {
           heading: "Overview",
-          body: "Description goes here for about 2-4 paragraph. Full case study content will be added later.",
+          blocks: [
+            {
+              heading: "Impact",
+              bullets: [
+                "Impact metric or outcome goes here",
+                "Impact metric or outcome goes here",
+                "Impact metric or outcome goes here",
+              ],
+            },
+            {
+              heading: "My contributions",
+              bullets: [
+                "Contribution goes here.",
+                "Contribution goes here.",
+                "Contribution goes here.",
+                "Contribution goes here.",
+                "Contribution goes here.",
+                "Contribution goes here.",
+              ],
+            },
+          ],
         },
       ],
     },
