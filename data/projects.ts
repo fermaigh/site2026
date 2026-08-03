@@ -70,8 +70,16 @@ export const projects: Project[] = [
       duration: "2024–Present",
       ownership:
         "Design POC for seller–creator collaboration across TikTok Shop Affiliate",
-      lead:
-        "I lead product design for TikTok Shop Affiliate seller experiences, helping millions of merchants worldwide discover creators, build partnerships, and grow through affiliate commerce.",
+      lead: {
+        parts: [
+          "I lead product design for ",
+          {
+            text: "TikTok Shop Affiliate seller",
+            href: "https://seller.tiktok.com",
+          },
+          " experiences, helping millions of merchants worldwide discover creators, build partnerships, and grow through affiliate commerce.",
+        ],
+      },
       sections: [
         {
           heading: "Overview",
