@@ -64,9 +64,9 @@ export const projects: Project[] = [
   },
   {
     slug: "hiring-app",
-    title: "Hiring app",
+    title: "AI-Powered Hiring Platform",
     description:
-      "An AI-powered hiring platform helping franchise businesses recruit faster and retain employees longer. Led end-to-end product design, simplifying hiring across employers and candidates while reducing time-to-hire and improving employee retention.",
+      "Led end-to-end design for Sprockets, helping franchise businesses hire faster and retain employees longer. Simplified the experience across employers and candidates while driving measurable business outcomes.",
     thumbnail: "/projects/hiring-app.webp",
     video: "/projects/hiring-app.mp4",
     caseStudy: {
