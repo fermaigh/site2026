@@ -121,33 +121,35 @@ export const projects: Project[] = [
     video: "/projects/dark-web-monitoring.mp4",
     videoBackground: "#D1DFE3",
     caseStudy: {
-      role: "Role goes here",
-      team: "Team composition goes here",
-      duration: "Duration goes here",
-      ownership: "Ownership / product surfaces go here",
+      role: "Product Designer",
+      team: "Product, Engineering, and cross-functional partners",
+      duration: "2023",
+      ownership:
+        "Feature discovery, domain verification, breach reporting, and remediation",
       lead:
-        "Intro paragraph goes here. Context on joining the work, partnership with stakeholders, and how the design effort shaped Dark Web Monitoring for Dashlane Business.",
+        "I joined Dashlane’s B2B team in early 2023 and led the design of Dark Web Monitoring for Dashlane Business. I partnered with product and engineering to transform complex security requirements into a simple, actionable experience.",
       sections: [
         {
           heading: "Overview",
+          body: "Dark Web Monitoring scans company email domains for potential breaches. Through research and rapid iteration, I designed an experience that helped IT administrators discover risks, understand reports, and take action.",
           blocks: [
             {
               heading: "Impact",
               bullets: [
-                "Impact metric or outcome goes here",
-                "Impact metric or outcome goes here",
-                "Impact metric or outcome goes here",
+                "Shaped one of Dashlane Business’s three most-used SMB features.",
+                "Made breach reports more actionable for IT administrators.",
+                "Balanced user value, adoption goals, and engineering constraints.",
               ],
             },
             {
               heading: "My contributions",
               bullets: [
-                "Contribution goes here.",
-                "Contribution goes here.",
-                "Contribution goes here.",
-                "Contribution goes here.",
-                "Contribution goes here.",
-                "Contribution goes here.",
+                "Led design from discovery through delivery.",
+                "Conducted user and competitive research.",
+                "Simplified complex security workflows.",
+                "Designed feature discovery and domain verification.",
+                "Created actionable breach reports and guidance.",
+                "Aligned product and engineering around priorities.",
               ],
             },
           ],
