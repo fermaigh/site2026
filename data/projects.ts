@@ -148,8 +148,6 @@ export const projects: Project[] = [
                 "Conducted user and competitive research.",
                 "Simplified complex security workflows.",
                 "Designed feature discovery and domain verification.",
-                "Created actionable breach reports and guidance.",
-                "Aligned product and engineering around priorities.",
               ],
             },
           ],
