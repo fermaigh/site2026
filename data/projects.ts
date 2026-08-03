@@ -1,6 +1,13 @@
+export type CaseStudyBlock = {
+  heading: string;
+  body?: string;
+  bullets?: string[];
+};
+
 export type CaseStudySection = {
   heading: string;
-  body: string;
+  body?: string;
+  blocks?: CaseStudyBlock[];
 };
 
 export type CaseStudy = {
@@ -48,11 +55,35 @@ export const projects: Project[] = [
     thumbnail: "/projects/hiring-app.webp",
     video: "/projects/hiring-app.mp4",
     caseStudy: {
-      lead: "Case study details coming soon.",
+      role: "Lead Product Designer",
+      scope:
+        "End-to-end user experience from execution across hiring managers, franchise owners, and job seekers.",
+      lead:
+        "Joined shortly after MVP launch to help scale the product. Partnered with founders and cross-functional teams to identify high-impact opportunities for growth, validate solutions, and deliver customer experiences that accelerated product maturity and business growth.",
       sections: [
         {
           heading: "Overview",
-          body: "Description goes here for about 2-4 paragraph. Full case study content will be added later.",
+          blocks: [
+            {
+              heading: "Impact",
+              bullets: [
+                "↑ 87% interview conversation rate",
+                "↓ 27% 90-day employee turnover",
+                "Helped scale the product through the company's acquisition by Humanly.io",
+              ],
+            },
+            {
+              heading: "My contributions",
+              bullets: [
+                "Shaped product strategy and vision alongside company leadership.",
+                "Led end-to-end design across multiple product areas, from concept to launch.",
+                "Drove product decisions through user research, data, and rapid experimentation.",
+                "Influenced roadmap prioritization with founders, product, and engineering.",
+                "Established scalable design processes and a design system to accelerate delivery.",
+                "Mentored designers and elevated design quality across the organization.",
+              ],
+            },
+          ],
         },
       ],
     },

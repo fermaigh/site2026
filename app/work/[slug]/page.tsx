@@ -5,6 +5,8 @@ import { PageShell } from "@/components/PageShell";
 import {
   getCaseStudyProjects,
   getProject,
+  type CaseStudyBlock,
+  type CaseStudySection,
 } from "@/data/projects";
 
 type PageProps = {
@@ -29,6 +31,52 @@ export async function generateMetadata({
     title: `${project.title} — Xiaoye Lin`,
     description: project.caseStudy.lead,
   };
+}
+
+function CaseStudyBlockContent({ block }: { block: CaseStudyBlock }) {
+  return (
+    <div className="max-w-2xl">
+      <h3 className="font-sans text-[clamp(1rem,3vw,1.125rem)] font-semibold tracking-tight text-foreground">
+        {block.heading}
+      </h3>
+      {block.body ? (
+        <p className="mt-3 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-4 sm:text-[17px]">
+          {block.body}
+        </p>
+      ) : null}
+      {block.bullets?.length ? (
+        <ul className="mt-3 list-disc space-y-2 pl-5 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 marker:text-foreground/35 sm:mt-4 sm:space-y-3 sm:text-[17px]">
+          {block.bullets.map((item) => (
+            <li key={item} className="ps-1">
+              {item}
+            </li>
+          ))}
+        </ul>
+      ) : null}
+    </div>
+  );
+}
+
+function CaseStudySectionContent({ section }: { section: CaseStudySection }) {
+  return (
+    <>
+      <h2 className="font-sans text-[clamp(1.125rem,4vw,1.5rem)] font-semibold tracking-tight text-foreground">
+        {section.heading}
+      </h2>
+      {section.body ? (
+        <p className="mt-3 max-w-2xl font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-4 sm:text-[17px]">
+          {section.body}
+        </p>
+      ) : null}
+      {section.blocks?.length ? (
+        <div className="mt-6 space-y-8 sm:mt-8 sm:space-y-10">
+          {section.blocks.map((block) => (
+            <CaseStudyBlockContent key={block.heading} block={block} />
+          ))}
+        </div>
+      ) : null}
+    </>
+  );
 }
 
 export default async function CaseStudyPage({ params }: PageProps) {
@@ -90,12 +138,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
               key={section.heading}
               className={`reveal reveal-delay-${Math.min(index + 1, 3)}`}
             >
-              <h2 className="font-sans text-[clamp(1.125rem,4vw,1.5rem)] font-semibold tracking-tight text-foreground">
-                {section.heading}
-              </h2>
-              <p className="mt-3 max-w-2xl font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-4 sm:text-[17px]">
-                {section.body}
-              </p>
+              <CaseStudySectionContent section={section} />
             </section>
           ))}
         </div>
