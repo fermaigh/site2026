@@ -83,7 +83,7 @@ export const projects: Project[] = [
     slug: "tiktok-shop-affiliate",
     title: "Scaling TikTok Shop Affiliates",
     description:
-      "Led end-to-end design for TikTok Shop Affiliate seller tools, helping millions of merchants worldwide discover, connect with, and manage creator partnerships at scale. Simplified complex workflows, driving creator-led growth and over $1M in weekly GMV.",
+      "Led end-to-end design for TikTok Shop Affiliate seller tools, including AI agents and AI-assisted experiences, helping millions of merchants discover, connect with, and manage creator partnerships at scale. Simplified complex workflows, driving creator-led growth and millions in weekly GMV.",
     thumbnail: "/projects/tts_thumb.png",
     thumbnailBackground: "#EFEFEF",
     caseStudy: {
