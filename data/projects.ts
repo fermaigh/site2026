@@ -41,8 +41,8 @@ export type Project = {
   thumbnail?: string;
   /** Autoplaying muted loop video shown in place of the still thumbnail when set */
   video?: string;
-  /** Thumbnail container background behind video (defaults to black when video is set) */
-  videoBackground?: string;
+  /** Thumbnail container background (defaults to black for video, grey otherwise) */
+  thumbnailBackground?: string;
   /** When present, the project has a dedicated case study page at /work/[slug] */
   caseStudy?: CaseStudy;
 };
@@ -119,7 +119,7 @@ export const projects: Project[] = [
     description:
       "Led the end-to-end design of Dark Web Monitoring for Dashlane Business, transforming complex security requirements into simple, scalable experiences.",
     video: "/projects/dark-web-monitoring.mp4",
-    videoBackground: "#D1DFE3",
+    thumbnailBackground: "#D1DFE3",
     caseStudy: {
       role: "Product Designer",
       team: "Product, Engineering, and cross-functional partners",
@@ -159,7 +159,8 @@ export const projects: Project[] = [
     title: "Growth & Monetization",
     description:
       "Led the redesign of Dashlane’s new user activation and upsell experiences across platforms, improving key conversion journeys to drive user and revenue growth.",
-    videoBackground: "#F3B8B1",
+    thumbnail: "/projects/growth-monetization.webp",
+    thumbnailBackground: "#F3B8B1",
     caseStudy: {
       lead: "Case study details coming soon.",
       sections: [

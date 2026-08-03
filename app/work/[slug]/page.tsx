@@ -129,9 +129,9 @@ export default async function CaseStudyPage({ params }: PageProps) {
         <div
           className="reveal relative overflow-hidden rounded-xl sm:rounded-2xl"
           style={{
-            backgroundColor: project.video
-              ? (project.videoBackground ?? "#000000")
-              : "#d9d9d9",
+            backgroundColor:
+              project.thumbnailBackground ??
+              (project.video ? "#000000" : "#d9d9d9"),
           }}
         >
           <div className="relative aspect-[16/10] w-full sm:aspect-[16/9]">

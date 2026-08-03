@@ -18,7 +18,7 @@ export function ProjectRow({
         ? "reveal-delay-2"
         : "reveal-delay-3";
   const mediaBackground =
-    project.videoBackground ?? (project.video ? "#000000" : "#d9d9d9");
+    project.thumbnailBackground ?? (project.video ? "#000000" : "#d9d9d9");
 
   return (
     <article className={`reveal ${delayClass} group`}>
