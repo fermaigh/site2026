@@ -118,6 +118,8 @@ export const projects: Project[] = [
     title: "Simplifying Enterprise Security",
     description:
       "Led the end-to-end design of Dark Web Monitoring for Dashlane Business, transforming complex security requirements into simple, scalable experiences.",
+    video: "/projects/dark-web-monitoring.mp4",
+    videoBackground: "#D1DFE3",
     caseStudy: {
       lead: "Case study details coming soon.",
       sections: [
