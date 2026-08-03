@@ -159,6 +159,7 @@ export const projects: Project[] = [
     title: "Growth & Monetization",
     description:
       "Led the redesign of Dashlane’s new user activation and upsell experiences across platforms, improving key conversion journeys to drive user and revenue growth.",
+    videoBackground: "#F3B8B1",
     caseStudy: {
       lead: "Case study details coming soon.",
       sections: [
