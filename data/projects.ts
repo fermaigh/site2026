@@ -45,6 +45,8 @@ export type Project = {
   thumbnailBackground?: string;
   /** Scale applied to the thumbnail media inside its container (1 = fill) */
   thumbnailScale?: number;
+  /** Vertical nudge of the thumbnail media, in percent (negative moves up) */
+  thumbnailOffsetY?: number;
   /** When present, the project has a dedicated case study page at /work/[slug] */
   caseStudy?: CaseStudy;
 };
@@ -163,7 +165,8 @@ export const projects: Project[] = [
       "Led the redesign of Dashlane’s new user activation and upsell experiences across platforms, improving key conversion journeys to drive user and revenue growth.",
     thumbnail: "/projects/growth-monetization.webp",
     thumbnailBackground: "#F3B8B1",
-    thumbnailScale: 1.2,
+    thumbnailScale: 1.25,
+    thumbnailOffsetY: -10,
     caseStudy: {
       role: "Product Designer",
       team:

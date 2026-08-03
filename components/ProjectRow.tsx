@@ -19,6 +19,15 @@ export function ProjectRow({
         : "reveal-delay-3";
   const mediaBackground =
     project.thumbnailBackground ?? (project.video ? "#000000" : "#d9d9d9");
+  const mediaTransform =
+    [
+      project.thumbnailOffsetY
+        ? `translateY(${project.thumbnailOffsetY}%)`
+        : null,
+      project.thumbnailScale ? `scale(${project.thumbnailScale})` : null,
+    ]
+      .filter(Boolean)
+      .join(" ") || undefined;
 
   return (
     <article className={`reveal ${delayClass} group`}>
@@ -48,11 +57,7 @@ export function ProjectRow({
                 alt=""
                 fill
                 className="object-cover"
-                style={
-                  project.thumbnailScale
-                    ? { transform: `scale(${project.thumbnailScale})` }
-                    : undefined
-                }
+                style={mediaTransform ? { transform: mediaTransform } : undefined}
                 sizes="(max-width: 768px) 100vw, 540px"
               />
             ) : null}
