@@ -48,6 +48,11 @@ export function ProjectRow({
                 alt=""
                 fill
                 className="object-cover"
+                style={
+                  project.thumbnailScale
+                    ? { transform: `scale(${project.thumbnailScale})` }
+                    : undefined
+                }
                 sizes="(max-width: 768px) 100vw, 540px"
               />
             ) : null}
