@@ -220,8 +220,8 @@ html.is-loading body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #000;
-  color: #eaeaea;
+  background: var(--background);
+  color: var(--foreground);
   opacity: 1;
   transition: opacity 0.42s cubic-bezier(0.22, 1, 0.36, 1);
   pointer-events: auto;
