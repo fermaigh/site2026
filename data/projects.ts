@@ -23,11 +23,12 @@ export type CaseStudySection = {
 };
 
 export type CaseStudy = {
-  /** FAANG-style role line shown under the title */
+  /** FAANG-style meta lines shown under the title */
   role?: string;
-  /** FAANG-style scope line shown under the title */
-  scope?: string;
-  /** Intro paragraph shown under the title (and under role/scope when set) */
+  team?: string;
+  duration?: string;
+  ownership?: string;
+  /** Intro paragraph shown under the title (and under meta lines when set) */
   lead: string;
   sections: CaseStudySection[];
 };
@@ -68,8 +69,9 @@ export const projects: Project[] = [
     video: "/projects/hiring-app.mp4",
     caseStudy: {
       role: "Lead Product Designer",
-      scope:
-        "End-to-end user experience from execution across hiring managers, franchise owners, and job seekers.",
+      team: "Founder, 2 PMs, 8 Engineers, 2 Designers",
+      duration: "2022–2024",
+      ownership: "Hiring Manager, Franchise Owner, Applicant experiences",
       lead:
         "Joined shortly after MVP launch to help scale the product. Partnered with founders and cross-functional teams to identify high-impact opportunities for growth, validate solutions, and deliver customer experiences that accelerated product maturity and business growth.",
       sections: [

@@ -146,7 +146,10 @@ export default async function CaseStudyPage({ params }: PageProps) {
             {project.title}
           </h1>
           <div className="mt-4 max-w-2xl space-y-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-6 sm:space-y-5 sm:text-[17px]">
-            {caseStudy.role || caseStudy.scope ? (
+            {caseStudy.role ||
+            caseStudy.team ||
+            caseStudy.duration ||
+            caseStudy.ownership ? (
               <div className="space-y-1">
                 {caseStudy.role ? (
                   <p>
@@ -154,10 +157,26 @@ export default async function CaseStudyPage({ params }: PageProps) {
                     {caseStudy.role}
                   </p>
                 ) : null}
-                {caseStudy.scope ? (
+                {caseStudy.team ? (
                   <p>
-                    <span className="font-medium text-foreground">Scope:</span>{" "}
-                    {caseStudy.scope}
+                    <span className="font-medium text-foreground">Team:</span>{" "}
+                    {caseStudy.team}
+                  </p>
+                ) : null}
+                {caseStudy.duration ? (
+                  <p>
+                    <span className="font-medium text-foreground">
+                      Duration:
+                    </span>{" "}
+                    {caseStudy.duration}
+                  </p>
+                ) : null}
+                {caseStudy.ownership ? (
+                  <p>
+                    <span className="font-medium text-foreground">
+                      Ownership:
+                    </span>{" "}
+                    {caseStudy.ownership}
                   </p>
                 ) : null}
               </div>
