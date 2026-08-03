@@ -56,9 +56,10 @@ function CaseStudyBulletContent({ bullet }: { bullet: CaseStudyBullet }) {
             href={part.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="underline decoration-foreground/25 underline-offset-2 transition-opacity hover:opacity-70"
+            className="group inline-flex items-center gap-1 font-semibold text-foreground transition-opacity hover:opacity-70 active:opacity-60"
           >
-            {part.text}
+            <span>{part.text}</span>
+            <HoverArrow />
           </a>
         ),
       )}
