@@ -10,7 +10,7 @@ export default function Home() {
       <SiteHero />
 
       <div
-        className="reveal reveal-delay-1 h-px w-full bg-black/[0.1]"
+        className="reveal reveal-delay-1 h-px w-full bg-foreground/10"
         aria-hidden
       />
 

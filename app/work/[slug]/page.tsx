@@ -204,7 +204,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
           </div>
         </header>
 
-        <div className="mt-12 space-y-10 border-t border-black/[0.06] pt-10 sm:mt-16 sm:space-y-14 sm:pt-14 md:mt-20 md:pt-16">
+        <div className="mt-12 space-y-10 border-t border-foreground/10 pt-10 sm:mt-16 sm:space-y-14 sm:pt-14 md:mt-20 md:pt-16">
           {caseStudy.sections.map((section, index) => (
             <section
               key={section.heading}

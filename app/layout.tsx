@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import { ThemeScript } from "@/components/ThemeScript";
 import "./globals.css";
 
 const inter = Inter({
@@ -38,10 +40,14 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${inter.variable} ${geistMono.variable} h-full scroll-smooth antialiased`}
     >
-      <body className="flex min-h-full flex-col overflow-x-hidden bg-[#f7f7f7] font-sans text-foreground">
-        {children}
+      <head>
+        <ThemeScript />
+      </head>
+      <body className="flex min-h-full flex-col overflow-x-hidden bg-background font-sans text-foreground">
+        <ThemeProvider>{children}</ThemeProvider>
         <Analytics />
       </body>
     </html>

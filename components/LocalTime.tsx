@@ -1,12 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
-const TIME_ZONE = "America/Los_Angeles";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import { BELLEVUE_TIME_ZONE } from "@/lib/theme";
 
 function formatBellevueTime(date: Date) {
   return new Intl.DateTimeFormat("en-US", {
-    timeZone: TIME_ZONE,
+    timeZone: BELLEVUE_TIME_ZONE,
     hour: "numeric",
     minute: "2-digit",
     hour12: true,
@@ -24,8 +24,11 @@ export function LocalTime() {
   }, []);
 
   return (
-    <p className="font-sans text-[12px] text-foreground/40 sm:text-[13px]">
-      {time ? `${time} · Bellevue` : "(Local time in Bellevue)"}
-    </p>
+    <div className="flex items-center gap-1.5 sm:gap-2">
+      <p className="font-sans text-[12px] text-foreground/40 sm:text-[13px]">
+        {time ? `${time} · Bellevue` : "(Local time in Bellevue)"}
+      </p>
+      <ThemeToggle />
+    </div>
   );
 }
