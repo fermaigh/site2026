@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { Project } from "@/data/projects";
 import { HoverArrow } from "@/components/HoverArrow";
+import { RichTextContent } from "@/components/RichText";
 import { TransitionLink } from "@/components/TransitionLink";
 
 export function ProjectRow({
@@ -75,7 +76,7 @@ export function ProjectRow({
             </TransitionLink>
           </h2>
           <p className="mt-2 max-w-md font-sans text-[14px] leading-relaxed text-pretty text-foreground/55 sm:mt-3 sm:text-[15px] md:text-[16px]">
-            {project.description}
+            <RichTextContent value={project.description} />
           </p>
         </div>
       </div>
