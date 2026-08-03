@@ -83,6 +83,7 @@ export const projects: Project[] = [
               bullets: [
                 "↑ 87% interview conversation rate",
                 "↓ 27% 90-day employee turnover",
+                "Enabled enterprise adoption across brands including McDonald's, Chick-fil-A, Burger King, and Taco Bell",
                 {
                   parts: [
                     "Helped scale the product through the company's ",
