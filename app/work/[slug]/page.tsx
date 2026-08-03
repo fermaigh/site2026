@@ -34,6 +34,37 @@ export async function generateMetadata({
   };
 }
 
+function bulletKey(bullet: CaseStudyBullet): string {
+  if (typeof bullet === "string") return bullet;
+  return bullet.parts
+    .map((part) => (typeof part === "string" ? part : part.text))
+    .join("");
+}
+
+function CaseStudyBulletContent({ bullet }: { bullet: CaseStudyBullet }) {
+  if (typeof bullet === "string") return bullet;
+
+  return (
+    <>
+      {bullet.parts.map((part, index) =>
+        typeof part === "string" ? (
+          <span key={`${index}-${part}`}>{part}</span>
+        ) : (
+          <a
+            key={`${index}-${part.href}`}
+            href={part.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline decoration-foreground/25 underline-offset-2 transition-opacity hover:opacity-70"
+          >
+            {part.text}
+          </a>
+        ),
+      )}
+    </>
+  );
+}
+
 function CaseStudyBlockContent({ block }: { block: CaseStudyBlock }) {
   return (
     <div className="max-w-2xl">
@@ -48,8 +79,8 @@ function CaseStudyBlockContent({ block }: { block: CaseStudyBlock }) {
       {block.bullets?.length ? (
         <ul className="mt-3 list-disc space-y-2 pl-5 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 marker:text-foreground/35 sm:mt-4 sm:space-y-3 sm:text-[17px]">
           {block.bullets.map((item) => (
-            <li key={item} className="ps-1">
-              {item}
+            <li key={bulletKey(item)} className="ps-1">
+              <CaseStudyBulletContent bullet={item} />
             </li>
           ))}
         </ul>

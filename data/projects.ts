@@ -81,7 +81,15 @@ export const projects: Project[] = [
               bullets: [
                 "↑ 87% interview conversation rate",
                 "↓ 27% 90-day employee turnover",
-                "Helped scale the product through the company's acquisition by Humanly.io",
+                {
+                  parts: [
+                    "Helped scale the product through the company's ",
+                    {
+                      text: "acquisition by Humanly.io",
+                      href: "https://www.humanly.io/blog/humanly-expands-to-create-an-end-to-end-conversational-ai-hiring-platform",
+                    },
+                  ],
+                },
               ],
             },
             {
