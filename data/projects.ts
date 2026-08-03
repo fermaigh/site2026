@@ -111,6 +111,21 @@ export const projects: Project[] = [
       ],
     },
   },
+  {
+    slug: "simplifying-enterprise-security",
+    title: "Simplifying Enterprise Security",
+    description:
+      "Led the end-to-end design of Dark Web Monitoring for Dashlane Business, transforming complex security requirements into simple, scalable experiences.",
+    caseStudy: {
+      lead: "Case study details coming soon.",
+      sections: [
+        {
+          heading: "Overview",
+          body: "Description goes here for about 2-4 paragraph. Full case study content will be added later.",
+        },
+      ],
+    },
+  },
 ];
 
 export function getProject(slug: string): Project | undefined {
