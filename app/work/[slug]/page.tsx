@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { HoverArrow } from "@/components/HoverArrow";
 import { PageShell } from "@/components/PageShell";
 import {
   getCaseStudyProjects,
