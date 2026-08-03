@@ -136,9 +136,8 @@ export const projects: Project[] = [
             {
               heading: "Impact",
               bullets: [
-                "Shaped one of Dashlane Business’s three most-used SMB features.",
-                "Made breach reports more actionable for IT administrators.",
-                "Balanced user value, adoption goals, and engineering constraints.",
+                "Designed and launched the feature from 0 to 1.",
+                "Shaped one of Dashlane Business’s three most-used features among SMB customers.",
               ],
             },
             {
