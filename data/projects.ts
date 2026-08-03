@@ -54,8 +54,9 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: "tiktok-shop-affiliate",
-    title: "TikTok Shop Affiliate",
-    description: "Description goes here for about 2-4 paragraph",
+    title: "Scaling Affiliate Partnerships on TikTok Shop",
+    description:
+      "Led end-to-end design for TikTok Shop Affiliate seller tools, helping millions of merchants worldwide discover, connect with, and manage creator partnerships at scale. Simplified complex commerce workflows while supporting creator-driven growth and over $1M in weekly GMV.",
     caseStudy: {
       lead: "Case study details coming soon.",
       sections: [
