@@ -17,15 +17,17 @@ export function ProjectRow({
       : index === 1
         ? "reveal-delay-2"
         : "reveal-delay-3";
+  const mediaBackground = project.video
+    ? (project.videoBackground ?? "#000000")
+    : "#d9d9d9";
 
   return (
     <article className={`reveal ${delayClass} group`}>
       <div className="grid grid-cols-1 items-start gap-4 sm:gap-5 md:grid-cols-2 md:gap-10 lg:gap-14">
         <TransitionLink
           href={href}
-          className={`block overflow-hidden rounded-xl transition-opacity hover:opacity-90 active:opacity-80 sm:rounded-2xl ${
-            project.video ? "bg-black" : "bg-[#d9d9d9]"
-          }`}
+          className="block overflow-hidden rounded-xl transition-opacity hover:opacity-90 active:opacity-80 sm:rounded-2xl"
+          style={{ backgroundColor: mediaBackground }}
           aria-label={`${project.title} case study`}
         >
           <div className="relative aspect-[16/10] w-full">

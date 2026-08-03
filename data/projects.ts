@@ -41,6 +41,8 @@ export type Project = {
   thumbnail?: string;
   /** Autoplaying muted loop video shown in place of the still thumbnail when set */
   video?: string;
+  /** Thumbnail container background behind video (defaults to black when video is set) */
+  videoBackground?: string;
   /** When present, the project has a dedicated case study page at /work/[slug] */
   caseStudy?: CaseStudy;
 };
