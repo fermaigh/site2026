@@ -154,6 +154,21 @@ export const projects: Project[] = [
       ],
     },
   },
+  {
+    slug: "growth-and-monetization",
+    title: "Growth & Monetization",
+    description:
+      "Led the redesign of Dashlane’s new user activation and upsell experiences across platforms, improving key conversion journeys to drive user and revenue growth.",
+    caseStudy: {
+      lead: "Case study details coming soon.",
+      sections: [
+        {
+          heading: "Overview",
+          body: "Description goes here for about 2-4 paragraph. Full case study content will be added later.",
+        },
+      ],
+    },
+  },
 ];
 
 export function getProject(slug: string): Project | undefined {
