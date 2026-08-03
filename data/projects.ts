@@ -1,7 +1,19 @@
+export type CaseStudyBulletLink = {
+  text: string;
+  href: string;
+};
+
+/** Plain string, or mixed text + links for inline hyperlinks */
+export type CaseStudyBullet =
+  | string
+  | {
+      parts: Array<string | CaseStudyBulletLink>;
+    };
+
 export type CaseStudyBlock = {
   heading: string;
   body?: string;
-  bullets?: string[];
+  bullets?: CaseStudyBullet[];
 };
 
 export type CaseStudySection = {

@@ -6,6 +6,7 @@ import {
   getCaseStudyProjects,
   getProject,
   type CaseStudyBlock,
+  type CaseStudyBullet,
   type CaseStudySection,
 } from "@/data/projects";
 
