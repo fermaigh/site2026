@@ -17,9 +17,8 @@ export function ProjectRow({
       : index === 1
         ? "reveal-delay-2"
         : "reveal-delay-3";
-  const mediaBackground = project.video
-    ? (project.videoBackground ?? "#000000")
-    : "#d9d9d9";
+  const mediaBackground =
+    project.videoBackground ?? (project.video ? "#000000" : "#d9d9d9");
 
   return (
     <article className={`reveal ${delayClass} group`}>
