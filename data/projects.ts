@@ -77,7 +77,7 @@ export const projects: Project[] = [
     caseStudy: {
       role: "Lead Product Designer",
       team: "Founder, 2 PMs, 8 Engineers, 2 Designers",
-      duration: "2022–2024",
+      duration: "2024",
       ownership: "Hiring Manager, Franchise Owner, Applicant experiences",
       lead:
         "Joined shortly after MVP launch to help scale the product. Partnered with founders and cross-functional teams to identify high-impact opportunities for growth, validate solutions, and deliver customer experiences that accelerated product maturity and business growth.",
