@@ -100,7 +100,7 @@ export const projects: Project[] = [
               heading: "My contributions",
               bullets: [
                 "Led end-to-end design from strategy and discovery through launch.",
-                "Designed scalable seller–creator collaboration workflows.",
+                "Designed scalable seller–creator collaboration workflows, in traditional feature and AI Agent flows",
                 "Simplified complex campaign, invitation, sample, and commission experiences.",
                 "Aligned multiple teams around shared patterns and priorities.",
                 "Established reusable components and standards across seller platforms.",
