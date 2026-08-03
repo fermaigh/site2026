@@ -65,11 +65,39 @@ export const projects: Project[] = [
     description:
       "Led end-to-end design for TikTok Shop Affiliate seller tools, helping millions of merchants worldwide discover, connect with, and manage creator partnerships at scale. Simplified complex workflows, driving creator-led growth and over $1M in weekly GMV.",
     caseStudy: {
-      lead: "Case study details coming soon.",
+      role: "Senior Product Designer",
+      team: "Product, Engineering, Content Design, Data Science, Operations, and partner teams",
+      duration: "2024–Present",
+      ownership:
+        "Design POC for seller–creator collaboration across TikTok Shop Affiliate",
+      lead:
+        "I lead product design for TikTok Shop Affiliate seller experiences, helping millions of merchants worldwide discover creators, build partnerships, and grow through affiliate commerce.",
       sections: [
         {
           heading: "Overview",
-          body: "Description goes here for about 2-4 paragraph. Full case study content will be added later.",
+          body: "I design scalable tools that simplify creator partnerships—from discovery and outreach to campaigns, samples, commissions, and performance tracking. My work spans product strategy, complex workflows, and global cross-functional delivery.",
+          blocks: [
+            {
+              heading: "Impact",
+              bullets: [
+                "Supported affiliate campaigns generating over $1M in weekly GMV.",
+                "Launched multiple 0-to-1 seller and creator collaboration experiences.",
+                "Improved core affiliate workflows serving millions of merchants worldwide.",
+                "Advanced AI adoption by piloting new workflows and shipping AI-assisted solutions.",
+              ],
+            },
+            {
+              heading: "My contributions",
+              bullets: [
+                "Led end-to-end design from strategy and discovery through launch.",
+                "Designed scalable seller–creator collaboration workflows.",
+                "Simplified complex campaign, invitation, sample, and commission experiences.",
+                "Aligned multiple teams around shared patterns and priorities.",
+                "Established reusable components and standards across seller platforms.",
+                "Used AI-assisted tools to accelerate design and ship production experiences.",
+              ],
+            },
+          ],
         },
       ],
     },
