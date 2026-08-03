@@ -6,9 +6,10 @@ import { PageShell } from "@/components/PageShell";
 import {
   getCaseStudyProjects,
   getProject,
+  richTextToPlain,
   type CaseStudyBlock,
-  type CaseStudyBullet,
   type CaseStudySection,
+  type RichText,
 } from "@/data/projects";
 
 type PageProps = {
@@ -31,23 +32,16 @@ export async function generateMetadata({
 
   return {
     title: `${project.title} — Xiaoye Lin`,
-    description: project.caseStudy.lead,
+    description: richTextToPlain(project.caseStudy.lead),
   };
 }
 
-function bulletKey(bullet: CaseStudyBullet): string {
-  if (typeof bullet === "string") return bullet;
-  return bullet.parts
-    .map((part) => (typeof part === "string" ? part : part.text))
-    .join("");
-}
-
-function CaseStudyBulletContent({ bullet }: { bullet: CaseStudyBullet }) {
-  if (typeof bullet === "string") return bullet;
+function RichTextContent({ value }: { value: RichText }) {
+  if (typeof value === "string") return value;
 
   return (
     <>
-      {bullet.parts.map((part, index) =>
+      {value.parts.map((part, index) =>
         typeof part === "string" ? (
           <span key={`${index}-${part}`}>{part}</span>
         ) : (
@@ -81,8 +75,8 @@ function CaseStudyBlockContent({ block }: { block: CaseStudyBlock }) {
       {block.bullets?.length ? (
         <ul className="mt-3 list-disc space-y-2 pl-5 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 marker:text-foreground/35 sm:mt-4 sm:space-y-3 sm:text-[17px]">
           {block.bullets.map((item) => (
-            <li key={bulletKey(item)} className="ps-1">
-              <CaseStudyBulletContent bullet={item} />
+            <li key={richTextToPlain(item)} className="ps-1">
+              <RichTextContent value={item} />
             </li>
           ))}
         </ul>
@@ -200,7 +194,9 @@ export default async function CaseStudyPage({ params }: PageProps) {
                 ) : null}
               </div>
             ) : null}
-            <p>{caseStudy.lead}</p>
+            <p>
+              <RichTextContent value={caseStudy.lead} />
+            </p>
           </div>
         </header>
 

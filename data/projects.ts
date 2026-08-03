@@ -1,19 +1,26 @@
-export type CaseStudyBulletLink = {
+export type RichTextLink = {
   text: string;
   href: string;
 };
 
 /** Plain string, or mixed text + links for inline hyperlinks */
-export type CaseStudyBullet =
+export type RichText =
   | string
   | {
-      parts: Array<string | CaseStudyBulletLink>;
+      parts: Array<string | RichTextLink>;
     };
+
+export function richTextToPlain(value: RichText): string {
+  if (typeof value === "string") return value;
+  return value.parts
+    .map((part) => (typeof part === "string" ? part : part.text))
+    .join("");
+}
 
 export type CaseStudyBlock = {
   heading: string;
   body?: string;
-  bullets?: CaseStudyBullet[];
+  bullets?: RichText[];
 };
 
 export type CaseStudySection = {
@@ -29,7 +36,7 @@ export type CaseStudy = {
   duration?: string;
   ownership?: string;
   /** Intro paragraph shown under the title (and under meta lines when set) */
-  lead: string;
+  lead: RichText;
   sections: CaseStudySection[];
 };
 
@@ -131,8 +138,16 @@ export const projects: Project[] = [
       duration: "2023",
       ownership:
         "Feature discovery, domain verification, breach reporting, and remediation",
-      lead:
-        "I joined Dashlane’s B2B team in early 2023 and led the design of Dark Web Monitoring for Dashlane Business. I partnered with product and engineering to transform complex security requirements into a simple, actionable experience.",
+      lead: {
+        parts: [
+          "I joined Dashlane’s B2B team in early 2023 and led the design of Dark Web Monitoring for ",
+          {
+            text: "Dashlane Business",
+            href: "https://www.dashlane.com/darkwebinsights",
+          },
+          ". I partnered with product and engineering to transform complex security requirements into a simple, actionable experience.",
+        ],
+      },
       sections: [
         {
           heading: "Overview",
