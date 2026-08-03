@@ -64,6 +64,8 @@ export const projects: Project[] = [
     title: "Scaling TikTok Shop Affiliates",
     description:
       "Led end-to-end design for TikTok Shop Affiliate seller tools, helping millions of merchants worldwide discover, connect with, and manage creator partnerships at scale. Simplified complex workflows, driving creator-led growth and over $1M in weekly GMV.",
+    thumbnail: "/projects/tts_thumb.png",
+    thumbnailBackground: "#F5F5F5",
     caseStudy: {
       role: "Senior Product Designer",
       team: "Product, Engineering, Content Design, Data Science, Operations, and partner teams",
