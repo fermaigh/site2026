@@ -165,11 +165,38 @@ export const projects: Project[] = [
     thumbnailBackground: "#F3B8B1",
     thumbnailScale: 1.2,
     caseStudy: {
-      lead: "Case study details coming soon.",
+      role: "Product Designer",
+      team:
+        "18-person cross-functional Growth team across Product, Design, Engineering, Data, and Marketing",
+      duration: "2020–2021",
+      ownership:
+        "Onboarding, subscription plans, and cross-platform upsell experiences",
+      lead:
+        "I led design across Dashlane’s acquisition and subscription journeys, partnering with a global team to drive user activation, retention, and revenue growth across web, desktop, and mobile.",
       sections: [
         {
           heading: "Overview",
-          body: "Description goes here for about 2-4 paragraph. Full case study content will be added later.",
+          body: "I redesigned new-user onboarding around Autofill—Dashlane’s core “aha moment”—and led the UX for a global subscription revamp introducing a new mid-tier plan. I also identified early-funnel friction and tested targeted improvements across key conversion touchpoints.",
+          blocks: [
+            {
+              heading: "Impact",
+              bullets: [
+                "23%+ free-to-paid conversion",
+                "5%+ improvement in first-month retention",
+                "12% lift in conversion by improving Premium trial visibility",
+              ],
+            },
+            {
+              heading: "My contributions",
+              bullets: [
+                "Designed and launched onboarding that demonstrated Dashlane’s core value (Autofill).",
+                "Led cross-platform UX for a global subscription and pricing revamp.",
+                "Simplified plan comparison, purchasing, account management, and upgrade experiences.",
+                "Designed solutions and supported A/B experiments for quick wins, improving activation and conversion based on behavioral data and churn analysis.",
+                "Aligned stakeholders across product, engineering, data, and marketing.",
+              ],
+            },
+          ],
         },
       ],
     },
