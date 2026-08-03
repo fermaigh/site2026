@@ -3,29 +3,49 @@ export type RichTextLink = {
   href: string;
 };
 
-/** Plain string, or mixed text + links for inline hyperlinks */
+export type RichTextBold = {
+  bold: string;
+};
+
+export type RichTextPart = string | RichTextLink | RichTextBold;
+
+/** Plain string, or mixed text + links + bold spans for inline emphasis */
 export type RichText =
   | string
   | {
-      parts: Array<string | RichTextLink>;
+      parts: RichTextPart[];
     };
+
+function isRichTextLink(part: RichTextPart): part is RichTextLink {
+  return typeof part === "object" && "href" in part;
+}
+
+function isRichTextBold(part: RichTextPart): part is RichTextBold {
+  return typeof part === "object" && "bold" in part;
+}
 
 export function richTextToPlain(value: RichText): string {
   if (typeof value === "string") return value;
   return value.parts
-    .map((part) => (typeof part === "string" ? part : part.text))
+    .map((part) => {
+      if (typeof part === "string") return part;
+      if (isRichTextLink(part)) return part.text;
+      return part.bold;
+    })
     .join("");
 }
 
+export { isRichTextLink, isRichTextBold };
+
 export type CaseStudyBlock = {
   heading: string;
-  body?: string;
+  body?: RichText;
   bullets?: RichText[];
 };
 
 export type CaseStudySection = {
   heading: string;
-  body?: string;
+  body?: RichText;
   blocks?: CaseStudyBlock[];
 };
 
@@ -79,32 +99,104 @@ export const projects: Project[] = [
             text: "TikTok Shop Affiliate seller",
             href: "https://seller.tiktok.com",
           },
-          " experiences, helping millions of merchants worldwide discover creators, build partnerships, and grow through affiliate commerce.",
+          " experiences, helping ",
+          { bold: "millions of merchants worldwide" },
+          " discover creators, build partnerships, and grow through affiliate commerce.",
         ],
       },
       sections: [
         {
           heading: "Overview",
-          body: "I design scalable tools that simplify creator partnerships—from discovery and outreach to campaigns, samples, commissions, and performance tracking. My work spans product strategy, complex workflows, and global cross-functional delivery.",
+          body: {
+            parts: [
+              "I design ",
+              { bold: "scalable tools" },
+              " that simplify creator partnerships—from discovery and outreach to campaigns, samples, commissions, and performance tracking. My work spans ",
+              { bold: "product strategy" },
+              ", complex workflows, and ",
+              { bold: "global cross-functional delivery" },
+              ".",
+            ],
+          },
           blocks: [
             {
               heading: "Impact",
               bullets: [
-                "Supported affiliate campaigns generating over $1M in weekly GMV.",
-                "Launched multiple 0-to-1 seller and creator collaboration experiences.",
-                "Improved core affiliate workflows serving millions of merchants worldwide.",
-                "Advanced AI adoption by piloting new workflows and shipping AI-assisted solutions.",
+                {
+                  parts: [
+                    "Supported affiliate campaigns generating over ",
+                    { bold: "$1M in weekly GMV" },
+                    ".",
+                  ],
+                },
+                {
+                  parts: [
+                    "Launched multiple ",
+                    { bold: "0-to-1" },
+                    " seller and creator collaboration experiences.",
+                  ],
+                },
+                {
+                  parts: [
+                    "Improved core affiliate workflows serving ",
+                    { bold: "millions of merchants worldwide" },
+                    ".",
+                  ],
+                },
+                {
+                  parts: [
+                    "Advanced ",
+                    { bold: "AI adoption" },
+                    " by piloting new workflows and shipping AI-assisted solutions.",
+                  ],
+                },
               ],
             },
             {
               heading: "My contributions",
               bullets: [
-                "Led end-to-end design from strategy and discovery through launch.",
-                "Designed scalable seller–creator collaboration workflows, in traditional feature and AI Agent flows",
-                "Simplified complex campaign, invitation, sample, and commission experiences.",
-                "Aligned multiple teams around shared patterns and priorities.",
-                "Established reusable components and standards across seller platforms.",
-                "Used AI-assisted tools to accelerate design and ship production experiences.",
+                {
+                  parts: [
+                    { bold: "Led end-to-end design" },
+                    " from strategy and discovery through launch.",
+                  ],
+                },
+                {
+                  parts: [
+                    "Designed scalable ",
+                    { bold: "seller–creator collaboration workflows" },
+                    ", in traditional feature and ",
+                    { bold: "AI Agent flows" },
+                  ],
+                },
+                {
+                  parts: [
+                    "Simplified complex ",
+                    { bold: "campaign, invitation, sample, and commission" },
+                    " experiences.",
+                  ],
+                },
+                {
+                  parts: [
+                    "Aligned multiple teams around ",
+                    { bold: "shared patterns and priorities" },
+                    ".",
+                  ],
+                },
+                {
+                  parts: [
+                    "Established ",
+                    { bold: "reusable components and standards" },
+                    " across seller platforms.",
+                  ],
+                },
+                {
+                  parts: [
+                    "Used ",
+                    { bold: "AI-assisted tools" },
+                    " to accelerate design and ship production experiences.",
+                  ],
+                },
               ],
             },
           ],
@@ -124,8 +216,17 @@ export const projects: Project[] = [
       team: "Founder, 2 PMs, 8 Engineers, 2 Designers",
       duration: "2023–2024",
       ownership: "Hiring Manager, Franchise Owner, Applicant experiences",
-      lead:
-        "Joined shortly after MVP launch to help scale the product. Partnered with founders and cross-functional teams to identify high-impact opportunities for growth, validate solutions, and deliver customer experiences that accelerated product maturity and business growth.",
+      lead: {
+        parts: [
+          "Joined shortly after ",
+          { bold: "MVP launch" },
+          " to help scale the product. Partnered with founders and cross-functional teams to identify ",
+          { bold: "high-impact opportunities for growth" },
+          ", validate solutions, and deliver customer experiences that accelerated product maturity and ",
+          { bold: "business growth" },
+          ".",
+        ],
+      },
       sections: [
         {
           heading: "Overview",
@@ -133,9 +234,28 @@ export const projects: Project[] = [
             {
               heading: "Impact",
               bullets: [
-                "↑ 87% interview conversation rate",
-                "↓ 27% 90-day employee turnover",
-                "Enabled enterprise adoption across brands including McDonald's, Chick-fil-A, Burger King, and Taco Bell",
+                {
+                  parts: [
+                    "↑ ",
+                    { bold: "87% interview conversation rate" },
+                  ],
+                },
+                {
+                  parts: [
+                    "↓ ",
+                    { bold: "27% 90-day employee turnover" },
+                  ],
+                },
+                {
+                  parts: [
+                    "Enabled ",
+                    { bold: "enterprise adoption" },
+                    " across brands including ",
+                    {
+                      bold: "McDonald's, Chick-fil-A, Burger King, and Taco Bell",
+                    },
+                  ],
+                },
                 {
                   parts: [
                     "Helped scale the product through the company's ",
@@ -150,12 +270,46 @@ export const projects: Project[] = [
             {
               heading: "My contributions",
               bullets: [
-                "Shaped product strategy and vision alongside company leadership.",
-                "Led end-to-end design across multiple product areas, from concept to launch.",
-                "Drove product decisions through user research, data, and rapid experimentation.",
-                "Influenced roadmap prioritization with founders, product, and engineering.",
-                "Established scalable design processes and a design system to accelerate delivery.",
-                "Mentored designers and elevated design quality across the organization.",
+                {
+                  parts: [
+                    "Shaped ",
+                    { bold: "product strategy and vision" },
+                    " alongside company leadership.",
+                  ],
+                },
+                {
+                  parts: [
+                    { bold: "Led end-to-end design" },
+                    " across multiple product areas, from concept to launch.",
+                  ],
+                },
+                {
+                  parts: [
+                    "Drove product decisions through ",
+                    { bold: "user research, data, and rapid experimentation" },
+                    ".",
+                  ],
+                },
+                {
+                  parts: [
+                    "Influenced ",
+                    { bold: "roadmap prioritization" },
+                    " with founders, product, and engineering.",
+                  ],
+                },
+                {
+                  parts: [
+                    "Established scalable design processes and a ",
+                    { bold: "design system" },
+                    " to accelerate delivery.",
+                  ],
+                },
+                {
+                  parts: [
+                    { bold: "Mentored designers" },
+                    " and elevated design quality across the organization.",
+                  ],
+                },
               ],
             },
           ],
@@ -178,33 +332,80 @@ export const projects: Project[] = [
         "Feature discovery, domain verification, breach reporting, and remediation",
       lead: {
         parts: [
-          "I joined Dashlane’s B2B team in early 2023 and led the design of Dark Web Monitoring for ",
+          "I joined Dashlane’s B2B team in early 2023 and led the design of ",
+          { bold: "Dark Web Monitoring" },
+          " for ",
           {
             text: "Dashlane Business",
             href: "https://www.dashlane.com/darkwebinsights",
           },
-          ". I partnered with product and engineering to transform complex security requirements into a simple, actionable experience.",
+          ". I partnered with product and engineering to transform complex security requirements into a ",
+          { bold: "simple, actionable experience" },
+          ".",
         ],
       },
       sections: [
         {
           heading: "Overview",
-          body: "Dark Web Monitoring scans company email domains for potential breaches. Through research and rapid iteration, I designed an experience that helped IT administrators discover risks, understand reports, and take action.",
+          body: {
+            parts: [
+              "Dark Web Monitoring scans company email domains for potential breaches. Through research and rapid iteration, I designed an experience that helped ",
+              { bold: "IT administrators" },
+              " discover risks, understand reports, and ",
+              { bold: "take action" },
+              ".",
+            ],
+          },
           blocks: [
             {
               heading: "Impact",
               bullets: [
-                "Designed and launched the feature from 0 to 1.",
-                "Shaped one of Dashlane Business’s three most-used features among SMB customers.",
+                {
+                  parts: [
+                    "Designed and launched the feature from ",
+                    { bold: "0 to 1" },
+                    ".",
+                  ],
+                },
+                {
+                  parts: [
+                    "Shaped one of Dashlane Business’s ",
+                    { bold: "three most-used features" },
+                    " among SMB customers.",
+                  ],
+                },
               ],
             },
             {
               heading: "My contributions",
               bullets: [
-                "Led design from discovery through delivery.",
-                "Conducted user and competitive research.",
-                "Simplified complex security workflows.",
-                "Designed feature discovery and domain verification.",
+                {
+                  parts: [
+                    { bold: "Led design" },
+                    " from discovery through delivery.",
+                  ],
+                },
+                {
+                  parts: [
+                    "Conducted ",
+                    { bold: "user and competitive research" },
+                    ".",
+                  ],
+                },
+                {
+                  parts: [
+                    "Simplified ",
+                    { bold: "complex security workflows" },
+                    ".",
+                  ],
+                },
+                {
+                  parts: [
+                    "Designed ",
+                    { bold: "feature discovery and domain verification" },
+                    ".",
+                  ],
+                },
               ],
             },
           ],
@@ -228,29 +429,89 @@ export const projects: Project[] = [
       duration: "2020–2021",
       ownership:
         "Onboarding, subscription plans, and cross-platform upsell experiences",
-      lead:
-        "I led design across Dashlane’s acquisition and subscription journeys, partnering with a global team to drive user activation, retention, and revenue growth across web, desktop, and mobile.",
+      lead: {
+        parts: [
+          "I led design across Dashlane’s ",
+          { bold: "acquisition and subscription journeys" },
+          ", partnering with a global team to drive ",
+          { bold: "user activation, retention, and revenue growth" },
+          " across web, desktop, and mobile.",
+        ],
+      },
       sections: [
         {
           heading: "Overview",
-          body: "I redesigned new-user onboarding around Autofill—Dashlane’s core “aha moment”—and led the UX for a global subscription revamp introducing a new mid-tier plan. I also identified early-funnel friction and tested targeted improvements across key conversion touchpoints.",
+          body: {
+            parts: [
+              "I redesigned new-user onboarding around ",
+              { bold: "Autofill" },
+              "—Dashlane’s core “aha moment”—and led the UX for a ",
+              { bold: "global subscription revamp" },
+              " introducing a new mid-tier plan. I also identified early-funnel friction and tested targeted improvements across key conversion touchpoints.",
+            ],
+          },
           blocks: [
             {
               heading: "Impact",
               bullets: [
-                "23%+ free-to-paid conversion",
-                "5%+ improvement in first-month retention",
-                "12% lift in conversion by improving Premium trial visibility",
+                {
+                  parts: [{ bold: "23%+ free-to-paid conversion" }],
+                },
+                {
+                  parts: [
+                    { bold: "5%+ improvement in first-month retention" },
+                  ],
+                },
+                {
+                  parts: [
+                    { bold: "12% lift in conversion" },
+                    " by improving Premium trial visibility",
+                  ],
+                },
               ],
             },
             {
               heading: "My contributions",
               bullets: [
-                "Designed and launched onboarding that demonstrated Dashlane’s core value (Autofill).",
-                "Led cross-platform UX for a global subscription and pricing revamp.",
-                "Simplified plan comparison, purchasing, account management, and upgrade experiences.",
-                "Designed solutions and supported A/B experiments for quick wins, improving activation and conversion based on behavioral data and churn analysis.",
-                "Aligned stakeholders across product, engineering, data, and marketing.",
+                {
+                  parts: [
+                    "Designed and launched onboarding that demonstrated Dashlane’s core value (",
+                    { bold: "Autofill" },
+                    ").",
+                  ],
+                },
+                {
+                  parts: [
+                    "Led cross-platform UX for a ",
+                    { bold: "global subscription and pricing revamp" },
+                    ".",
+                  ],
+                },
+                {
+                  parts: [
+                    "Simplified ",
+                    {
+                      bold: "plan comparison, purchasing, account management, and upgrade",
+                    },
+                    " experiences.",
+                  ],
+                },
+                {
+                  parts: [
+                    "Designed solutions and supported ",
+                    { bold: "A/B experiments" },
+                    " for quick wins, improving ",
+                    { bold: "activation and conversion" },
+                    " based on behavioral data and churn analysis.",
+                  ],
+                },
+                {
+                  parts: [
+                    "Aligned stakeholders across ",
+                    { bold: "product, engineering, data, and marketing" },
+                    ".",
+                  ],
+                },
               ],
             },
           ],

@@ -43,7 +43,7 @@ function CaseStudyBlockContent({ block }: { block: CaseStudyBlock }) {
       </h3>
       {block.body ? (
         <p className="mt-3 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-4 sm:text-[17px]">
-          {block.body}
+          <RichTextContent value={block.body} />
         </p>
       ) : null}
       {block.bullets?.length ? (
@@ -67,7 +67,7 @@ function CaseStudySectionContent({ section }: { section: CaseStudySection }) {
       </h2>
       {section.body ? (
         <p className="mt-3 max-w-2xl font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-4 sm:text-[17px]">
-          {section.body}
+          <RichTextContent value={section.body} />
         </p>
       ) : null}
       {section.blocks?.length ? (
@@ -141,13 +141,17 @@ export default async function CaseStudyPage({ params }: PageProps) {
                 {caseStudy.role ? (
                   <p>
                     <span className="font-medium text-foreground">Role:</span>{" "}
-                    {caseStudy.role}
+                    <strong className="font-semibold text-foreground">
+                      {caseStudy.role}
+                    </strong>
                   </p>
                 ) : null}
                 {caseStudy.team ? (
                   <p>
                     <span className="font-medium text-foreground">Team:</span>{" "}
-                    {caseStudy.team}
+                    <strong className="font-semibold text-foreground">
+                      {caseStudy.team}
+                    </strong>
                   </p>
                 ) : null}
                 {caseStudy.duration ? (
@@ -155,7 +159,9 @@ export default async function CaseStudyPage({ params }: PageProps) {
                     <span className="font-medium text-foreground">
                       Duration:
                     </span>{" "}
-                    {caseStudy.duration}
+                    <strong className="font-semibold text-foreground">
+                      {caseStudy.duration}
+                    </strong>
                   </p>
                 ) : null}
                 {caseStudy.ownership ? (
@@ -163,7 +169,9 @@ export default async function CaseStudyPage({ params }: PageProps) {
                     <span className="font-medium text-foreground">
                       Ownership:
                     </span>{" "}
-                    {caseStudy.ownership}
+                    <strong className="font-semibold text-foreground">
+                      {caseStudy.ownership}
+                    </strong>
                   </p>
                 ) : null}
               </div>
