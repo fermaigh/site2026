@@ -27,10 +27,11 @@ export function SiteHero() {
             </span>
           </h1>
           <p className="mt-1 font-sans text-[14px] italic text-foreground/45 sm:text-[15px]">
-            shall-yay
+            pronounced as &ldquo;shall-yay&rdquo;
           </p>
           <p className="mt-2 max-w-xl font-sans text-[14px] leading-relaxed text-pretty text-foreground/70 sm:text-[15px] md:text-[16px]">
-            AI native, design thoughtful, strategic and useful&nbsp;products
+            AI native, design thoughtful, strategic and useful products for
+            10+&nbsp;years
           </p>
         </div>
       </div>
