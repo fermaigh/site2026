@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import { PageShell } from "@/components/PageShell";
 import { RichTextContent } from "@/components/RichText";
@@ -94,41 +93,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
   return (
     <PageShell>
       <article className="pb-8">
-        <div
-          className="reveal relative overflow-hidden rounded-xl sm:rounded-2xl"
-          style={{
-            backgroundColor:
-              project.thumbnailBackground ??
-              (project.video ? "#000000" : "#d9d9d9"),
-          }}
-        >
-          <div className="relative aspect-[16/10] w-full sm:aspect-[16/9]">
-            {project.video ? (
-              <video
-                className="absolute inset-0 size-full scale-[0.85] object-contain"
-                src={project.video}
-                poster={project.thumbnail}
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="metadata"
-                aria-hidden
-              />
-            ) : project.thumbnail ? (
-              <Image
-                src={project.thumbnail}
-                alt=""
-                fill
-                priority
-                className="object-cover"
-                sizes="(max-width: 1080px) 100vw, 1080px"
-              />
-            ) : null}
-          </div>
-        </div>
-
-        <header className="reveal reveal-delay-1 mt-8 sm:mt-10">
+        <header className="reveal">
           <h1 className="font-sans text-[clamp(1.75rem,6vw,2.75rem)] font-semibold leading-[1.1] tracking-tight text-foreground">
             {project.title}
           </h1>
