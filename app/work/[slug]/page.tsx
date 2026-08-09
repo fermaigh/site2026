@@ -8,11 +8,23 @@ import {
   richTextToPlain,
   type CaseStudyBlock,
   type CaseStudySection,
+  type RichText,
 } from "@/data/projects";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
 };
+
+function caseStudyDescription(
+  lead: RichText | undefined,
+  sections: CaseStudySection[],
+  fallback: RichText,
+): string {
+  if (lead) return richTextToPlain(lead);
+  const context = sections.find((section) => section.body);
+  if (context?.body) return richTextToPlain(context.body);
+  return richTextToPlain(fallback);
+}
 
 export function generateStaticParams() {
   return getCaseStudyProjects().map((project) => ({ slug: project.slug }));
@@ -30,7 +42,11 @@ export async function generateMetadata({
 
   return {
     title: `${project.title} — Xiaoye Lin`,
-    description: richTextToPlain(project.caseStudy.lead),
+    description: caseStudyDescription(
+      project.caseStudy.lead,
+      project.caseStudy.sections,
+      project.description,
+    ),
   };
 }
 
@@ -69,6 +85,15 @@ function CaseStudySectionContent({ section }: { section: CaseStudySection }) {
           <RichTextContent value={section.body} />
         </p>
       ) : null}
+      {section.bullets?.length ? (
+        <ul className="mt-3 max-w-2xl list-disc space-y-2 pl-5 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 marker:text-foreground/35 sm:mt-4 sm:space-y-3 sm:text-[17px]">
+          {section.bullets.map((item) => (
+            <li key={richTextToPlain(item)} className="ps-1">
+              <RichTextContent value={item} />
+            </li>
+          ))}
+        </ul>
+      ) : null}
       {section.blocks?.length ? (
         <div className="mt-6 space-y-8 sm:mt-8 sm:space-y-10">
           {section.blocks.map((block) => (
@@ -77,6 +102,15 @@ function CaseStudySectionContent({ section }: { section: CaseStudySection }) {
         </div>
       ) : null}
     </>
+  );
+}
+
+function MetaLine({ label, value }: { label: string; value: string }) {
+  return (
+    <p>
+      <span className="font-medium text-foreground">{label}:</span>{" "}
+      <strong className="font-semibold text-foreground">{value}</strong>
+    </p>
   );
 }
 
@@ -89,6 +123,13 @@ export default async function CaseStudyPage({ params }: PageProps) {
   }
 
   const { caseStudy } = project;
+  const hasMeta =
+    caseStudy.role ||
+    caseStudy.team ||
+    caseStudy.year ||
+    caseStudy.duration ||
+    caseStudy.platform ||
+    caseStudy.ownership;
 
   return (
     <PageShell>
@@ -98,52 +139,32 @@ export default async function CaseStudyPage({ params }: PageProps) {
             {project.title}
           </h1>
           <div className="mt-4 max-w-2xl space-y-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-6 sm:space-y-5 sm:text-[17px]">
-            {caseStudy.role ||
-            caseStudy.team ||
-            caseStudy.duration ||
-            caseStudy.ownership ? (
+            {hasMeta ? (
               <div className="space-y-1">
                 {caseStudy.role ? (
-                  <p>
-                    <span className="font-medium text-foreground">Role:</span>{" "}
-                    <strong className="font-semibold text-foreground">
-                      {caseStudy.role}
-                    </strong>
-                  </p>
+                  <MetaLine label="Role" value={caseStudy.role} />
                 ) : null}
                 {caseStudy.team ? (
-                  <p>
-                    <span className="font-medium text-foreground">Team:</span>{" "}
-                    <strong className="font-semibold text-foreground">
-                      {caseStudy.team}
-                    </strong>
-                  </p>
+                  <MetaLine label="Team" value={caseStudy.team} />
                 ) : null}
-                {caseStudy.duration ? (
-                  <p>
-                    <span className="font-medium text-foreground">
-                      Duration:
-                    </span>{" "}
-                    <strong className="font-semibold text-foreground">
-                      {caseStudy.duration}
-                    </strong>
-                  </p>
+                {caseStudy.year ? (
+                  <MetaLine label="Year" value={caseStudy.year} />
+                ) : caseStudy.duration ? (
+                  <MetaLine label="Duration" value={caseStudy.duration} />
+                ) : null}
+                {caseStudy.platform ? (
+                  <MetaLine label="Platform" value={caseStudy.platform} />
                 ) : null}
                 {caseStudy.ownership ? (
-                  <p>
-                    <span className="font-medium text-foreground">
-                      Ownership:
-                    </span>{" "}
-                    <strong className="font-semibold text-foreground">
-                      {caseStudy.ownership}
-                    </strong>
-                  </p>
+                  <MetaLine label="Ownership" value={caseStudy.ownership} />
                 ) : null}
               </div>
             ) : null}
-            <p>
-              <RichTextContent value={caseStudy.lead} />
-            </p>
+            {caseStudy.lead ? (
+              <p>
+                <RichTextContent value={caseStudy.lead} />
+              </p>
+            ) : null}
           </div>
         </header>
 

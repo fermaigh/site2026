@@ -46,6 +46,7 @@ export type CaseStudyBlock = {
 export type CaseStudySection = {
   heading: string;
   body?: RichText;
+  bullets?: RichText[];
   blocks?: CaseStudyBlock[];
 };
 
@@ -53,10 +54,13 @@ export type CaseStudy = {
   /** FAANG-style meta lines shown under the title */
   role?: string;
   team?: string;
+  /** Shown as "Year" when set (preferred over duration) */
+  year?: string;
   duration?: string;
+  platform?: string;
   ownership?: string;
   /** Intro paragraph shown under the title (and under meta lines when set) */
-  lead: RichText;
+  lead?: RichText;
   sections: CaseStudySection[];
 };
 
@@ -87,116 +91,76 @@ export const projects: Project[] = [
     thumbnail: "/projects/tts_thumb.png",
     thumbnailBackground: "#EFEFEF",
     caseStudy: {
-      role: "Senior Product Designer",
-      team: "Product, Engineering, Content Design, Data Science, Operations, and partner teams",
-      duration: "2024–Present",
-      ownership:
-        "Design POC for seller–creator collaboration across TikTok Shop Affiliate",
-      lead: {
-        parts: [
-          "I lead product design for ",
-          {
-            text: "TikTok Shop Affiliate seller",
-            href: "https://seller.tiktok.com",
-          },
-          " experiences, helping ",
-          { bold: "millions of merchants worldwide" },
-          " discover creators, build partnerships, and grow through affiliate commerce.",
-        ],
-      },
+      role: "Senior Product Designer / Design POC Seller to Creator affiliate collaboration across TikTok Shop Affiliate",
+      year: "2024–Present",
+      platform: "Web and mobile",
       sections: [
         {
-          heading: "Overview",
+          heading: "Context",
           body: {
             parts: [
               "I design ",
               { bold: "scalable tools" },
-              " that simplify creator partnerships—from discovery and outreach to campaigns, samples, commissions, and performance tracking. My work spans ",
+              " that simplify ",
+              { bold: "seller to creator partnerships" },
+              ", from ",
+              { bold: "discovery and outreach" },
+              ", ",
+              { bold: "commissions and sample management" },
+              ". My work spans ",
               { bold: "product strategy" },
-              ", complex workflows, and ",
-              { bold: "global cross-functional delivery" },
+              " and ",
+              { bold: "complex workflows" },
               ".",
             ],
           },
-          blocks: [
+        },
+        {
+          heading: "Impacts",
+          bullets: [
             {
-              heading: "Impact",
-              bullets: [
-                {
-                  parts: [
-                    "Supported affiliate campaigns generating over ",
-                    { bold: "$1M in weekly GMV" },
-                    ".",
-                  ],
-                },
-                {
-                  parts: [
-                    "Launched multiple ",
-                    { bold: "0-to-1" },
-                    " seller and creator collaboration experiences.",
-                  ],
-                },
-                {
-                  parts: [
-                    "Improved core affiliate workflows serving ",
-                    { bold: "millions of merchants worldwide" },
-                    ".",
-                  ],
-                },
-                {
-                  parts: [
-                    "Advanced ",
-                    { bold: "AI adoption" },
-                    " by piloting new workflows and shipping AI-assisted solutions.",
-                  ],
-                },
+              parts: [
+                { bold: "Led end-to-end design" },
+                " from strategy and discovery through launch.",
               ],
             },
             {
-              heading: "My contributions",
-              bullets: [
-                {
-                  parts: [
-                    { bold: "Led end-to-end design" },
-                    " from strategy and discovery through launch.",
-                  ],
-                },
-                {
-                  parts: [
-                    "Designed scalable ",
-                    { bold: "seller–creator collaboration workflows" },
-                    ", in traditional feature and ",
-                    { bold: "AI Agent flows" },
-                  ],
-                },
-                {
-                  parts: [
-                    "Simplified complex ",
-                    { bold: "campaign, invitation, sample, and commission" },
-                    " experiences.",
-                  ],
-                },
-                {
-                  parts: [
-                    "Aligned multiple teams around ",
-                    { bold: "shared patterns and priorities" },
-                    ".",
-                  ],
-                },
-                {
-                  parts: [
-                    "Established ",
-                    { bold: "reusable components and standards" },
-                    " across seller platforms.",
-                  ],
-                },
-                {
-                  parts: [
-                    "Used ",
-                    { bold: "AI-assisted tools" },
-                    " to accelerate design and ship production experiences.",
-                  ],
-                },
+              parts: [
+                "Launched multiple ",
+                { bold: "0-to-1" },
+                " seller and creator collaboration experiences, generating over ",
+                { bold: "$1M in weekly GMV" },
+              ],
+            },
+            {
+              parts: [
+                "Optimize ",
+                { bold: "seller–creator collaboration workflows" },
+                ", in traditional feature and ",
+                { bold: "AI Agent flows" },
+              ],
+            },
+            {
+              parts: [
+                "Aligned multiple teams around ",
+                { bold: "shared patterns and priorities" },
+                " to improve ",
+                { bold: "team velocity" },
+                ".",
+              ],
+            },
+            {
+              parts: [
+                "Established ",
+                { bold: "reusable components and standards" },
+                " across Affiliate platforms.",
+              ],
+            },
+            {
+              parts: [
+                "Used ",
+                { bold: "AI-assisted tools" },
+                " to accelerate design and engineer workflow and shipped features.",
               ],
             },
           ],
