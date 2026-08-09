@@ -49,6 +49,39 @@ export type CaseStudySection = {
   blocks?: CaseStudyBlock[];
 };
 
+/** Optional media for a project module (image or muted loop video) */
+export type CaseStudyMedia = {
+  src: string;
+  type?: "image" | "video";
+  alt?: string;
+  background?: string;
+  /** Scale applied to media inside its container (1 = fill) */
+  scale?: number;
+};
+
+/**
+ * A showcase module for one project inside a larger case study.
+ * Used when a case study covers multiple shipped workstreams.
+ */
+export type CaseStudyModule = {
+  id: string;
+  /** Short index label, e.g. "01" */
+  index: string;
+  title: string;
+  /** One-line focus for quick recruiter scanning */
+  focus?: string;
+  summary?: RichText;
+  media?: CaseStudyMedia;
+  blocks?: CaseStudyBlock[];
+};
+
+export type CaseStudyGoal = {
+  heading: string;
+  body: RichText;
+  /** Shared outcomes that span all modules under the goal */
+  outcomes?: RichText[];
+};
+
 export type CaseStudy = {
   /** FAANG-style meta lines shown under the title */
   role?: string;
@@ -57,7 +90,11 @@ export type CaseStudy = {
   ownership?: string;
   /** Intro paragraph shown under the title (and under meta lines when set) */
   lead: RichText;
-  sections: CaseStudySection[];
+  /** Goal framing + project modules (preferred for multi-project case studies) */
+  goal?: CaseStudyGoal;
+  modules?: CaseStudyModule[];
+  /** Legacy plain sections (still used by single-stream case studies) */
+  sections?: CaseStudySection[];
 };
 
 export type Project = {
@@ -104,31 +141,61 @@ export const projects: Project[] = [
           " discover creators, build partnerships, and grow through affiliate commerce.",
         ],
       },
-      sections: [
-        {
-          heading: "Overview",
-          body: {
+      goal: {
+        heading: "Goal",
+        body: {
+          parts: [
+            "Scale ",
+            { bold: "TikTok Shop Affiliates" },
+            " by designing ",
+            { bold: "scalable seller tools" },
+            " that simplify creator partnerships—from discovery and outreach to campaigns, samples, commissions, and performance tracking—across traditional product surfaces and ",
+            { bold: "AI-powered experiences" },
+            ".",
+          ],
+        },
+        outcomes: [
+          {
             parts: [
-              "I design ",
-              { bold: "scalable tools" },
-              " that simplify creator partnerships—from discovery and outreach to campaigns, samples, commissions, and performance tracking. My work spans ",
-              { bold: "product strategy" },
-              ", complex workflows, and ",
-              { bold: "global cross-functional delivery" },
+              "Supported affiliate campaigns generating over ",
+              { bold: "$1M in weekly GMV" },
               ".",
+            ],
+          },
+          {
+            parts: [
+              "Improved core affiliate workflows serving ",
+              { bold: "millions of merchants worldwide" },
+              ".",
+            ],
+          },
+          {
+            parts: [
+              "Advanced ",
+              { bold: "AI adoption" },
+              " by piloting new workflows and shipping AI-assisted solutions.",
+            ],
+          },
+        ],
+      },
+      modules: [
+        {
+          id: "seller-creator-collaboration",
+          index: "01",
+          title: "Seller–Creator Collaboration",
+          focus:
+            "Traditional product workflows for discovery, outreach, campaigns, samples, and commissions",
+          summary: {
+            parts: [
+              "Led end-to-end design for the core ",
+              { bold: "seller–creator collaboration" },
+              " system—helping merchants find creators, run campaigns, manage samples and commissions, and track performance at global scale.",
             ],
           },
           blocks: [
             {
               heading: "Impact",
               bullets: [
-                {
-                  parts: [
-                    "Supported affiliate campaigns generating over ",
-                    { bold: "$1M in weekly GMV" },
-                    ".",
-                  ],
-                },
                 {
                   parts: [
                     "Launched multiple ",
@@ -138,16 +205,9 @@ export const projects: Project[] = [
                 },
                 {
                   parts: [
-                    "Improved core affiliate workflows serving ",
-                    { bold: "millions of merchants worldwide" },
-                    ".",
-                  ],
-                },
-                {
-                  parts: [
-                    "Advanced ",
-                    { bold: "AI adoption" },
-                    " by piloting new workflows and shipping AI-assisted solutions.",
+                    "Simplified complex ",
+                    { bold: "campaign, invitation, sample, and commission" },
+                    " experiences used by millions of merchants.",
                   ],
                 },
               ],
@@ -165,15 +225,7 @@ export const projects: Project[] = [
                   parts: [
                     "Designed scalable ",
                     { bold: "seller–creator collaboration workflows" },
-                    ", in traditional feature and ",
-                    { bold: "AI Agent flows" },
-                  ],
-                },
-                {
-                  parts: [
-                    "Simplified complex ",
-                    { bold: "campaign, invitation, sample, and commission" },
-                    " experiences.",
+                    " across core affiliate surfaces.",
                   ],
                 },
                 {
@@ -190,11 +242,65 @@ export const projects: Project[] = [
                     " across seller platforms.",
                   ],
                 },
+              ],
+            },
+          ],
+        },
+        {
+          id: "ai-agents-assisted-experiences",
+          index: "02",
+          title: "AI Agents & Assisted Experiences",
+          focus:
+            "AI Agent flows and AI-assisted tools that accelerate seller–creator work",
+          summary: {
+            parts: [
+              "Designed ",
+              { bold: "AI Agent flows" },
+              " and AI-assisted experiences that help sellers collaborate with creators faster—while using AI-assisted design tools to ship production-ready work.",
+            ],
+          },
+          blocks: [
+            {
+              heading: "Impact",
+              bullets: [
+                {
+                  parts: [
+                    "Advanced ",
+                    { bold: "AI adoption" },
+                    " by piloting new workflows and shipping AI-assisted solutions.",
+                  ],
+                },
+                {
+                  parts: [
+                    "Extended collaboration into ",
+                    { bold: "AI Agent flows" },
+                    " alongside traditional feature experiences.",
+                  ],
+                },
+              ],
+            },
+            {
+              heading: "My contributions",
+              bullets: [
+                {
+                  parts: [
+                    "Designed ",
+                    { bold: "AI Agent flows" },
+                    " for seller–creator collaboration.",
+                  ],
+                },
                 {
                   parts: [
                     "Used ",
                     { bold: "AI-assisted tools" },
                     " to accelerate design and ship production experiences.",
+                  ],
+                },
+                {
+                  parts: [
+                    "Partnered across product, engineering, and data to validate and launch ",
+                    { bold: "AI-powered workflows" },
+                    ".",
                   ],
                 },
               ],
