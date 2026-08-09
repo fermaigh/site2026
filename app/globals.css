@@ -188,7 +188,7 @@
 }
 
 .reveal {
-  animation: reveal-up 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: reveal-up 0.35s ease-in both;
 }
 
 .reveal-delay-1 {
@@ -204,7 +204,7 @@
 }
 
 .page-shell-enter {
-  animation: page-enter 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: page-enter 0.28s ease-in both;
 }
 
 /* Jason Jerez–style quick percentage loader */
@@ -223,7 +223,7 @@ html.is-loading body {
   background: var(--background);
   color: var(--foreground);
   opacity: 1;
-  transition: opacity 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 0.42s ease-in;
   pointer-events: auto;
 }
 
@@ -257,11 +257,11 @@ html.is-loading body {
 /* Modern cross-page view transitions (Chromium + supporting browsers) */
 @supports (view-transition-name: none) {
   ::view-transition-old(root) {
-    animation: vt-fade-out 0.16s ease-out both;
+    animation: vt-fade-out 0.16s ease-in both;
   }
 
   ::view-transition-new(root) {
-    animation: vt-fade-in 0.24s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation: vt-fade-in 0.24s ease-in both;
   }
 }
 
