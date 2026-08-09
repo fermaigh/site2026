@@ -32,7 +32,7 @@ export function ProjectRow({
 
   return (
     <article className={`reveal ${delayClass} group`}>
-      <div className="grid grid-cols-1 items-start gap-4 sm:gap-5 md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] md:gap-10 lg:gap-14">
+      <div className="grid grid-cols-1 items-start gap-4 sm:gap-5 md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] md:gap-10 lg:gap-14">
         <TransitionLink
           href={href}
           className="block overflow-hidden rounded-xl transition-opacity hover:opacity-90 active:opacity-80 sm:rounded-2xl"
