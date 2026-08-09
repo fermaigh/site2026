@@ -9,6 +9,7 @@ function formatBellevueTime(date: Date) {
     timeZone: BELLEVUE_TIME_ZONE,
     hour: "numeric",
     minute: "2-digit",
+    second: "2-digit",
     hour12: true,
   }).format(date);
 }
@@ -19,7 +20,7 @@ export function LocalTime() {
   useEffect(() => {
     const update = () => setTime(formatBellevueTime(new Date()));
     update();
-    const id = window.setInterval(update, 30_000);
+    const id = window.setInterval(update, 1_000);
     return () => window.clearInterval(id);
   }, []);
 
