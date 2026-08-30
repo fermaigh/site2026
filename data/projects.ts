@@ -89,7 +89,7 @@ export const projects: Project[] = [
     description:
       "Led end-to-end design for TikTok Shop Affiliate seller tools, including AI agents and AI-assisted experiences, helping millions of merchants discover, connect with, and manage creator partnerships at scale. Simplified complex workflows, driving creator-led growth and millions in weekly GMV.",
     thumbnail: "/projects/tts_thumb.png",
-    thumbnailBackground: "#EFEFEF",
+    thumbnailBackground: "#000000",
     caseStudy: {
       role: "Senior Product Designer / Design POC Seller to Creator affiliate collaboration across TikTok Shop Affiliate",
       year: "2024–Present",
