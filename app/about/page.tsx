@@ -27,8 +27,8 @@ export default function AboutPage() {
 
         <p className="reveal reveal-delay-2 mt-8">
           <a
-            href="/Resume_2026.pdf"
-            download="Resume_2026.pdf"
+            href="/Resume_XiaoyeLin.pdf"
+            download="Resume_XiaoyeLin.pdf"
             className="inline-flex min-h-11 items-center rounded-full border border-foreground/15 bg-foreground px-5 font-sans text-[14px] font-medium text-background transition-opacity hover:opacity-80 active:opacity-70"
           >
             Download resume
