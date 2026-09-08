@@ -394,20 +394,33 @@ html.is-loading body {
   28%,
   32% {
     opacity: 1;
-    transform: translate(var(--tts-click-x), var(--tts-click-y));
+    transform: translate(
+      calc(var(--tts-click-x) + 80px),
+      var(--tts-click-y)
+    );
   }
   35% {
     opacity: 1;
-    transform: translate(var(--tts-click-x), var(--tts-click-y)) scale(0.86);
+    transform: translate(
+      calc(var(--tts-click-x) + 80px),
+      var(--tts-click-y)
+    )
+      scale(0.86);
   }
   38%,
   82% {
     opacity: 1;
-    transform: translate(var(--tts-click-x), var(--tts-click-y));
+    transform: translate(
+      calc(var(--tts-click-x) + 80px),
+      var(--tts-click-y)
+    );
   }
   92% {
     opacity: 0;
-    transform: translate(var(--tts-click-x), var(--tts-click-y));
+    transform: translate(
+      calc(var(--tts-click-x) + 80px),
+      var(--tts-click-y)
+    );
   }
 }
 
