@@ -269,6 +269,7 @@ html.is-loading body {
 .tts-collab-stage {
   width: 100%;
   aspect-ratio: 1440 / 880;
+  container-type: inline-size;
 }
 
 .tts-collab-bezel {
@@ -291,6 +292,7 @@ html.is-loading body {
   height: 880px;
   overflow: hidden;
   transform-origin: 0 0;
+  transform: scale(calc(100cqi / 1440));
   isolation: isolate;
   background: #ececed;
   font-family: var(--font-inter), Inter, ui-sans-serif, system-ui, sans-serif;
@@ -352,17 +354,11 @@ html.is-loading body {
   .reveal-delay-3,
   .page-shell-enter,
   .tts-collab-camera,
-  .tts-collab-cursor,
-  .tts-invite-btn,
-  .tts-invite-menu {
+  .tts-invite-btn {
     animation: none;
   }
 
   .tts-collab-cursor {
-    display: none;
-  }
-
-  .tts-invite-menu {
     display: none;
   }
 

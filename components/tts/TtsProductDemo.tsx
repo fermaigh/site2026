@@ -8,7 +8,8 @@ const DESIGN_WIDTH = 1440;
 function localPoint(camera: HTMLElement, target: HTMLElement) {
   const cam = camera.getBoundingClientRect();
   const el = target.getBoundingClientRect();
-  const scale = cam.width / camera.offsetWidth;
+  const width = camera.offsetWidth || DESIGN_WIDTH;
+  const scale = cam.width / width || 1;
   return {
     x: (el.left + el.width * 0.55 - cam.left) / scale,
     y: (el.top + el.height * 0.4 - cam.top) / scale,
@@ -26,7 +27,7 @@ function wait(ms: number, signal: { cancelled: boolean }) {
 export function TtsProductDemo() {
   const stageRef = useRef<HTMLDivElement>(null);
   const cameraRef = useRef<HTMLDivElement>(null);
-  const [scale, setScale] = useState(0);
+  const [scale, setScale] = useState<number | null>(null);
   const [cursor, setCursor] = useState({ x: 1180, y: 280, opacity: 0 });
   const [menuOpen, setMenuOpen] = useState(false);
   const [invitePressed, setInvitePressed] = useState(false);
@@ -36,7 +37,8 @@ export function TtsProductDemo() {
     if (!node) return;
 
     const update = () => {
-      setScale(node.clientWidth / DESIGN_WIDTH);
+      const next = node.clientWidth / DESIGN_WIDTH;
+      if (next > 0) setScale(next);
     };
 
     update();
@@ -46,13 +48,21 @@ export function TtsProductDemo() {
   }, []);
 
   useEffect(() => {
+    const stage = stageRef.current;
     const camera = cameraRef.current;
-    if (!camera || !scale) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (!stage || !camera) return;
+
+    const reduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (reduced) {
+      setMenuOpen(true);
       return;
     }
 
     const signal = { cancelled: false };
+    let started = false;
 
     const run = async () => {
       while (!signal.cancelled) {
@@ -67,7 +77,7 @@ export function TtsProductDemo() {
 
         const toBtn = localPoint(camera, inviteBtn);
         setCursor({ x: toBtn.x - 90, y: toBtn.y - 24, opacity: 0 });
-        await wait(400, signal);
+        await wait(500, signal);
         if (signal.cancelled) return;
 
         setCursor({ x: toBtn.x, y: toBtn.y, opacity: 1 });
@@ -96,15 +106,35 @@ export function TtsProductDemo() {
 
         setCursor((prev) => ({ ...prev, opacity: 0 }));
         setMenuOpen(false);
-        await wait(700, signal);
+        await wait(800, signal);
       }
     };
 
-    void run();
+    const io = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.some((entry) => entry.isIntersecting);
+        if (visible && !started) {
+          started = true;
+          void run();
+        }
+      },
+      { threshold: 0.25 },
+    );
+
+    io.observe(stage);
+    const fallback = window.setTimeout(() => {
+      if (!started) {
+        started = true;
+        void run();
+      }
+    }, 1200);
+
     return () => {
       signal.cancelled = true;
+      io.disconnect();
+      window.clearTimeout(fallback);
     };
-  }, [scale]);
+  }, []);
 
   return (
     <div
@@ -114,13 +144,12 @@ export function TtsProductDemo() {
       }`}
       aria-label="TikTok Shop Affiliate Target Collaborations"
     >
-      <div
-        className="tts-collab-bezel"
-        style={{ visibility: scale ? "visible" : "hidden" }}
-      >
+      <div className="tts-collab-bezel">
         <div
           className="tts-collab-screen"
-          style={{ transform: `scale(${scale})` }}
+          style={
+            scale != null ? { transform: `scale(${scale})` } : undefined
+          }
         >
           <div ref={cameraRef} className="tts-collab-camera">
             <TtsTargetCollaboration />
