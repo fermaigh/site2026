@@ -265,17 +265,16 @@ html.is-loading body {
   }
 }
 
-/* Live Seller Center product mock — Comms-style HTML scene in a scaled bezel */
+/* Live Seller Center product mock — fluid UI that fills the viewing area */
 .tts-collab-stage {
   width: 100%;
-  aspect-ratio: 1440 / 880;
+  max-width: 100%;
   container-type: inline-size;
 }
 
 .tts-collab-bezel {
   position: relative;
   width: 100%;
-  height: 100%;
   overflow: hidden;
   border-radius: 16px;
   background: #ececed;
@@ -284,34 +283,25 @@ html.is-loading body {
     0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
-.tts-collab-screen {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 1440px;
-  height: 880px;
-  overflow: hidden;
-  transform-origin: 0 0;
-  transform: scale(calc(100cqi / 1440));
-  isolation: isolate;
-  background: #ececed;
+.tts-collab-camera,
+.tts-collab-ui {
   font-family: var(--font-inter), Inter, ui-sans-serif, system-ui, sans-serif;
   color: #171718;
 }
 
-.tts-collab-screen img,
-.tts-collab-screen svg {
-  max-width: none;
-}
-
 .tts-collab-camera {
   position: relative;
-  width: 1440px;
-  overflow: visible;
-  --tts-click-x: 1296px;
-  --tts-click-y: 286px;
-  --tts-row-x: 1168px;
-  --tts-row-y: 428px;
+  width: 100%;
+  overflow: hidden;
+  --tts-click-x: 70cqi;
+  --tts-click-y: 220px;
+  --tts-row-x: 66cqi;
+  --tts-row-y: 320px;
+}
+
+.tts-collab-camera img,
+.tts-collab-camera svg {
+  max-width: none;
 }
 
 .tts-collab-cursor {

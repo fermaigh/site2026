@@ -19,8 +19,8 @@ function InviteRow({
 }) {
   return (
     <div
-      className={`relative w-[600px] overflow-hidden rounded-lg border border-[#d3d4d5] ${
-        padded ? "p-6" : "px-6 pb-6 pt-8"
+      className={`relative w-full overflow-hidden rounded-lg border border-[#d3d4d5] ${
+        padded ? "p-4 @[700px]:p-6" : "px-4 pb-4 pt-7 @[700px]:px-6 @[700px]:pb-6 @[700px]:pt-8"
       }`}
     >
       {tag ? (
@@ -28,8 +28,8 @@ function InviteRow({
           {tag}
         </span>
       ) : null}
-      <div className="flex w-[557px] items-center justify-between">
-        <div className="flex items-center gap-3">
+      <div className="flex w-full items-center justify-between gap-3">
+        <div className="flex min-w-0 items-center gap-3">
           <span
             className={`relative size-10 shrink-0 overflow-hidden ${
               iconBg ? `rounded-full ${iconBg}` : ""
@@ -43,17 +43,19 @@ function InviteRow({
               <TtsIcon name={icon} size={iconBg ? 34 : 40} />
             </span>
           </span>
-          <div className="w-[380px]">
+          <div className="min-w-0">
             {title ? (
               <p className="truncate text-[12px] font-medium leading-[18px] text-[#171718]">
                 {title}
               </p>
             ) : null}
-            <p className="text-[14px] leading-5 text-[#848688]">{body}</p>
+            <p className="text-[13px] leading-5 text-[#848688] @[700px]:text-[14px]">
+              {body}
+            </p>
           </div>
         </div>
         <span
-          className={`flex h-8 w-[89px] items-center justify-center rounded bg-[#009995] text-[14px] font-medium text-white ${
+          className={`flex h-8 w-[89px] shrink-0 items-center justify-center rounded bg-[#009995] text-[14px] font-medium text-white ${
             first ? "tts-invite-first" : ""
           }`}
         >
@@ -66,8 +68,8 @@ function InviteRow({
 
 export function TtsInviteMenu() {
   return (
-    <div className="tts-invite-menu flex w-[632px] flex-col gap-[11px] rounded bg-white p-4 shadow-[0px_8px_20px_0px_rgba(0,0,0,0.12)]">
-      <p className="h-7 text-[20px] font-medium leading-7 text-[rgba(0,0,0,0.92)]">
+    <div className="tts-invite-menu flex w-full flex-col gap-[11px] rounded bg-white p-3 shadow-[0px_8px_20px_0px_rgba(0,0,0,0.12)] @[700px]:p-4">
+      <p className="text-[18px] font-medium leading-7 text-[rgba(0,0,0,0.92)] @[700px]:text-[20px]">
         Get matched by TikTok Shop
       </p>
       <InviteRow
@@ -76,8 +78,8 @@ export function TtsInviteMenu() {
         body="Defined your goals, and let us find the creators to achieve your goal. Commission only."
         first
       />
-      <div className="flex h-7 items-end gap-2">
-        <p className="text-[20px] font-medium leading-7 text-[rgba(0,0,0,0.92)]">
+      <div className="flex flex-wrap items-end gap-2">
+        <p className="text-[18px] font-medium leading-7 text-[rgba(0,0,0,0.92)] @[700px]:text-[20px]">
           Invite on your own
         </p>
         <span className="mb-0.5 inline-flex items-center gap-1 py-1 text-[12px] font-medium leading-[18px] text-[#017b77]">
