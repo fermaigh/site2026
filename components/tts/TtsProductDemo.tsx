@@ -13,7 +13,7 @@ function localPoint(camera: HTMLElement, target: HTMLElement) {
   const cam = camera.getBoundingClientRect();
   const el = target.getBoundingClientRect();
   return {
-    x: el.left + el.width * 0.5 - cam.left - CURSOR_TIP_X,
+    x: el.left + el.width * 0.5 - cam.left - CURSOR_TIP_X - 20,
     y: el.top + el.height * 0.5 - cam.top - CURSOR_TIP_Y,
   };
 }
@@ -52,7 +52,7 @@ export function TtsProductDemo() {
     const restartLoop = () => {
       if (!update()) return;
       const actors = camera.querySelectorAll<HTMLElement>(
-        ".tts-collab-cursor, .tts-invite-btn, .tts-invite-menu",
+        ".tts-collab-cursor, .tts-cursor-arrow, .tts-cursor-hand, .tts-invite-btn, .tts-invite-menu",
       );
       for (const el of actors) {
         const previous = el.style.animation;
@@ -97,9 +97,30 @@ export function TtsProductDemo() {
         <div ref={cameraRef} className="tts-collab-camera">
           <TtsTargetCollaboration />
           <div className="tts-collab-cursor" aria-hidden="true">
-            <svg width="24" height="30" viewBox="0 0 18 22" fill="none">
+            <svg
+              className="tts-cursor-arrow"
+              width="24"
+              height="30"
+              viewBox="0 0 18 22"
+              fill="none"
+            >
               <path
                 d="M1 1L16.5 12.2L9.4 13.1L13.2 20.4L10.3 21.7L6.4 14.3L1 18.8V1Z"
+                fill="#171718"
+                stroke="white"
+                strokeWidth="1.2"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <svg
+              className="tts-cursor-hand"
+              width="26"
+              height="28"
+              viewBox="0 0 26 28"
+              fill="none"
+            >
+              <path
+                d="M8.4 1.3c.9 0 1.6.7 1.6 1.6v7.2h.3c.3-.2.8-.3 1.2-.3.6 0 1.1.2 1.5.5.4-.5 1-.8 1.7-.8 1 0 1.8.7 1.8 1.7v.2c.4-.2.9-.3 1.4-.3 1.1 0 2 .9 2 2v6.3c0 3-2.4 5.4-5.4 5.4h-2c-2.4 0-4.6-1.2-5.9-3.2L3.6 16.7c-.6-.9-.3-2.1.6-2.6.9-.6 2.1-.3 2.6.6l1.6 2.3V2.9c0-.9.7-1.6 1.6-1.6Z"
                 fill="#171718"
                 stroke="white"
                 strokeWidth="1.2"

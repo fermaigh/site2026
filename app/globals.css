@@ -318,8 +318,26 @@ html.is-loading body {
 
 .tts-collab-cursor svg {
   display: block;
+}
+
+.tts-cursor-arrow,
+.tts-cursor-hand {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.tts-cursor-arrow {
   width: 24px;
   height: 30px;
+  animation: tts-cursor-arrow 6.5s linear infinite;
+}
+
+.tts-cursor-hand {
+  left: -7px;
+  width: 26px;
+  height: 28px;
+  animation: tts-cursor-hand 6.5s linear infinite;
 }
 
 .tts-invite-btn {
@@ -332,6 +350,28 @@ html.is-loading body {
   pointer-events: none;
   overflow: visible;
   animation: tts-menu-loop 6.5s ease-in-out infinite;
+}
+
+@keyframes tts-cursor-arrow {
+  0%,
+  26% {
+    opacity: 1;
+  }
+  28%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes tts-cursor-hand {
+  0%,
+  26% {
+    opacity: 0;
+  }
+  28%,
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes tts-cursor-loop {
