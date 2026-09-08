@@ -184,6 +184,12 @@ export default async function CaseStudyPage({ params }: PageProps) {
             </section>
           ))}
         </div>
+
+        {caseStudy.closingNote ? (
+          <p className="reveal reveal-delay-3 mt-10 max-w-2xl font-sans text-[15px] leading-[1.65] text-[#E11919] sm:mt-12 sm:text-[17px]">
+            {caseStudy.closingNote}
+          </p>
+        ) : null}
       </article>
     </PageShell>
   );

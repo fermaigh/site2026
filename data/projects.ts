@@ -62,6 +62,8 @@ export type CaseStudy = {
   /** Intro paragraph shown under the title (and under meta lines when set) */
   lead?: RichText;
   sections: CaseStudySection[];
+  /** Closing note shown at the end of the case study page */
+  closingNote?: string;
 };
 
 export type Project = {
@@ -152,6 +154,7 @@ export const projects: Project[] = [
           ],
         },
       ],
+      closingNote: "Full case study details available upon request.",
     },
   },
   {
