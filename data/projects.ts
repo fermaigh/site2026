@@ -64,6 +64,13 @@ export type CaseStudy = {
   sections: CaseStudySection[];
   /** Closing note shown at the end of the case study page */
   closingNote?: string;
+  /** Optional product UI showcase shown below the text sections */
+  showcase?: {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+  };
 };
 
 export type Project = {
@@ -155,6 +162,12 @@ export const projects: Project[] = [
         },
       ],
       closingNote: "Full case study details available upon request.",
+      showcase: {
+        src: "/projects/tts-target-collaboration.png",
+        alt: "TikTok Shop Affiliate Target Collaboration — seller experience",
+        width: 1200,
+        height: 760,
+      },
     },
   },
   {
