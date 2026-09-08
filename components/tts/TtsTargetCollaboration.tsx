@@ -1,6 +1,7 @@
 "use client";
 
 import { TtsIcon } from "@/components/tts/TtsIcon";
+import { TtsInviteMenu } from "@/components/tts/TtsInviteMenu";
 
 const NAV = [
   { icon: "menu-home", label: "Home" },
@@ -250,18 +251,21 @@ export function TtsTargetCollaboration() {
                   <span className="h-0.5 w-full bg-[#008a87]" />
                 </span>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="flex items-center gap-1 rounded bg-black/5 px-3 py-1.5 text-[14px] font-medium text-black/90">
-                  Outreach usage
-                  <span className="ml-1 rounded bg-[#d8f8c8] px-1.5 text-[12px] leading-[18px] text-[#1b7a1b]">
-                    800
-                  </span>
-                </span>
-                <span className="tts-invite-btn flex items-center gap-1 rounded bg-[#008a87] px-3 py-1.5 text-[14px] font-medium text-white">
-                  Invite to collaborate
-                  <TtsIcon name="down" size={16} />
-                </span>
-              </div>
+                  <div className="relative flex items-center gap-2">
+                    <span className="flex items-center gap-1 rounded bg-black/5 px-3 py-1.5 text-[14px] font-medium text-black/90">
+                      Outreach usage
+                      <span className="ml-1 rounded bg-[#d8f8c8] px-1.5 text-[12px] leading-[18px] text-[#1b7a1b]">
+                        800
+                      </span>
+                    </span>
+                    <span className="tts-invite-btn flex items-center gap-1 rounded bg-[#008a87] px-3 py-1.5 text-[14px] font-medium text-white">
+                      Invite to collaborate
+                      <TtsIcon name="down" size={16} />
+                    </span>
+                    <div className="absolute right-0 top-[calc(100%+8px)] z-30">
+                      <TtsInviteMenu />
+                    </div>
+                  </div>
             </div>
 
             <div className="mt-4 flex h-8 items-center gap-2">
@@ -297,12 +301,10 @@ export function TtsTargetCollaboration() {
                   </tr>
                 </thead>
                 <tbody>
-                  {ROWS.map((row, index) => (
+                      {ROWS.map((row) => (
                     <tr
                       key={row.name}
-                      className={`border-t border-[#e1e1e2] bg-white ${
-                        index === 0 ? "tts-collab-row-hot" : ""
-                      }`}
+                      className="border-t border-[#e1e1e2] bg-white"
                     >
                       <td className="px-3 py-3">
                         <p className="text-[16px] font-medium leading-6 text-black/90">
@@ -324,7 +326,7 @@ export function TtsTargetCollaboration() {
                         {"progress" in row && row.progress ? (
                           <span className="mt-2 flex h-1.5 w-[75px] overflow-hidden rounded-full bg-[#ececed]">
                             <span
-                              className="tts-progress-fill h-full origin-left bg-[#008a87]"
+                              className="h-full bg-[#008a87]"
                               style={{ width: `${row.progress}%` }}
                             />
                           </span>
