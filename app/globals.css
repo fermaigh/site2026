@@ -334,9 +334,8 @@ html.is-loading body {
 }
 
 .tts-cursor-hand {
-  left: -7px;
-  width: 26px;
-  height: 28px;
+  width: 22px;
+  height: 26px;
   animation: tts-cursor-hand 6.5s linear infinite;
 }
 
