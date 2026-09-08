@@ -277,7 +277,7 @@ html.is-loading body {
   width: 100%;
   overflow: hidden;
   border-radius: 16px;
-  background: #ececed;
+  background: #f5f5f5;
   box-shadow:
     0 6px 16px rgba(0, 0, 0, 0.06),
     0 1px 3px rgba(0, 0, 0, 0.04);
@@ -313,14 +313,7 @@ html.is-loading body {
   transform-origin: 1.33px 1.36px;
   filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.35));
   animation: tts-cursor-loop 6.5s cubic-bezier(0.22, 1, 0.36, 1) infinite;
-  animation-play-state: paused;
   will-change: transform, opacity;
-}
-
-.tts-collab-camera.is-aimed .tts-collab-cursor,
-.tts-collab-camera.is-aimed .tts-invite-btn,
-.tts-collab-camera.is-aimed .tts-invite-menu {
-  animation-play-state: running;
 }
 
 .tts-collab-cursor svg {
@@ -332,7 +325,6 @@ html.is-loading body {
 .tts-invite-btn {
   transform-origin: center;
   animation: tts-invite-press 6.5s ease-in-out infinite;
-  animation-play-state: paused;
 }
 
 .tts-invite-menu {
@@ -340,7 +332,6 @@ html.is-loading body {
   pointer-events: none;
   overflow: visible;
   animation: tts-menu-loop 6.5s ease-in-out infinite;
-  animation-play-state: paused;
 }
 
 @keyframes tts-cursor-loop {
@@ -422,22 +413,6 @@ html.is-loading body {
   .reveal-delay-3,
   .page-shell-enter {
     animation: none;
-  }
-
-  .tts-collab-cursor {
-    display: none;
-    animation: none;
-  }
-
-  .tts-invite-btn {
-    animation: none;
-  }
-
-  .tts-invite-menu {
-    animation: none;
-    opacity: 1;
-    visibility: visible;
-    transform: none;
   }
 
   .page-loader {

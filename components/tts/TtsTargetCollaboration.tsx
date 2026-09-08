@@ -101,7 +101,7 @@ function Filter({ label }: { label: string }) {
 
 export function TtsTargetCollaboration() {
   return (
-    <div className="tts-collab-ui flex w-full min-w-0 flex-col bg-[#ececed] text-[#171718]">
+    <div className="tts-collab-ui flex w-full min-w-0 flex-col bg-[#F5F5F5] text-[#171718]">
       <header className="flex h-[52px] shrink-0 items-center justify-between gap-3 bg-[rgba(0,0,0,0.92)] px-3 text-white @[700px]:h-[60px] @[700px]:px-4">
         <div className="flex min-w-0 items-center gap-2 @[700px]:gap-4">
           <TtsIcon name="tts-logo" width={72} height={28} />
@@ -196,12 +196,12 @@ export function TtsTargetCollaboration() {
           })}
         </aside>
 
-        <main className="min-w-0 flex-1 bg-[#ececed] p-3 @[700px]:p-6">
+        <main className="min-w-0 flex-1 bg-[#F5F5F5] p-3 @[700px]:p-6">
           <h2 className="text-[22px] font-bold leading-8 text-[#171718] @[700px]:text-[28px] @[700px]:leading-9">
             Collaborations
           </h2>
 
-          <div className="relative z-10 mt-3 overflow-hidden rounded-lg bg-white @[700px]:mt-4">
+          <div className="relative z-10 mt-3 rounded-lg bg-white @[700px]:mt-4">
             <div className="flex">
               <div className="flex min-h-[88px] min-w-0 flex-1 gap-3 bg-white p-3 @[700px]:min-h-[114px] @[700px]:gap-4 @[700px]:p-6">
                 <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-[#e4f6f5] @[700px]:size-11">
