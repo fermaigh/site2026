@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import { PageShell } from "@/components/PageShell";
 import { RichTextContent } from "@/components/RichText";
+import { TtsProductDemo } from "@/components/tts/TtsProductDemo";
 import {
   getCaseStudyProjects,
   getProject,
@@ -186,24 +186,16 @@ export default async function CaseStudyPage({ params }: PageProps) {
           ))}
         </div>
 
-        {caseStudy.showcase ? (
-          <div className="reveal reveal-delay-2 mt-10 w-full max-w-[1200px] sm:mt-12">
-            <Image
-              src={caseStudy.showcase.src}
-              alt={caseStudy.showcase.alt}
-              width={caseStudy.showcase.width}
-              height={caseStudy.showcase.height}
-              className="h-auto w-full"
-              sizes="(max-width: 1080px) 100vw, 1080px"
-              priority
-            />
-          </div>
-        ) : null}
-
         {caseStudy.closingNote ? (
           <p className="reveal reveal-delay-3 mt-10 max-w-2xl font-sans text-[15px] leading-[1.65] text-[#E11919] sm:mt-12 sm:text-[17px]">
             {caseStudy.closingNote}
           </p>
+        ) : null}
+
+        {caseStudy.showcase === "target-collaboration" ? (
+          <div className="reveal reveal-delay-3 mt-10 w-full sm:mt-12">
+            <TtsProductDemo />
+          </div>
         ) : null}
       </article>
     </PageShell>

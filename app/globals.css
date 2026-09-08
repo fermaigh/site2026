@@ -265,13 +265,173 @@ html.is-loading body {
   }
 }
 
+/* Live Seller Center product mock — Comms-style HTML scene in a scaled bezel */
+.tts-collab-stage {
+  width: 100%;
+  aspect-ratio: 1440 / 880;
+}
+
+.tts-collab-bezel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #ececed;
+  box-shadow: 0 30px 80px -30px rgba(22, 24, 29, 0.45);
+}
+
+.tts-collab-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1440px;
+  height: 880px;
+  overflow: hidden;
+  transform-origin: 0 0;
+  isolation: isolate;
+  background: #ececed;
+  font-family: var(--font-inter), Inter, ui-sans-serif, system-ui, sans-serif;
+  color: #171718;
+}
+
+.tts-collab-camera {
+  position: relative;
+  width: 1440px;
+  height: 880px;
+  transform-origin: 68% 38%;
+  will-change: transform;
+  animation: tts-collab-cam 16s ease-in-out infinite;
+}
+
+.tts-collab-cursor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  pointer-events: none;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.35));
+  animation: tts-collab-cursor 16s ease-in-out infinite;
+}
+
+.tts-collab-row-hot {
+  animation: tts-row-hot 16s ease-in-out infinite;
+}
+
+.tts-progress-fill {
+  animation: tts-progress 16s ease-out infinite;
+}
+
+.tts-invite-btn {
+  animation: tts-invite 16s ease-in-out infinite;
+}
+
+@keyframes tts-collab-cam {
+  0%,
+  12% {
+    transform: scale(1) translate(0, 0);
+  }
+  28%,
+  52% {
+    transform: scale(1.22) translate(-2%, 1%);
+  }
+  68%,
+  82% {
+    transform: scale(1.12) translate(1%, -4%);
+  }
+  100% {
+    transform: scale(1) translate(0, 0);
+  }
+}
+
+@keyframes tts-collab-cursor {
+  0%,
+  8% {
+    transform: translate(980px, 210px);
+    opacity: 0;
+  }
+  16% {
+    opacity: 1;
+    transform: translate(1128px, 248px);
+  }
+  28%,
+  38% {
+    opacity: 1;
+    transform: translate(1128px, 248px);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(1288px, 428px);
+  }
+  62%,
+  74% {
+    opacity: 1;
+    transform: translate(1288px, 428px);
+  }
+  88%,
+  100% {
+    opacity: 0;
+    transform: translate(980px, 210px);
+  }
+}
+
+@keyframes tts-row-hot {
+  0%,
+  42%,
+  78%,
+  100% {
+    background-color: #ffffff;
+    box-shadow: none;
+  }
+  50%,
+  68% {
+    background-color: #f3fbfa;
+    box-shadow: inset 3px 0 0 #008a87;
+  }
+}
+
+@keyframes tts-progress {
+  0%,
+  18% {
+    transform: scaleX(0.15);
+  }
+  40%,
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes tts-invite {
+  0%,
+  18%,
+  40%,
+  100% {
+    filter: brightness(1);
+    box-shadow: none;
+  }
+  24%,
+  32% {
+    filter: brightness(1.08);
+    box-shadow: 0 0 0 3px rgba(0, 138, 135, 0.22);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal,
   .reveal-delay-1,
   .reveal-delay-2,
   .reveal-delay-3,
-  .page-shell-enter {
+  .page-shell-enter,
+  .tts-collab-camera,
+  .tts-collab-cursor,
+  .tts-collab-row-hot,
+  .tts-progress-fill,
+  .tts-invite-btn {
     animation: none;
+  }
+
+  .tts-collab-cursor {
+    display: none;
   }
 
   .page-loader {
