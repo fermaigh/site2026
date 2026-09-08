@@ -23,6 +23,14 @@ export function TtsProductDemo() {
     if (!camera) return;
 
     const update = () => {
+      const ui = camera.querySelector<HTMLElement>(".tts-collab-ui");
+      if (ui) {
+        const clipped = `${Math.round(ui.scrollHeight * 0.8)}px`;
+        if (camera.style.height !== clipped) {
+          camera.style.height = clipped;
+        }
+      }
+
       const aim =
         camera.querySelector<HTMLElement>(".tts-invite-aim") ??
         camera.querySelector<HTMLElement>(".tts-invite-btn");
@@ -43,6 +51,8 @@ export function TtsProductDemo() {
     void document.fonts?.ready?.then(start);
     const observer = new ResizeObserver(update);
     observer.observe(camera);
+    const ui = camera.querySelector(".tts-collab-ui");
+    if (ui) observer.observe(ui);
     const inviteBtn = camera.querySelector(".tts-invite-btn");
     if (inviteBtn) observer.observe(inviteBtn);
     return () => observer.disconnect();
