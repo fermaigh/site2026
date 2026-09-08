@@ -334,12 +334,10 @@ html.is-loading body {
 }
 
 .tts-cursor-hand {
-  top: -2px;
-  left: -8px;
+  top: 2px;
+  left: 0;
   width: 24px;
   height: 25px;
-  transform: scale(1.2);
-  transform-origin: 10px 3px;
   animation: tts-cursor-hand 6.5s linear infinite;
 }
 
