@@ -311,7 +311,6 @@ html.is-loading body {
   height: 30px;
   pointer-events: none;
   transform-origin: 1.33px 1.36px;
-  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.35));
   animation: tts-cursor-loop 6.5s cubic-bezier(0.22, 1, 0.36, 1) infinite;
   will-change: transform, opacity;
 }
@@ -330,12 +329,15 @@ html.is-loading body {
 .tts-cursor-arrow {
   width: 24px;
   height: 30px;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.35));
   animation: tts-cursor-arrow 6.5s linear infinite;
 }
 
 .tts-cursor-hand {
-  width: 22px;
-  height: 26px;
+  top: -2px;
+  left: -8px;
+  width: 24px;
+  height: 25px;
   animation: tts-cursor-hand 6.5s linear infinite;
 }
 

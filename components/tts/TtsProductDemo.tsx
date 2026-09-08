@@ -1,6 +1,7 @@
 "use client";
 
 import { useLayoutEffect, useRef } from "react";
+import { TtsIcon } from "@/components/tts/TtsIcon";
 import { TtsTargetCollaboration } from "@/components/tts/TtsTargetCollaboration";
 
 const CURSOR_TIP_X = 1.33;
@@ -112,21 +113,9 @@ export function TtsProductDemo() {
                 strokeLinejoin="round"
               />
             </svg>
-            <svg
-              className="tts-cursor-hand"
-              width="22"
-              height="26"
-              viewBox="0 0 22 26"
-              fill="none"
-            >
-              <path
-                d="M4.2 1.2c.8 0 1.4.6 1.4 1.4v8.1c.3-.1.6-.2 1-.2.7 0 1.3.3 1.7.8.4-.7 1.2-1.1 2.1-1.1.8 0 1.5.4 1.9 1 .4-.3.9-.5 1.5-.5 1.2 0 2.1.9 2.1 2.1v5.6c0 3.2-2.6 5.8-5.8 5.8H8.6c-2.3 0-4.4-1.2-5.6-3.2L1.3 16.2c-.5-.8-.3-1.9.5-2.4.8-.5 1.9-.3 2.4.5l1.4 2.1V2.6c0-.8.6-1.4 1.4-1.4Z"
-                fill="#171718"
-                stroke="white"
-                strokeWidth="1.2"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <span className="tts-cursor-hand">
+              <TtsIcon name="cursor-pointer" width={24} height={25} />
+            </span>
           </div>
         </div>
       </div>
