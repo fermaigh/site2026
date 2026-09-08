@@ -264,7 +264,7 @@ export function TtsTargetCollaboration() {
                   Invite to collaborate
                   <TtsIcon name="down" size={16} />
                 </span>
-                <div className="absolute right-0 top-[calc(100%+8px)] z-30 w-[min(32rem,calc(100cqi-5rem))] max-w-full">
+                <div className="absolute right-0 top-[calc(100%+8px)] z-30 w-[min(32rem,calc(100cqi-4.5rem))]">
                   <TtsInviteMenu />
                 </div>
               </div>
