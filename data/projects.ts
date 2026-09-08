@@ -91,7 +91,7 @@ export const projects: Project[] = [
     thumbnail: "/projects/tts_thumb.png",
     thumbnailBackground: "#000000",
     caseStudy: {
-      role: "Senior Product Designer / Design POC Seller to Creator affiliate collaboration across TikTok Shop Affiliate",
+      role: "Senior Product Designer leading Creator–Seller Affiliate collaboration across TikTok Shop Affiliate",
       year: "2024–Present",
       platform: "Web and mobile",
       sections: [
@@ -116,51 +116,38 @@ export const projects: Project[] = [
           },
         },
         {
-          heading: "Impacts",
+          heading: "What I do to",
           bullets: [
             {
               parts: [
-                { bold: "Led end-to-end design" },
-                " from strategy and discovery through launch.",
-              ],
-            },
-            {
-              parts: [
-                "Launched multiple ",
-                { bold: "0-to-1" },
-                " seller and creator collaboration experiences, generating over ",
-                { bold: "$1M in weekly GMV" },
+                "Shipped multiple ",
+                { bold: "0-to-1 initiatives" },
+                " for seller- and creator-facing marketplaces.",
               ],
             },
             {
               parts: [
                 "Optimize ",
                 { bold: "seller–creator collaboration workflows" },
-                ", in traditional feature and ",
+                " across traditional features and ",
                 { bold: "AI Agent flows" },
+                ".",
               ],
             },
             {
               parts: [
                 "Aligned multiple teams around ",
                 { bold: "shared patterns and priorities" },
-                " to improve ",
-                { bold: "team velocity" },
+                " to raise ",
+                { bold: "design quality" },
                 ".",
-              ],
-            },
-            {
-              parts: [
-                "Established ",
-                { bold: "reusable components and standards" },
-                " across Affiliate platforms.",
               ],
             },
             {
               parts: [
                 "Used ",
                 { bold: "AI-assisted tools" },
-                " to accelerate design and engineer workflow and shipped features.",
+                " to accelerate design and engineering workflows and ship features.",
               ],
             },
           ],
