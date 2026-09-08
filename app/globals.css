@@ -293,8 +293,6 @@ html.is-loading body {
   position: relative;
   width: 100%;
   overflow: hidden;
-  --tts-click-x: 70cqi;
-  --tts-click-y: 280px;
 }
 
 .tts-collab-camera img,
@@ -302,17 +300,28 @@ html.is-loading body {
   max-width: none;
 }
 
+.tts-invite-anchor {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  overflow: visible;
+}
+
 .tts-collab-cursor {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
   z-index: 50;
   width: 24px;
   height: 30px;
   pointer-events: none;
-  transform-origin: 10px 5px;
-  animation: tts-cursor-loop 6.5s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  --tts-tip-x: 9.7px;
+  --tts-tip-y: 5px;
+  --tts-from-x: -72px;
+  --tts-from-y: 28px;
+  transform-origin: var(--tts-tip-x) var(--tts-tip-y);
   will-change: transform, opacity;
+  animation: tts-cursor-loop 6.5s cubic-bezier(0.22, 1, 0.36, 1) infinite;
 }
 
 .tts-collab-cursor svg {
@@ -380,34 +389,35 @@ html.is-loading body {
   100% {
     opacity: 0;
     transform: translate(
-      calc(var(--tts-click-x) - 72px),
-      calc(var(--tts-click-y) + 28px)
+      calc(var(--tts-from-x) - var(--tts-tip-x)),
+      calc(var(--tts-from-y) - var(--tts-tip-y))
     );
   }
   10% {
     opacity: 1;
     transform: translate(
-      calc(var(--tts-click-x) - 72px),
-      calc(var(--tts-click-y) + 28px)
+      calc(var(--tts-from-x) - var(--tts-tip-x)),
+      calc(var(--tts-from-y) - var(--tts-tip-y))
     );
   }
   28%,
   32% {
     opacity: 1;
-    transform: translate(var(--tts-click-x), var(--tts-click-y));
+    transform: translate(calc(0px - var(--tts-tip-x)), calc(0px - var(--tts-tip-y)));
   }
   35% {
     opacity: 1;
-    transform: translate(var(--tts-click-x), var(--tts-click-y)) scale(0.86);
+    transform: translate(calc(0px - var(--tts-tip-x)), calc(0px - var(--tts-tip-y)))
+      scale(0.86);
   }
   38%,
   82% {
     opacity: 1;
-    transform: translate(var(--tts-click-x), var(--tts-click-y));
+    transform: translate(calc(0px - var(--tts-tip-x)), calc(0px - var(--tts-tip-y)));
   }
   92% {
     opacity: 0;
-    transform: translate(var(--tts-click-x), var(--tts-click-y));
+    transform: translate(calc(0px - var(--tts-tip-x)), calc(0px - var(--tts-tip-y)));
   }
 }
 

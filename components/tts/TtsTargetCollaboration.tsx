@@ -1,5 +1,6 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { TtsIcon } from "@/components/tts/TtsIcon";
 import { TtsInviteMenu } from "@/components/tts/TtsInviteMenu";
 
@@ -99,7 +100,11 @@ function Filter({ label }: { label: string }) {
   );
 }
 
-export function TtsTargetCollaboration() {
+export function TtsTargetCollaboration({
+  children,
+}: {
+  children?: ReactNode;
+}) {
   return (
     <div className="tts-collab-ui flex w-full min-w-0 flex-col bg-[#F5F5F5] text-[#171718]">
       <header className="flex h-[52px] shrink-0 items-center justify-between gap-3 bg-[rgba(0,0,0,0.92)] px-3 text-white @[700px]:h-[60px] @[700px]:px-4">
@@ -252,9 +257,12 @@ export function TtsTargetCollaboration() {
                     800
                   </span>
                 </span>
-                <span className="tts-invite-btn flex items-center gap-1 rounded bg-[#008a87] px-3 py-1.5 text-[13px] font-medium text-white @[700px]:text-[14px]">
-                  <span className="tts-invite-aim">Invite to collaborate</span>
-                  <TtsIcon name="down" size={16} />
+                <span className="tts-invite-anchor">
+                  <span className="tts-invite-btn flex items-center gap-1 rounded bg-[#008a87] px-3 py-1.5 text-[13px] font-medium text-white @[700px]:text-[14px]">
+                    <span className="tts-invite-aim">Invite to collaborate</span>
+                    <TtsIcon name="down" size={16} />
+                  </span>
+                  {children}
                 </span>
                 <div className="absolute right-0 top-[calc(100%+8px)] z-30 w-[min(32rem,calc(100cqi-4.5rem))]">
                   <TtsInviteMenu />
