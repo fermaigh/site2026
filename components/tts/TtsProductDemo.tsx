@@ -71,7 +71,7 @@ export function TtsProductDemo() {
           <div ref={cameraRef} className="tts-collab-camera">
             <TtsTargetCollaboration />
             <div className="tts-collab-cursor" aria-hidden="true">
-              <svg width="18" height="22" viewBox="0 0 18 22" fill="none">
+              <svg width="24" height="30" viewBox="0 0 18 22" fill="none">
                 <path
                   d="M1 1L16.5 12.2L9.4 13.1L13.2 20.4L10.3 21.7L6.4 14.3L1 18.8V1Z"
                   fill="#171718"

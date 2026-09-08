@@ -207,8 +207,8 @@ export function TtsTargetCollaboration() {
             Collaborations
           </h2>
 
-          <div className="relative z-20 mt-4 flex items-end">
-            <div className="flex h-[114px] flex-1 gap-4 rounded-tl-lg bg-white p-6 shadow-[0px_-4px_12px_0px_rgba(0,0,0,0.12)]">
+          <div className="relative z-20 mt-4 flex">
+            <div className="relative z-[1] flex h-[114px] min-w-0 flex-1 gap-4 rounded-tl-lg bg-white p-6 shadow-[0_-6px_10px_-8px_rgba(0,0,0,0.16)]">
               <span className="flex size-11 shrink-0 items-center justify-center rounded-lg bg-[#e4f6f5]">
                 <TtsIcon name="products-selected" size={26} />
               </span>
@@ -222,7 +222,7 @@ export function TtsTargetCollaboration() {
                 </p>
               </div>
             </div>
-            <div className="flex h-[108px] flex-1 gap-4 rounded-tr-lg bg-[#ececed] px-6 pb-6 pt-4">
+            <div className="-ml-px flex h-[114px] min-w-0 flex-1 gap-4 rounded-tr-lg bg-[#ececed] p-6">
               <span className="flex size-11 shrink-0 items-center justify-center rounded-lg bg-[#d3d4d5]">
                 <TtsIcon name="influencer-selected" size={26} />
               </span>

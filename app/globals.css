@@ -319,8 +319,8 @@ html.is-loading body {
   top: 0;
   left: 0;
   z-index: 50;
-  width: 18px;
-  height: 22px;
+  width: 24px;
+  height: 30px;
   pointer-events: none;
   filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.35));
   animation: tts-cursor-loop 6.5s cubic-bezier(0.22, 1, 0.36, 1) infinite;
@@ -329,8 +329,8 @@ html.is-loading body {
 
 .tts-collab-cursor svg {
   display: block;
-  width: 18px;
-  height: 22px;
+  width: 24px;
+  height: 30px;
 }
 
 .tts-invite-btn {
