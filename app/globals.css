@@ -268,7 +268,7 @@ html.is-loading body {
 /* Live Seller Center product mock — Comms-style HTML scene in a scaled bezel */
 .tts-collab-stage {
   width: 100%;
-  aspect-ratio: 1440 / 1033;
+  aspect-ratio: 1440 / 980;
   container-type: inline-size;
 }
 
@@ -289,7 +289,7 @@ html.is-loading body {
   top: 0;
   left: 0;
   width: 1440px;
-  height: 1033px;
+  height: 980px;
   overflow: visible;
   transform-origin: 0 0;
   transform: scale(calc(100cqi / 1440));
@@ -308,6 +308,7 @@ html.is-loading body {
   position: relative;
   width: 1440px;
   min-height: 880px;
+  overflow: visible;
   --tts-click-x: 1296px;
   --tts-click-y: 286px;
   --tts-row-x: 1168px;
@@ -341,6 +342,7 @@ html.is-loading body {
 .tts-invite-menu {
   transform-origin: top right;
   pointer-events: none;
+  overflow: visible;
   animation: tts-menu-loop 6.5s ease-in-out infinite;
 }
 

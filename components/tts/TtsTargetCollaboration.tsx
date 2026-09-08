@@ -112,7 +112,7 @@ function Badge({ children }: { children: string }) {
 
 export function TtsTargetCollaboration() {
   return (
-    <div className="flex w-[1440px] flex-col bg-[#ececed] text-[#171718]">
+    <div className="tts-collab-ui flex w-[1440px] flex-col bg-[#ececed] text-[#171718]">
       <header className="flex h-[60px] shrink-0 items-center justify-between bg-[rgba(0,0,0,0.92)] text-white">
         <div className="flex min-w-0 items-center gap-4 px-4">
           <TtsIcon name="tts-logo" width={80} height={31} />
@@ -261,7 +261,7 @@ export function TtsTargetCollaboration() {
                       Invite to collaborate
                       <TtsIcon name="down" size={16} />
                     </span>
-                    <div className="absolute right-0 top-[calc(100%+8px)] z-30">
+                    <div className="absolute right-14 top-[calc(100%+8px)] z-30">
                       <TtsInviteMenu />
                     </div>
                   </div>

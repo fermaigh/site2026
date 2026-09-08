@@ -66,7 +66,7 @@ function InviteRow({
 
 export function TtsInviteMenu() {
   return (
-    <div className="tts-invite-menu flex w-[632px] flex-col gap-[11px] overflow-hidden rounded bg-white p-4 shadow-[0px_8px_20px_0px_rgba(0,0,0,0.12)]">
+    <div className="tts-invite-menu flex w-[632px] flex-col gap-[11px] rounded bg-white p-4 shadow-[0px_8px_20px_0px_rgba(0,0,0,0.12)]">
       <p className="h-7 text-[20px] font-medium leading-7 text-[rgba(0,0,0,0.92)]">
         Get matched by TikTok Shop
       </p>
