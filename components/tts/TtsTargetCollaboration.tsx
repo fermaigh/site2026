@@ -113,7 +113,7 @@ function Badge({ children }: { children: string }) {
 
 export function TtsTargetCollaboration() {
   return (
-    <div className="flex h-full w-full flex-col overflow-hidden bg-[#ececed] text-[#171718]">
+    <div className="flex w-[1440px] flex-col bg-[#ececed] text-[#171718]">
       <header className="flex h-[60px] shrink-0 items-center justify-between bg-[rgba(0,0,0,0.92)] text-white">
         <div className="flex min-w-0 items-center gap-4 px-4">
           <TtsIcon name="tts-logo" width={80} height={31} />
@@ -160,8 +160,8 @@ export function TtsTargetCollaboration() {
         </div>
       </header>
 
-      <div className="flex min-h-0 flex-1 bg-[#f5f5f5]">
-        <aside className="w-[220px] shrink-0 overflow-hidden bg-white px-2 py-4">
+      <div className="flex bg-[#f5f5f5]">
+        <aside className="w-[220px] shrink-0 bg-white px-2 py-4">
           {NAV.map((item, index) => {
             if ("divider" in item && item.divider) {
               return (
@@ -202,13 +202,13 @@ export function TtsTargetCollaboration() {
           })}
         </aside>
 
-        <main className="min-w-0 flex-1 p-6">
+        <main className="min-w-0 flex-1 bg-[#ececed] p-6">
           <h2 className="text-[28px] font-bold leading-9 text-[#171718]">
             Collaborations
           </h2>
 
-          <div className="mt-4 flex items-end">
-            <div className="flex h-[114px] flex-1 gap-4 rounded-t-lg bg-white p-6 shadow-[0px_-4px_12px_0px_rgba(0,0,0,0.12)]">
+          <div className="relative z-20 mt-4 flex items-end">
+            <div className="flex h-[114px] flex-1 gap-4 rounded-tl-lg bg-white p-6 shadow-[0px_-4px_12px_0px_rgba(0,0,0,0.12)]">
               <span className="flex size-11 shrink-0 items-center justify-center rounded-lg bg-[#e4f6f5]">
                 <TtsIcon name="products-selected" size={26} />
               </span>
@@ -222,7 +222,7 @@ export function TtsTargetCollaboration() {
                 </p>
               </div>
             </div>
-            <div className="ml-2 flex h-[108px] flex-1 gap-4 rounded-t-lg bg-[#ececed] px-6 pb-6 pt-4">
+            <div className="flex h-[108px] flex-1 gap-4 rounded-tr-lg bg-[#ececed] px-6 pb-6 pt-4">
               <span className="flex size-11 shrink-0 items-center justify-center rounded-lg bg-[#d3d4d5]">
                 <TtsIcon name="influencer-selected" size={26} />
               </span>
@@ -238,7 +238,7 @@ export function TtsTargetCollaboration() {
             </div>
           </div>
 
-          <div className="relative z-20 -mt-0.5 rounded-b-lg bg-white p-6">
+          <div className="relative z-10 -mt-2 rounded-b-lg bg-white p-6">
             <div className="flex items-center justify-between">
               <div className="flex h-10 items-center gap-8">
                 <span className="text-[16px] font-medium leading-6 text-[#171718]">
@@ -307,7 +307,7 @@ export function TtsTargetCollaboration() {
                       className="border-t border-[#e1e1e2] bg-white"
                     >
                       <td className="px-3 py-3">
-                        <p className="text-[16px] font-medium leading-6 text-black/90">
+                        <p className="whitespace-nowrap text-[16px] font-medium leading-6 text-black/90">
                           {row.name}
                         </p>
                         <p className="mt-1 flex items-center gap-2 text-[14px] leading-5 text-black/65">
