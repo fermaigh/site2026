@@ -14,7 +14,7 @@ function localPoint(camera: HTMLElement, target: HTMLElement) {
   const cam = camera.getBoundingClientRect();
   const el = target.getBoundingClientRect();
   return {
-    x: el.left + el.width * 0.5 - cam.left - CURSOR_TIP_X - 20,
+    x: el.left + el.width * 0.38 - cam.left - CURSOR_TIP_X,
     y: el.top + el.height * 0.5 - cam.top - CURSOR_TIP_Y,
   };
 }
@@ -27,10 +27,7 @@ export function TtsProductDemo() {
     if (!camera) return;
 
     const aimTarget = () => {
-      return (
-        camera.querySelector<HTMLElement>(".tts-invite-aim") ??
-        camera.querySelector<HTMLElement>(".tts-invite-btn")
-      );
+      return camera.querySelector<HTMLElement>(".tts-invite-btn");
     };
 
     const update = () => {
