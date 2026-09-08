@@ -77,16 +77,22 @@ function CaseStudyBlockContent({ block }: { block: CaseStudyBlock }) {
 function CaseStudySectionContent({ section }: { section: CaseStudySection }) {
   return (
     <>
-      <h2 className="font-sans text-[clamp(1.125rem,4vw,1.5rem)] font-semibold tracking-tight text-foreground">
-        {section.heading}
-      </h2>
+      {section.heading ? (
+        <h2 className="font-sans text-[clamp(1.125rem,4vw,1.5rem)] font-semibold tracking-tight text-foreground">
+          {section.heading}
+        </h2>
+      ) : null}
       {section.body ? (
-        <p className="mt-3 max-w-2xl font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-4 sm:text-[17px]">
+        <p
+          className={`${section.heading ? "mt-3 sm:mt-4" : ""} max-w-2xl font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]`}
+        >
           <RichTextContent value={section.body} />
         </p>
       ) : null}
       {section.bullets?.length ? (
-        <ul className="mt-3 max-w-2xl list-disc space-y-2 pl-5 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 marker:text-foreground/35 sm:mt-4 sm:space-y-3 sm:text-[17px]">
+        <ul
+          className={`${section.heading || section.body ? "mt-3 sm:mt-4" : ""} max-w-2xl list-disc space-y-2 pl-5 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 marker:text-foreground/35 sm:space-y-3 sm:text-[17px]`}
+        >
           {section.bullets.map((item) => (
             <li key={richTextToPlain(item)} className="ps-1">
               <RichTextContent value={item} />
@@ -171,7 +177,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
         <div className="mt-12 space-y-10 border-t border-foreground/10 pt-10 sm:mt-16 sm:space-y-14 sm:pt-14 md:mt-20 md:pt-16">
           {caseStudy.sections.map((section, index) => (
             <section
-              key={section.heading}
+              key={section.heading ?? `section-${index}`}
               className={`reveal reveal-delay-${Math.min(index + 1, 3)}`}
             >
               <CaseStudySectionContent section={section} />

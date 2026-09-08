@@ -44,7 +44,7 @@ export type CaseStudyBlock = {
 };
 
 export type CaseStudySection = {
-  heading: string;
+  heading?: string;
   body?: RichText;
   bullets?: RichText[];
   blocks?: CaseStudyBlock[];
@@ -116,7 +116,6 @@ export const projects: Project[] = [
           },
         },
         {
-          heading: "What I do to",
           bullets: [
             {
               parts: [
