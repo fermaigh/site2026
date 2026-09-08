@@ -4,10 +4,8 @@ import { useLayoutEffect, useRef } from "react";
 import { TtsTargetCollaboration } from "@/components/tts/TtsTargetCollaboration";
 
 const DESIGN_WIDTH = 1440;
-const DESIGN_HEIGHT = 880;
-const VIEW_PAD = 48;
 
-function designBox(camera: HTMLElement, target: HTMLElement) {
+function designPoint(camera: HTMLElement, target: HTMLElement) {
   const cam = camera.getBoundingClientRect();
   const el = target.getBoundingClientRect();
   const width = camera.offsetWidth || DESIGN_WIDTH;
@@ -15,8 +13,6 @@ function designBox(camera: HTMLElement, target: HTMLElement) {
   return {
     x: (el.left + el.width * 0.55 - cam.left) / scale,
     y: (el.top + el.height * 0.45 - cam.top) / scale,
-    right: (el.right - cam.left) / scale,
-    bottom: (el.bottom - cam.top) / scale,
   };
 }
 
@@ -34,18 +30,17 @@ export function TtsProductDemo() {
     const update = () => {
       const ui = camera.querySelector<HTMLElement>(".tts-collab-ui");
       const menu = camera.querySelector<HTMLElement>(".tts-invite-menu");
-      let designW = DESIGN_WIDTH + VIEW_PAD;
-      let designH = Math.max(ui?.offsetHeight ?? 0, DESIGN_HEIGHT) + VIEW_PAD;
-
+      let designH = ui?.offsetHeight || 880;
       if (menu) {
-        const box = designBox(camera, menu);
-        designW = Math.max(designW, Math.ceil(box.right + VIEW_PAD));
-        designH = Math.max(designH, Math.ceil(box.bottom + VIEW_PAD));
+        const cam = camera.getBoundingClientRect();
+        const box = menu.getBoundingClientRect();
+        const width = camera.offsetWidth || DESIGN_WIDTH;
+        const scale = cam.width / width || 1;
+        designH = Math.max(designH, (box.bottom - cam.top) / scale);
       }
-
-      const next = stage.clientWidth / designW;
+      const next = stage.clientWidth / DESIGN_WIDTH;
       if (next > 0) {
-        screen.style.width = `${designW}px`;
+        screen.style.width = `${DESIGN_WIDTH}px`;
         screen.style.height = `${designH}px`;
         screen.style.transform = `scale(${next})`;
         stage.style.aspectRatio = "auto";
@@ -57,12 +52,12 @@ export function TtsProductDemo() {
         ".tts-invite-first",
       );
       if (inviteBtn) {
-        const point = designBox(camera, inviteBtn);
+        const point = designPoint(camera, inviteBtn);
         camera.style.setProperty("--tts-click-x", `${point.x}px`);
         camera.style.setProperty("--tts-click-y", `${point.y}px`);
       }
       if (firstInvite) {
-        const point = designBox(camera, firstInvite);
+        const point = designPoint(camera, firstInvite);
         camera.style.setProperty("--tts-row-x", `${point.x}px`);
         camera.style.setProperty("--tts-row-y", `${point.y}px`);
       }
@@ -71,7 +66,9 @@ export function TtsProductDemo() {
     update();
     const observer = new ResizeObserver(update);
     observer.observe(stage);
-    observer.observe(camera);
+    if (camera.querySelector(".tts-collab-ui")) {
+      observer.observe(camera.querySelector(".tts-collab-ui") as Element);
+    }
     return () => observer.disconnect();
   }, []);
 
