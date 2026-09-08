@@ -279,8 +279,8 @@ html.is-loading body {
   border-radius: 16px;
   background: #ececed;
   box-shadow:
-    0 8px 20px rgba(0, 0, 0, 0.08),
-    0 2px 6px rgba(0, 0, 0, 0.04);
+    0 6px 16px rgba(0, 0, 0, 0.06),
+    0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
 .tts-collab-screen {
@@ -301,9 +301,6 @@ html.is-loading body {
   position: relative;
   width: 1440px;
   height: 880px;
-  transform-origin: 82% 36%;
-  will-change: transform;
-  animation: tts-collab-cam 14s ease-in-out infinite;
 }
 
 .tts-collab-cursor {
@@ -313,100 +310,39 @@ html.is-loading body {
   z-index: 40;
   pointer-events: none;
   filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.35));
-  animation: tts-collab-cursor 14s ease-in-out infinite;
+  transition:
+    transform 1s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.25s ease;
 }
 
 .tts-invite-btn {
   transform-origin: center;
-  animation: tts-invite-click 14s ease-in-out infinite;
+  transition:
+    transform 0.12s ease,
+    filter 0.12s ease;
+}
+
+.tts-collab-stage.is-invite-pressed .tts-invite-btn {
+  transform: scale(0.96);
+  filter: brightness(0.92);
 }
 
 .tts-invite-menu {
   transform-origin: top right;
-  animation: tts-invite-menu 14s ease-in-out infinite;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-6px);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    visibility 0.2s ease;
 }
 
-@keyframes tts-collab-cam {
-  0%,
-  16% {
-    transform: scale(1) translate(0, 0);
-  }
-  32%,
-  82% {
-    transform: scale(1.08) translate(-1%, 2%);
-  }
-  100% {
-    transform: scale(1) translate(0, 0);
-  }
-}
-
-@keyframes tts-collab-cursor {
-  0%,
-  6% {
-    opacity: 0;
-    transform: translate(1040px, 250px);
-  }
-  14% {
-    opacity: 1;
-    transform: translate(1288px, 286px);
-  }
-  22%,
-  28% {
-    opacity: 1;
-    transform: translate(1288px, 286px) scale(0.92);
-  }
-  34% {
-    opacity: 1;
-    transform: translate(1288px, 286px) scale(1);
-  }
-  48%,
-  78% {
-    opacity: 1;
-    transform: translate(1310px, 412px);
-  }
-  90%,
-  100% {
-    opacity: 0;
-    transform: translate(1040px, 250px);
-  }
-}
-
-@keyframes tts-invite-click {
-  0%,
-  18%,
-  32%,
-  100% {
-    filter: brightness(1);
-    transform: scale(1);
-    box-shadow: none;
-  }
-  22%,
-  26% {
-    filter: brightness(0.92);
-    transform: scale(0.96);
-    box-shadow: 0 0 0 3px rgba(0, 138, 135, 0.18);
-  }
-}
-
-@keyframes tts-invite-menu {
-  0%,
-  26% {
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-6px) scale(0.98);
-  }
-  32%,
-  84% {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0) scale(1);
-  }
-  92%,
-  100% {
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-6px) scale(0.98);
-  }
+.tts-collab-stage.is-menu-open .tts-invite-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
 @media (prefers-reduced-motion: reduce) {

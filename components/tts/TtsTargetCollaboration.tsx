@@ -238,7 +238,7 @@ export function TtsTargetCollaboration() {
             </div>
           </div>
 
-          <div className="-mt-0.5 rounded-b-lg bg-white p-6">
+          <div className="relative z-20 -mt-0.5 rounded-b-lg bg-white p-6">
             <div className="flex items-center justify-between">
               <div className="flex h-10 items-center gap-8">
                 <span className="text-[16px] font-medium leading-6 text-[#171718]">
