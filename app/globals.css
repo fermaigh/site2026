@@ -395,14 +395,14 @@ html.is-loading body {
   32% {
     opacity: 1;
     transform: translate(
-      calc(var(--tts-click-x) + 80px),
+      calc(var(--tts-click-x) + 90px),
       var(--tts-click-y)
     );
   }
   35% {
     opacity: 1;
     transform: translate(
-      calc(var(--tts-click-x) + 80px),
+      calc(var(--tts-click-x) + 90px),
       var(--tts-click-y)
     )
       scale(0.86);
@@ -411,14 +411,14 @@ html.is-loading body {
   82% {
     opacity: 1;
     transform: translate(
-      calc(var(--tts-click-x) + 80px),
+      calc(var(--tts-click-x) + 90px),
       var(--tts-click-y)
     );
   }
   92% {
     opacity: 0;
     transform: translate(
-      calc(var(--tts-click-x) + 80px),
+      calc(var(--tts-click-x) + 90px),
       var(--tts-click-y)
     );
   }
