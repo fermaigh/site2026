@@ -310,7 +310,7 @@ html.is-loading body {
   width: 24px;
   height: 30px;
   pointer-events: none;
-  transform-origin: 1.33px 1.36px;
+  transform-origin: 10px 5px;
   animation: tts-cursor-loop 6.5s cubic-bezier(0.22, 1, 0.36, 1) infinite;
   will-change: transform, opacity;
 }
@@ -394,33 +394,20 @@ html.is-loading body {
   28%,
   32% {
     opacity: 1;
-    transform: translate(
-      calc(var(--tts-click-x) + 90px),
-      var(--tts-click-y)
-    );
+    transform: translate(var(--tts-click-x), var(--tts-click-y));
   }
   35% {
     opacity: 1;
-    transform: translate(
-      calc(var(--tts-click-x) + 90px),
-      var(--tts-click-y)
-    )
-      scale(0.86);
+    transform: translate(var(--tts-click-x), var(--tts-click-y)) scale(0.86);
   }
   38%,
   82% {
     opacity: 1;
-    transform: translate(
-      calc(var(--tts-click-x) + 90px),
-      var(--tts-click-y)
-    );
+    transform: translate(var(--tts-click-x), var(--tts-click-y));
   }
   92% {
     opacity: 0;
-    transform: translate(
-      calc(var(--tts-click-x) + 90px),
-      var(--tts-click-y)
-    );
+    transform: translate(var(--tts-click-x), var(--tts-click-y));
   }
 }
 

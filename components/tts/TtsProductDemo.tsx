@@ -4,18 +4,18 @@ import { useLayoutEffect, useRef } from "react";
 import { TtsIcon } from "@/components/tts/TtsIcon";
 import { TtsTargetCollaboration } from "@/components/tts/TtsTargetCollaboration";
 
-const CURSOR_TIP_X = 1.33;
-const CURSOR_TIP_Y = 1.36;
+const POINTER_TIP_X = 10;
+const POINTER_TIP_Y = 5;
 const CANVAS_HEIGHT = 0.64;
 const LOOP_ANIMATION =
   "tts-cursor-loop 6.5s cubic-bezier(0.22, 1, 0.36, 1) infinite";
 
-function localPoint(camera: HTMLElement, target: HTMLElement) {
+function buttonPoint(camera: HTMLElement, button: HTMLElement) {
   const cam = camera.getBoundingClientRect();
-  const el = target.getBoundingClientRect();
+  const btn = button.getBoundingClientRect();
   return {
-    x: el.left + el.width * 0.38 - cam.left - CURSOR_TIP_X,
-    y: el.top + el.height * 0.5 - cam.top - CURSOR_TIP_Y,
+    x: btn.left + btn.width * 0.42 - cam.left - POINTER_TIP_X,
+    y: btn.top + btn.height * 0.5 - cam.top - POINTER_TIP_Y,
   };
 }
 
@@ -41,7 +41,7 @@ export function TtsProductDemo() {
 
       const aim = aimTarget();
       if (!aim || aim.getBoundingClientRect().width < 8) return false;
-      const point = localPoint(camera, aim);
+      const point = buttonPoint(camera, aim);
       camera.style.setProperty("--tts-click-x", `${point.x}px`);
       camera.style.setProperty("--tts-click-y", `${point.y}px`);
       return true;
