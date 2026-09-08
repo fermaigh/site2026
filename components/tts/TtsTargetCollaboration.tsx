@@ -26,7 +26,6 @@ const NAV = [
   },
   { icon: "menu-live", label: "LIVE & Video" },
   { icon: "menu-growth", label: "Growth" },
-  { icon: "menu-more", label: "Partners" },
   { icon: "menu-more", label: "App" },
   { divider: true },
   { icon: "menu-data", label: "Analytics" },
