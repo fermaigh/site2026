@@ -99,14 +99,6 @@ function Filter({ label }: { label: string }) {
   );
 }
 
-function Badge({ children }: { children: string }) {
-  return (
-    <span className="inline-flex h-[22px] items-center rounded-full bg-[#ececed] px-2 text-[12px] leading-[18px] text-[#171718]">
-      {children}
-    </span>
-  );
-}
-
 export function TtsTargetCollaboration() {
   return (
     <div className="tts-collab-ui flex w-full min-w-0 flex-col bg-[#ececed] text-[#171718]">
@@ -261,7 +253,7 @@ export function TtsTargetCollaboration() {
                   </span>
                 </span>
                 <span className="tts-invite-btn flex items-center gap-1 rounded bg-[#008a87] px-3 py-1.5 text-[13px] font-medium text-white @[700px]:text-[14px]">
-                  Invite to collaborate
+                  <span className="tts-invite-aim">Invite to collaborate</span>
                   <TtsIcon name="down" size={16} />
                 </span>
                 <div className="absolute right-0 top-[calc(100%+8px)] z-30 w-[min(32rem,calc(100cqi-4.5rem))]">
@@ -320,8 +312,8 @@ export function TtsTargetCollaboration() {
                           {row.products}
                         </p>
                       </td>
-                      <td className="px-3 py-3">
-                        <Badge>{row.fee}</Badge>
+                      <td className="px-3 py-3 text-[13px] leading-5 text-[#171718] @[700px]:text-[14px]">
+                        {row.fee}
                       </td>
                       <td className="px-3 py-3">
                         <p className="text-[13px] leading-5 text-[#171718] @[700px]:text-[14px]">

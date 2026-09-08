@@ -294,9 +294,7 @@ html.is-loading body {
   width: 100%;
   overflow: hidden;
   --tts-click-x: 70cqi;
-  --tts-click-y: 220px;
-  --tts-row-x: 66cqi;
-  --tts-row-y: 320px;
+  --tts-click-y: 280px;
 }
 
 .tts-collab-camera img,
@@ -312,9 +310,17 @@ html.is-loading body {
   width: 24px;
   height: 30px;
   pointer-events: none;
+  transform-origin: 1.33px 1.36px;
   filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.35));
   animation: tts-cursor-loop 6.5s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  animation-play-state: paused;
   will-change: transform, opacity;
+}
+
+.tts-collab-camera.is-aimed .tts-collab-cursor,
+.tts-collab-camera.is-aimed .tts-invite-btn,
+.tts-collab-camera.is-aimed .tts-invite-menu {
+  animation-play-state: running;
 }
 
 .tts-collab-cursor svg {
@@ -326,6 +332,7 @@ html.is-loading body {
 .tts-invite-btn {
   transform-origin: center;
   animation: tts-invite-press 6.5s ease-in-out infinite;
+  animation-play-state: paused;
 }
 
 .tts-invite-menu {
@@ -333,6 +340,7 @@ html.is-loading body {
   pointer-events: none;
   overflow: visible;
   animation: tts-menu-loop 6.5s ease-in-out infinite;
+  animation-play-state: paused;
 }
 
 @keyframes tts-cursor-loop {
@@ -340,39 +348,34 @@ html.is-loading body {
   100% {
     opacity: 0;
     transform: translate(
-      calc(var(--tts-click-x) - 110px),
-      calc(var(--tts-click-y) + 48px)
+      calc(var(--tts-click-x) - 72px),
+      calc(var(--tts-click-y) + 28px)
     );
   }
-  8% {
+  10% {
     opacity: 1;
     transform: translate(
-      calc(var(--tts-click-x) - 110px),
-      calc(var(--tts-click-y) + 48px)
+      calc(var(--tts-click-x) - 72px),
+      calc(var(--tts-click-y) + 28px)
     );
   }
-  26%,
-  28% {
+  28%,
+  32% {
     opacity: 1;
     transform: translate(var(--tts-click-x), var(--tts-click-y));
   }
-  31% {
+  35% {
     opacity: 1;
-    transform: translate(var(--tts-click-x), var(--tts-click-y)) scale(0.88);
+    transform: translate(var(--tts-click-x), var(--tts-click-y)) scale(0.86);
   }
-  34%,
-  40% {
+  38%,
+  82% {
     opacity: 1;
     transform: translate(var(--tts-click-x), var(--tts-click-y));
-  }
-  55%,
-  84% {
-    opacity: 1;
-    transform: translate(var(--tts-row-x), var(--tts-row-y));
   }
   92% {
     opacity: 0;
-    transform: translate(var(--tts-row-x), var(--tts-row-y));
+    transform: translate(var(--tts-click-x), var(--tts-click-y));
   }
 }
 

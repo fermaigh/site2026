@@ -3,12 +3,15 @@
 import { useLayoutEffect, useRef } from "react";
 import { TtsTargetCollaboration } from "@/components/tts/TtsTargetCollaboration";
 
+const CURSOR_TIP_X = 1.33;
+const CURSOR_TIP_Y = 1.36;
+
 function localPoint(camera: HTMLElement, target: HTMLElement) {
   const cam = camera.getBoundingClientRect();
   const el = target.getBoundingClientRect();
   return {
-    x: el.left + el.width * 0.55 - cam.left,
-    y: el.top + el.height * 0.45 - cam.top,
+    x: el.left + el.width * 0.5 - cam.left - CURSOR_TIP_X,
+    y: el.top + el.height * 0.5 - cam.top - CURSOR_TIP_Y,
   };
 }
 
@@ -20,25 +23,28 @@ export function TtsProductDemo() {
     if (!camera) return;
 
     const update = () => {
-      const inviteBtn = camera.querySelector<HTMLElement>(".tts-invite-btn");
-      const firstInvite = camera.querySelector<HTMLElement>(
-        ".tts-invite-first",
-      );
-      if (inviteBtn) {
-        const point = localPoint(camera, inviteBtn);
-        camera.style.setProperty("--tts-click-x", `${point.x}px`);
-        camera.style.setProperty("--tts-click-y", `${point.y}px`);
-      }
-      if (firstInvite) {
-        const point = localPoint(camera, firstInvite);
-        camera.style.setProperty("--tts-row-x", `${point.x}px`);
-        camera.style.setProperty("--tts-row-y", `${point.y}px`);
-      }
+      const aim =
+        camera.querySelector<HTMLElement>(".tts-invite-aim") ??
+        camera.querySelector<HTMLElement>(".tts-invite-btn");
+      if (!aim) return;
+      const point = localPoint(camera, aim);
+      camera.style.setProperty("--tts-click-x", `${point.x}px`);
+      camera.style.setProperty("--tts-click-y", `${point.y}px`);
     };
 
-    update();
+    const start = () => {
+      update();
+      camera.classList.remove("is-aimed");
+      void camera.offsetWidth;
+      camera.classList.add("is-aimed");
+    };
+
+    start();
+    void document.fonts?.ready?.then(start);
     const observer = new ResizeObserver(update);
     observer.observe(camera);
+    const inviteBtn = camera.querySelector(".tts-invite-btn");
+    if (inviteBtn) observer.observe(inviteBtn);
     return () => observer.disconnect();
   }, []);
 
