@@ -5,6 +5,7 @@ import { TtsCreateCollaboration } from "@/components/tts/TtsCreateCollaboration"
 import { TtsFindCreatorsDemo } from "@/components/tts/TtsFindCreatorsDemo";
 import { TtsIcon } from "@/components/tts/TtsIcon";
 import { TtsTargetCollaboration } from "@/components/tts/TtsTargetCollaboration";
+import { useDemoPlayback } from "@/components/tts/useDemoPlayback";
 
 const CLIP_PAD = 8;
 const VIEWPORT_SCALE = 0.96;
@@ -46,23 +47,15 @@ export function TtsProductDemo() {
       clip();
     });
     if (stage) observer.observe(stage);
-    const playback = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry?.isIntersecting) return;
-        camera.classList.add("tts-demo1-active");
-        playback.disconnect();
-      },
-      { threshold: 0.35 },
-    );
-    playback.observe(camera);
     window.addEventListener("resize", clip);
 
     return () => {
       observer.disconnect();
-      playback.disconnect();
       window.removeEventListener("resize", clip);
     };
   }, []);
+
+  useDemoPlayback(cameraRef, "tts-demo1-active");
 
   return (
     <>

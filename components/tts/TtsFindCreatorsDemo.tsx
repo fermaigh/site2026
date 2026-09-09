@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useLayoutEffect, useRef } from "react";
 import { TtsIcon } from "@/components/tts/TtsIcon";
+import { useDemoPlayback } from "@/components/tts/useDemoPlayback";
 
 const ASSET_ROOT = "/projects/tts-ui/find-creators";
 
@@ -669,22 +670,14 @@ export function TtsFindCreatorsDemo() {
     void document.fonts?.ready?.then(clip);
     const observer = new ResizeObserver(clip);
     observer.observe(camera);
-    const playback = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry?.isIntersecting) return;
-        camera.classList.add("tts-find-active");
-        playback.disconnect();
-      },
-      { threshold: 0.35 },
-    );
-    playback.observe(camera);
     window.addEventListener("resize", clip);
     return () => {
       observer.disconnect();
-      playback.disconnect();
       window.removeEventListener("resize", clip);
     };
   }, []);
+
+  useDemoPlayback(cameraRef, "tts-find-active");
 
   return (
     <section
