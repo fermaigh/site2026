@@ -309,6 +309,9 @@ export function TtsTargetCollaboration({
                     <tr
                       key={row.name}
                       className="border-t border-[#e1e1e2] bg-white"
+                      {...(row.name === "Active Wear Spring Refresh"
+                        ? { "data-tts-clip-end": "" }
+                        : {})}
                     >
                       <td className="px-3 py-3">
                         <p className="text-[14px] font-medium leading-6 text-black/90 @[700px]:text-[16px]">

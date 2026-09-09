@@ -4,7 +4,7 @@ import { useLayoutEffect, useRef } from "react";
 import { TtsIcon } from "@/components/tts/TtsIcon";
 import { TtsTargetCollaboration } from "@/components/tts/TtsTargetCollaboration";
 
-const CANVAS_HEIGHT = 0.512;
+const CLIP_PAD = 8;
 
 export function TtsProductDemo() {
   const cameraRef = useRef<HTMLDivElement>(null);
@@ -16,7 +16,15 @@ export function TtsProductDemo() {
     const clip = () => {
       const ui = camera.querySelector<HTMLElement>(".tts-collab-ui");
       if (!ui) return;
-      const next = `${Math.round(ui.offsetHeight * CANVAS_HEIGHT)}px`;
+      const marker = ui.querySelector<HTMLElement>("[data-tts-clip-end]");
+      const cut = marker
+        ? Math.round(
+            marker.getBoundingClientRect().bottom -
+              ui.getBoundingClientRect().top +
+              CLIP_PAD,
+          )
+        : Math.round(ui.offsetHeight * 0.73);
+      const next = `${Math.max(cut, 1)}px`;
       if (camera.style.height !== next) {
         camera.style.height = next;
       }
@@ -35,8 +43,10 @@ export function TtsProductDemo() {
 
     clip();
     const ui = camera.querySelector(".tts-collab-ui");
+    const marker = camera.querySelector("[data-tts-clip-end]");
     const observer = new ResizeObserver(clip);
     if (ui) observer.observe(ui);
+    if (marker) observer.observe(marker);
 
     const reveal = camera.closest(".reveal");
     reveal?.addEventListener("animationend", restartMotion);
