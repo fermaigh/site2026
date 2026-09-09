@@ -4,7 +4,7 @@ import { useLayoutEffect, useRef } from "react";
 import { TtsIcon } from "@/components/tts/TtsIcon";
 import { TtsTargetCollaboration } from "@/components/tts/TtsTargetCollaboration";
 
-const CANVAS_HEIGHT = 0.64;
+const CANVAS_HEIGHT = 0.512;
 
 export function TtsProductDemo() {
   const cameraRef = useRef<HTMLDivElement>(null);
