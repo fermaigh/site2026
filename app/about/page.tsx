@@ -4,11 +4,7 @@ export default function AboutPage() {
   return (
     <PageShell>
       <article className="pb-16 sm:pb-24">
-        <h1 className="reveal font-sans text-[clamp(2rem,5vw,2.75rem)] font-semibold leading-tight tracking-tight text-foreground">
-          about me
-        </h1>
-
-        <p className="reveal reveal-delay-1 mt-8 max-w-2xl font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]">
+        <p className="reveal mt-8 max-w-2xl font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]">
           I&apos;ve been designing products for one of the world&apos;s largest
           creator commerce platforms. I lead the design of complex B2B
           experiences that enable sellers, creators, and agencies to collaborate
@@ -18,7 +14,7 @@ export default function AboutPage() {
           operational efficiency, and business growth across global&nbsp;markets.
         </p>
 
-        <p className="reveal reveal-delay-2 mt-8">
+        <p className="reveal reveal-delay-1 mt-8">
           <a
             href="/Resume_XiaoyeLin.pdf"
             download="Resume_XiaoyeLin.pdf"
