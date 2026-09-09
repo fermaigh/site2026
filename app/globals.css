@@ -510,23 +510,9 @@ html.is-loading body {
   animation: tts-find-hand-loop 6.5s linear infinite;
 }
 
-.tts-find-invite {
+.tts-find-ai-assistant {
   transform-origin: center;
-  animation: tts-find-invite-press 6.5s ease-in-out infinite;
-}
-
-.tts-find-invite-label,
-.tts-find-invited-label {
-  position: absolute;
-}
-
-.tts-find-invite-label {
-  animation: tts-find-label-out 6.5s linear infinite;
-}
-
-.tts-find-invited-label {
-  opacity: 0;
-  animation: tts-find-label-in 6.5s linear infinite;
+  animation: tts-find-assistant-press 6.5s ease-in-out infinite;
 }
 
 @keyframes tts-find-arrow-loop {
@@ -556,15 +542,15 @@ html.is-loading body {
   100% {
     opacity: 0;
     transform: translate(
-      calc(-92px - var(--tts-find-tip-x)),
-      calc(42px - var(--tts-find-tip-y))
+      calc(150px - var(--tts-find-tip-x)),
+      calc(92px - var(--tts-find-tip-y))
     );
   }
   9% {
     opacity: 1;
     transform: translate(
-      calc(-92px - var(--tts-find-tip-x)),
-      calc(42px - var(--tts-find-tip-y))
+      calc(150px - var(--tts-find-tip-x)),
+      calc(92px - var(--tts-find-tip-y))
     );
   }
   28%,
@@ -600,12 +586,13 @@ html.is-loading body {
   }
 }
 
-@keyframes tts-find-invite-press {
+@keyframes tts-find-assistant-press {
   0%,
   28%,
   36%,
   100% {
     transform: scale(1);
+    background: transparent;
   }
   31%,
   34% {
@@ -613,33 +600,7 @@ html.is-loading body {
   }
   39%,
   82% {
-    background: #087a77;
-  }
-}
-
-@keyframes tts-find-label-out {
-  0%,
-  36%,
-  86%,
-  100% {
-    opacity: 1;
-  }
-  39%,
-  82% {
-    opacity: 0;
-  }
-}
-
-@keyframes tts-find-label-in {
-  0%,
-  36%,
-  86%,
-  100% {
-    opacity: 0;
-  }
-  39%,
-  82% {
-    opacity: 1;
+    background: rgba(255, 255, 255, 0.14);
   }
 }
 
@@ -660,9 +621,7 @@ html.is-loading body {
     display: none;
   }
 
-  .tts-find-invite,
-  .tts-find-invite-label,
-  .tts-find-invited-label {
+  .tts-find-ai-assistant {
     animation: none;
   }
 

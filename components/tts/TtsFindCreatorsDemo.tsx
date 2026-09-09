@@ -99,9 +99,10 @@ function SellerHeader() {
         </div>
       </div>
       <div className="flex shrink-0 items-center gap-1 @[700px]:gap-2">
-        <span className="hidden items-center gap-2 px-1 text-[14px] font-medium @[900px]:flex">
+        <span className="tts-find-ai-assistant relative hidden items-center gap-2 rounded px-2 py-1 text-[14px] font-medium @[900px]:flex">
           <TtsIcon name="ai-logo" size={24} />
           Assistant
+          <AssistantCursor />
         </span>
         <span className="flex size-8 items-center justify-center @[700px]:size-9">
           <TtsIcon name="question-circle" size={22} />
@@ -135,7 +136,7 @@ function SellerHeader() {
 
 function SellerNav() {
   return (
-    <aside className="w-12 shrink-0 bg-white px-1 py-3 @[700px]:w-[200px] @[700px]:px-2 @[700px]:py-4">
+    <aside className="w-12 shrink-0 bg-white px-1 py-3 @[700px]:w-[220px] @[700px]:px-2 @[700px]:py-4">
       {NAV.map((item, index) => {
         if ("divider" in item && item.divider) {
           return (
@@ -187,7 +188,7 @@ function SelectBox({ children }: { children: React.ReactNode }) {
   );
 }
 
-function InviteCursor() {
+function AssistantCursor() {
   return (
     <span className="tts-find-cursor" aria-hidden>
       <svg
@@ -287,20 +288,8 @@ function CreatorRow({
         </span>
       ))}
       <div className="flex items-center justify-end gap-1 pr-3">
-        <span
-          className={`relative flex h-11 w-[92px] items-center justify-center overflow-visible rounded-sm bg-[#009995] text-[14px] font-medium text-white ${
-            index === 0 ? "tts-find-invite" : ""
-          }`}
-        >
-          {index === 0 ? (
-            <>
-              <span className="tts-find-invite-label">Invite</span>
-              <span className="tts-find-invited-label">Invited</span>
-              <InviteCursor />
-            </>
-          ) : (
-            "Invite"
-          )}
+        <span className="flex h-11 w-[92px] items-center justify-center rounded-sm bg-[#009995] text-[14px] font-medium text-white">
+          Invite
         </span>
         <span className="flex size-11 items-center justify-center rounded-sm bg-black/5">
           <Image
@@ -318,11 +307,11 @@ function CreatorRow({
 
 function FindCreatorsScreen() {
   return (
-    <div className="tts-collab-ui flex w-full min-w-0 flex-col bg-[#f5f5f5] text-[#171718]">
+    <div className="tts-collab-ui @container flex w-[1440px] min-w-[1440px] flex-col bg-[#f5f5f5] text-[#171718]">
       <SellerHeader />
       <div className="flex min-w-0">
         <SellerNav />
-        <main className="min-w-0 flex-1 bg-[#f5f5f5] p-3 @[700px]:px-6 @[700px]:py-4">
+        <main className="min-w-0 flex-1 bg-[#f5f5f5] p-3 @[700px]:ml-[91px] @[700px]:w-[1038px] @[700px]:flex-none @[700px]:px-0 @[700px]:py-4">
           <div className="flex items-center justify-between gap-4">
             <h2 className="text-[22px] font-bold leading-8 @[700px]:text-[28px] @[700px]:leading-9">
               Find Creators
