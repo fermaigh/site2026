@@ -100,7 +100,6 @@ export const projects: Project[] = [
       platform: "Web and mobile",
       sections: [
         {
-          heading: "Context",
           body: {
             parts: [
               "I design ",
