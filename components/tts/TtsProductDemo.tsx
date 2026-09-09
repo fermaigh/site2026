@@ -5,6 +5,7 @@ import { TtsIcon } from "@/components/tts/TtsIcon";
 import { TtsTargetCollaboration } from "@/components/tts/TtsTargetCollaboration";
 
 const CLIP_PAD = 8;
+const VIEWPORT_SCALE = 0.8;
 
 export function TtsProductDemo() {
   const cameraRef = useRef<HTMLDivElement>(null);
@@ -19,11 +20,12 @@ export function TtsProductDemo() {
       const marker = ui.querySelector<HTMLElement>("[data-tts-clip-end]");
       const cut = marker
         ? Math.round(
-            marker.getBoundingClientRect().bottom -
+            (marker.getBoundingClientRect().bottom -
               ui.getBoundingClientRect().top +
-              CLIP_PAD,
+              CLIP_PAD) *
+              VIEWPORT_SCALE,
           )
-        : Math.round(ui.offsetHeight * 0.73);
+        : Math.round(ui.offsetHeight * 0.73 * VIEWPORT_SCALE);
       const next = `${Math.max(cut, 1)}px`;
       if (camera.style.height !== next) {
         camera.style.height = next;
