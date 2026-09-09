@@ -260,7 +260,7 @@ export function TtsTargetCollaboration({
                 <span className="tts-invite-anchor">
                   <span className="tts-invite-btn flex items-center gap-1 rounded bg-[#008a87] px-3 py-1.5 text-[13px] font-medium text-white @[700px]:text-[14px]">
                     <span className="tts-invite-aim">Invite to collaborate</span>
-                    <TtsIcon name="down" size={16} />
+                    <TtsIcon name="down" size={16} className="tts-invite-chevron" />
                   </span>
                   {children}
                 </span>

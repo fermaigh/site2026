@@ -362,6 +362,11 @@ html.is-loading body {
   animation: tts-menu-loop 6.5s ease-in-out infinite;
 }
 
+.tts-invite-chevron {
+  transform-origin: center;
+  animation: tts-invite-chevron 6.5s ease-in-out infinite;
+}
+
 @keyframes tts-cursor-arrow {
   0%,
   26% {
@@ -454,6 +459,19 @@ html.is-loading body {
     opacity: 0;
     visibility: hidden;
     transform: translateY(-6px);
+  }
+}
+
+@keyframes tts-invite-chevron {
+  0%,
+  30%,
+  92%,
+  100% {
+    transform: none;
+  }
+  36%,
+  84% {
+    transform: rotate(180deg);
   }
 }
 
