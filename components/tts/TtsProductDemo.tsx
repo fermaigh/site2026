@@ -5,7 +5,7 @@ import { TtsIcon } from "@/components/tts/TtsIcon";
 import { TtsTargetCollaboration } from "@/components/tts/TtsTargetCollaboration";
 
 const CLIP_PAD = 8;
-const VIEWPORT_SCALE = 0.8;
+const VIEWPORT_SCALE = 0.96;
 
 export function TtsProductDemo() {
   const cameraRef = useRef<HTMLDivElement>(null);
