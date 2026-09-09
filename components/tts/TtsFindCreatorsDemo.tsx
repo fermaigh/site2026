@@ -669,9 +669,19 @@ export function TtsFindCreatorsDemo() {
     void document.fonts?.ready?.then(clip);
     const observer = new ResizeObserver(clip);
     observer.observe(camera);
+    const playback = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry?.isIntersecting) return;
+        camera.classList.add("tts-find-active");
+        playback.disconnect();
+      },
+      { threshold: 0.35 },
+    );
+    playback.observe(camera);
     window.addEventListener("resize", clip);
     return () => {
       observer.disconnect();
+      playback.disconnect();
       window.removeEventListener("resize", clip);
     };
   }, []);

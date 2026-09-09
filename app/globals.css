@@ -621,6 +621,48 @@ html.is-loading body {
   animation: tts-find-send-invite-press 12s ease-in-out forwards;
 }
 
+.tts-find-cursor,
+.tts-find-cursor-arrow,
+.tts-find-cursor-hand,
+.tts-find-ai-assistant,
+.tts-find-assistant-panel,
+.tts-find-assistant-home,
+.tts-find-assistant-chat,
+.tts-find-chat-user-message,
+.tts-find-chat-thinking,
+.tts-find-chat-thinking-icon,
+.tts-find-chat-thinking-dots,
+.tts-find-chat-thinking-active,
+.tts-find-chat-thought-complete,
+.tts-find-chat-response,
+.tts-find-panel-cursor,
+.tts-find-panel-cursor-arrow,
+.tts-find-panel-cursor-hand,
+.tts-find-send-invite {
+  animation-play-state: paused;
+}
+
+.tts-find-active .tts-find-cursor,
+.tts-find-active .tts-find-cursor-arrow,
+.tts-find-active .tts-find-cursor-hand,
+.tts-find-active .tts-find-ai-assistant,
+.tts-find-active .tts-find-assistant-panel,
+.tts-find-active .tts-find-assistant-home,
+.tts-find-active .tts-find-assistant-chat,
+.tts-find-active .tts-find-chat-user-message,
+.tts-find-active .tts-find-chat-thinking,
+.tts-find-active .tts-find-chat-thinking-icon,
+.tts-find-active .tts-find-chat-thinking-dots,
+.tts-find-active .tts-find-chat-thinking-active,
+.tts-find-active .tts-find-chat-thought-complete,
+.tts-find-active .tts-find-chat-response,
+.tts-find-active .tts-find-panel-cursor,
+.tts-find-active .tts-find-panel-cursor-arrow,
+.tts-find-active .tts-find-panel-cursor-hand,
+.tts-find-active .tts-find-send-invite {
+  animation-play-state: running;
+}
+
 @keyframes tts-find-arrow-loop {
   0%,
   20% {
