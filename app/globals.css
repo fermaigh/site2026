@@ -486,7 +486,7 @@ html.is-loading body {
   --tts-find-tip-x: 9.7px;
   --tts-find-tip-y: 5px;
   transform-origin: var(--tts-find-tip-x) var(--tts-find-tip-y);
-  animation: tts-find-cursor-loop 6.5s cubic-bezier(0.22, 1, 0.36, 1)
+  animation: tts-find-cursor-loop 9s cubic-bezier(0.22, 1, 0.36, 1)
     infinite;
 }
 
@@ -500,19 +500,19 @@ html.is-loading body {
   width: 24px;
   height: 30px;
   filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.35));
-  animation: tts-find-arrow-loop 6.5s linear infinite;
+  animation: tts-find-arrow-loop 9s linear infinite;
 }
 
 .tts-find-cursor-hand {
   top: 2px;
   width: 24px;
   height: 25px;
-  animation: tts-find-hand-loop 6.5s linear infinite;
+  animation: tts-find-hand-loop 9s linear infinite;
 }
 
 .tts-find-ai-assistant {
   transform-origin: center;
-  animation: tts-find-assistant-press 6.5s ease-in-out infinite;
+  animation: tts-find-assistant-press 9s ease-in-out infinite;
 }
 
 .tts-find-assistant-panel {
@@ -520,7 +520,19 @@ html.is-loading body {
   opacity: 0;
   pointer-events: none;
   transform-origin: top right;
-  animation: tts-find-assistant-panel 6.5s cubic-bezier(0.22, 1, 0.36, 1)
+  animation: tts-find-assistant-panel 9s cubic-bezier(0.22, 1, 0.36, 1)
+    infinite;
+}
+
+.tts-find-assistant-home {
+  animation: tts-find-assistant-home 9s cubic-bezier(0.22, 1, 0.36, 1)
+    infinite;
+}
+
+.tts-find-assistant-chat {
+  visibility: hidden;
+  opacity: 0;
+  animation: tts-find-assistant-chat 9s cubic-bezier(0.22, 1, 0.36, 1)
     infinite;
 }
 
@@ -535,7 +547,7 @@ html.is-loading body {
   --tts-panel-tip-x: 9.7px;
   --tts-panel-tip-y: 5px;
   transform-origin: var(--tts-panel-tip-x) var(--tts-panel-tip-y);
-  animation: tts-find-panel-cursor-loop 6.5s
+  animation: tts-find-panel-cursor-loop 9s
     cubic-bezier(0.22, 1, 0.36, 1) infinite;
 }
 
@@ -549,19 +561,19 @@ html.is-loading body {
   width: 24px;
   height: 30px;
   filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.35));
-  animation: tts-find-panel-arrow-loop 6.5s linear infinite;
+  animation: tts-find-panel-arrow-loop 9s linear infinite;
 }
 
 .tts-find-panel-cursor-hand {
   top: 2px;
   width: 24px;
   height: 25px;
-  animation: tts-find-panel-hand-loop 6.5s linear infinite;
+  animation: tts-find-panel-hand-loop 9s linear infinite;
 }
 
 .tts-find-send-invite {
   transform-origin: center;
-  animation: tts-find-send-invite-press 6.5s ease-in-out infinite;
+  animation: tts-find-send-invite-press 9s ease-in-out infinite;
 }
 
 @keyframes tts-find-arrow-loop {
@@ -734,6 +746,46 @@ html.is-loading body {
   }
 }
 
+@keyframes tts-find-assistant-home {
+  0%,
+  68% {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  73% {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-8px) scale(0.985);
+  }
+  74%,
+  100% {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-8px) scale(0.985);
+  }
+}
+
+@keyframes tts-find-assistant-chat {
+  0%,
+  68% {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(12px) scale(0.985);
+  }
+  69% {
+    visibility: visible;
+    opacity: 0;
+    transform: translateY(12px) scale(0.985);
+  }
+  74%,
+  100% {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 @keyframes tts-find-assistant-press {
   0%,
   28%,
@@ -747,7 +799,7 @@ html.is-loading body {
     transform: scale(0.95);
   }
   39%,
-  82% {
+  92% {
     background: rgba(255, 255, 255, 0.14);
   }
 }
@@ -765,17 +817,16 @@ html.is-loading body {
     transform: translateX(24px) scale(0.98);
   }
   44%,
-  80% {
+  92% {
     visibility: visible;
     opacity: 1;
     transform: translateX(0) scale(1);
   }
-  88% {
+  97% {
     visibility: visible;
     opacity: 0;
     transform: translateX(16px) scale(0.99);
   }
-  90%,
   100% {
     visibility: hidden;
     opacity: 0;
@@ -803,8 +854,21 @@ html.is-loading body {
 
   .tts-find-ai-assistant,
   .tts-find-assistant-panel,
+  .tts-find-assistant-home,
+  .tts-find-assistant-chat,
   .tts-find-send-invite {
     animation: none;
+  }
+
+  .tts-find-assistant-panel,
+  .tts-find-assistant-home {
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+  }
+
+  .tts-find-assistant-chat {
+    display: none;
   }
 
   ::view-transition-old(root),

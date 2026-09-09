@@ -296,76 +296,136 @@ function AssistantPanel() {
 
   return (
     <aside
-      className="tts-find-assistant-panel absolute bottom-4 right-4 top-[76px] z-40 flex w-[400px] flex-col overflow-hidden rounded-2xl bg-white text-[#171718] shadow-[0_0_32px_rgba(0,0,0,0.2)]"
+      className="tts-find-assistant-panel absolute bottom-4 right-4 top-[76px] z-40 w-[400px] overflow-hidden rounded-2xl bg-white text-[#171718] shadow-[0_0_32px_rgba(0,0,0,0.2)]"
       aria-label="Ai Assistant"
     >
-      <div className="flex h-[56px] shrink-0 items-center border-b border-[#d3d4d5] px-3">
-        <span className="flex size-8 items-center justify-center">
-          <AssistantAsset name="assistant-sidebar" />
-        </span>
-        <span className="ml-2 flex-1 text-[16px] font-medium">Ai Assistant</span>
-        <span className="flex size-8 items-center justify-center">
-          <AssistantAsset name="assistant-reduce" />
-        </span>
-      </div>
+      <div className="tts-find-assistant-home absolute inset-0 flex flex-col">
+        <div className="flex h-[56px] shrink-0 items-center border-b border-[#d3d4d5] px-3">
+          <span className="flex size-8 items-center justify-center">
+            <AssistantAsset name="assistant-sidebar" />
+          </span>
+          <span className="ml-2 flex-1 text-[16px] font-medium">
+            Ai Assistant
+          </span>
+          <span className="flex size-8 items-center justify-center">
+            <AssistantAsset name="assistant-reduce" />
+          </span>
+        </div>
 
-      <div className="flex min-h-0 flex-1 flex-col items-center justify-center px-4">
-        <Image
-          src={`${ASSET_ROOT}/assistant-logo.svg`}
-          alt=""
-          width={96}
-          height={96}
-          className="size-24"
-        />
-        <p className="mt-6 max-w-[330px] text-center text-[28px] font-bold leading-9">
-          Hi testaccount! How can I help you today?
-        </p>
-        <div className="mt-6 flex w-full flex-col gap-3">
-          {prompts.map((prompt) => (
-            <div
-              key={prompt}
-              className="flex items-center gap-2 rounded bg-[#f5f5f5] p-2 text-[14px] leading-5"
-            >
-              <span className="flex size-4 rotate-90 items-center justify-center">
-                <AssistantAsset name="assistant-prompt-arrow" />
+        <div className="flex min-h-0 flex-1 flex-col items-center justify-center px-4">
+          <Image
+            src={`${ASSET_ROOT}/assistant-logo.svg`}
+            alt=""
+            width={96}
+            height={96}
+            className="size-24"
+          />
+          <p className="mt-6 max-w-[330px] text-center text-[28px] font-bold leading-9">
+            Hi testaccount! How can I help you today?
+          </p>
+          <div className="mt-6 flex w-full flex-col gap-3">
+            {prompts.map((prompt) => (
+              <div
+                key={prompt}
+                className="flex items-center gap-2 rounded bg-[#f5f5f5] p-2 text-[14px] leading-5"
+              >
+                <span className="flex size-4 rotate-90 items-center justify-center">
+                  <AssistantAsset name="assistant-prompt-arrow" />
+                </span>
+                <span className="truncate">{prompt}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="shrink-0 p-4">
+          <div className="flex gap-2 overflow-visible">
+            {[
+              ["assistant-search", "Find creator"],
+              ["assistant-document", "Send invite"],
+              ["assistant-gift", "Samples"],
+            ].map(([icon, label]) => (
+              <span
+                key={label}
+                className={`flex h-8 shrink-0 items-center gap-2 rounded-full border border-[#d3d4d5] px-3 text-[14px] ${
+                  label === "Send invite"
+                    ? "tts-find-send-invite relative overflow-visible"
+                    : ""
+                }`}
+              >
+                <AssistantAsset name={icon} />
+                {label}
+                {label === "Send invite" ? <PanelCursor /> : null}
               </span>
-              <span className="truncate">{prompt}</span>
-            </div>
-          ))}
+            ))}
+          </div>
+          <AssistantInput />
         </div>
       </div>
 
-      <div className="shrink-0 p-4">
-        <div className="flex gap-2 overflow-visible">
-          {[
-            ["assistant-search", "Find creator"],
-            ["assistant-document", "Send invite"],
-            ["assistant-gift", "Samples"],
-          ].map(([icon, label]) => (
-            <span
-              key={label}
-              className={`flex h-8 shrink-0 items-center gap-2 rounded-full border border-[#d3d4d5] px-3 text-[14px] ${
-                label === "Send invite"
-                  ? "tts-find-send-invite relative overflow-visible"
-                  : ""
-              }`}
-            >
-              <AssistantAsset name={icon} />
-              {label}
-              {label === "Send invite" ? <PanelCursor /> : null}
-            </span>
-          ))}
+      <div className="tts-find-assistant-chat absolute inset-0 flex flex-col bg-white">
+        <div className="flex h-[56px] shrink-0 items-center px-4">
+          <AssistantAsset name="assistant-chat-logo" size={24} />
+          <span className="ml-2 flex-1 text-[16px] font-medium">
+            Ai Assistant
+          </span>
+          {["assistant-chat-plus", "assistant-expand", "assistant-close"].map(
+            (icon) => (
+              <span
+                key={icon}
+                className="flex size-8 items-center justify-center"
+              >
+                <AssistantAsset name={icon} />
+              </span>
+            ),
+          )}
         </div>
-        <div className="mt-4 flex h-12 items-center rounded-3xl border border-[#d3d4d5] px-3">
-          <span className="min-w-0 flex-1 truncate text-[14px] text-[#b7b8b9]">
-            Ask assistant anything...
-          </span>
-          <span className="flex size-8 items-center justify-center rounded-full bg-[#ececed]">
-            <AssistantAsset name="assistant-send" />
-          </span>
+
+        <div className="min-h-0 flex-1 overflow-hidden px-4 pt-4 text-[14px] leading-5">
+          <div className="flex justify-end">
+            <span className="rounded-lg bg-[#d2f3f1] p-3">Send invite</span>
+          </div>
+          <div className="mt-6 flex items-center gap-2 text-[#6c6d6f]">
+            <AssistantAsset name="assistant-thought" />
+            <span>Thought for 4s</span>
+            <AssistantAsset name="assistant-right" />
+          </div>
+          <p className="mt-3">
+            OK. Do you have any product on mind? Select from your shop or paste
+            product IDs.
+          </p>
+          <div className="mt-4 rounded-lg border border-[#d3d4d5] p-3">
+            <p className="font-medium">
+              Select the product you would like to promote
+            </p>
+            <div className="mt-3 flex gap-3">
+              <span className="flex h-8 flex-1 items-center justify-center font-medium text-[#017b77]">
+                Skip
+              </span>
+              <span className="flex h-8 flex-1 items-center justify-center rounded bg-[#009995] font-medium text-white">
+                Select
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className="shrink-0 p-4">
+          <AssistantInput />
         </div>
       </div>
     </aside>
+  );
+}
+
+function AssistantInput() {
+  return (
+    <div className="mt-4 flex h-12 items-center rounded-3xl border border-[#d3d4d5] px-3">
+      <span className="min-w-0 flex-1 truncate text-[14px] text-[#b7b8b9]">
+        Ask assistant anything...
+      </span>
+      <span className="flex size-8 items-center justify-center rounded-full bg-[#ececed]">
+        <AssistantAsset name="assistant-send" />
+      </span>
+    </div>
   );
 }
 
