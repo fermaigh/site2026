@@ -551,7 +551,7 @@ html.is-loading body {
 
 .tts-find-chat-thinking-icon {
   display: flex;
-  animation: tts-find-chat-thinking-icon 1.2s ease-in-out infinite;
+  animation: tts-find-chat-thinking-icon 12s ease-in-out forwards;
 }
 
 .tts-find-chat-thinking-dots {
@@ -559,7 +559,7 @@ html.is-loading body {
   width: 14px;
   overflow: hidden;
   vertical-align: bottom;
-  animation: tts-find-chat-thinking-dots 1.2s steps(4, end) infinite;
+  animation: tts-find-chat-thinking-dots 12s steps(1, end) forwards;
 }
 
 .tts-find-chat-thinking-active {
@@ -903,20 +903,37 @@ html.is-loading body {
 
 @keyframes tts-find-chat-thinking-icon {
   0%,
-  100% {
+  65% {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+  }
+  66%,
+  72% {
     opacity: 0.5;
     transform: rotate(-8deg) scale(0.9);
   }
-  50% {
+  69%,
+  75% {
     opacity: 1;
     transform: rotate(8deg) scale(1.08);
+  }
+  78%,
+  100% {
+    opacity: 1;
+    transform: rotate(0) scale(1);
   }
 }
 
 @keyframes tts-find-chat-thinking-dots {
-  0% {
+  0%,
+  66%,
+  70%,
+  74% {
     width: 0;
   }
+  69%,
+  73%,
+  77%,
   100% {
     width: 14px;
   }
