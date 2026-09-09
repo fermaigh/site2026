@@ -30,30 +30,23 @@ export function TtsProductDemo() {
       }
     };
 
-    const restartMotion = () => {
-      clip();
-      for (const el of camera.querySelectorAll<HTMLElement>(
-        ".tts-collab-cursor, .tts-cursor-arrow, .tts-cursor-hand, .tts-invite-btn, .tts-invite-menu",
-      )) {
-        el.style.animation = "none";
-        void el.offsetWidth;
-        el.style.animation = "";
-      }
-    };
-
     clip();
-    const ui = camera.querySelector(".tts-collab-ui");
-    const marker = camera.querySelector("[data-tts-clip-end]");
-    const observer = new ResizeObserver(clip);
-    if (ui) observer.observe(ui);
-    if (marker) observer.observe(marker);
+    void document.fonts?.ready?.then(clip);
 
-    const reveal = camera.closest(".reveal");
-    reveal?.addEventListener("animationend", restartMotion);
+    const stage = camera.closest(".tts-collab-stage");
+    let lastWidth = 0;
+    const observer = new ResizeObserver((entries) => {
+      const width = Math.round(entries[0]?.contentRect.width ?? 0);
+      if (width === lastWidth) return;
+      lastWidth = width;
+      clip();
+    });
+    if (stage) observer.observe(stage);
+    window.addEventListener("resize", clip);
 
     return () => {
       observer.disconnect();
-      reveal?.removeEventListener("animationend", restartMotion);
+      window.removeEventListener("resize", clip);
     };
   }, []);
 
