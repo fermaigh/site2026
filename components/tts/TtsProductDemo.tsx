@@ -1,6 +1,7 @@
 "use client";
 
 import { useLayoutEffect, useRef } from "react";
+import { TtsCreateCollaboration } from "@/components/tts/TtsCreateCollaboration";
 import { TtsFindCreatorsDemo } from "@/components/tts/TtsFindCreatorsDemo";
 import { TtsIcon } from "@/components/tts/TtsIcon";
 import { TtsTargetCollaboration } from "@/components/tts/TtsTargetCollaboration";
@@ -45,10 +46,20 @@ export function TtsProductDemo() {
       clip();
     });
     if (stage) observer.observe(stage);
+    const playback = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry?.isIntersecting) return;
+        camera.classList.add("tts-demo1-active");
+        playback.disconnect();
+      },
+      { threshold: 0.35 },
+    );
+    playback.observe(camera);
     window.addEventListener("resize", clip);
 
     return () => {
       observer.disconnect();
+      playback.disconnect();
       window.removeEventListener("resize", clip);
     };
   }, []);
@@ -61,28 +72,31 @@ export function TtsProductDemo() {
       >
         <div className="tts-collab-bezel">
           <div ref={cameraRef} className="tts-collab-camera">
-            <TtsTargetCollaboration>
-              <div className="tts-collab-cursor" aria-hidden="true">
-                <svg
-                  className="tts-cursor-arrow"
-                  width="24"
-                  height="30"
-                  viewBox="0 0 18 22"
-                  fill="none"
-                >
-                  <path
-                    d="M1 1L16.5 12.2L9.4 13.1L13.2 20.4L10.3 21.7L6.4 14.3L1 18.8V1Z"
-                    fill="#171718"
-                    stroke="white"
-                    strokeWidth="1.2"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-                <span className="tts-cursor-hand">
-                  <TtsIcon name="cursor-pointer" width={24} height={25} />
-                </span>
-              </div>
-            </TtsTargetCollaboration>
+            <div className="tts-demo1-list-page">
+              <TtsTargetCollaboration>
+                <div className="tts-collab-cursor" aria-hidden="true">
+                  <svg
+                    className="tts-cursor-arrow"
+                    width="24"
+                    height="30"
+                    viewBox="0 0 18 22"
+                    fill="none"
+                  >
+                    <path
+                      d="M1 1L16.5 12.2L9.4 13.1L13.2 20.4L10.3 21.7L6.4 14.3L1 18.8V1Z"
+                      fill="#171718"
+                      stroke="white"
+                      strokeWidth="1.2"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                  <span className="tts-cursor-hand">
+                    <TtsIcon name="cursor-pointer" width={24} height={25} />
+                  </span>
+                </div>
+              </TtsTargetCollaboration>
+            </div>
+            <TtsCreateCollaboration />
           </div>
         </div>
       </div>
