@@ -475,6 +475,174 @@ html.is-loading body {
   }
 }
 
+.tts-find-cursor {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 50;
+  width: 24px;
+  height: 30px;
+  pointer-events: none;
+  --tts-find-tip-x: 9.7px;
+  --tts-find-tip-y: 5px;
+  transform-origin: var(--tts-find-tip-x) var(--tts-find-tip-y);
+  animation: tts-find-cursor-loop 6.5s cubic-bezier(0.22, 1, 0.36, 1)
+    infinite;
+}
+
+.tts-find-cursor-arrow,
+.tts-find-cursor-hand {
+  position: absolute;
+  inset: 0 auto auto 0;
+}
+
+.tts-find-cursor-arrow {
+  width: 24px;
+  height: 30px;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.35));
+  animation: tts-find-arrow-loop 6.5s linear infinite;
+}
+
+.tts-find-cursor-hand {
+  top: 2px;
+  width: 24px;
+  height: 25px;
+  animation: tts-find-hand-loop 6.5s linear infinite;
+}
+
+.tts-find-invite {
+  transform-origin: center;
+  animation: tts-find-invite-press 6.5s ease-in-out infinite;
+}
+
+.tts-find-invite-label,
+.tts-find-invited-label {
+  position: absolute;
+}
+
+.tts-find-invite-label {
+  animation: tts-find-label-out 6.5s linear infinite;
+}
+
+.tts-find-invited-label {
+  opacity: 0;
+  animation: tts-find-label-in 6.5s linear infinite;
+}
+
+@keyframes tts-find-arrow-loop {
+  0%,
+  26% {
+    opacity: 1;
+  }
+  28%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes tts-find-hand-loop {
+  0%,
+  26% {
+    opacity: 0;
+  }
+  28%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes tts-find-cursor-loop {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translate(
+      calc(-92px - var(--tts-find-tip-x)),
+      calc(42px - var(--tts-find-tip-y))
+    );
+  }
+  9% {
+    opacity: 1;
+    transform: translate(
+      calc(-92px - var(--tts-find-tip-x)),
+      calc(42px - var(--tts-find-tip-y))
+    );
+  }
+  28%,
+  33% {
+    opacity: 1;
+    transform: translate(
+      calc(0px - var(--tts-find-tip-x)),
+      calc(0px - var(--tts-find-tip-y))
+    );
+  }
+  35% {
+    opacity: 1;
+    transform: translate(
+        calc(0px - var(--tts-find-tip-x)),
+        calc(0px - var(--tts-find-tip-y))
+      )
+      scale(0.86);
+  }
+  39%,
+  78% {
+    opacity: 1;
+    transform: translate(
+      calc(0px - var(--tts-find-tip-x)),
+      calc(0px - var(--tts-find-tip-y))
+    );
+  }
+  90% {
+    opacity: 0;
+    transform: translate(
+      calc(0px - var(--tts-find-tip-x)),
+      calc(0px - var(--tts-find-tip-y))
+    );
+  }
+}
+
+@keyframes tts-find-invite-press {
+  0%,
+  28%,
+  36%,
+  100% {
+    transform: scale(1);
+  }
+  31%,
+  34% {
+    transform: scale(0.95);
+  }
+  39%,
+  82% {
+    background: #087a77;
+  }
+}
+
+@keyframes tts-find-label-out {
+  0%,
+  36%,
+  86%,
+  100% {
+    opacity: 1;
+  }
+  39%,
+  82% {
+    opacity: 0;
+  }
+}
+
+@keyframes tts-find-label-in {
+  0%,
+  36%,
+  86%,
+  100% {
+    opacity: 0;
+  }
+  39%,
+  82% {
+    opacity: 1;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal,
   .reveal-delay-1,
@@ -486,6 +654,16 @@ html.is-loading body {
 
   .page-loader {
     display: none;
+  }
+
+  .tts-find-cursor {
+    display: none;
+  }
+
+  .tts-find-invite,
+  .tts-find-invite-label,
+  .tts-find-invited-label {
+    animation: none;
   }
 
   ::view-transition-old(root),
