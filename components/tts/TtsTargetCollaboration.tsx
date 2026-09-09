@@ -89,6 +89,49 @@ const ROWS = [
   },
 ] as const;
 
+const OPEN_ROWS = [
+  {
+    name: "Hydrating Peptide Serum",
+    sku: "SKU 10482",
+    stock: "In stock",
+    commission: "12%",
+    status: "Ongoing",
+    creators: "186",
+  },
+  {
+    name: "Matte Soft-Focus Foundation",
+    sku: "SKU 11027",
+    stock: "In stock",
+    commission: "8%",
+    status: "Ongoing",
+    creators: "94",
+  },
+  {
+    name: "Vitamin C Daily Moisturizer",
+    sku: "SKU 10815",
+    stock: "Low stock",
+    commission: "15%",
+    status: "Ongoing",
+    creators: "241",
+  },
+  {
+    name: "Overnight Repair Eye Cream",
+    sku: "SKU 11204",
+    stock: "In stock",
+    commission: "10%",
+    status: "Paused",
+    creators: "57",
+  },
+  {
+    name: "Clean Glow Highlighter Stick",
+    sku: "SKU 10691",
+    stock: "In stock",
+    commission: "9%",
+    status: "Ongoing",
+    creators: "128",
+  },
+] as const;
+
 function Filter({ label }: { label: string }) {
   return (
     <div className="flex h-8 min-w-0 flex-1 items-center justify-between gap-2 rounded border border-[#d3d4d5] bg-white px-3 @[900px]:max-w-[227px] @[900px]:flex-none">
@@ -102,9 +145,12 @@ function Filter({ label }: { label: string }) {
 
 export function TtsTargetCollaboration({
   children,
+  variant = "target",
 }: {
   children?: ReactNode;
+  variant?: "target" | "open";
 }) {
+  const isOpen = variant === "open";
   return (
     <div className="tts-collab-ui flex w-full min-w-0 flex-col bg-[#F5F5F5] text-[#171718]">
       <header className="flex h-[52px] shrink-0 items-center justify-between gap-3 bg-[rgba(0,0,0,0.92)] px-3 text-white @[700px]:h-[60px] @[700px]:px-4">
@@ -207,37 +253,191 @@ export function TtsTargetCollaboration({
           </h2>
 
           <div className="relative z-20 mt-3 flex items-stretch @[700px]:mt-4">
-            <div className="relative z-[1] flex min-h-[88px] min-w-0 flex-1 gap-3 rounded-t-lg bg-white p-3 shadow-[0px_-4px_12px_0px_rgba(0,0,0,0.12)] @[700px]:min-h-[114px] @[700px]:gap-4 @[700px]:p-6">
-              <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-[#e4f6f5] @[700px]:size-11">
-                <TtsIcon name="products-selected" size={22} />
-              </span>
-              <div className="min-w-0">
-                <p className="text-[14px] font-medium leading-5 text-black @[700px]:text-[16px] @[700px]:leading-6">
-                  Work with select creators
-                </p>
-                <p className="mt-1 hidden text-[14px] leading-5 text-[#6c6d6f] @[700px]:block">
-                  Get matched with the right creators for your shop, or find
-                  and invite them on your own.
-                </p>
-              </div>
-            </div>
-            <div className="mt-1.5 flex min-h-[80px] min-w-0 flex-1 gap-3 rounded-t-lg bg-[#ECECED] px-3 pb-3 pt-2 @[700px]:min-h-[108px] @[700px]:gap-4 @[700px]:px-6 @[700px]:pb-6 @[700px]:pt-4">
-              <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-[#d3d4d5] @[700px]:size-11">
-                <TtsIcon name="influencer-selected" size={22} />
-              </span>
-              <div className="min-w-0">
-                <p className="text-[14px] font-medium leading-5 text-[#6c6d6f] @[700px]:text-[16px] @[700px]:leading-6">
-                  Open collaboration with all
-                </p>
-                <p className="mt-1 hidden text-[14px] leading-5 text-[#6c6d6f] @[700px]:block">
-                  Set commissions and let eligible creators discover and share
-                  your products with their audience.
-                </p>
-              </div>
-            </div>
+            {isOpen ? (
+              <>
+                <div className="mt-1.5 flex min-h-[80px] min-w-0 flex-1 gap-3 rounded-t-lg bg-[#ECECED] px-3 pb-3 pt-2 @[700px]:min-h-[108px] @[700px]:gap-4 @[700px]:px-6 @[700px]:pb-6 @[700px]:pt-4">
+                  <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-[#d3d4d5] @[700px]:size-11">
+                    <TtsIcon name="products-selected" size={22} />
+                  </span>
+                  <div className="min-w-0">
+                    <p className="text-[14px] font-medium leading-5 text-[#6c6d6f] @[700px]:text-[16px] @[700px]:leading-6">
+                      Work with select creators
+                    </p>
+                    <p className="mt-1 hidden text-[14px] leading-5 text-[#6c6d6f] @[700px]:block">
+                      Get matched with the right creators for your shop, or find
+                      and invite them on your own.
+                    </p>
+                  </div>
+                </div>
+                <div className="relative z-[1] flex min-h-[88px] min-w-0 flex-1 gap-3 rounded-t-lg bg-white p-3 shadow-[0px_-4px_12px_0px_rgba(0,0,0,0.12)] @[700px]:min-h-[114px] @[700px]:gap-4 @[700px]:p-6">
+                  <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-[#e4f6f5] @[700px]:size-11">
+                    <TtsIcon name="influencer-selected" size={22} />
+                  </span>
+                  <div className="min-w-0">
+                    <p className="text-[14px] font-medium leading-5 text-black @[700px]:text-[16px] @[700px]:leading-6">
+                      Open collaboration with all
+                    </p>
+                    <p className="mt-1 hidden text-[14px] leading-5 text-[#6c6d6f] @[700px]:block">
+                      Set commissions and let eligible creators discover and
+                      share your products with their audience.
+                    </p>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="relative z-[1] flex min-h-[88px] min-w-0 flex-1 gap-3 rounded-t-lg bg-white p-3 shadow-[0px_-4px_12px_0px_rgba(0,0,0,0.12)] @[700px]:min-h-[114px] @[700px]:gap-4 @[700px]:p-6">
+                  <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-[#e4f6f5] @[700px]:size-11">
+                    <TtsIcon name="products-selected" size={22} />
+                  </span>
+                  <div className="min-w-0">
+                    <p className="text-[14px] font-medium leading-5 text-black @[700px]:text-[16px] @[700px]:leading-6">
+                      Work with select creators
+                    </p>
+                    <p className="mt-1 hidden text-[14px] leading-5 text-[#6c6d6f] @[700px]:block">
+                      Get matched with the right creators for your shop, or find
+                      and invite them on your own.
+                    </p>
+                  </div>
+                </div>
+                <div className="mt-1.5 flex min-h-[80px] min-w-0 flex-1 gap-3 rounded-t-lg bg-[#ECECED] px-3 pb-3 pt-2 @[700px]:min-h-[108px] @[700px]:gap-4 @[700px]:px-6 @[700px]:pb-6 @[700px]:pt-4">
+                  <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-[#d3d4d5] @[700px]:size-11">
+                    <TtsIcon name="influencer-selected" size={22} />
+                  </span>
+                  <div className="min-w-0">
+                    <p className="text-[14px] font-medium leading-5 text-[#6c6d6f] @[700px]:text-[16px] @[700px]:leading-6">
+                      Open collaboration with all
+                    </p>
+                    <p className="mt-1 hidden text-[14px] leading-5 text-[#6c6d6f] @[700px]:block">
+                      Set commissions and let eligible creators discover and
+                      share your products with their audience.
+                    </p>
+                  </div>
+                </div>
+              </>
+            )}
           </div>
 
           <div className="relative z-10 -mt-2 rounded-b-lg bg-white p-3 @[700px]:p-6">
+            {isOpen ? (
+              <>
+                <div className="flex flex-col gap-3 @[800px]:flex-row @[800px]:items-center @[800px]:justify-between">
+                  <div className="flex h-9 items-center gap-5 @[700px]:h-10 @[700px]:gap-8">
+                    <span className="flex h-9 flex-col items-center justify-between pt-1.5 @[700px]:h-10 @[700px]:pt-2">
+                      <span className="text-[14px] font-medium leading-6 text-[#171718] @[700px]:text-[16px]">
+                        Products
+                      </span>
+                      <span className="h-0.5 w-full bg-[#008a87]" />
+                    </span>
+                    <span className="text-[14px] font-medium leading-6 text-[#171718] @[700px]:text-[16px]">
+                      Creators
+                    </span>
+                  </div>
+                  <div className="relative flex flex-wrap items-center gap-2">
+                    <span className="tts-invite-anchor">
+                      <span className="tts-invite-btn flex items-center gap-1 rounded bg-[#008a87] px-3 py-1.5 text-[13px] font-medium text-white @[700px]:text-[14px]">
+                        <span className="tts-invite-aim">Add products</span>
+                        <TtsIcon
+                          name="down"
+                          size={16}
+                          className="tts-invite-chevron"
+                        />
+                      </span>
+                      {children}
+                    </span>
+                    <div className="absolute right-0 top-[calc(100%+8px)] z-30 w-[min(32rem,calc(100cqi-4.5rem))]">
+                      <TtsInviteMenu />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-3 flex flex-wrap items-center gap-2 @[700px]:mt-4">
+                  <div className="flex h-8 min-w-[12rem] flex-1 items-center gap-2 rounded border border-[#d3d4d5] bg-white px-3 @[900px]:max-w-[360px] @[900px]:flex-none">
+                    <span className="flex shrink-0 items-center gap-0.5 text-[13px] text-[#6c6d6f] @[700px]:text-[14px]">
+                      Product name
+                      <TtsIcon name="down-1" size={16} />
+                    </span>
+                    <span className="min-w-0 flex-1 truncate text-[13px] text-black/35 @[700px]:text-[14px]">
+                      Search
+                    </span>
+                    <TtsIcon name="search" size={16} />
+                  </div>
+                  <Filter label="All commission" />
+                  <Filter label="All status" />
+                  <span className="px-2 text-[13px] font-medium text-[#017b77] @[700px]:px-3 @[700px]:text-[14px]">
+                    Reset
+                  </span>
+                </div>
+
+                <div className="mt-3 overflow-x-auto rounded-lg border border-[#e1e1e2] @[700px]:mt-4">
+                  <table className="w-full min-w-[640px] border-collapse text-left">
+                    <thead>
+                      <tr className="bg-[#f9f9f9] text-[12px] font-medium leading-[18px] text-[#171718]">
+                        <th className="px-3 py-3 font-medium">Product</th>
+                        <th className="px-3 py-3 font-medium">Commission</th>
+                        <th className="px-3 py-3 font-medium">Stock</th>
+                        <th className="px-3 py-3 font-medium">Status</th>
+                        <th className="px-3 py-3 font-medium">Creator</th>
+                        <th className="px-3 py-3 font-medium">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {OPEN_ROWS.map((row) => (
+                        <tr
+                          key={row.name}
+                          className="border-t border-[#e1e1e2] bg-white"
+                          {...(row.name === "Vitamin C Daily Moisturizer"
+                            ? { "data-tts-clip-end": "" }
+                            : {})}
+                        >
+                          <td className="px-3 py-3">
+                            <p className="text-[14px] font-medium leading-6 text-black/90 @[700px]:text-[16px]">
+                              {row.name}
+                            </p>
+                            <p className="mt-1 text-[13px] leading-5 text-black/65 @[700px]:text-[14px]">
+                              {row.sku}
+                            </p>
+                          </td>
+                          <td className="px-3 py-3 text-[13px] leading-5 text-[#171718] @[700px]:text-[14px]">
+                            {row.commission}
+                          </td>
+                          <td className="px-3 py-3 text-[13px] leading-5 text-[#171718] @[700px]:text-[14px]">
+                            {row.stock}
+                          </td>
+                          <td className="px-3 py-3">
+                            <span className="flex items-center gap-1.5 text-[13px] leading-5 text-[#171718] @[700px]:text-[14px]">
+                              <TtsIcon
+                                name={
+                                  row.status === "Ongoing"
+                                    ? "dot-green"
+                                    : "dot-gray"
+                                }
+                                size={8}
+                              />
+                              {row.status}
+                            </span>
+                          </td>
+                          <td className="px-3 py-3 text-[13px] leading-5 text-[#171718] @[700px]:text-[14px]">
+                            {row.creators}
+                          </td>
+                          <td className="px-3 py-3">
+                            <span className="flex items-center gap-1">
+                              <span className="rounded border border-[#d3d4d5] px-2 py-0.5 text-[12px] font-medium text-[#171718]">
+                                View
+                              </span>
+                              <span className="flex size-6 items-center justify-center rounded border border-[#d3d4d5]">
+                                <TtsIcon name="more" size={16} />
+                              </span>
+                            </span>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </>
+            ) : (
+              <>
             <div className="flex flex-col gap-3 @[800px]:flex-row @[800px]:items-center @[800px]:justify-between">
               <div className="flex h-9 items-center gap-5 @[700px]:h-10 @[700px]:gap-8">
                 <span className="text-[14px] font-medium leading-6 text-[#171718] @[700px]:text-[16px]">
@@ -371,6 +571,8 @@ export function TtsTargetCollaboration({
                 </tbody>
               </table>
             </div>
+              </>
+            )}
           </div>
         </main>
       </div>

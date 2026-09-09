@@ -193,9 +193,14 @@ export default async function CaseStudyPage({ params }: PageProps) {
         ) : null}
 
         {caseStudy.showcase === "target-collaboration" ? (
-          <div className="reveal reveal-delay-3 mt-10 w-full sm:mt-12">
-            <TtsProductDemo />
-          </div>
+          <>
+            <div className="reveal reveal-delay-3 mt-10 w-full sm:mt-12">
+              <TtsProductDemo />
+            </div>
+            <div className="reveal reveal-delay-3 mt-10 w-full sm:mt-12">
+              <TtsProductDemo variant="open" />
+            </div>
+          </>
         ) : null}
       </article>
     </PageShell>
