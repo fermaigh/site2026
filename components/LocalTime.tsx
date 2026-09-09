@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Text } from "@astryxdesign/core/Text";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { BELLEVUE_TIME_ZONE } from "@/lib/theme";
 
@@ -26,9 +27,9 @@ export function LocalTime() {
 
   return (
     <div className="flex items-center gap-1.5 sm:gap-2">
-      <p className="font-sans text-[12px] text-foreground/40 sm:text-[13px]">
+      <Text type="supporting" size="sm" color="secondary" display="block">
         {time ? `${time} · Bellevue` : "(Local time in Bellevue)"}
-      </p>
+      </Text>
       <ThemeToggle />
     </div>
   );

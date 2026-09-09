@@ -1,7 +1,11 @@
+import { Divider } from "@astryxdesign/core/Divider";
+import { Text } from "@astryxdesign/core/Text";
+import { VStack } from "@astryxdesign/core/VStack";
+
 function FooterBrandIcon({ children }: { children: React.ReactNode }) {
   return (
     <span
-      className="mx-0.5 inline-flex size-[1.05em] shrink-0 items-center justify-center align-[-0.15em] text-foreground/40"
+      className="mx-0.5 inline-flex size-[1.05em] shrink-0 items-center justify-center align-[-0.15em] text-secondary"
       aria-hidden
     >
       {children}
@@ -37,8 +41,14 @@ export function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="w-full border-t border-foreground/10 py-10 sm:py-12 md:py-14">
-      <p className="w-full font-sans text-[13px] leading-relaxed text-pretty text-foreground/70 sm:text-[15px]">
+    <VStack as="footer" gap={3} width="100%" className="py-10 sm:py-12 md:py-14">
+      <Divider />
+      <Text
+        type="supporting"
+        color="secondary"
+        display="block"
+        textWrap="pretty"
+      >
         Vibe coded with
         <FooterBrandIcon>
           <CursorIcon />
@@ -52,10 +62,10 @@ export function SiteFooter() {
           <VercelIcon />
         </FooterBrandIcon>
         Vercel.
-      </p>
-      <p className="mt-3 font-sans text-[12px] text-foreground/40 sm:mt-4 sm:text-[13px]">
-        © {year} Xiaoye Lin
-      </p>
-    </footer>
+      </Text>
+      <Text type="supporting" size="sm" color="secondary" display="block">
+        © {year} Xiaoye&nbsp;Lin
+      </Text>
+    </VStack>
   );
 }

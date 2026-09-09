@@ -1,3 +1,5 @@
+import { HStack } from "@astryxdesign/core/HStack";
+import { Link } from "@astryxdesign/core/Link";
 import { TransitionLink } from "@/components/TransitionLink";
 import { HoverBackArrow } from "@/components/HoverBackArrow";
 
@@ -6,34 +8,34 @@ const EMAIL_HREF = "mailto:fermaigh@gmail.com";
 
 export function SiteHeader({ backHref = "/" }: { backHref?: string }) {
   return (
-    <header className="flex w-full items-center justify-between gap-4 py-5 sm:py-6 md:py-7">
+    <HStack
+      as="header"
+      hAlign="between"
+      vAlign="center"
+      gap={4}
+      width="100%"
+      className="py-5 sm:py-6 md:py-7"
+    >
       <TransitionLink
         href={backHref}
-        className="group inline-flex min-h-11 items-center gap-1.5 font-sans text-[15px] font-medium tracking-tight text-foreground transition-opacity hover:opacity-70 active:opacity-60"
+        className="group inline-flex min-h-11 items-center gap-1.5 font-sans text-[15px] font-medium tracking-tight text-primary transition-opacity hover:opacity-70 active:opacity-60"
       >
         <HoverBackArrow />
         <span>Back</span>
       </TransitionLink>
 
-      <nav className="flex items-center gap-4 sm:gap-6 md:gap-8">
-        <TransitionLink
-          href="/about"
-          className="inline-flex min-h-11 items-center font-sans text-[14px] tracking-tight text-foreground transition-opacity hover:opacity-60 active:opacity-50 sm:text-[15px]"
-        >
+      <HStack as="nav" gap={4} vAlign="center" className="sm:gap-6 md:gap-8">
+        <Link href="/about" isStandalone>
           About me
-        </TransitionLink>
-        <a
-          href={EMAIL_HREF}
-          className="inline-flex min-h-11 items-center font-sans text-[14px] tracking-tight text-foreground transition-opacity hover:opacity-60 active:opacity-50 sm:text-[15px]"
-        >
+        </Link>
+        <Link href={EMAIL_HREF} isStandalone>
           Email me
-        </a>
-        <a
+        </Link>
+        <Link
           href={LINKEDIN_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="LinkedIn"
-          className="inline-flex min-h-11 items-center justify-center text-foreground transition-opacity hover:opacity-60 active:opacity-50"
+          isExternalLink
+          isStandalone
+          label="LinkedIn"
         >
           <svg
             width="18"
@@ -44,8 +46,8 @@ export function SiteHeader({ backHref = "/" }: { backHref?: string }) {
           >
             <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.06-2.065 2.064 2.064 0 112.06 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
           </svg>
-        </a>
-      </nav>
-    </header>
+        </Link>
+      </HStack>
+    </HStack>
   );
 }
