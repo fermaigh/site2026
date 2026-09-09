@@ -563,6 +563,7 @@ html.is-loading body {
 }
 
 .tts-find-chat-thinking-active {
+  display: inline-block;
   width: 90px;
   animation: tts-find-chat-thinking-active 12s linear infinite;
 }
@@ -845,12 +846,12 @@ html.is-loading body {
 
 @keyframes tts-find-chat-thinking {
   0%,
-  59% {
+  62% {
     visibility: hidden;
     opacity: 0;
     transform: translateY(6px);
   }
-  62%,
+  66%,
   100% {
     visibility: visible;
     opacity: 1;
@@ -881,10 +882,10 @@ html.is-loading body {
 
 @keyframes tts-find-chat-thinking-active {
   0%,
-  73% {
+  77% {
     opacity: 1;
   }
-  75%,
+  79%,
   100% {
     opacity: 0;
   }
@@ -892,10 +893,10 @@ html.is-loading body {
 
 @keyframes tts-find-chat-thought-complete {
   0%,
-  73% {
+  77% {
     opacity: 0;
   }
-  75%,
+  79%,
   100% {
     opacity: 1;
   }
@@ -903,12 +904,12 @@ html.is-loading body {
 
 @keyframes tts-find-chat-response {
   0%,
-  76% {
+  80% {
     visibility: hidden;
     opacity: 0;
     transform: translateY(10px);
   }
-  81%,
+  85%,
   100% {
     visibility: visible;
     opacity: 1;
