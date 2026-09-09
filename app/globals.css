@@ -515,6 +515,15 @@ html.is-loading body {
   animation: tts-find-assistant-press 6.5s ease-in-out infinite;
 }
 
+.tts-find-assistant-panel {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform-origin: top right;
+  animation: tts-find-assistant-panel 6.5s cubic-bezier(0.22, 1, 0.36, 1)
+    infinite;
+}
+
 @keyframes tts-find-arrow-loop {
   0%,
   26% {
@@ -604,6 +613,37 @@ html.is-loading body {
   }
 }
 
+@keyframes tts-find-assistant-panel {
+  0%,
+  35% {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateX(24px) scale(0.98);
+  }
+  37% {
+    visibility: visible;
+    opacity: 0;
+    transform: translateX(24px) scale(0.98);
+  }
+  44%,
+  80% {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+  88% {
+    visibility: visible;
+    opacity: 0;
+    transform: translateX(16px) scale(0.99);
+  }
+  90%,
+  100% {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateX(16px) scale(0.99);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal,
   .reveal-delay-1,
@@ -621,7 +661,8 @@ html.is-loading body {
     display: none;
   }
 
-  .tts-find-ai-assistant {
+  .tts-find-ai-assistant,
+  .tts-find-assistant-panel {
     animation: none;
   }
 

@@ -181,8 +181,8 @@ function SellerNav() {
 
 function SelectBox({ children }: { children: React.ReactNode }) {
   return (
-    <span className="flex h-9 min-w-[140px] flex-1 items-center justify-between rounded border border-black/15 bg-white px-3 text-[13px] text-black/65 @[800px]:max-w-[210px] @[800px]:text-[14px]">
-      {children}
+    <span className="flex h-9 min-w-[190px] flex-none items-center justify-between gap-2 whitespace-nowrap rounded border border-black/15 bg-white px-3 text-[13px] text-black/65 @[800px]:w-[210px] @[800px]:text-[14px]">
+      <span className="whitespace-nowrap">{children}</span>
       <TtsIcon name="down-2" size={16} />
     </span>
   );
@@ -210,6 +210,102 @@ function AssistantCursor() {
         <TtsIcon name="cursor-pointer" width={24} height={25} />
       </span>
     </span>
+  );
+}
+
+function AssistantAsset({
+  name,
+  size = 16,
+}: {
+  name: string;
+  size?: number;
+}) {
+  return (
+    <Image
+      src={`${ASSET_ROOT}/${name}.svg`}
+      alt=""
+      width={size}
+      height={size}
+      className="shrink-0"
+      style={{ width: size, height: size }}
+    />
+  );
+}
+
+function AssistantPanel() {
+  const prompts = [
+    "Who are the most popular creators in my category",
+    "Find recent fast-growing creators",
+    "Find potential creators that matches my products",
+  ];
+
+  return (
+    <aside
+      className="tts-find-assistant-panel absolute bottom-4 right-4 top-4 z-40 flex w-[400px] flex-col overflow-hidden rounded-2xl bg-white text-[#171718] shadow-[0_0_32px_rgba(0,0,0,0.2)]"
+      aria-label="AI Assistant"
+    >
+      <div className="flex h-[56px] shrink-0 items-center border-b border-[#d3d4d5] px-3">
+        <span className="flex size-8 items-center justify-center">
+          <AssistantAsset name="assistant-sidebar" />
+        </span>
+        <span className="ml-2 flex-1 text-[16px] font-medium">Assistant</span>
+        <span className="flex size-8 items-center justify-center">
+          <AssistantAsset name="assistant-reduce" />
+        </span>
+      </div>
+
+      <div className="flex min-h-0 flex-1 flex-col items-center justify-center px-4">
+        <Image
+          src={`${ASSET_ROOT}/assistant-logo.svg`}
+          alt=""
+          width={96}
+          height={96}
+          className="size-24"
+        />
+        <p className="mt-6 max-w-[330px] text-center text-[28px] font-bold leading-9">
+          Hi testaccount! How can I help you today?
+        </p>
+        <div className="mt-6 flex w-full flex-col gap-3">
+          {prompts.map((prompt) => (
+            <div
+              key={prompt}
+              className="flex items-center gap-2 rounded bg-[#f5f5f5] p-2 text-[14px] leading-5"
+            >
+              <span className="flex size-4 rotate-90 items-center justify-center">
+                <AssistantAsset name="assistant-prompt-arrow" />
+              </span>
+              <span className="truncate">{prompt}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="shrink-0 p-4">
+        <div className="flex gap-2 overflow-hidden">
+          {[
+            ["assistant-search", "Find creator"],
+            ["assistant-document", "Send invite"],
+            ["assistant-gift", "Samples"],
+          ].map(([icon, label]) => (
+            <span
+              key={label}
+              className="flex h-8 shrink-0 items-center gap-2 rounded-full border border-[#d3d4d5] px-3 text-[14px]"
+            >
+              <AssistantAsset name={icon} />
+              {label}
+            </span>
+          ))}
+        </div>
+        <div className="mt-4 flex h-12 items-center rounded-3xl border border-[#d3d4d5] px-3">
+          <span className="min-w-0 flex-1 truncate text-[14px] text-[#b7b8b9]">
+            Ask assistant anything...
+          </span>
+          <span className="flex size-8 items-center justify-center rounded-full bg-[#ececed]">
+            <AssistantAsset name="assistant-send" />
+          </span>
+        </div>
+      </div>
+    </aside>
   );
 }
 
@@ -456,6 +552,7 @@ export function TtsFindCreatorsDemo() {
         <div className="tts-collab-bezel">
           <div ref={cameraRef} className="tts-collab-camera">
             <FindCreatorsScreen />
+            <AssistantPanel />
           </div>
         </div>
       </div>
