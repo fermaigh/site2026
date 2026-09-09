@@ -321,7 +321,7 @@ html.is-loading body {
   --tts-from-y: 28px;
   transform-origin: var(--tts-tip-x) var(--tts-tip-y);
   will-change: transform, opacity;
-  animation: tts-cursor-loop 10s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: tts-cursor-loop 10s cubic-bezier(0.22, 1, 0.36, 1) infinite;
 }
 
 .tts-collab-cursor svg {
@@ -339,7 +339,7 @@ html.is-loading body {
   width: 24px;
   height: 30px;
   filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.35));
-  animation: tts-cursor-arrow 10s linear forwards;
+  animation: tts-cursor-arrow 10s linear infinite;
 }
 
 .tts-cursor-hand {
@@ -347,41 +347,41 @@ html.is-loading body {
   left: 0;
   width: 24px;
   height: 25px;
-  animation: tts-cursor-hand 10s linear forwards;
+  animation: tts-cursor-hand 10s linear infinite;
 }
 
 .tts-invite-btn {
   transform-origin: center;
-  animation: tts-invite-press 10s ease-in-out forwards;
+  animation: tts-invite-press 10s ease-in-out infinite;
 }
 
 .tts-invite-menu {
   transform-origin: top right;
   pointer-events: none;
   overflow: visible;
-  animation: tts-menu-loop 10s ease-in-out forwards;
+  animation: tts-menu-loop 10s ease-in-out infinite;
 }
 
 .tts-invite-chevron {
   transform-origin: center;
-  animation: tts-chevron-flip 10s ease-in-out forwards;
+  animation: tts-chevron-flip 10s ease-in-out infinite;
 }
 
 .tts-invite-first {
   position: relative;
   transform-origin: center;
-  animation: tts-match-invite-press 10s ease-in-out forwards;
+  animation: tts-match-invite-press 10s ease-in-out infinite;
 }
 
 .tts-demo1-list-page {
-  animation: tts-demo1-list-exit 10s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: tts-demo1-list-exit 10s cubic-bezier(0.22, 1, 0.36, 1) infinite;
 }
 
 .tts-demo1-next-page {
   visibility: hidden;
   opacity: 0;
   transform: translateX(40px);
-  animation: tts-demo1-page-enter 10s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: tts-demo1-page-enter 10s cubic-bezier(0.22, 1, 0.36, 1) infinite;
 }
 
 .tts-collab-cursor,
@@ -617,7 +617,7 @@ html.is-loading body {
   --tts-find-tip-y: 5px;
   transform-origin: var(--tts-find-tip-x) var(--tts-find-tip-y);
   animation: tts-find-cursor-loop 12s cubic-bezier(0.22, 1, 0.36, 1)
-    forwards;
+    infinite;
 }
 
 .tts-find-cursor-arrow,
@@ -630,19 +630,19 @@ html.is-loading body {
   width: 24px;
   height: 30px;
   filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.35));
-  animation: tts-find-arrow-loop 12s linear forwards;
+  animation: tts-find-arrow-loop 12s linear infinite;
 }
 
 .tts-find-cursor-hand {
   top: 2px;
   width: 24px;
   height: 25px;
-  animation: tts-find-hand-loop 12s linear forwards;
+  animation: tts-find-hand-loop 12s linear infinite;
 }
 
 .tts-find-ai-assistant {
   transform-origin: center;
-  animation: tts-find-assistant-press 12s ease-in-out forwards;
+  animation: tts-find-assistant-press 12s ease-in-out infinite;
 }
 
 .tts-find-assistant-panel {
@@ -651,37 +651,37 @@ html.is-loading body {
   pointer-events: none;
   transform-origin: top right;
   animation: tts-find-assistant-panel 12s cubic-bezier(0.22, 1, 0.36, 1)
-    forwards;
+    infinite;
 }
 
 .tts-find-assistant-home {
   animation: tts-find-assistant-home 12s cubic-bezier(0.22, 1, 0.36, 1)
-    forwards;
+    infinite;
 }
 
 .tts-find-assistant-chat {
   visibility: hidden;
   opacity: 0;
   animation: tts-find-assistant-chat 12s cubic-bezier(0.22, 1, 0.36, 1)
-    forwards;
+    infinite;
 }
 
 .tts-find-chat-user-message {
   opacity: 0;
   animation: tts-find-chat-user-message 12s cubic-bezier(0.22, 1, 0.36, 1)
-    forwards;
+    infinite;
 }
 
 .tts-find-chat-thinking {
   position: relative;
   visibility: hidden;
   opacity: 0;
-  animation: tts-find-chat-thinking 12s ease-out forwards;
+  animation: tts-find-chat-thinking 12s ease-out infinite;
 }
 
 .tts-find-chat-thinking-icon {
   display: flex;
-  animation: tts-find-chat-thinking-icon 12s ease-in-out forwards;
+  animation: tts-find-chat-thinking-icon 1.2s ease-in-out infinite;
 }
 
 .tts-find-chat-thinking-dots {
@@ -689,26 +689,26 @@ html.is-loading body {
   width: 14px;
   overflow: hidden;
   vertical-align: bottom;
-  animation: tts-find-chat-thinking-dots 12s steps(1, end) forwards;
+  animation: tts-find-chat-thinking-dots 1.2s steps(4, end) infinite;
 }
 
 .tts-find-chat-thinking-active {
   display: inline-block;
   width: 90px;
-  animation: tts-find-chat-thinking-active 12s linear forwards;
+  animation: tts-find-chat-thinking-active 12s linear infinite;
 }
 
 .tts-find-chat-thought-complete {
   position: absolute;
   left: 24px;
-  animation: tts-find-chat-thought-complete 12s linear forwards;
+  animation: tts-find-chat-thought-complete 12s linear infinite;
 }
 
 .tts-find-chat-response {
   visibility: hidden;
   opacity: 0;
   animation: tts-find-chat-response 12s cubic-bezier(0.22, 1, 0.36, 1)
-    forwards;
+    infinite;
 }
 
 .tts-find-panel-cursor {
@@ -723,7 +723,7 @@ html.is-loading body {
   --tts-panel-tip-y: 5px;
   transform-origin: var(--tts-panel-tip-x) var(--tts-panel-tip-y);
   animation: tts-find-panel-cursor-loop 12s
-    cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    cubic-bezier(0.22, 1, 0.36, 1) infinite;
 }
 
 .tts-find-panel-cursor-arrow,
@@ -736,19 +736,19 @@ html.is-loading body {
   width: 24px;
   height: 30px;
   filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.35));
-  animation: tts-find-panel-arrow-loop 12s linear forwards;
+  animation: tts-find-panel-arrow-loop 12s linear infinite;
 }
 
 .tts-find-panel-cursor-hand {
   top: 2px;
   width: 24px;
   height: 25px;
-  animation: tts-find-panel-hand-loop 12s linear forwards;
+  animation: tts-find-panel-hand-loop 12s linear infinite;
 }
 
 .tts-find-send-invite {
   transform-origin: center;
-  animation: tts-find-send-invite-press 12s ease-in-out forwards;
+  animation: tts-find-send-invite-press 12s ease-in-out infinite;
 }
 
 .tts-find-cursor,
@@ -1033,37 +1033,20 @@ html.is-loading body {
 
 @keyframes tts-find-chat-thinking-icon {
   0%,
-  65% {
-    opacity: 1;
-    transform: rotate(0) scale(1);
-  }
-  66%,
-  72% {
+  100% {
     opacity: 0.5;
     transform: rotate(-8deg) scale(0.9);
   }
-  69%,
-  75% {
+  50% {
     opacity: 1;
     transform: rotate(8deg) scale(1.08);
-  }
-  78%,
-  100% {
-    opacity: 1;
-    transform: rotate(0) scale(1);
   }
 }
 
 @keyframes tts-find-chat-thinking-dots {
-  0%,
-  66%,
-  70%,
-  74% {
+  0% {
     width: 0;
   }
-  69%,
-  73%,
-  77%,
   100% {
     width: 14px;
   }
