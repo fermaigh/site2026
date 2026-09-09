@@ -6,15 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint",
-    "astryx": "node node_modules/@astryxdesign/cli/bin/astryx.mjs"
+    "lint": "eslint"
   },
   "dependencies": {
-    "@astryxdesign/cli": "^0.2.0",
-    "@astryxdesign/core": "^0.2.0",
-    "@astryxdesign/theme-neutral": "^0.2.0",
     "@base-ui/react": "^1.3.0",
-    "@stylexjs/stylex": "^0.19.0",
     "@vercel/analytics": "^2.0.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

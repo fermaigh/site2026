@@ -1,8 +1,5 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Heading } from "@astryxdesign/core/Heading";
-import { Text } from "@astryxdesign/core/Text";
-import { VStack } from "@astryxdesign/core/VStack";
 import { PageShell } from "@/components/PageShell";
 import { RichTextContent } from "@/components/RichText";
 import { TtsProductDemo } from "@/components/tts/TtsProductDemo";
@@ -56,76 +53,71 @@ export async function generateMetadata({
 
 function CaseStudyBlockContent({ block }: { block: CaseStudyBlock }) {
   return (
-    <VStack gap={3} className="max-w-2xl sm:gap-4">
-      <Heading level={3}>{block.heading}</Heading>
+    <div className="max-w-2xl">
+      <h3 className="font-sans text-[clamp(1rem,3vw,1.125rem)] font-semibold tracking-tight text-foreground">
+        {block.heading}
+      </h3>
       {block.body ? (
-        <Text
-          type="large"
-          color="secondary"
-          display="block"
-          textWrap="pretty"
-        >
+        <p className="mt-3 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-4 sm:text-[17px]">
           <RichTextContent value={block.body} />
-        </Text>
+        </p>
       ) : null}
       {block.bullets?.length ? (
-        <ul className="flex list-disc flex-col gap-2 pl-5 marker:text-secondary sm:gap-3">
+        <ul className="mt-3 list-disc space-y-2 pl-5 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 marker:text-foreground/35 sm:mt-4 sm:space-y-3 sm:text-[17px]">
           {block.bullets.map((item) => (
             <li key={richTextToPlain(item)} className="ps-1">
-              <Text type="large" color="secondary" display="block" textWrap="pretty">
-                <RichTextContent value={item} />
-              </Text>
+              <RichTextContent value={item} />
             </li>
           ))}
         </ul>
       ) : null}
-    </VStack>
+    </div>
   );
 }
 
 function CaseStudySectionContent({ section }: { section: CaseStudySection }) {
   return (
-    <VStack gap={3} className="sm:gap-4">
-      {section.heading ? <Heading level={2}>{section.heading}</Heading> : null}
+    <>
+      {section.heading ? (
+        <h2 className="font-sans text-[clamp(1.125rem,4vw,1.5rem)] font-semibold tracking-tight text-foreground">
+          {section.heading}
+        </h2>
+      ) : null}
       {section.body ? (
-        <Text
-          type="large"
-          color="secondary"
-          display="block"
-          textWrap="pretty"
-          className="max-w-2xl"
+        <p
+          className={`${section.heading ? "mt-3 sm:mt-4" : ""} max-w-2xl font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]`}
         >
           <RichTextContent value={section.body} />
-        </Text>
+        </p>
       ) : null}
       {section.bullets?.length ? (
-        <ul className="flex max-w-2xl list-disc flex-col gap-2 pl-5 marker:text-secondary sm:gap-3">
+        <ul
+          className={`${section.heading || section.body ? "mt-3 sm:mt-4" : ""} max-w-2xl list-disc space-y-2 pl-5 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 marker:text-foreground/35 sm:space-y-3 sm:text-[17px]`}
+        >
           {section.bullets.map((item) => (
             <li key={richTextToPlain(item)} className="ps-1">
-              <Text type="large" color="secondary" display="block" textWrap="pretty">
-                <RichTextContent value={item} />
-              </Text>
+              <RichTextContent value={item} />
             </li>
           ))}
         </ul>
       ) : null}
       {section.blocks?.length ? (
-        <VStack gap={8} className="mt-3 sm:mt-4 sm:gap-10">
+        <div className="mt-6 space-y-8 sm:mt-8 sm:space-y-10">
           {section.blocks.map((block) => (
             <CaseStudyBlockContent key={block.heading} block={block} />
           ))}
-        </VStack>
+        </div>
       ) : null}
-    </VStack>
+    </>
   );
 }
 
 function MetaLine({ label, value }: { label: string; value: string }) {
   return (
-    <Text type="large" color="secondary" display="block">
-      <span className="font-medium text-primary">{label}:</span>{" "}
-      <strong className="font-semibold text-primary">{value}</strong>
-    </Text>
+    <p>
+      <span className="font-medium text-foreground">{label}:</span>{" "}
+      <strong className="font-semibold text-foreground">{value}</strong>
+    </p>
   );
 }
 
@@ -148,12 +140,14 @@ export default async function CaseStudyPage({ params }: PageProps) {
 
   return (
     <PageShell>
-      <VStack as="article" gap={0} className="pb-8">
-        <VStack gap={4} className="reveal sm:gap-6">
-          <Heading level={1}>{project.title}</Heading>
-          <VStack gap={4} className="max-w-2xl sm:gap-5">
+      <article className="pb-8">
+        <header className="reveal">
+          <h1 className="font-sans text-[clamp(1.75rem,6vw,2.75rem)] font-semibold leading-[1.1] tracking-tight text-foreground">
+            {project.title}
+          </h1>
+          <div className="mt-4 max-w-2xl space-y-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-6 sm:space-y-5 sm:text-[17px]">
             {hasMeta ? (
-              <VStack gap={1}>
+              <div className="space-y-1">
                 {caseStudy.role ? (
                   <MetaLine label="Role" value={caseStudy.role} />
                 ) : null}
@@ -171,25 +165,17 @@ export default async function CaseStudyPage({ params }: PageProps) {
                 {caseStudy.ownership ? (
                   <MetaLine label="Ownership" value={caseStudy.ownership} />
                 ) : null}
-              </VStack>
+              </div>
             ) : null}
             {caseStudy.lead ? (
-              <Text
-                type="large"
-                color="secondary"
-                display="block"
-                textWrap="pretty"
-              >
+              <p>
                 <RichTextContent value={caseStudy.lead} />
-              </Text>
+              </p>
             ) : null}
-          </VStack>
-        </VStack>
+          </div>
+        </header>
 
-        <VStack
-          gap={10}
-          className="mt-12 border-t border-secondary/20 pt-10 sm:mt-16 sm:gap-14 sm:pt-14 md:mt-20 md:pt-16"
-        >
+        <div className="mt-12 space-y-10 border-t border-foreground/10 pt-10 sm:mt-16 sm:space-y-14 sm:pt-14 md:mt-20 md:pt-16">
           {caseStudy.sections.map((section, index) => (
             <section
               key={section.heading ?? `section-${index}`}
@@ -198,7 +184,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
               <CaseStudySectionContent section={section} />
             </section>
           ))}
-        </VStack>
+        </div>
 
         {caseStudy.closingNote ? (
           <p className="reveal reveal-delay-3 mt-10 max-w-2xl font-sans text-[15px] leading-[1.65] text-[#E11919] sm:mt-12 sm:text-[17px]">
@@ -211,7 +197,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
             <TtsProductDemo />
           </div>
         ) : null}
-      </VStack>
+      </article>
     </PageShell>
   );
 }

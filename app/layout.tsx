@@ -1,16 +1,14 @@
 import type { Metadata, Viewport } from "next";
-import { Figtree, Geist_Mono } from "next/font/google";
+import { Inter, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
-import { AstryxProviders } from "@/components/AstryxProviders";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ThemeScript } from "@/components/ThemeScript";
 import { PageLoader } from "@/components/PageLoader";
 import "./globals.css";
 
-const figtree = Figtree({
-  variable: "--font-figtree",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -48,19 +46,16 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      data-theme="light"
       suppressHydrationWarning
-      className={`${figtree.variable} ${geistMono.variable} h-full scroll-smooth antialiased`}
+      className={`${inter.variable} ${geistMono.variable} h-full scroll-smooth antialiased`}
     >
       <head>
         <ThemeScript />
       </head>
-      <body className="flex min-h-full flex-col overflow-x-hidden bg-body font-sans text-primary">
+      <body className="flex min-h-full flex-col overflow-x-hidden bg-background font-sans text-foreground">
         <ThemeProvider>
-          <AstryxProviders>
-            <PageLoader />
-            {children}
-          </AstryxProviders>
+          <PageLoader />
+          {children}
         </ThemeProvider>
         <Analytics />
       </body>
