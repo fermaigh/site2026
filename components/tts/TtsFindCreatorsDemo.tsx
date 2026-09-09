@@ -9,7 +9,12 @@ const ASSET_ROOT = "/projects/tts-ui/find-creators";
 type Creator = {
   avatar: string;
   video: string;
+  handle: string;
+  nickname: string;
+  categories: string;
+  followers: string;
   audience: string;
+  metrics: [string, string, string, string];
   saved?: boolean;
   growing?: boolean;
   partnered?: boolean;
@@ -50,31 +55,56 @@ const CREATORS: Creator[] = [
   {
     avatar: "tts-creator-avatar-1.png",
     video: "tts-creator-video-1.png",
-    audience: "Male 30%, 18–24",
+    handle: "glowwithmia",
+    nickname: "Mia Chen",
+    categories: "Beauty, Skincare",
+    followers: "842.7K",
+    audience: "Female 78%, 18–24",
+    metrics: ["$18.4K", "1.2K", "286K", "8.70%"],
     saved: true,
   },
   {
     avatar: "tts-creator-avatar-2.png",
     video: "tts-creator-video-2.png",
-    audience: "Female 30%, 18–24",
+    handle: "jaytrainsdaily",
+    nickname: "Jay Carter",
+    categories: "Fitness, Wellness",
+    followers: "392.1K",
+    audience: "Male 64%, 25–34",
+    metrics: ["$9.7K", "824", "154K", "6.20%"],
   },
   {
     avatar: "tts-creator-avatar-3.png",
     video: "tts-creator-video-3.png",
-    audience: "Male 30%, 18–24",
+    handle: "stylebysol",
+    nickname: "Sofia Reyes",
+    categories: "Fashion, Accessories",
+    followers: "1.3M",
+    audience: "Female 71%, 18–34",
+    metrics: ["$32.8K", "2.9K", "611K", "11.40%"],
     growing: true,
     partnered: true,
   },
   {
     avatar: "tts-creator-avatar-4.png",
     video: "tts-creator-video-4.png",
-    audience: "Male 30%, 18–24",
+    handle: "snacklabnoah",
+    nickname: "Noah Patel",
+    categories: "Food, Fitness",
+    followers: "218.6K",
+    audience: "Male 58%, 18–34",
+    metrics: ["$6.2K", "497", "92K", "5.80%"],
     partnered: true,
   },
   {
     avatar: "tts-creator-avatar-5.png",
     video: "tts-creator-video-5.png",
-    audience: "Female 30%, 18–24",
+    handle: "amaraathome",
+    nickname: "Amara Brooks",
+    categories: "Home, Lifestyle",
+    followers: "674.9K",
+    audience: "Female 69%, 25–44",
+    metrics: ["$21.1K", "1.7K", "348K", "9.30%"],
     growing: true,
   },
 ] as const;
@@ -363,7 +393,7 @@ function CreatorRow({
         <div className="min-w-0">
           <div className="flex min-w-0 items-center gap-1.5">
             <span className="truncate text-[14px] font-medium text-black/90">
-              tiktokcreator
+              {creator.handle}
             </span>
             {creator.growing ? (
               <span className="shrink-0 rounded bg-[#d8f5e3] px-1 text-[11px] font-medium leading-[18px] text-[#009e3d]">
@@ -376,14 +406,17 @@ function CreatorRow({
               </span>
             ) : null}
           </div>
-          <p className="text-[12px] leading-[18px] text-black/35">nickname</p>
+          <p className="text-[12px] leading-[18px] text-black/35">
+            {creator.nickname}
+          </p>
           <p className="truncate text-[12px] leading-[18px] text-black/55">
-            Categories: <span className="text-black/90">Beauty, Fashion</span>
+            Categories:{" "}
+            <span className="text-black/90">{creator.categories}</span>
           </p>
           <p className="truncate text-[12px] leading-[18px] text-black/55">
             Followers:{" "}
             <span className="text-black/90">
-              174.4K, {creator.audience}
+              {creator.followers}, {creator.audience}
             </span>
           </p>
         </div>
@@ -405,7 +438,7 @@ function CreatorRow({
           className="absolute left-1/2 top-1/2 size-4 -translate-x-1/2 -translate-y-1/2"
         />
       </div>
-      {["$1K", "10K", "30K", "5.00%"].map((value) => (
+      {creator.metrics.map((value) => (
         <span
           key={value}
           className="justify-self-end border-b border-dotted border-black/25 text-[13px] text-black/90"

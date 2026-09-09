@@ -664,15 +664,22 @@ html.is-loading body {
   100% {
     opacity: 0;
     transform: translate(
-      calc(100px - var(--tts-panel-tip-x)),
-      calc(-86px - var(--tts-panel-tip-y))
+      calc(120px - var(--tts-panel-tip-x)),
+      calc(-250px - var(--tts-panel-tip-y))
     );
   }
   49% {
     opacity: 1;
     transform: translate(
-      calc(100px - var(--tts-panel-tip-x)),
-      calc(-86px - var(--tts-panel-tip-y))
+      calc(120px - var(--tts-panel-tip-x)),
+      calc(-250px - var(--tts-panel-tip-y))
+    );
+  }
+  55% {
+    opacity: 1;
+    transform: translate(
+      calc(-54px - var(--tts-panel-tip-x)),
+      calc(-138px - var(--tts-panel-tip-y))
     );
   }
   62%,
