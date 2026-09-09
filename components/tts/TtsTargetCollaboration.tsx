@@ -269,7 +269,7 @@ export function TtsTargetCollaboration({
                     </p>
                   </div>
                 </div>
-                <div className="relative z-[1] flex min-h-[88px] min-w-0 flex-1 gap-3 rounded-t-lg bg-white p-3 shadow-[0px_-4px_12px_0px_rgba(0,0,0,0.12)] @[700px]:min-h-[114px] @[700px]:gap-4 @[700px]:p-6">
+                <div className="relative z-[1] flex min-h-[88px] min-w-0 flex-1 gap-3 rounded-t-lg bg-white p-3 @[700px]:min-h-[114px] @[700px]:gap-4 @[700px]:p-6">
                   <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-[#e4f6f5] @[700px]:size-11">
                     <TtsIcon name="influencer-selected" size={22} />
                   </span>
@@ -286,7 +286,7 @@ export function TtsTargetCollaboration({
               </>
             ) : (
               <>
-                <div className="relative z-[1] flex min-h-[88px] min-w-0 flex-1 gap-3 rounded-t-lg bg-white p-3 shadow-[0px_-4px_12px_0px_rgba(0,0,0,0.12)] @[700px]:min-h-[114px] @[700px]:gap-4 @[700px]:p-6">
+                <div className="relative z-[1] flex min-h-[88px] min-w-0 flex-1 gap-3 rounded-t-lg bg-white p-3 @[700px]:min-h-[114px] @[700px]:gap-4 @[700px]:p-6">
                   <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-[#e4f6f5] @[700px]:size-11">
                     <TtsIcon name="products-selected" size={22} />
                   </span>
