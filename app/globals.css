@@ -524,6 +524,46 @@ html.is-loading body {
     infinite;
 }
 
+.tts-find-panel-cursor {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 60;
+  width: 24px;
+  height: 30px;
+  pointer-events: none;
+  --tts-panel-tip-x: 9.7px;
+  --tts-panel-tip-y: 5px;
+  transform-origin: var(--tts-panel-tip-x) var(--tts-panel-tip-y);
+  animation: tts-find-panel-cursor-loop 6.5s
+    cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+.tts-find-panel-cursor-arrow,
+.tts-find-panel-cursor-hand {
+  position: absolute;
+  inset: 0 auto auto 0;
+}
+
+.tts-find-panel-cursor-arrow {
+  width: 24px;
+  height: 30px;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.35));
+  animation: tts-find-panel-arrow-loop 6.5s linear infinite;
+}
+
+.tts-find-panel-cursor-hand {
+  top: 2px;
+  width: 24px;
+  height: 25px;
+  animation: tts-find-panel-hand-loop 6.5s linear infinite;
+}
+
+.tts-find-send-invite {
+  transform-origin: center;
+  animation: tts-find-send-invite-press 6.5s ease-in-out infinite;
+}
+
 @keyframes tts-find-arrow-loop {
   0%,
   26% {
@@ -579,19 +619,111 @@ html.is-loading body {
       scale(0.86);
   }
   39%,
-  78% {
+  44% {
     opacity: 1;
     transform: translate(
       calc(0px - var(--tts-find-tip-x)),
       calc(0px - var(--tts-find-tip-y))
     );
   }
+  48%,
   90% {
     opacity: 0;
     transform: translate(
       calc(0px - var(--tts-find-tip-x)),
       calc(0px - var(--tts-find-tip-y))
     );
+  }
+}
+
+@keyframes tts-find-panel-arrow-loop {
+  0%,
+  61% {
+    opacity: 1;
+  }
+  63%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes tts-find-panel-hand-loop {
+  0%,
+  61% {
+    opacity: 0;
+  }
+  63%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes tts-find-panel-cursor-loop {
+  0%,
+  46%,
+  100% {
+    opacity: 0;
+    transform: translate(
+      calc(100px - var(--tts-panel-tip-x)),
+      calc(-86px - var(--tts-panel-tip-y))
+    );
+  }
+  49% {
+    opacity: 1;
+    transform: translate(
+      calc(100px - var(--tts-panel-tip-x)),
+      calc(-86px - var(--tts-panel-tip-y))
+    );
+  }
+  62%,
+  65% {
+    opacity: 1;
+    transform: translate(
+      calc(0px - var(--tts-panel-tip-x)),
+      calc(0px - var(--tts-panel-tip-y))
+    );
+  }
+  67% {
+    opacity: 1;
+    transform: translate(
+        calc(0px - var(--tts-panel-tip-x)),
+        calc(0px - var(--tts-panel-tip-y))
+      )
+      scale(0.86);
+  }
+  70%,
+  76% {
+    opacity: 1;
+    transform: translate(
+      calc(0px - var(--tts-panel-tip-x)),
+      calc(0px - var(--tts-panel-tip-y))
+    );
+  }
+  80% {
+    opacity: 0;
+    transform: translate(
+      calc(0px - var(--tts-panel-tip-x)),
+      calc(0px - var(--tts-panel-tip-y))
+    );
+  }
+}
+
+@keyframes tts-find-send-invite-press {
+  0%,
+  63%,
+  69%,
+  100% {
+    transform: scale(1);
+    background: white;
+  }
+  65%,
+  67% {
+    transform: scale(0.95);
+    background: #f5f5f5;
+  }
+  70%,
+  80% {
+    background: #f5f5f5;
   }
 }
 
@@ -657,12 +789,14 @@ html.is-loading body {
     display: none;
   }
 
-  .tts-find-cursor {
+  .tts-find-cursor,
+  .tts-find-panel-cursor {
     display: none;
   }
 
   .tts-find-ai-assistant,
-  .tts-find-assistant-panel {
+  .tts-find-assistant-panel,
+  .tts-find-send-invite {
     animation: none;
   }
 

@@ -213,6 +213,31 @@ function AssistantCursor() {
   );
 }
 
+function PanelCursor() {
+  return (
+    <span className="tts-find-panel-cursor" aria-hidden>
+      <svg
+        className="tts-find-panel-cursor-arrow"
+        width="24"
+        height="30"
+        viewBox="0 0 18 22"
+        fill="none"
+      >
+        <path
+          d="M1 1L16.5 12.2L9.4 13.1L13.2 20.4L10.3 21.7L6.4 14.3L1 18.8V1Z"
+          fill="#171718"
+          stroke="white"
+          strokeWidth="1.2"
+          strokeLinejoin="round"
+        />
+      </svg>
+      <span className="tts-find-panel-cursor-hand">
+        <TtsIcon name="cursor-pointer" width={24} height={25} />
+      </span>
+    </span>
+  );
+}
+
 function AssistantAsset({
   name,
   size = 16,
@@ -241,14 +266,14 @@ function AssistantPanel() {
 
   return (
     <aside
-      className="tts-find-assistant-panel absolute bottom-4 right-4 top-4 z-40 flex w-[400px] flex-col overflow-hidden rounded-2xl bg-white text-[#171718] shadow-[0_0_32px_rgba(0,0,0,0.2)]"
-      aria-label="AI Assistant"
+      className="tts-find-assistant-panel absolute bottom-4 right-4 top-[76px] z-40 flex w-[400px] flex-col overflow-hidden rounded-2xl bg-white text-[#171718] shadow-[0_0_32px_rgba(0,0,0,0.2)]"
+      aria-label="Ai Assistant"
     >
       <div className="flex h-[56px] shrink-0 items-center border-b border-[#d3d4d5] px-3">
         <span className="flex size-8 items-center justify-center">
           <AssistantAsset name="assistant-sidebar" />
         </span>
-        <span className="ml-2 flex-1 text-[16px] font-medium">Assistant</span>
+        <span className="ml-2 flex-1 text-[16px] font-medium">Ai Assistant</span>
         <span className="flex size-8 items-center justify-center">
           <AssistantAsset name="assistant-reduce" />
         </span>
@@ -281,7 +306,7 @@ function AssistantPanel() {
       </div>
 
       <div className="shrink-0 p-4">
-        <div className="flex gap-2 overflow-hidden">
+        <div className="flex gap-2 overflow-visible">
           {[
             ["assistant-search", "Find creator"],
             ["assistant-document", "Send invite"],
@@ -289,10 +314,15 @@ function AssistantPanel() {
           ].map(([icon, label]) => (
             <span
               key={label}
-              className="flex h-8 shrink-0 items-center gap-2 rounded-full border border-[#d3d4d5] px-3 text-[14px]"
+              className={`flex h-8 shrink-0 items-center gap-2 rounded-full border border-[#d3d4d5] px-3 text-[14px] ${
+                label === "Send invite"
+                  ? "tts-find-send-invite relative overflow-visible"
+                  : ""
+              }`}
             >
               <AssistantAsset name={icon} />
               {label}
+              {label === "Send invite" ? <PanelCursor /> : null}
             </span>
           ))}
         </div>
