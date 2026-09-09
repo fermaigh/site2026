@@ -48,32 +48,32 @@ const NAV = [
 
 const CREATORS: Creator[] = [
   {
-    avatar: "creator-avatar-1.png",
-    video: "creator-video-1.png",
+    avatar: "tts-creator-avatar-1.png",
+    video: "tts-creator-video-1.png",
     audience: "Male 30%, 18–24",
     saved: true,
   },
   {
-    avatar: "creator-avatar.png",
-    video: "creator-video.png",
+    avatar: "tts-creator-avatar-2.png",
+    video: "tts-creator-video-2.png",
     audience: "Female 30%, 18–24",
   },
   {
-    avatar: "creator-avatar-3.png",
-    video: "creator-video-3.png",
+    avatar: "tts-creator-avatar-3.png",
+    video: "tts-creator-video-3.png",
     audience: "Male 30%, 18–24",
     growing: true,
     partnered: true,
   },
   {
-    avatar: "creator-avatar-1.png",
-    video: "creator-video-3.png",
+    avatar: "tts-creator-avatar-4.png",
+    video: "tts-creator-video-4.png",
     audience: "Male 30%, 18–24",
     partnered: true,
   },
   {
-    avatar: "creator-avatar.png",
-    video: "creator-video-1.png",
+    avatar: "tts-creator-avatar-5.png",
+    video: "tts-creator-video-5.png",
     audience: "Female 30%, 18–24",
     growing: true,
   },
@@ -456,18 +456,10 @@ export function TtsFindCreatorsDemo() {
   }, []);
 
   return (
-    <section className="mt-16 sm:mt-20" aria-labelledby="find-creators-demo">
-      <div className="mb-5 sm:mb-6">
-        <p className="font-sans text-[12px] font-medium uppercase tracking-[0.12em] text-foreground/40 sm:text-[13px]">
-          Viewpoint 02 · Seller discovery
-        </p>
-        <h2
-          id="find-creators-demo"
-          className="mt-2 font-sans text-[clamp(1.25rem,4vw,1.75rem)] font-semibold tracking-tight text-foreground"
-        >
-          Find and invite the right creators
-        </h2>
-      </div>
+    <section
+      className="mt-16 sm:mt-20"
+      aria-label="Find creators live demo"
+    >
       <div
         className="tts-collab-stage @container"
         aria-label="Interactive TikTok Shop Find Creators demo"
