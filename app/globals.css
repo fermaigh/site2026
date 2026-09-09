@@ -486,7 +486,7 @@ html.is-loading body {
   --tts-find-tip-x: 9.7px;
   --tts-find-tip-y: 5px;
   transform-origin: var(--tts-find-tip-x) var(--tts-find-tip-y);
-  animation: tts-find-cursor-loop 9s cubic-bezier(0.22, 1, 0.36, 1)
+  animation: tts-find-cursor-loop 12s cubic-bezier(0.22, 1, 0.36, 1)
     infinite;
 }
 
@@ -500,19 +500,19 @@ html.is-loading body {
   width: 24px;
   height: 30px;
   filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.35));
-  animation: tts-find-arrow-loop 9s linear infinite;
+  animation: tts-find-arrow-loop 12s linear infinite;
 }
 
 .tts-find-cursor-hand {
   top: 2px;
   width: 24px;
   height: 25px;
-  animation: tts-find-hand-loop 9s linear infinite;
+  animation: tts-find-hand-loop 12s linear infinite;
 }
 
 .tts-find-ai-assistant {
   transform-origin: center;
-  animation: tts-find-assistant-press 9s ease-in-out infinite;
+  animation: tts-find-assistant-press 12s ease-in-out infinite;
 }
 
 .tts-find-assistant-panel {
@@ -520,19 +520,63 @@ html.is-loading body {
   opacity: 0;
   pointer-events: none;
   transform-origin: top right;
-  animation: tts-find-assistant-panel 9s cubic-bezier(0.22, 1, 0.36, 1)
+  animation: tts-find-assistant-panel 12s cubic-bezier(0.22, 1, 0.36, 1)
     infinite;
 }
 
 .tts-find-assistant-home {
-  animation: tts-find-assistant-home 9s cubic-bezier(0.22, 1, 0.36, 1)
+  animation: tts-find-assistant-home 12s cubic-bezier(0.22, 1, 0.36, 1)
     infinite;
 }
 
 .tts-find-assistant-chat {
   visibility: hidden;
   opacity: 0;
-  animation: tts-find-assistant-chat 9s cubic-bezier(0.22, 1, 0.36, 1)
+  animation: tts-find-assistant-chat 12s cubic-bezier(0.22, 1, 0.36, 1)
+    infinite;
+}
+
+.tts-find-chat-user-message {
+  opacity: 0;
+  animation: tts-find-chat-user-message 12s cubic-bezier(0.22, 1, 0.36, 1)
+    infinite;
+}
+
+.tts-find-chat-thinking {
+  position: relative;
+  visibility: hidden;
+  opacity: 0;
+  animation: tts-find-chat-thinking 12s ease-out infinite;
+}
+
+.tts-find-chat-thinking-icon {
+  display: flex;
+  animation: tts-find-chat-thinking-icon 1.2s ease-in-out infinite;
+}
+
+.tts-find-chat-thinking-dots {
+  display: inline-block;
+  width: 14px;
+  overflow: hidden;
+  vertical-align: bottom;
+  animation: tts-find-chat-thinking-dots 1.2s steps(4, end) infinite;
+}
+
+.tts-find-chat-thinking-active {
+  width: 90px;
+  animation: tts-find-chat-thinking-active 12s linear infinite;
+}
+
+.tts-find-chat-thought-complete {
+  position: absolute;
+  left: 24px;
+  animation: tts-find-chat-thought-complete 12s linear infinite;
+}
+
+.tts-find-chat-response {
+  visibility: hidden;
+  opacity: 0;
+  animation: tts-find-chat-response 12s cubic-bezier(0.22, 1, 0.36, 1)
     infinite;
 }
 
@@ -547,7 +591,7 @@ html.is-loading body {
   --tts-panel-tip-x: 9.7px;
   --tts-panel-tip-y: 5px;
   transform-origin: var(--tts-panel-tip-x) var(--tts-panel-tip-y);
-  animation: tts-find-panel-cursor-loop 9s
+  animation: tts-find-panel-cursor-loop 12s
     cubic-bezier(0.22, 1, 0.36, 1) infinite;
 }
 
@@ -561,27 +605,27 @@ html.is-loading body {
   width: 24px;
   height: 30px;
   filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.35));
-  animation: tts-find-panel-arrow-loop 9s linear infinite;
+  animation: tts-find-panel-arrow-loop 12s linear infinite;
 }
 
 .tts-find-panel-cursor-hand {
   top: 2px;
   width: 24px;
   height: 25px;
-  animation: tts-find-panel-hand-loop 9s linear infinite;
+  animation: tts-find-panel-hand-loop 12s linear infinite;
 }
 
 .tts-find-send-invite {
   transform-origin: center;
-  animation: tts-find-send-invite-press 9s ease-in-out infinite;
+  animation: tts-find-send-invite-press 12s ease-in-out infinite;
 }
 
 @keyframes tts-find-arrow-loop {
   0%,
-  26% {
+  20% {
     opacity: 1;
   }
-  28%,
+  22%,
   100% {
     opacity: 0;
   }
@@ -589,10 +633,10 @@ html.is-loading body {
 
 @keyframes tts-find-hand-loop {
   0%,
-  26% {
+  20% {
     opacity: 0;
   }
-  28%,
+  22%,
   100% {
     opacity: 1;
   }
@@ -607,22 +651,22 @@ html.is-loading body {
       calc(92px - var(--tts-find-tip-y))
     );
   }
-  9% {
+  5% {
     opacity: 1;
     transform: translate(
       calc(150px - var(--tts-find-tip-x)),
       calc(92px - var(--tts-find-tip-y))
     );
   }
-  28%,
-  33% {
+  19%,
+  21% {
     opacity: 1;
     transform: translate(
       calc(0px - var(--tts-find-tip-x)),
       calc(0px - var(--tts-find-tip-y))
     );
   }
-  35% {
+  22% {
     opacity: 1;
     transform: translate(
         calc(0px - var(--tts-find-tip-x)),
@@ -630,16 +674,16 @@ html.is-loading body {
       )
       scale(0.86);
   }
-  39%,
-  44% {
+  24%,
+  26% {
     opacity: 1;
     transform: translate(
       calc(0px - var(--tts-find-tip-x)),
       calc(0px - var(--tts-find-tip-y))
     );
   }
-  48%,
-  90% {
+  29%,
+  95% {
     opacity: 0;
     transform: translate(
       calc(0px - var(--tts-find-tip-x)),
@@ -650,10 +694,10 @@ html.is-loading body {
 
 @keyframes tts-find-panel-arrow-loop {
   0%,
-  61% {
+  48% {
     opacity: 1;
   }
-  63%,
+  50%,
   100% {
     opacity: 0;
   }
@@ -661,10 +705,10 @@ html.is-loading body {
 
 @keyframes tts-find-panel-hand-loop {
   0%,
-  61% {
+  48% {
     opacity: 0;
   }
-  63%,
+  50%,
   100% {
     opacity: 1;
   }
@@ -672,7 +716,7 @@ html.is-loading body {
 
 @keyframes tts-find-panel-cursor-loop {
   0%,
-  46%,
+  33%,
   100% {
     opacity: 0;
     transform: translate(
@@ -680,29 +724,29 @@ html.is-loading body {
       calc(-250px - var(--tts-panel-tip-y))
     );
   }
-  49% {
+  35% {
     opacity: 1;
     transform: translate(
       calc(120px - var(--tts-panel-tip-x)),
       calc(-250px - var(--tts-panel-tip-y))
     );
   }
-  55% {
+  41% {
     opacity: 1;
     transform: translate(
       calc(-54px - var(--tts-panel-tip-x)),
       calc(-138px - var(--tts-panel-tip-y))
     );
   }
-  62%,
-  65% {
+  48%,
+  50% {
     opacity: 1;
     transform: translate(
       calc(0px - var(--tts-panel-tip-x)),
       calc(0px - var(--tts-panel-tip-y))
     );
   }
-  67% {
+  51% {
     opacity: 1;
     transform: translate(
         calc(0px - var(--tts-panel-tip-x)),
@@ -710,15 +754,15 @@ html.is-loading body {
       )
       scale(0.86);
   }
-  70%,
-  76% {
+  53%,
+  55% {
     opacity: 1;
     transform: translate(
       calc(0px - var(--tts-panel-tip-x)),
       calc(0px - var(--tts-panel-tip-y))
     );
   }
-  80% {
+  58% {
     opacity: 0;
     transform: translate(
       calc(0px - var(--tts-panel-tip-x)),
@@ -729,36 +773,36 @@ html.is-loading body {
 
 @keyframes tts-find-send-invite-press {
   0%,
-  63%,
-  69%,
+  48%,
+  54%,
   100% {
     transform: scale(1);
     background: white;
   }
-  65%,
-  67% {
+  50%,
+  52% {
     transform: scale(0.95);
     background: #f5f5f5;
   }
-  70%,
-  80% {
+  54%,
+  58% {
     background: #f5f5f5;
   }
 }
 
 @keyframes tts-find-assistant-home {
   0%,
-  68% {
+  53% {
     visibility: visible;
     opacity: 1;
     transform: translateY(0) scale(1);
   }
-  73% {
+  58% {
     visibility: hidden;
     opacity: 0;
     transform: translateY(-8px) scale(0.985);
   }
-  74%,
+  59%,
   100% {
     visibility: hidden;
     opacity: 0;
@@ -768,17 +812,17 @@ html.is-loading body {
 
 @keyframes tts-find-assistant-chat {
   0%,
-  68% {
+  54% {
     visibility: hidden;
     opacity: 0;
     transform: translateY(12px) scale(0.985);
   }
-  69% {
+  55% {
     visibility: visible;
     opacity: 0;
     transform: translateY(12px) scale(0.985);
   }
-  74%,
+  60%,
   100% {
     visibility: visible;
     opacity: 1;
@@ -786,43 +830,129 @@ html.is-loading body {
   }
 }
 
+@keyframes tts-find-chat-user-message {
+  0%,
+  55% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  59%,
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes tts-find-chat-thinking {
+  0%,
+  59% {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  62%,
+  100% {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes tts-find-chat-thinking-icon {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: rotate(-8deg) scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: rotate(8deg) scale(1.08);
+  }
+}
+
+@keyframes tts-find-chat-thinking-dots {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 14px;
+  }
+}
+
+@keyframes tts-find-chat-thinking-active {
+  0%,
+  73% {
+    opacity: 1;
+  }
+  75%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes tts-find-chat-thought-complete {
+  0%,
+  73% {
+    opacity: 0;
+  }
+  75%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes tts-find-chat-response {
+  0%,
+  76% {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  81%,
+  100% {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @keyframes tts-find-assistant-press {
   0%,
-  28%,
-  36%,
+  19%,
+  25%,
   100% {
     transform: scale(1);
     background: transparent;
   }
-  31%,
-  34% {
+  21%,
+  23% {
     transform: scale(0.95);
   }
-  39%,
-  92% {
+  27%,
+  95% {
     background: rgba(255, 255, 255, 0.14);
   }
 }
 
 @keyframes tts-find-assistant-panel {
   0%,
-  35% {
+  24% {
     visibility: hidden;
     opacity: 0;
     transform: translateX(24px) scale(0.98);
   }
-  37% {
+  26% {
     visibility: visible;
     opacity: 0;
     transform: translateX(24px) scale(0.98);
   }
-  44%,
-  92% {
+  32%,
+  95% {
     visibility: visible;
     opacity: 1;
     transform: translateX(0) scale(1);
   }
-  97% {
+  99% {
     visibility: visible;
     opacity: 0;
     transform: translateX(16px) scale(0.99);

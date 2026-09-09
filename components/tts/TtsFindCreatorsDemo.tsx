@@ -382,29 +382,42 @@ function AssistantPanel() {
         </div>
 
         <div className="min-h-0 flex-1 overflow-hidden px-4 pt-4 text-[14px] leading-5">
-          <div className="flex justify-end">
+          <div className="tts-find-chat-user-message flex justify-end">
             <span className="rounded-lg bg-[#d2f3f1] p-3">Send invite</span>
           </div>
-          <div className="mt-6 flex items-center gap-2 text-[#6c6d6f]">
-            <AssistantAsset name="assistant-thought" />
-            <span>Thought for 4s</span>
+          <div
+            className="tts-find-chat-thinking mt-6 flex items-center gap-2 text-[#6c6d6f]"
+            aria-live="polite"
+          >
+            <span className="tts-find-chat-thinking-icon">
+              <AssistantAsset name="assistant-thought" />
+            </span>
+            <span className="tts-find-chat-thinking-active">
+              Thinking
+              <span className="tts-find-chat-thinking-dots">...</span>
+            </span>
+            <span className="tts-find-chat-thought-complete">
+              Thought for 4s
+            </span>
             <AssistantAsset name="assistant-right" />
           </div>
-          <p className="mt-3">
-            OK. Do you have any product on mind? Select from your shop or paste
-            product IDs.
-          </p>
-          <div className="mt-4 rounded-lg border border-[#d3d4d5] p-3">
-            <p className="font-medium">
-              Select the product you would like to promote
+          <div className="tts-find-chat-response">
+            <p className="mt-3">
+              OK. Do you have any product on mind? Select from your shop or
+              paste product IDs.
             </p>
-            <div className="mt-3 flex gap-3">
-              <span className="flex h-8 flex-1 items-center justify-center font-medium text-[#017b77]">
-                Skip
-              </span>
-              <span className="flex h-8 flex-1 items-center justify-center rounded bg-[#009995] font-medium text-white">
-                Select
-              </span>
+            <div className="mt-4 rounded-lg border border-[#d3d4d5] p-3">
+              <p className="font-medium">
+                Select the product you would like to promote
+              </p>
+              <div className="mt-3 flex gap-3">
+                <span className="flex h-8 flex-1 items-center justify-center font-medium text-[#017b77]">
+                  Skip
+                </span>
+                <span className="flex h-8 flex-1 items-center justify-center rounded bg-[#009995] font-medium text-white">
+                  Select
+                </span>
+              </div>
             </div>
           </div>
         </div>
