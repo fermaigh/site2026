@@ -53,7 +53,7 @@ export async function generateMetadata({
 
 function CaseStudyBlockContent({ block }: { block: CaseStudyBlock }) {
   return (
-    <div className="max-w-2xl">
+    <div className="w-full">
       <h3 className="font-sans text-[clamp(1rem,3vw,1.125rem)] font-semibold tracking-tight text-foreground">
         {block.heading}
       </h3>
@@ -85,14 +85,14 @@ function CaseStudySectionContent({ section }: { section: CaseStudySection }) {
       ) : null}
       {section.body ? (
         <p
-          className={`${section.heading ? "mt-3 sm:mt-4" : ""} max-w-2xl font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]`}
+          className={`${section.heading ? "mt-3 sm:mt-4" : ""} w-full font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]`}
         >
           <RichTextContent value={section.body} />
         </p>
       ) : null}
       {section.bullets?.length ? (
         <ul
-          className={`${section.heading || section.body ? "mt-3 sm:mt-4" : ""} max-w-2xl list-disc space-y-2 pl-5 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 marker:text-foreground/35 sm:space-y-3 sm:text-[17px]`}
+          className={`${section.heading || section.body ? "mt-3 sm:mt-4" : ""} w-full list-disc space-y-2 pl-5 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 marker:text-foreground/35 sm:space-y-3 sm:text-[17px]`}
         >
           {section.bullets.map((item) => (
             <li key={richTextToPlain(item)} className="ps-1">
@@ -145,7 +145,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
           <h1 className="font-sans text-[clamp(1.75rem,6vw,2.75rem)] font-semibold leading-[1.1] tracking-tight text-foreground">
             {project.title}
           </h1>
-          <div className="mt-4 max-w-2xl space-y-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-6 sm:space-y-5 sm:text-[17px]">
+          <div className="mt-4 w-full space-y-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-6 sm:space-y-5 sm:text-[17px]">
             {hasMeta ? (
               <div className="space-y-1">
                 {caseStudy.role ? (
@@ -187,7 +187,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
         </div>
 
         {caseStudy.closingNote ? (
-          <p className="reveal reveal-delay-3 mt-10 max-w-2xl font-sans text-[15px] leading-[1.65] text-[#E11919] sm:mt-12 sm:text-[17px]">
+          <p className="reveal reveal-delay-3 mt-10 w-full font-sans text-[15px] leading-[1.65] text-[#E11919] sm:mt-12 sm:text-[17px]">
             {caseStudy.closingNote}
           </p>
         ) : null}

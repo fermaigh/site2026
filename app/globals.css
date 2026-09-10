@@ -319,9 +319,13 @@ html.is-loading body {
   --tts-tip-y: 5px;
   --tts-from-x: -72px;
   --tts-from-y: 28px;
+  /* Landing points sit below each button's midline so the pointer reads as
+     resting on the button instead of covering its label. */
+  --tts-hit-y: 8px;
+  --tts-menu-hit-y: 148px;
   transform-origin: var(--tts-tip-x) var(--tts-tip-y);
   will-change: transform, opacity;
-  animation: tts-cursor-loop 6.5s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  animation: tts-cursor-loop 10s cubic-bezier(0.22, 1, 0.36, 1) infinite;
 }
 
 .tts-collab-cursor svg {
@@ -339,7 +343,7 @@ html.is-loading body {
   width: 24px;
   height: 30px;
   filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.35));
-  animation: tts-cursor-arrow 6.5s linear infinite;
+  animation: tts-cursor-arrow 10s linear infinite;
 }
 
 .tts-cursor-hand {
@@ -347,24 +351,72 @@ html.is-loading body {
   left: 0;
   width: 24px;
   height: 25px;
-  animation: tts-cursor-hand 6.5s linear infinite;
+  animation: tts-cursor-hand 10s linear infinite;
 }
 
 .tts-invite-btn {
   transform-origin: center;
-  animation: tts-invite-press 6.5s ease-in-out infinite;
+  animation: tts-invite-press 10s ease-in-out infinite;
 }
 
 .tts-invite-menu {
   transform-origin: top right;
   pointer-events: none;
   overflow: visible;
-  animation: tts-menu-loop 6.5s ease-in-out infinite;
+  animation: tts-menu-loop 10s ease-in-out infinite;
 }
 
 .tts-invite-chevron {
   transform-origin: center;
-  animation: tts-chevron-flip 6.5s ease-in-out infinite;
+  animation: tts-chevron-flip 10s ease-in-out infinite;
+}
+
+.tts-invite-first {
+  position: relative;
+  transform-origin: center;
+  animation: tts-match-invite-press 10s ease-in-out infinite;
+}
+
+.tts-demo1-list-page {
+  animation: tts-demo1-list-exit 10s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+.tts-demo1-next-page {
+  visibility: hidden;
+  opacity: 0;
+  transform: translateX(40px);
+  animation: tts-demo1-page-enter 10s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+/* Center Create collaboration content in the demo viewport only */
+.tts-demo1-create-center {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.tts-collab-cursor,
+.tts-cursor-arrow,
+.tts-cursor-hand,
+.tts-invite-btn,
+.tts-invite-menu,
+.tts-invite-chevron,
+.tts-invite-first,
+.tts-demo1-list-page,
+.tts-demo1-next-page {
+  animation-play-state: paused;
+}
+
+.tts-demo1-active .tts-collab-cursor,
+.tts-demo1-active .tts-cursor-arrow,
+.tts-demo1-active .tts-cursor-hand,
+.tts-demo1-active .tts-invite-btn,
+.tts-demo1-active .tts-invite-menu,
+.tts-demo1-active .tts-invite-chevron,
+.tts-demo1-active .tts-invite-first,
+.tts-demo1-active .tts-demo1-list-page,
+.tts-demo1-active .tts-demo1-next-page {
+  animation-play-state: running;
 }
 
 @keyframes tts-cursor-arrow {
@@ -373,6 +425,14 @@ html.is-loading body {
     opacity: 1;
   }
   28%,
+  38% {
+    opacity: 0;
+  }
+  40%,
+  58% {
+    opacity: 1;
+  }
+  60%,
   100% {
     opacity: 0;
   }
@@ -384,8 +444,20 @@ html.is-loading body {
     opacity: 0;
   }
   28%,
-  100% {
+  38% {
     opacity: 1;
+  }
+  40%,
+  58% {
+    opacity: 0;
+  }
+  60%,
+  68% {
+    opacity: 1;
+  }
+  70%,
+  100% {
+    opacity: 0;
   }
 }
 
@@ -408,21 +480,57 @@ html.is-loading body {
   28%,
   32% {
     opacity: 1;
-    transform: translate(calc(0px - var(--tts-tip-x)), calc(0px - var(--tts-tip-y)));
+    transform: translate(
+      calc(0px - var(--tts-tip-x)),
+      calc(var(--tts-hit-y) - var(--tts-tip-y))
+    );
   }
   35% {
     opacity: 1;
-    transform: translate(calc(0px - var(--tts-tip-x)), calc(0px - var(--tts-tip-y)))
+    transform: translate(
+        calc(0px - var(--tts-tip-x)),
+        calc(var(--tts-hit-y) - var(--tts-tip-y))
+      )
       scale(0.86);
   }
   38%,
-  82% {
+  40% {
     opacity: 1;
-    transform: translate(calc(0px - var(--tts-tip-x)), calc(0px - var(--tts-tip-y)));
+    transform: translate(
+      calc(0px - var(--tts-tip-x)),
+      calc(var(--tts-hit-y) - var(--tts-tip-y))
+    );
   }
-  92% {
+  58%,
+  60% {
+    opacity: 1;
+    transform: translate(
+      calc(0px - var(--tts-tip-x)),
+      calc(var(--tts-menu-hit-y) - var(--tts-tip-y))
+    );
+  }
+  62% {
+    opacity: 1;
+    transform: translate(
+        calc(0px - var(--tts-tip-x)),
+        calc(var(--tts-menu-hit-y) - var(--tts-tip-y))
+      )
+      scale(0.86);
+  }
+  65%,
+  68% {
+    opacity: 1;
+    transform: translate(
+      calc(0px - var(--tts-tip-x)),
+      calc(var(--tts-menu-hit-y) - var(--tts-tip-y))
+    );
+  }
+  72% {
     opacity: 0;
-    transform: translate(calc(0px - var(--tts-tip-x)), calc(0px - var(--tts-tip-y)));
+    transform: translate(
+      calc(0px - var(--tts-tip-x)),
+      calc(var(--tts-menu-hit-y) - var(--tts-tip-y))
+    );
   }
 }
 
@@ -449,30 +557,652 @@ html.is-loading body {
     transform: translateY(-6px);
   }
   36%,
-  84% {
+  100% {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
-  }
-  92%,
-  100% {
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-6px);
   }
 }
 
 @keyframes tts-chevron-flip {
   0%,
-  30%,
-  92%,
-  100% {
+  30% {
     transform: rotate(0deg);
   }
   36%,
-  84% {
+  100% {
     transform: rotate(180deg);
   }
+}
+
+@keyframes tts-match-invite-press {
+  0%,
+  58%,
+  66%,
+  100% {
+    transform: scale(1);
+    filter: none;
+  }
+  61%,
+  63% {
+    transform: scale(0.95);
+    filter: brightness(0.9);
+  }
+}
+
+@keyframes tts-demo1-list-exit {
+  0%,
+  66% {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+  73%,
+  100% {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateX(-36px) scale(0.99);
+  }
+}
+
+@keyframes tts-demo1-page-enter {
+  0%,
+  66% {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  67% {
+    visibility: visible;
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  74%,
+  100% {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.tts-find-cursor {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 50;
+  width: 24px;
+  height: 30px;
+  pointer-events: none;
+  --tts-find-tip-x: 9.7px;
+  --tts-find-tip-y: 5px;
+  transform-origin: var(--tts-find-tip-x) var(--tts-find-tip-y);
+  animation: tts-find-cursor-loop 12s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+.tts-find-cursor-arrow,
+.tts-find-cursor-hand {
+  position: absolute;
+  inset: 0 auto auto 0;
+}
+
+.tts-find-cursor-arrow {
+  width: 24px;
+  height: 30px;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.35));
+  animation: tts-find-arrow-loop 12s linear infinite;
+}
+
+.tts-find-cursor-hand {
+  top: 2px;
+  width: 24px;
+  height: 25px;
+  animation: tts-find-hand-loop 12s linear infinite;
+}
+
+.tts-find-ai-assistant {
+  transform-origin: center;
+  animation: tts-find-assistant-press 12s ease-in-out infinite;
+}
+
+.tts-find-assistant-panel {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform-origin: top right;
+  animation: tts-find-assistant-panel 12s cubic-bezier(0.22, 1, 0.36, 1)
+    infinite;
+}
+
+.tts-find-assistant-home {
+  animation: tts-find-assistant-home 12s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+.tts-find-assistant-chat {
+  visibility: hidden;
+  opacity: 0;
+  animation: tts-find-assistant-chat 12s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+.tts-find-chat-user-message {
+  opacity: 0;
+  animation: tts-find-chat-user-message 12s cubic-bezier(0.22, 1, 0.36, 1)
+    infinite;
+}
+
+.tts-find-chat-thinking {
+  position: relative;
+  visibility: hidden;
+  opacity: 0;
+  animation: tts-find-chat-thinking 12s ease-out infinite;
+}
+
+.tts-find-chat-thinking-icon {
+  display: flex;
+  animation: tts-find-chat-thinking-icon 1.2s ease-in-out infinite;
+}
+
+.tts-find-chat-thinking-dots {
+  display: inline-block;
+  width: 14px;
+  overflow: hidden;
+  vertical-align: bottom;
+  animation: tts-find-chat-thinking-dots 1.2s steps(4, end) infinite;
+}
+
+.tts-find-chat-thinking-active {
+  display: inline-block;
+  width: 90px;
+  animation: tts-find-chat-thinking-active 12s linear infinite;
+}
+
+.tts-find-chat-thought-complete {
+  position: absolute;
+  left: 24px;
+  animation: tts-find-chat-thought-complete 12s linear infinite;
+}
+
+.tts-find-chat-response {
+  visibility: hidden;
+  opacity: 0;
+  animation: tts-find-chat-response 12s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+.tts-find-panel-cursor {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 60;
+  width: 24px;
+  height: 30px;
+  pointer-events: none;
+  --tts-panel-tip-x: 9.7px;
+  --tts-panel-tip-y: 5px;
+  transform-origin: var(--tts-panel-tip-x) var(--tts-panel-tip-y);
+  animation: tts-find-panel-cursor-loop 12s cubic-bezier(0.22, 1, 0.36, 1)
+    infinite;
+}
+
+.tts-find-panel-cursor-arrow,
+.tts-find-panel-cursor-hand {
+  position: absolute;
+  inset: 0 auto auto 0;
+}
+
+.tts-find-panel-cursor-arrow {
+  width: 24px;
+  height: 30px;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.35));
+  animation: tts-find-panel-arrow-loop 12s linear infinite;
+}
+
+.tts-find-panel-cursor-hand {
+  top: 2px;
+  width: 24px;
+  height: 25px;
+  animation: tts-find-panel-hand-loop 12s linear infinite;
+}
+
+.tts-find-send-invite {
+  transform-origin: center;
+  animation: tts-find-send-invite-press 12s ease-in-out infinite;
+}
+
+.tts-find-cursor,
+.tts-find-cursor-arrow,
+.tts-find-cursor-hand,
+.tts-find-ai-assistant,
+.tts-find-assistant-panel,
+.tts-find-assistant-home,
+.tts-find-assistant-chat,
+.tts-find-chat-user-message,
+.tts-find-chat-thinking,
+.tts-find-chat-thinking-icon,
+.tts-find-chat-thinking-dots,
+.tts-find-chat-thinking-active,
+.tts-find-chat-thought-complete,
+.tts-find-chat-response,
+.tts-find-panel-cursor,
+.tts-find-panel-cursor-arrow,
+.tts-find-panel-cursor-hand,
+.tts-find-send-invite {
+  animation-play-state: paused;
+}
+
+.tts-find-active .tts-find-cursor,
+.tts-find-active .tts-find-cursor-arrow,
+.tts-find-active .tts-find-cursor-hand,
+.tts-find-active .tts-find-ai-assistant,
+.tts-find-active .tts-find-assistant-panel,
+.tts-find-active .tts-find-assistant-home,
+.tts-find-active .tts-find-assistant-chat,
+.tts-find-active .tts-find-chat-user-message,
+.tts-find-active .tts-find-chat-thinking,
+.tts-find-active .tts-find-chat-thinking-icon,
+.tts-find-active .tts-find-chat-thinking-dots,
+.tts-find-active .tts-find-chat-thinking-active,
+.tts-find-active .tts-find-chat-thought-complete,
+.tts-find-active .tts-find-chat-response,
+.tts-find-active .tts-find-panel-cursor,
+.tts-find-active .tts-find-panel-cursor-arrow,
+.tts-find-active .tts-find-panel-cursor-hand,
+.tts-find-active .tts-find-send-invite {
+  animation-play-state: running;
+}
+
+@keyframes tts-find-arrow-loop {
+  0%,
+  20% {
+    opacity: 1;
+  }
+  22%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes tts-find-hand-loop {
+  0%,
+  20% {
+    opacity: 0;
+  }
+  22%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes tts-find-cursor-loop {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translate(
+      calc(150px - var(--tts-find-tip-x)),
+      calc(92px - var(--tts-find-tip-y))
+    );
+  }
+  5% {
+    opacity: 1;
+    transform: translate(
+      calc(150px - var(--tts-find-tip-x)),
+      calc(92px - var(--tts-find-tip-y))
+    );
+  }
+  19%,
+  21% {
+    opacity: 1;
+    transform: translate(
+      calc(0px - var(--tts-find-tip-x)),
+      calc(0px - var(--tts-find-tip-y))
+    );
+  }
+  22% {
+    opacity: 1;
+    transform: translate(
+        calc(0px - var(--tts-find-tip-x)),
+        calc(0px - var(--tts-find-tip-y))
+      )
+      scale(0.86);
+  }
+  24%,
+  26% {
+    opacity: 1;
+    transform: translate(
+      calc(0px - var(--tts-find-tip-x)),
+      calc(0px - var(--tts-find-tip-y))
+    );
+  }
+  29%,
+  95% {
+    opacity: 0;
+    transform: translate(
+      calc(0px - var(--tts-find-tip-x)),
+      calc(0px - var(--tts-find-tip-y))
+    );
+  }
+}
+
+@keyframes tts-find-panel-arrow-loop {
+  0%,
+  48% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes tts-find-panel-hand-loop {
+  0%,
+  48% {
+    opacity: 0;
+  }
+  50%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes tts-find-panel-cursor-loop {
+  0%,
+  33%,
+  100% {
+    opacity: 0;
+    transform: translate(
+      calc(120px - var(--tts-panel-tip-x)),
+      calc(-250px - var(--tts-panel-tip-y))
+    );
+  }
+  35% {
+    opacity: 1;
+    transform: translate(
+      calc(120px - var(--tts-panel-tip-x)),
+      calc(-250px - var(--tts-panel-tip-y))
+    );
+  }
+  41% {
+    opacity: 1;
+    transform: translate(
+      calc(-54px - var(--tts-panel-tip-x)),
+      calc(-138px - var(--tts-panel-tip-y))
+    );
+  }
+  48%,
+  50% {
+    opacity: 1;
+    transform: translate(
+      calc(0px - var(--tts-panel-tip-x)),
+      calc(0px - var(--tts-panel-tip-y))
+    );
+  }
+  51% {
+    opacity: 1;
+    transform: translate(
+        calc(0px - var(--tts-panel-tip-x)),
+        calc(0px - var(--tts-panel-tip-y))
+      )
+      scale(0.86);
+  }
+  53%,
+  55% {
+    opacity: 1;
+    transform: translate(
+      calc(0px - var(--tts-panel-tip-x)),
+      calc(0px - var(--tts-panel-tip-y))
+    );
+  }
+  58% {
+    opacity: 0;
+    transform: translate(
+      calc(0px - var(--tts-panel-tip-x)),
+      calc(0px - var(--tts-panel-tip-y))
+    );
+  }
+}
+
+@keyframes tts-find-send-invite-press {
+  0%,
+  48%,
+  54%,
+  100% {
+    transform: scale(1);
+    background: white;
+  }
+  50%,
+  52% {
+    transform: scale(0.95);
+    background: #f5f5f5;
+  }
+  54%,
+  58% {
+    background: #f5f5f5;
+  }
+}
+
+@keyframes tts-find-assistant-home {
+  0%,
+  53% {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  58% {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-8px) scale(0.985);
+  }
+  59%,
+  100% {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-8px) scale(0.985);
+  }
+}
+
+@keyframes tts-find-assistant-chat {
+  0%,
+  54% {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(12px) scale(0.985);
+  }
+  55% {
+    visibility: visible;
+    opacity: 0;
+    transform: translateY(12px) scale(0.985);
+  }
+  60%,
+  100% {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes tts-find-chat-user-message {
+  0%,
+  55% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  59%,
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes tts-find-chat-thinking {
+  0%,
+  62% {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  66%,
+  100% {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes tts-find-chat-thinking-icon {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: rotate(-8deg) scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: rotate(8deg) scale(1.08);
+  }
+}
+
+@keyframes tts-find-chat-thinking-dots {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 14px;
+  }
+}
+
+@keyframes tts-find-chat-thinking-active {
+  0%,
+  77% {
+    opacity: 1;
+  }
+  79%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes tts-find-chat-thought-complete {
+  0%,
+  77% {
+    opacity: 0;
+  }
+  79%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes tts-find-chat-response {
+  0%,
+  80% {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  85%,
+  100% {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes tts-find-assistant-press {
+  0%,
+  19%,
+  25% {
+    transform: scale(1);
+    background: transparent;
+  }
+  21%,
+  23% {
+    transform: scale(0.95);
+  }
+  27%,
+  100% {
+    background: rgba(255, 255, 255, 0.14);
+  }
+}
+
+@keyframes tts-find-assistant-panel {
+  0%,
+  24% {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateX(24px) scale(0.98);
+  }
+  26% {
+    visibility: visible;
+    opacity: 0;
+    transform: translateX(24px) scale(0.98);
+  }
+  32%,
+  100% {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+/* Demo 3 — creator app: two devices side by side on a light grey stage.
+   The row is scaled to the stage width in JS (TtsMobileDemo) so both phones
+   stay whole at every breakpoint instead of reflowing. */
+.tts-demo3-bezel {
+  background: #ededed;
+}
+
+.tts-demo3-row {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  gap: 32px;
+  width: 852px;
+  transform-origin: top left;
+  will-change: transform;
+}
+
+.tts-demo3-scroll-a,
+.tts-demo3-scroll-b {
+  will-change: transform;
+}
+
+/* --tts-a-shift / --tts-b-shift are measured per screen and inherit from the
+   camera, so each page travels exactly its own overflow and no further. */
+@keyframes tts-demo3-scroll-a {
+  0%,
+  7% {
+    transform: translateY(0);
+  }
+  45%,
+  55% {
+    transform: translateY(var(--tts-a-shift, 0px));
+  }
+  93%,
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes tts-demo3-scroll-b {
+  0%,
+  6% {
+    transform: translateY(0);
+  }
+  46%,
+  56% {
+    transform: translateY(var(--tts-b-shift, 0px));
+  }
+  94%,
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.tts-demo3-active .tts-demo3-scroll-a {
+  animation: tts-demo3-scroll-a 26s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.tts-demo3-active .tts-demo3-scroll-b {
+  animation: tts-demo3-scroll-b 32s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -486,6 +1216,24 @@ html.is-loading body {
 
   .page-loader {
     display: none;
+  }
+
+  /* The demos still step through their flow, minus the travelling pointers
+     and button presses that carry the largest movement. */
+  .tts-collab-cursor,
+  .tts-find-cursor,
+  .tts-find-panel-cursor {
+    display: none;
+  }
+
+  .tts-invite-btn,
+  .tts-invite-chevron,
+  .tts-invite-first,
+  .tts-find-ai-assistant,
+  .tts-find-send-invite,
+  .tts-demo3-scroll-a,
+  .tts-demo3-scroll-b {
+    animation: none;
   }
 
   ::view-transition-old(root),
