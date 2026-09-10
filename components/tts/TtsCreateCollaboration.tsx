@@ -88,21 +88,52 @@ function Stepper() {
 function Field({
   label,
   placeholder,
+  value,
   help,
   calendar,
+  optional,
+  disabled,
+  prefix,
 }: {
   label: string;
   placeholder: string;
+  value?: string;
   help?: string;
   calendar?: boolean;
+  optional?: boolean;
+  disabled?: boolean;
+  prefix?: string;
 }) {
   return (
     <div>
       <p className="text-[14px] font-medium leading-5">
-        <span className="text-[#e14140]">*</span> {label}
+        {optional ? null : <span className="text-[#e14140]">*</span>} {label}
       </p>
-      <div className="mt-2 flex h-8 items-center rounded border border-[#d3d4d5] bg-white px-3 text-[14px] text-[#a9abad]">
-        <span className="flex-1">{placeholder}</span>
+      <div
+        className={`mt-2 flex h-8 items-center rounded border pr-3 text-[14px] ${
+          disabled
+            ? "border-[#e1e1e2] bg-[#f5f5f5]"
+            : "border-[#d3d4d5] bg-white"
+        }`}
+      >
+        {prefix ? (
+          <span className="flex items-center gap-1 pl-3 pr-2">
+            {prefix}
+            <Image
+              src={`${ASSET_ROOT}/down-1.svg`}
+              alt=""
+              width={16}
+              height={16}
+            />
+          </span>
+        ) : null}
+        <span
+          className={`flex-1 ${prefix ? "" : "pl-3"} ${
+            value ? "text-[#171718]" : "text-[#a9abad]"
+          }`}
+        >
+          {value ?? placeholder}
+        </span>
         {calendar ? (
           <Image
             src={`${ASSET_ROOT}/create-collaboration-calendar.svg`}
@@ -115,6 +146,28 @@ function Field({
       {help ? (
         <p className="mt-1 text-[14px] leading-5 text-black/55">{help}</p>
       ) : null}
+    </div>
+  );
+}
+
+function SectionRow({
+  title,
+  note,
+  children,
+}: {
+  title: string;
+  note: React.ReactNode;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="grid grid-cols-[400px_368px] gap-9">
+      <div>
+        <p className="text-[14px] font-medium">{title}</p>
+        <div className="mt-1 text-[12px] leading-[18px] text-[#848688]">
+          {note}
+        </div>
+      </div>
+      <div className="space-y-4">{children}</div>
     </div>
   );
 }
@@ -153,6 +206,9 @@ function CreatorPreview() {
               <span className="text-black/55">★ 4.5 · 66.5K sold · 103 collabs</span>
             </span>
           </div>
+          <span className="mt-2 inline-flex items-center rounded bg-black/5 px-1 py-px text-[6px] text-black/80">
+            Performs better than 97% of other shops
+          </span>
           <div className="mt-5 border-t pt-4">
             <p className="font-bold">Preferred content type</p>
             <p className="mt-3">Short Video</p>
@@ -204,25 +260,26 @@ export function TtsCreateCollaboration() {
 
         <section className="mt-4 w-[852px] rounded-lg bg-white p-6">
           <h3 className="text-[20px] font-medium leading-7">General info</h3>
-          <div className="mt-6 grid grid-cols-[400px_368px] gap-9">
-            <div>
-              <p className="text-[14px] font-medium">Notes</p>
-              <ul className="ml-[18px] mt-1 list-disc text-[12px] leading-[18px] text-[#848688]">
-                <li>
-                  Name this invitation something you&apos;ll recognize later
-                  (e.g., purpose, event). Creators won&apos;t see this name.
-                </li>
-                <li>
-                  Your invitation goal determines how TikTok Shop matches
-                  creators for you.
-                </li>
-                <li>
-                  Once this invitation expires, creators can no longer accept it
-                  or earn the offered commission.
-                </li>
-              </ul>
-            </div>
-            <div className="space-y-4">
+          <div className="mt-6">
+            <SectionRow
+              title="Notes"
+              note={
+                <ul className="ml-[18px] list-disc">
+                  <li>
+                    Name this invitation something you&apos;ll recognize later
+                    (e.g., purpose, event). Creators won&apos;t see this name.
+                  </li>
+                  <li>
+                    Your invitation goal determines how TikTok Shop matches
+                    creators for you.
+                  </li>
+                  <li>
+                    Once this invitation expires, creators can no longer accept
+                    it or earn the offered commission.
+                  </li>
+                </ul>
+              }
+            >
               <Field label="Invitation name" placeholder="Invitation name" />
               <div>
                 <p className="text-[14px] font-medium">
@@ -259,9 +316,81 @@ export function TtsCreateCollaboration() {
                 help="At least 30 days after the recruiting period ends"
                 calendar
               />
-            </div>
+            </SectionRow>
           </div>
+
+          <div className="my-6 h-px bg-[#e1e1e2]" />
+
+          <SectionRow
+            title="Contact info"
+            note="Share your contact info so invited creators can reach out with questions."
+          >
+            <Field
+              label="Email address"
+              placeholder="Email address"
+              value="testaccount@xy.com"
+            />
+            <Field
+              label="Phone"
+              placeholder="Phone number"
+              value="348 348 3423"
+              prefix="US +1"
+            />
+          </SectionRow>
+
+          <div className="my-6 h-px bg-[#e1e1e2]" />
+
+          <SectionRow
+            title="Invitation text"
+            note="Introduce yourself and share a bit about why you're excited to collaborate."
+          >
+            <div>
+              <div className="flex items-center gap-1">
+                <span className="rounded bg-[#ececed] px-2 py-1 text-[12px] font-medium">
+                  Insert creator username
+                </span>
+                <Image
+                  src={`${ASSET_ROOT}/question-circle-gray.svg`}
+                  alt=""
+                  width={16}
+                  height={16}
+                />
+              </div>
+              <div className="relative mt-2 h-[140px] rounded border border-[#d3d4d5] bg-white p-3 text-[14px] leading-[22px] text-[#a9abad]">
+                <p>You may want to include:</p>
+                <p>Your shop or brand introduction</p>
+                <p>Purpose of this invitation</p>
+                <p>Why do you want to collaborate with creators</p>
+                <span className="absolute bottom-2 right-2 rounded bg-[#ececed] px-1 text-[12px] text-[#6c6d6f]">
+                  0/500
+                </span>
+              </div>
+            </div>
+          </SectionRow>
+
+          <div className="my-6 h-px bg-[#e1e1e2]" />
+
+          <SectionRow
+            title="Content type"
+            note="Smart match currently only supports shoppable video."
+          >
+            <Field
+              label="Content type"
+              placeholder="Shoppable video"
+              optional
+              disabled
+            />
+          </SectionRow>
         </section>
+
+        <div className="mt-4 flex w-[852px] items-center justify-end gap-2 text-[14px] font-medium">
+          <span className="flex h-10 items-center rounded bg-[#ececed] px-5 text-[#171718]">
+            Discard
+          </span>
+          <span className="flex h-10 items-center rounded bg-[#b7e5e2] px-5 text-white">
+            Next
+          </span>
+        </div>
         <CreatorPreview />
       </div>
     </div>
