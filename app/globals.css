@@ -1142,6 +1142,69 @@ html.is-loading body {
   }
 }
 
+/* Demo 3 — creator app: two devices side by side on a light grey stage.
+   The row is scaled to the stage width in JS (TtsMobileDemo) so both phones
+   stay whole at every breakpoint instead of reflowing. */
+.tts-demo3-bezel {
+  background: #ededed;
+}
+
+.tts-demo3-row {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  gap: 32px;
+  width: 852px;
+  transform-origin: top left;
+  will-change: transform;
+}
+
+.tts-demo3-scroll-a,
+.tts-demo3-scroll-b {
+  will-change: transform;
+}
+
+/* --tts-a-shift / --tts-b-shift are measured per screen and inherit from the
+   camera, so each page travels exactly its own overflow and no further. */
+@keyframes tts-demo3-scroll-a {
+  0%,
+  7% {
+    transform: translateY(0);
+  }
+  45%,
+  55% {
+    transform: translateY(var(--tts-a-shift, 0px));
+  }
+  93%,
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes tts-demo3-scroll-b {
+  0%,
+  6% {
+    transform: translateY(0);
+  }
+  46%,
+  56% {
+    transform: translateY(var(--tts-b-shift, 0px));
+  }
+  94%,
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.tts-demo3-active .tts-demo3-scroll-a {
+  animation: tts-demo3-scroll-a 26s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.tts-demo3-active .tts-demo3-scroll-b {
+  animation: tts-demo3-scroll-b 32s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal,
   .reveal-delay-1,
@@ -1167,7 +1230,9 @@ html.is-loading body {
   .tts-invite-chevron,
   .tts-invite-first,
   .tts-find-ai-assistant,
-  .tts-find-send-invite {
+  .tts-find-send-invite,
+  .tts-demo3-scroll-a,
+  .tts-demo3-scroll-b {
     animation: none;
   }
 
