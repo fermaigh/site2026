@@ -1139,51 +1139,20 @@ html.is-loading body {
     display: none;
   }
 
-  .tts-collab-cursor {
-    display: none;
-  }
-
-  .tts-invite-btn,
-  .tts-invite-menu,
-  .tts-invite-chevron,
-  .tts-invite-first,
-  .tts-demo1-list-page,
-  .tts-demo1-next-page {
-    animation: none;
-  }
-
-  .tts-demo1-list-page {
-    display: none;
-  }
-
-  .tts-demo1-next-page {
-    visibility: visible;
-    opacity: 1;
-    transform: none;
-  }
-
+  /* The demos still step through their flow, minus the travelling pointers
+     and button presses that carry the largest movement. */
+  .tts-collab-cursor,
   .tts-find-cursor,
   .tts-find-panel-cursor {
     display: none;
   }
 
+  .tts-invite-btn,
+  .tts-invite-chevron,
+  .tts-invite-first,
   .tts-find-ai-assistant,
-  .tts-find-assistant-panel,
-  .tts-find-assistant-home,
-  .tts-find-assistant-chat,
   .tts-find-send-invite {
     animation: none;
-  }
-
-  .tts-find-assistant-panel,
-  .tts-find-assistant-home {
-    visibility: visible;
-    opacity: 1;
-    transform: none;
-  }
-
-  .tts-find-assistant-chat {
-    display: none;
   }
 
   ::view-transition-old(root),
