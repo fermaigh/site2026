@@ -319,6 +319,10 @@ html.is-loading body {
   --tts-tip-y: 5px;
   --tts-from-x: -72px;
   --tts-from-y: 28px;
+  /* Landing points sit below each button's midline so the pointer reads as
+     resting on the button instead of covering its label. */
+  --tts-hit-y: 8px;
+  --tts-menu-hit-y: 148px;
   transform-origin: var(--tts-tip-x) var(--tts-tip-y);
   will-change: transform, opacity;
   animation: tts-cursor-loop 10s cubic-bezier(0.22, 1, 0.36, 1) infinite;
@@ -469,31 +473,40 @@ html.is-loading body {
   28%,
   32% {
     opacity: 1;
-    transform: translate(calc(0px - var(--tts-tip-x)), calc(0px - var(--tts-tip-y)));
+    transform: translate(
+      calc(0px - var(--tts-tip-x)),
+      calc(var(--tts-hit-y) - var(--tts-tip-y))
+    );
   }
   35% {
     opacity: 1;
-    transform: translate(calc(0px - var(--tts-tip-x)), calc(0px - var(--tts-tip-y)))
+    transform: translate(
+        calc(0px - var(--tts-tip-x)),
+        calc(var(--tts-hit-y) - var(--tts-tip-y))
+      )
       scale(0.86);
   }
   38%,
   40% {
     opacity: 1;
-    transform: translate(calc(0px - var(--tts-tip-x)), calc(0px - var(--tts-tip-y)));
+    transform: translate(
+      calc(0px - var(--tts-tip-x)),
+      calc(var(--tts-hit-y) - var(--tts-tip-y))
+    );
   }
   58%,
   60% {
     opacity: 1;
     transform: translate(
       calc(0px - var(--tts-tip-x)),
-      calc(124px - var(--tts-tip-y))
+      calc(var(--tts-menu-hit-y) - var(--tts-tip-y))
     );
   }
   62% {
     opacity: 1;
     transform: translate(
         calc(0px - var(--tts-tip-x)),
-        calc(124px - var(--tts-tip-y))
+        calc(var(--tts-menu-hit-y) - var(--tts-tip-y))
       )
       scale(0.86);
   }
@@ -502,14 +515,14 @@ html.is-loading body {
     opacity: 1;
     transform: translate(
       calc(0px - var(--tts-tip-x)),
-      calc(124px - var(--tts-tip-y))
+      calc(var(--tts-menu-hit-y) - var(--tts-tip-y))
     );
   }
   72% {
     opacity: 0;
     transform: translate(
       calc(0px - var(--tts-tip-x)),
-      calc(124px - var(--tts-tip-y))
+      calc(var(--tts-menu-hit-y) - var(--tts-tip-y))
     );
   }
 }
@@ -616,8 +629,7 @@ html.is-loading body {
   --tts-find-tip-x: 9.7px;
   --tts-find-tip-y: 5px;
   transform-origin: var(--tts-find-tip-x) var(--tts-find-tip-y);
-  animation: tts-find-cursor-loop 12s cubic-bezier(0.22, 1, 0.36, 1)
-    infinite;
+  animation: tts-find-cursor-loop 12s cubic-bezier(0.22, 1, 0.36, 1) infinite;
 }
 
 .tts-find-cursor-arrow,
@@ -655,15 +667,13 @@ html.is-loading body {
 }
 
 .tts-find-assistant-home {
-  animation: tts-find-assistant-home 12s cubic-bezier(0.22, 1, 0.36, 1)
-    infinite;
+  animation: tts-find-assistant-home 12s cubic-bezier(0.22, 1, 0.36, 1) infinite;
 }
 
 .tts-find-assistant-chat {
   visibility: hidden;
   opacity: 0;
-  animation: tts-find-assistant-chat 12s cubic-bezier(0.22, 1, 0.36, 1)
-    infinite;
+  animation: tts-find-assistant-chat 12s cubic-bezier(0.22, 1, 0.36, 1) infinite;
 }
 
 .tts-find-chat-user-message {
@@ -707,8 +717,7 @@ html.is-loading body {
 .tts-find-chat-response {
   visibility: hidden;
   opacity: 0;
-  animation: tts-find-chat-response 12s cubic-bezier(0.22, 1, 0.36, 1)
-    infinite;
+  animation: tts-find-chat-response 12s cubic-bezier(0.22, 1, 0.36, 1) infinite;
 }
 
 .tts-find-panel-cursor {
@@ -722,8 +731,8 @@ html.is-loading body {
   --tts-panel-tip-x: 9.7px;
   --tts-panel-tip-y: 5px;
   transform-origin: var(--tts-panel-tip-x) var(--tts-panel-tip-y);
-  animation: tts-find-panel-cursor-loop 12s
-    cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  animation: tts-find-panel-cursor-loop 12s cubic-bezier(0.22, 1, 0.36, 1)
+    infinite;
 }
 
 .tts-find-panel-cursor-arrow,
