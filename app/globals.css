@@ -393,7 +393,6 @@ html.is-loading body {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  min-height: 0;
 }
 
 .tts-collab-cursor,

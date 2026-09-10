@@ -136,7 +136,7 @@ function Field({
         ) : null}
         <span
           className={`flex-1 ${prefix ? "" : "pl-3"} ${
-            value ? "text-[#171718]" : "text-[#a9abad]"
+            disabled || !value ? "text-[#a9abad]" : "text-[#171718]"
           }`}
         >
           {value ?? placeholder}
@@ -167,14 +167,14 @@ function SectionRow({
   children: React.ReactNode;
 }) {
   return (
-    <div className="grid grid-cols-[400px_368px] gap-9">
+    <div className="grid grid-cols-[minmax(0,400px)_minmax(0,1fr)] gap-9">
       <div>
-        <p className="text-[14px] font-medium">{title}</p>
-        <div className="mt-1 text-[12px] leading-[18px] text-[#848688]">
+        <p className="text-[14px] font-medium leading-5">{title}</p>
+        <div className="mt-1 text-[12px] leading-[18px] text-[#6c6d6f]">
           {note}
         </div>
       </div>
-      <div className="space-y-4">{children}</div>
+      <div className="min-w-0 space-y-4">{children}</div>
     </div>
   );
 }
@@ -305,9 +305,9 @@ function CreatorPreview() {
 
 export function TtsCreateCollaboration() {
   return (
-    <div className="tts-demo1-next-page absolute inset-0 z-40 flex min-h-full w-full flex-col bg-[#f5f5f5] text-[#171718]">
+    <div className="tts-demo1-next-page absolute inset-x-0 top-0 z-40 flex w-full flex-col bg-[#f5f5f5] text-[#171718]">
       <SellerTopBar />
-      <div className="tts-demo1-create-center flex min-h-0 flex-1 justify-center overflow-hidden px-6 py-4">
+      <div className="tts-demo1-create-center flex justify-center px-6 py-4 pb-6">
         <div className="flex w-[1100px] max-w-full gap-7">
           <div className="min-w-0 flex-1">
             <div className="flex h-9 items-center gap-2">
@@ -325,6 +325,7 @@ export function TtsCreateCollaboration() {
             </div>
             <Stepper />
 
+            {/* Figma Section body 1664:36538 — keep full General info form in view */}
             <section className="mt-4 w-full max-w-[852px] rounded-lg bg-white p-6">
               <h3 className="text-[20px] font-medium leading-7">
                 General info
@@ -333,17 +334,17 @@ export function TtsCreateCollaboration() {
                 <SectionRow
                   title="Notes"
                   note={
-                    <ul className="ml-[18px] list-disc">
-                      <li>
+                    <ul className="ml-[18px] list-disc text-[#848688]">
+                      <li className="leading-[18px]">
                         Name this invitation something you&apos;ll recognize
                         later (e.g., purpose, event). Creators won&apos;t see
                         this name.
                       </li>
-                      <li>
+                      <li className="leading-[18px]">
                         Your invitation goal determines how TikTok Shop matches
                         creators for you.
                       </li>
-                      <li>
+                      <li className="leading-[18px]">
                         Once this invitation expires, creators can no longer
                         accept it or earn the offered commission.
                       </li>
@@ -392,7 +393,7 @@ export function TtsCreateCollaboration() {
                 </SectionRow>
               </div>
 
-              <div className="my-6 h-px bg-[#e1e1e2]" />
+              <div className="my-6 h-px bg-[#d3d4d5]" />
 
               <SectionRow
                 title="Contact info"
@@ -411,15 +412,15 @@ export function TtsCreateCollaboration() {
                 />
               </SectionRow>
 
-              <div className="my-6 h-px bg-[#e1e1e2]" />
+              <div className="my-6 h-px bg-[#d3d4d5]" />
 
               <SectionRow
                 title="Invitation text"
                 note="Introduce yourself and share a bit about why you're excited to collaborate."
               >
                 <div>
-                  <div className="flex items-center gap-1">
-                    <span className="rounded bg-[#ececed] px-2 py-1 text-[12px] font-medium">
+                  <div className="flex items-center gap-2">
+                    <span className="rounded bg-[#ececed] px-2 py-[3px] text-[12px] font-medium leading-[18px]">
                       Insert creator username
                     </span>
                     <Image
@@ -429,23 +430,27 @@ export function TtsCreateCollaboration() {
                       height={16}
                     />
                   </div>
-                  <div className="relative mt-2 h-[140px] rounded border border-[#d3d4d5] bg-white p-3 text-[14px] leading-[22px] text-[#a9abad]">
+                  <div className="relative mt-2 h-[140px] rounded border border-[#d3d4d5] bg-white p-3 text-[14px] leading-5 text-[#a9abad]">
                     <p>You may want to include:</p>
                     <p>Your shop or brand introduction</p>
                     <p>Purpose of this invitation</p>
                     <p>Why do you want to collaborate with creators</p>
-                    <span className="absolute bottom-2 right-2 rounded bg-[#ececed] px-1 text-[12px] text-[#6c6d6f]">
+                    <span className="absolute bottom-2 right-2 rounded bg-[#ececed] px-0.5 text-[12px] leading-[18px] text-[#6c6d6f]">
                       0/500
                     </span>
                   </div>
                 </div>
               </SectionRow>
 
-              <div className="my-6 h-px bg-[#e1e1e2]" />
+              <div className="my-6 h-px bg-[#d3d4d5]" />
 
               <SectionRow
                 title="Content type"
-                note="Smart match currently only supports shoppable video."
+                note={
+                  <span className="text-[#848688]">
+                    Smart match currently only supports shoppable video.
+                  </span>
+                }
               >
                 <Field
                   label="Content type"
@@ -457,7 +462,10 @@ export function TtsCreateCollaboration() {
               </SectionRow>
             </section>
 
-            <div className="mt-4 flex w-full max-w-[852px] items-center justify-end gap-2 text-[14px] font-medium">
+            <div
+              data-tts-create-end=""
+              className="mt-4 flex w-full max-w-[852px] items-center justify-end gap-2 text-[14px] font-medium"
+            >
               <span className="flex h-10 items-center rounded bg-[#ececed] px-5 text-[#171718]">
                 Discard
               </span>

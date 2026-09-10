@@ -19,17 +19,40 @@ export function TtsProductDemo() {
 
     const clip = () => {
       const ui = camera.querySelector<HTMLElement>(".tts-collab-ui");
-      if (!ui) return;
-      const marker = ui.querySelector<HTMLElement>("[data-tts-clip-end]");
-      const cut = marker
+      const createPage = camera.querySelector<HTMLElement>(
+        ".tts-demo1-next-page",
+      );
+      const listMarker = ui?.querySelector<HTMLElement>("[data-tts-clip-end]");
+      const createMarker = createPage?.querySelector<HTMLElement>(
+        "[data-tts-create-end]",
+      );
+
+      const listCut = ui
+        ? listMarker
+          ? Math.round(
+              (listMarker.getBoundingClientRect().bottom -
+                ui.getBoundingClientRect().top +
+                CLIP_PAD) *
+                VIEWPORT_SCALE,
+            )
+          : Math.round(ui.offsetHeight * 0.73 * VIEWPORT_SCALE)
+        : 0;
+
+      // Prefer scrollHeight so visibility/transform on the create page
+      // cannot collapse the measured body (Figma section 1664:36538).
+      const createCut = createPage
         ? Math.round(
-            (marker.getBoundingClientRect().bottom -
-              ui.getBoundingClientRect().top +
-              CLIP_PAD) *
-              VIEWPORT_SCALE,
+            Math.max(
+              createPage.scrollHeight,
+              createMarker
+                ? createMarker.getBoundingClientRect().bottom -
+                    createPage.getBoundingClientRect().top
+                : 0,
+            ) + CLIP_PAD,
           )
-        : Math.round(ui.offsetHeight * 0.73 * VIEWPORT_SCALE);
-      const next = `${Math.max(cut, 1)}px`;
+        : 0;
+
+      const next = `${Math.max(listCut, createCut, 1)}px`;
       if (camera.style.height !== next) {
         camera.style.height = next;
       }
@@ -39,14 +62,23 @@ export function TtsProductDemo() {
     void document.fonts?.ready?.then(clip);
 
     const stage = camera.closest(".tts-collab-stage");
+    const createPage = camera.querySelector(".tts-demo1-next-page");
     let lastWidth = 0;
     const observer = new ResizeObserver((entries) => {
       const width = Math.round(entries[0]?.contentRect.width ?? 0);
-      if (width === lastWidth) return;
-      lastWidth = width;
+      // Always remeasure create-page height changes; only debounce width.
+      if (
+        entries[0]?.target === stage &&
+        width === lastWidth &&
+        entries.length === 1
+      ) {
+        return;
+      }
+      if (entries[0]?.target === stage) lastWidth = width;
       clip();
     });
     if (stage) observer.observe(stage);
+    if (createPage) observer.observe(createPage);
     window.addEventListener("resize", clip);
 
     return () => {
