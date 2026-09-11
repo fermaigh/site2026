@@ -155,7 +155,7 @@ export function TtsInvitationScreen() {
           />
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.55)_0%,rgba(0,0,0,0.92)_100%)]" />
           <div className="relative">
-            <StatusBar />
+            <div className="h-[47px]" />
             <div className="flex h-[44px] items-center px-[10px]">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <path
@@ -425,6 +425,15 @@ export function TtsInvitationScreen() {
         </div>
 
         <div className="h-[120px]" />
+      </div>
+
+      {/* Pinned status bar: the white-on-dark bar rests over the header, and a
+          light bar with dark glyphs fades in once the page scrolls under it. */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-40 h-[47px]">
+        <StatusBar />
+        <div className="tts-demo3-bar-a absolute inset-0 bg-white/95 opacity-0 backdrop-blur-[6px]">
+          <StatusBar tone="dark" />
+        </div>
       </div>
 
       {/* pinned action bar */}

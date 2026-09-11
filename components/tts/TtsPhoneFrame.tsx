@@ -27,7 +27,7 @@ export function TtsPhoneFrame({
       <div className="absolute inset-[5px] rounded-[57px] border border-white/25" />
 
       {/* screen */}
-      <div className="absolute inset-[10px] overflow-hidden rounded-[52px] bg-black">
+      <div className="tts-phone-screen absolute inset-[10px] overflow-hidden rounded-[52px] bg-black">
         {children}
       </div>
 

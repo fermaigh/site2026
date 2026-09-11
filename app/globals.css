@@ -1149,6 +1149,53 @@ html.is-loading body {
   background: #ededed;
 }
 
+/* overflow-hidden + border-radius stops clipping once a descendant composites
+   (the scrollers set will-change: transform), which let the page's square
+   corners bleed over the phone's rounded screen. clip-path always clips. */
+.tts-phone-screen {
+  clip-path: inset(0 round 52px);
+}
+
+/* The pinned status bar's backdrop fades in as its page scrolls under it, so
+   the bar sticks without popping. Durations match the scroll animations. */
+@keyframes tts-demo3-bar-a {
+  0%,
+  6% {
+    opacity: 0;
+  }
+  20%,
+  88% {
+    opacity: 1;
+  }
+  96%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes tts-demo3-bar-b {
+  0%,
+  5% {
+    opacity: 0;
+  }
+  18%,
+  90% {
+    opacity: 1;
+  }
+  99%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.tts-demo3-active .tts-demo3-bar-a {
+  animation: tts-demo3-bar-a 26s linear infinite;
+}
+
+.tts-demo3-active .tts-demo3-bar-b {
+  animation: tts-demo3-bar-b 32s linear infinite;
+}
+
 .tts-demo3-row {
   position: absolute;
   top: 0;
@@ -1310,7 +1357,9 @@ html.is-loading body {
   .tts-find-ai-assistant,
   .tts-find-send-invite,
   .tts-demo3-scroll-a,
-  .tts-demo3-scroll-b {
+  .tts-demo3-scroll-b,
+  .tts-demo3-bar-a,
+  .tts-demo3-bar-b {
     animation: none;
   }
 
