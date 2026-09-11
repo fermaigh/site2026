@@ -47,8 +47,19 @@ function StatusBar({ tone = "light" }: { tone?: "light" | "dark" }) {
             stroke={color}
             strokeOpacity="0.45"
           />
-          <rect x="2.2" y="2.2" width="20.8" height="9.6" rx="2.6" fill={color} />
-          <path d="M26.4 4.6v4.8a2.6 2.6 0 0 0 0-4.8Z" fill={color} opacity="0.5" />
+          <rect
+            x="2.2"
+            y="2.2"
+            width="20.8"
+            height="9.6"
+            rx="2.6"
+            fill={color}
+          />
+          <path
+            d="M26.4 4.6v4.8a2.6 2.6 0 0 0 0-4.8Z"
+            fill={color}
+            opacity="0.5"
+          />
         </svg>
       </span>
     </div>
@@ -64,8 +75,21 @@ function InfoDot({ className }: { className?: string }) {
       viewBox="0 0 16 16"
       fill="none"
     >
-      <circle cx="8" cy="8" r="7" stroke="rgba(22,24,35,0.34)" strokeWidth="1.2" />
-      <rect x="7.3" y="6.6" width="1.4" height="5" rx="0.7" fill="rgba(22,24,35,0.5)" />
+      <circle
+        cx="8"
+        cy="8"
+        r="7"
+        stroke="rgba(22,24,35,0.34)"
+        strokeWidth="1.2"
+      />
+      <rect
+        x="7.3"
+        y="6.6"
+        width="1.4"
+        height="5"
+        rx="0.7"
+        fill="rgba(22,24,35,0.5)"
+      />
       <circle cx="8" cy="4.6" r="0.85" fill="rgba(22,24,35,0.5)" />
     </svg>
   );
@@ -82,10 +106,39 @@ function Star() {
   );
 }
 
+/** Commission on each product sits inside the 12%-17% range the High
+ *  commission card advertises, so the numbers agree across the screen. */
 const PRODUCTS = [
-  { cta: "Post video", tag: "Sample requested" },
-  { cta: "Post video", tag: null },
-  { cta: "Add", tag: null },
+  {
+    shot: "invitation-product-1",
+    title: "Hyaluronic Dew Drops Hydrating Serum 30ml",
+    earn: "2.85",
+    price: "18.99",
+    rating: "4.8",
+    sold: "12.4K",
+    cta: "Post video",
+    tag: "Sample requested",
+  },
+  {
+    shot: "invitation-product-2",
+    title: "Ceramide Barrier Repair Cream 50ml",
+    earn: "4.08",
+    price: "24.00",
+    rating: "4.9",
+    sold: "3,208",
+    cta: "Post video",
+    tag: null,
+  },
+  {
+    shot: "invitation-product-3",
+    title: "Invisible Mineral Sunscreen SPF 50 Gel",
+    earn: "2.03",
+    price: "14.50",
+    rating: "4.7",
+    sold: "28.1K",
+    cta: "Add",
+    tag: null,
+  },
 ];
 
 /** Left phone — creator-side invitation detail (Figma 1668:51416). */
@@ -147,9 +200,25 @@ export function TtsInvitationScreen() {
                 Free sample
               </p>
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <rect x="2" y="6.5" width="16" height="11.5" rx="1.6" stroke="#fe2c55" strokeWidth="1.5" />
-                <path d="M2 10.5h16M10 6.5V18" stroke="#fe2c55" strokeWidth="1.5" />
-                <path d="M10 6.5S8.4 2.4 6.2 3.1 8 6.5 10 6.5Zm0 0s1.6-4.1 3.8-3.4S12 6.5 10 6.5Z" stroke="#fe2c55" strokeWidth="1.4" />
+                <rect
+                  x="2"
+                  y="6.5"
+                  width="16"
+                  height="11.5"
+                  rx="1.6"
+                  stroke="#fe2c55"
+                  strokeWidth="1.5"
+                />
+                <path
+                  d="M2 10.5h16M10 6.5V18"
+                  stroke="#fe2c55"
+                  strokeWidth="1.5"
+                />
+                <path
+                  d="M10 6.5S8.4 2.4 6.2 3.1 8 6.5 10 6.5Zm0 0s1.6-4.1 3.8-3.4S12 6.5 10 6.5Z"
+                  stroke="#fe2c55"
+                  strokeWidth="1.4"
+                />
               </svg>
             </div>
             <p className="flex items-end gap-[4px] text-[12px] leading-[1.3] text-[rgba(22,24,35,0.75)]">
@@ -163,7 +232,13 @@ export function TtsInvitationScreen() {
                 High commission
               </p>
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <circle cx="10" cy="10" r="8.2" stroke="#fe2c55" strokeWidth="1.5" />
+                <circle
+                  cx="10"
+                  cy="10"
+                  r="8.2"
+                  stroke="#fe2c55"
+                  strokeWidth="1.5"
+                />
                 <path
                   d="M10 5v10M12.5 7.4c0-.9-1.1-1.5-2.5-1.5s-2.5.6-2.5 1.6.9 1.4 2.5 1.7 2.6.7 2.6 1.8-1.1 1.7-2.6 1.7-2.6-.6-2.6-1.6"
                   stroke="#fe2c55"
@@ -216,10 +291,13 @@ export function TtsInvitationScreen() {
           </div>
           <div className="flex gap-[12px] overflow-hidden px-[16px] pb-[24px]">
             {PRODUCTS.map((product, index) => (
-              <div key={index} className="flex w-[152px] shrink-0 flex-col gap-[8px]">
+              <div
+                key={index}
+                className="flex w-[152px] shrink-0 flex-col gap-[8px]"
+              >
                 <div className="relative">
                   <TtsShot
-                    src={`${SHOT_ROOT}/invitation-product-${index + 1}.png`}
+                    src={`${SHOT_ROOT}/${product.shot}.svg`}
                     className="size-[152px] rounded-[8px]"
                   />
                   {product.tag ? (
@@ -230,22 +308,24 @@ export function TtsInvitationScreen() {
                 </div>
                 <div className="flex flex-col gap-[6px]">
                   <p className="h-[34px] overflow-hidden text-[13px] leading-[1.3] text-black">
-                    French Geometric Earrings from Neuneu
+                    {product.title}
                   </p>
                   <p className="text-[15px] font-medium leading-[1.3] text-[#fe2c55]">
-                    Earn $1.35
+                    Earn ${product.earn}
                   </p>
                   <p className="flex items-baseline text-[#161823]">
                     <span className="text-[11px] font-medium">$</span>
-                    <span className="text-[15px] font-medium">9.00</span>
+                    <span className="text-[15px] font-medium">
+                      {product.price}
+                    </span>
                   </p>
                   <p className="flex items-center gap-[6px] text-[12px] text-[rgba(22,24,35,0.6)]">
                     <span className="flex items-center gap-[3px]">
-                      4.8
+                      {product.rating}
                       <Star />
                     </span>
                     <span className="h-[11px] w-px bg-black/15" />
-                    8.9K sold
+                    {product.sold} sold
                   </p>
                 </div>
                 <button
@@ -277,13 +357,13 @@ export function TtsInvitationScreen() {
           </p>
           <div className="flex items-center gap-[12px]">
             <TtsShot
-              src={`${SHOT_ROOT}/invitation-shop.png`}
+              src={`${SHOT_ROOT}/invitation-shop.svg`}
               className="size-[56px] rounded-full"
             />
             <div className="flex flex-col gap-[4px]">
               <span className="flex items-center gap-[4px]">
                 <span className="text-[17px] font-medium text-black">
-                  Shop name
+                  Dewpoint Skin Co.
                 </span>
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <circle cx="8" cy="8" r="8" fill="#20d5ec" />
@@ -343,9 +423,10 @@ export function TtsInvitationScreen() {
                   Message from the shop
                 </p>
                 <p className="text-[15px] leading-[1.3] text-black/50">
-                  Hi Rebecca, you are invited to join our exciting Black Friday
-                  promotion campaign! We&rsquo;re offering exclusive deals on our
-                  collection of women fashion, if you are interested.
+                  Hi Rebecca, we loved your skin barrier routine series.
+                  We&rsquo;d love to send you our Dew Drops serum and Ceramide
+                  Cream to try &mdash; samples are on us, and you&rsquo;ll earn
+                  12&ndash;17% on every sale from your videos.
                 </p>
                 <p className="pt-[6px] text-[14px] font-semibold text-[#fe2c55]">
                   View more
