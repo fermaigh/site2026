@@ -145,7 +145,6 @@ function ProductCard({ product }: { product: Product }) {
       <div className="relative h-[173px] w-full overflow-hidden rounded-[8px] bg-[#fafafa]">
         <TtsShot
           src={`${SHOT_ROOT}/${product.shot}.png`}
-          fallbackSrc={`${SHOT_ROOT}/${product.shot}.svg`}
           tone="none"
           className="absolute inset-0 size-full rounded-[8px]"
         />

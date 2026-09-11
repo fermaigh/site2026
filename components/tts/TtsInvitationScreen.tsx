@@ -301,7 +301,6 @@ export function TtsInvitationScreen() {
                 <div className="relative">
                   <TtsShot
                     src={`${SHOT_ROOT}/${product.photo}.png`}
-                    fallbackSrc={`${SHOT_ROOT}/${product.shot}.svg`}
                     tone="none"
                     className="size-[152px] rounded-[8px]"
                   />
@@ -363,7 +362,6 @@ export function TtsInvitationScreen() {
           <div className="flex items-center gap-[12px]">
             <TtsShot
               src={`${SHOT_ROOT}/shop-avatar.png`}
-              fallbackSrc={`${SHOT_ROOT}/invitation-shop.svg`}
               tone="none"
               className="size-[56px] rounded-full"
             />
