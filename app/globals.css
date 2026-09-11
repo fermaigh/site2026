@@ -1166,43 +1166,121 @@ html.is-loading body {
 }
 
 /* --tts-a-shift / --tts-b-shift are measured per screen and inherit from the
-   camera, so each page travels exactly its own overflow and no further. */
+   camera, so each page travels exactly its own overflow and no further.
+   Each leg is a thumb flick: it starts fast and decelerates into a rest, with
+   a beat before the next one, rather than one continuous mechanical crawl.
+   Per-keyframe timing functions govern each leg, so the animation itself runs
+   linear. */
 @keyframes tts-demo3-scroll-a {
-  0%,
-  7% {
+  0% {
     transform: translateY(0);
+    animation-timing-function: linear;
   }
-  45%,
-  55% {
+  6% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0.17, 0.89, 0.32, 1);
+  }
+  20% {
+    transform: translateY(calc(var(--tts-a-shift, 0px) * 0.38));
+    animation-timing-function: linear;
+  }
+  26% {
+    transform: translateY(calc(var(--tts-a-shift, 0px) * 0.38));
+    animation-timing-function: cubic-bezier(0.17, 0.89, 0.32, 1);
+  }
+  40% {
+    transform: translateY(calc(var(--tts-a-shift, 0px) * 0.72));
+    animation-timing-function: linear;
+  }
+  46% {
+    transform: translateY(calc(var(--tts-a-shift, 0px) * 0.72));
+    animation-timing-function: cubic-bezier(0.17, 0.89, 0.32, 1);
+  }
+  58% {
     transform: translateY(var(--tts-a-shift, 0px));
+    animation-timing-function: linear;
   }
-  93%,
+  70% {
+    transform: translateY(var(--tts-a-shift, 0px));
+    animation-timing-function: cubic-bezier(0.17, 0.89, 0.32, 1);
+  }
+  82% {
+    transform: translateY(calc(var(--tts-a-shift, 0px) * 0.45));
+    animation-timing-function: linear;
+  }
+  86% {
+    transform: translateY(calc(var(--tts-a-shift, 0px) * 0.45));
+    animation-timing-function: cubic-bezier(0.17, 0.89, 0.32, 1);
+  }
+  96%,
   100% {
     transform: translateY(0);
+    animation-timing-function: linear;
   }
 }
 
 @keyframes tts-demo3-scroll-b {
-  0%,
-  6% {
+  0% {
     transform: translateY(0);
+    animation-timing-function: linear;
   }
-  46%,
+  5% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0.17, 0.89, 0.32, 1);
+  }
+  17% {
+    transform: translateY(calc(var(--tts-b-shift, 0px) * 0.25));
+    animation-timing-function: linear;
+  }
+  22% {
+    transform: translateY(calc(var(--tts-b-shift, 0px) * 0.25));
+    animation-timing-function: cubic-bezier(0.17, 0.89, 0.32, 1);
+  }
+  34% {
+    transform: translateY(calc(var(--tts-b-shift, 0px) * 0.5));
+    animation-timing-function: linear;
+  }
+  39% {
+    transform: translateY(calc(var(--tts-b-shift, 0px) * 0.5));
+    animation-timing-function: cubic-bezier(0.17, 0.89, 0.32, 1);
+  }
+  51% {
+    transform: translateY(calc(var(--tts-b-shift, 0px) * 0.75));
+    animation-timing-function: linear;
+  }
   56% {
-    transform: translateY(var(--tts-b-shift, 0px));
+    transform: translateY(calc(var(--tts-b-shift, 0px) * 0.75));
+    animation-timing-function: cubic-bezier(0.17, 0.89, 0.32, 1);
   }
-  94%,
+  68% {
+    transform: translateY(var(--tts-b-shift, 0px));
+    animation-timing-function: linear;
+  }
+  78% {
+    transform: translateY(var(--tts-b-shift, 0px));
+    animation-timing-function: cubic-bezier(0.17, 0.89, 0.32, 1);
+  }
+  88% {
+    transform: translateY(calc(var(--tts-b-shift, 0px) * 0.4));
+    animation-timing-function: linear;
+  }
+  91% {
+    transform: translateY(calc(var(--tts-b-shift, 0px) * 0.4));
+    animation-timing-function: cubic-bezier(0.17, 0.89, 0.32, 1);
+  }
+  99%,
   100% {
     transform: translateY(0);
+    animation-timing-function: linear;
   }
 }
 
 .tts-demo3-active .tts-demo3-scroll-a {
-  animation: tts-demo3-scroll-a 26s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation: tts-demo3-scroll-a 26s linear infinite;
 }
 
 .tts-demo3-active .tts-demo3-scroll-b {
-  animation: tts-demo3-scroll-b 32s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation: tts-demo3-scroll-b 32s linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {

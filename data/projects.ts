@@ -149,7 +149,11 @@ export const projects: Project[] = [
               parts: [
                 "Used ",
                 { bold: "AI-assisted tools" },
-                " to accelerate design and engineering workflows and ship features.",
+                " to accelerate design and engineering workflows and ship features. ",
+                {
+                  text: "see the keynote",
+                  href: "https://slide-may2026.vercel.app/",
+                },
               ],
             },
           ],
