@@ -689,7 +689,11 @@ export function TtsFindCreatorsDemo() {
         aria-label="Interactive TikTok Shop Find Creators demo"
       >
         <div className="tts-collab-bezel">
-          <div ref={cameraRef} className="tts-collab-camera">
+          <div
+            ref={cameraRef}
+            className="tts-collab-camera"
+            data-tts-demo="find-creators"
+          >
             <FindCreatorsScreen />
             <AssistantPanel />
           </div>
