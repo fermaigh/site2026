@@ -82,7 +82,6 @@ const PRODUCTS = [
     price: "29.99",
     sold: "2.1K",
     label: null,
-    cta: "primary",
   },
   {
     shot: "bc-product-2",
@@ -93,7 +92,6 @@ const PRODUCTS = [
     price: "35.99",
     sold: "1.8K",
     label: null,
-    cta: "primary",
   },
   {
     shot: "bc-product-3",
@@ -105,7 +103,6 @@ const PRODUCTS = [
     price: "29.99",
     sold: "2.1K",
     label: "Top 10 selling in Women",
-    cta: "primary",
   },
   {
     shot: "bc-product-4",
@@ -116,7 +113,6 @@ const PRODUCTS = [
     price: "45.00",
     sold: "860",
     label: null,
-    cta: "primary",
   },
   {
     shot: "bc-product-5",
@@ -127,7 +123,6 @@ const PRODUCTS = [
     price: "19.99",
     sold: "3.4K",
     label: null,
-    cta: "primary",
   },
   {
     shot: "bc-product-6",
@@ -138,7 +133,6 @@ const PRODUCTS = [
     price: "24.50",
     sold: "5.7K",
     label: null,
-    cta: "neutral",
   },
 ];
 
@@ -150,7 +144,9 @@ function ProductCard({ product }: { product: Product }) {
     <div className="flex w-full flex-col gap-[8px]">
       <div className="relative h-[173px] w-full overflow-hidden rounded-[8px] bg-[#fafafa]">
         <TtsShot
-          src={`${SHOT_ROOT}/${product.shot}.svg`}
+          src={`${SHOT_ROOT}/${product.shot}.png`}
+          fallbackSrc={`${SHOT_ROOT}/${product.shot}.svg`}
+          tone="none"
           className="absolute inset-0 size-full rounded-[8px]"
         />
         <span className="absolute left-[8px] top-[8px] flex items-center gap-px rounded-[4px] bg-[#ffe6eb] p-[2px]">
@@ -202,13 +198,7 @@ function ProductCard({ product }: { product: Product }) {
           </div>
         </div>
 
-        <span
-          className={`flex h-[32px] w-full items-center justify-center rounded-full p-[8px] text-[14px] font-semibold leading-[1.3] ${
-            product.cta === "primary"
-              ? "bg-[#fe2c55] text-white"
-              : `${NEUTRAL_4} text-[#f6f6f6]`
-          }`}
-        >
+        <span className="flex h-[32px] w-full items-center justify-center rounded-full bg-[#fe2c55] p-[8px] text-[14px] font-semibold leading-[1.3] text-white">
           Get sample
         </span>
       </div>
