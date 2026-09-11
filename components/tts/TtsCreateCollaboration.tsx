@@ -1,58 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { TtsIcon } from "@/components/tts/TtsIcon";
+import { TtsSellerTopBar } from "@/components/tts/TtsSellerTopBar";
 
 const ASSET_ROOT = "/projects/tts-ui";
 const CREATE_ROOT = `${ASSET_ROOT}/create-collaboration`;
-
-function SellerTopBar() {
-  return (
-    <header className="flex h-[60px] shrink-0 items-center justify-between bg-[rgba(0,0,0,0.92)] px-4 text-white">
-      <div className="flex items-center gap-4">
-        <TtsIcon name="tts-logo" width={72} height={28} />
-        <span className="h-4 w-px bg-white/25" />
-        <span className="text-[20px] font-medium">Seller Center</span>
-        <div className="ml-1 flex h-9 w-[400px] items-center justify-between rounded bg-[#1f2021] px-3">
-          <span className="flex items-center gap-2 text-[14px] font-medium text-white/65">
-            <TtsIcon name="search-white" size={16} />
-            Ask anything
-          </span>
-          <span className="text-[14px] font-medium text-white/65">⌘+K</span>
-        </div>
-      </div>
-      <div className="flex items-center gap-2">
-        <span className="flex items-center gap-2 px-1 text-[14px] font-medium">
-          <TtsIcon name="ai-logo" size={24} />
-          Assistant
-        </span>
-        <span className="flex size-9 items-center justify-center">
-          <TtsIcon name="question-circle" size={22} />
-        </span>
-        <span className="h-4 w-px bg-white/50" />
-        <span className="flex items-center gap-1 px-2 py-2 text-[14px] font-medium">
-          <TtsIcon name="headset" size={22} />
-          Customer Messages
-          <span className="ml-1 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-[#e14140] px-1 text-[12px]">
-            8
-          </span>
-        </span>
-        <span className="relative flex size-9 items-center justify-center">
-          <TtsIcon name="notice" size={22} />
-          <span className="absolute -top-0.5 right-0 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-[#e14140] px-1 text-[12px]">
-            8
-          </span>
-        </span>
-        <span className="flex h-9 items-center rounded-full bg-white/20 pr-4">
-          <span className="flex size-9 items-center justify-center rounded-full bg-[#6c6c6c]">
-            <TtsIcon name="concatenate" size={18} />
-          </span>
-          <span className="pl-2 text-[14px] font-medium">Testaccount</span>
-        </span>
-      </div>
-    </header>
-  );
-}
 
 function Stepper() {
   const steps = ["General info", "Products", "Preferences", "Review"];
@@ -306,7 +258,7 @@ function CreatorPreview() {
 export function TtsCreateCollaboration() {
   return (
     <div className="tts-demo1-next-page absolute inset-x-0 top-0 z-40 flex w-full flex-col bg-[#f5f5f5] text-[#171718]">
-      <SellerTopBar />
+      <TtsSellerTopBar />
       <div className="tts-demo1-create-center flex justify-center px-6 py-4 pb-6">
         <div className="flex w-[1100px] max-w-full gap-7">
           <div className="min-w-0 flex-1">
