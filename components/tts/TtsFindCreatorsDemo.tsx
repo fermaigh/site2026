@@ -684,6 +684,9 @@ export function TtsFindCreatorsDemo() {
       className="mt-16 sm:mt-20"
       aria-label="Find creators live demo"
     >
+      <h3 className="mb-8 font-sans text-[clamp(1.125rem,4vw,1.5rem)] font-semibold tracking-tight text-foreground px-4 sm:px-6">
+        Scale Creator Outreach with AI
+      </h3>
       <div
         className="tts-collab-stage @container"
         aria-label="Interactive TikTok Shop Find Creators demo"

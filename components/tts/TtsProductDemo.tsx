@@ -109,6 +109,9 @@ export function TtsProductDemo() {
 
   return (
     <>
+      <h3 className="mb-8 font-sans text-[clamp(1.125rem,4vw,1.5rem)] font-semibold tracking-tight text-foreground">
+        Seller–Creator Collaboration tooling
+      </h3>
       <div
         className="tts-collab-stage @container"
         aria-label="TikTok Shop Affiliate Target Collaborations"

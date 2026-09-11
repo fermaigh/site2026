@@ -362,7 +362,9 @@ export function TtsInvitationScreen() {
           </p>
           <div className="flex items-center gap-[12px]">
             <TtsShot
-              src={`${SHOT_ROOT}/invitation-shop.svg`}
+              src={`${SHOT_ROOT}/shop-avatar.png`}
+              fallbackSrc={`${SHOT_ROOT}/invitation-shop.svg`}
+              tone="none"
               className="size-[56px] rounded-full"
             />
             <div className="flex flex-col gap-[4px]">
