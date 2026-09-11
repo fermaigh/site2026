@@ -56,25 +56,31 @@ export function TtsShot({
   fallbackSrc,
   className,
   tone = "light",
+  fit = "cover",
   style,
 }: {
   src: string;
   /** Shown when `src` is absent — a 404 layer is dropped, not rendered. */
   fallbackSrc?: string;
   className?: string;
-  tone?: "light" | "gold" | "soft" | "dark";
+  tone?: "light" | "gold" | "soft" | "dark" | "none";
+  /** background-size; inline so it wins over the base utility class. */
+  fit?: "cover" | "contain";
   style?: React.CSSProperties;
 }) {
   // "soft" stands in for a cut-out 3D render: it must not blot out the copy
   // it overlaps, so it fades to transparent instead of filling its box.
   const placeholder =
-    tone === "gold"
-      ? "linear-gradient(135deg, #7a5f24 0%, #b9922f 45%, #33270f 100%)"
-      : tone === "soft"
-        ? "radial-gradient(circle at 62% 42%, rgba(214, 172, 78, 0.5) 0%, rgba(184, 141, 52, 0.22) 45%, rgba(184, 141, 52, 0) 72%)"
-        : tone === "dark"
-          ? "linear-gradient(135deg, #2c2a27 0%, #3a3631 52%, #232221 100%)"
-          : "linear-gradient(135deg, #ededed 0%, #dadada 50%, #e9e9e9 100%)";
+    tone === "none"
+      ? // real artwork with its own alpha — nothing should sit behind it
+        "linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0))"
+      : tone === "gold"
+        ? "linear-gradient(135deg, #7a5f24 0%, #b9922f 45%, #33270f 100%)"
+        : tone === "soft"
+          ? "radial-gradient(circle at 62% 42%, rgba(214, 172, 78, 0.5) 0%, rgba(184, 141, 52, 0.22) 45%, rgba(184, 141, 52, 0) 72%)"
+          : tone === "dark"
+            ? "linear-gradient(135deg, #2c2a27 0%, #3a3631 52%, #232221 100%)"
+            : "linear-gradient(135deg, #ededed 0%, #dadada 50%, #e9e9e9 100%)";
 
   return (
     <span
@@ -89,6 +95,7 @@ export function TtsShot({
         ]
           .filter(Boolean)
           .join(", "),
+        backgroundSize: fit,
         ...style,
       }}
       aria-hidden

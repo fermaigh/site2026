@@ -64,9 +64,9 @@ function FlameIcon() {
 }
 
 const BENEFITS = [
-  { label: ["Commission", "boost"], shot: "benefit-1" },
-  { label: ["Top performed", "brands"], shot: "benefit-2" },
-  { label: ["Traffic", "support"], shot: "benefit-3" },
+  { label: ["Commission", "boost"], shot: "commission" },
+  { label: ["Top performed", "brands"], shot: "brands" },
+  { label: ["Traffic", "support"], shot: "traffic" },
 ];
 
 /**
@@ -234,22 +234,19 @@ export function TtsBrandConnectScreen() {
       <div className="tts-demo3-scroll-b absolute inset-x-0 top-0 w-[390px]">
         {/* BG 2 — hero gradient, collage and colour-dodge wash (1669:54888) */}
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[868px] bg-[linear-gradient(177.6deg,#523800_0.4%,#131313_52%)]">
-          <div className="absolute right-[19px] top-[95px] h-[184px] w-[201px]">
+          {/* Headimage — design places it at left 189, top 95, 182x168 (1669:54890) */}
+          <div className="absolute right-[19px] top-[95px] h-[168px] w-[182px]">
             <TtsShot
               src={`${SHOT_ROOT}/brand-connect-hero.png`}
               fallbackSrc={`${SHOT_ROOT}/brand-connect-hero.svg`}
-              tone="soft"
-              className="absolute inset-0 size-full bg-contain bg-right-top"
-            />
-          </div>
-          <div className="absolute inset-x-0 top-[176px] h-[103px] bg-[linear-gradient(180deg,rgba(64,49,15,0)_0%,#2d220c_100%)]" />
-          <div className="absolute left-[-79px] top-[-76px] h-[391px] w-[329px] opacity-10 mix-blend-color-dodge">
-            <TtsShot
-              src={`${SHOT_ROOT}/brand-connect-wash.png`}
-              tone="soft"
+              tone="none"
+              fit="contain"
               className="absolute inset-0 size-full"
             />
           </div>
+          <div className="absolute inset-x-0 top-[176px] h-[103px] bg-[linear-gradient(180deg,rgba(64,49,15,0)_0%,#2d220c_100%)]" />
+          {/* "Up" colour-dodge wash (1669:54896) — no export, approximated */}
+          <div className="absolute left-[-79px] top-[-76px] h-[391px] w-[329px] opacity-10 mix-blend-color-dodge [background:radial-gradient(ellipse_at_60%_70%,rgba(255,214,138,0.9),rgba(255,214,138,0)_70%)]" />
         </div>
 
         <div className="relative">
@@ -346,8 +343,9 @@ export function TtsBrandConnectScreen() {
                 <div className="flex w-full flex-col gap-[8px]">
                   <TtsShot
                     src={`${SHOT_ROOT}/${benefit.shot}.png`}
-                    tone="gold"
-                    className="size-[44px] rounded-[6px]"
+                    tone="none"
+                    fit="contain"
+                    className="size-[44px]"
                   />
                   <p className="text-[15px] leading-[1.3] tracking-[0.0607px] text-[rgba(232,221,188,0.9)]">
                     {benefit.label[0]}
@@ -395,9 +393,10 @@ export function TtsBrandConnectScreen() {
                 </div>
               </div>
               <TtsShot
-                src={`${SHOT_ROOT}/goal-badge.png`}
-                tone="gold"
-                className="size-[94px] rounded-[8px] shadow-[0px_2px_5.2px_0px_rgba(0,0,0,0.59)]"
+                src={`${SHOT_ROOT}/goal.png`}
+                tone="none"
+                fit="contain"
+                className="size-[94px] drop-shadow-[0px_2px_5.2px_rgba(0,0,0,0.59)]"
               />
               <span
                 className={`absolute left-[211px] top-[134px] flex h-[28px] min-w-[64px] items-center justify-center gap-[4px] rounded-full px-[7px] ${NEUTRAL_4}`}

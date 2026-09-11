@@ -9,14 +9,22 @@ Export from Figma `Portifolio-Site` (file `oytNfnJhXHIPt6irQh5l9L`):
 | File | Source node | Size |
 | --- | --- | --- |
 | `invitation-hero.png` | `1668:51469` (Zaraimage) | 390×390 |
-| `brand-connect-hero.png` | `1668:54175` (Headimage collage) | 201×184, transparent |
-| `benefit-1.png` | `1668:54195` | 44×44, transparent |
-| `benefit-2.png` | `1668:54201` | 44×44, transparent |
-| `benefit-3.png` | `1668:54207` | 44×44, transparent |
-| `goal-badge.png` | `1668:54222` (94 asset) | 94×94, transparent |
 
-The 3D renders (`brand-connect-hero`, `benefit-*`, `goal-badge`) need
-transparent backgrounds — the hero overlaps the intro copy by design.
+## Delivered 2x artwork
+
+These ship as real exports at 2x and are wired at their 1x box, with a
+transparent placeholder behind so their alpha stays clean:
+
+| File | Native | Rendered at | Used by |
+| --- | --- | --- | --- |
+| `brand-connect-hero.png` | 364×336 | 182×168 | header collage |
+| `commission.png` | 88×88 | 44×44 | Commission boost |
+| `brands.png` | 88×88 | 44×44 | Top performed brands |
+| `traffic.png` | 88×88 | 44×44 | Traffic support |
+| `goal.png` | 188×188 | 94×94 | goal badge |
+
+`brand-connect-hero.svg` stays as a fallback layer only; the PNG wins whenever
+it is present.
 
 ## Already provided
 
