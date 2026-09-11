@@ -53,7 +53,21 @@ export function TtsProductDemo() {
           )
         : 0;
 
-      const next = `${Math.max(listCut, createCut, 1)}px`;
+      // The three demo viewports read as one set, so demo 1 takes its height
+      // from the Find Creators viewport rather than growing to fit the create
+      // page. Falling back to the measured content keeps it sane if that demo
+      // ever stops rendering.
+      const sibling = document.querySelector<HTMLElement>(
+        '[data-tts-demo="find-creators"]',
+      );
+      const siblingHeight = sibling
+        ? Math.round(sibling.getBoundingClientRect().height)
+        : 0;
+
+      const next =
+        siblingHeight > 0
+          ? `${siblingHeight}px`
+          : `${Math.max(listCut, createCut, 1)}px`;
       if (camera.style.height !== next) {
         camera.style.height = next;
       }
@@ -80,6 +94,9 @@ export function TtsProductDemo() {
     });
     if (stage) observer.observe(stage);
     if (createPage) observer.observe(createPage);
+    // Demo 2 sets its own height in a sibling effect, so remeasure when it does.
+    const sibling = document.querySelector('[data-tts-demo="find-creators"]');
+    if (sibling) observer.observe(sibling);
     window.addEventListener("resize", clip);
 
     return () => {
