@@ -59,11 +59,11 @@ export function SiteFooter() {
         <FooterBrandIcon>
           <CursorIcon />
         </FooterBrandIcon>
-        Cursor and
+        Cursor,
         <FooterBrandIcon>
           <ClaudeIcon />
         </FooterBrandIcon>
-        Claude Code, powered by
+        Claude Code and
         <FooterBrandIcon>
           <ChatGPTIcon />
         </FooterBrandIcon>
