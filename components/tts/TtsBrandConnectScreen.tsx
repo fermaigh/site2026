@@ -302,7 +302,6 @@ export function TtsBrandConnectScreen() {
             <span className="absolute left-[141px] top-[59px]">
               <TtsShot
                 src={`${SHOT_ROOT}/TTS_LOGO.png`}
-                fallbackSrc="/projects/tts-ui/tts-logo.svg"
                 tone="none"
                 fit="contain"
                 className="block h-[20px] w-[109px]"

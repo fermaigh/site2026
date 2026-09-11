@@ -393,14 +393,16 @@ function AssistantPanel() {
             <span className="tts-find-chat-thinking-icon">
               <AssistantAsset name="assistant-thought" />
             </span>
-            <span className="tts-find-chat-thinking-active">
-              Thinking
-              <span className="tts-find-chat-thinking-dots">...</span>
-            </span>
-            <span className="tts-find-chat-thought-complete">
-              Thought for 4s
-            </span>
-            <AssistantAsset name="assistant-right" />
+            <div className="flex items-center gap-2">
+              <span className="tts-find-chat-thinking-active">
+                Thinking
+                <span className="tts-find-chat-thinking-dots">...</span>
+              </span>
+              <span className="tts-find-chat-thought-complete">
+                Thought for 4s
+              </span>
+              <AssistantAsset name="assistant-right" />
+            </div>
           </div>
           <div className="tts-find-chat-response">
             <p className="mt-3">
