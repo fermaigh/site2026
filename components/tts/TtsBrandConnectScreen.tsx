@@ -1,6 +1,5 @@
 "use client";
 
-import { TtsIcon } from "@/components/tts/TtsIcon";
 import { TtsShot } from "@/components/tts/TtsPhoneFrame";
 
 const SHOT_ROOT = "/projects/tts-ui/mobile-demo";
@@ -233,20 +232,22 @@ export function TtsBrandConnectScreen() {
     <div className="relative size-full bg-[#121212]">
       <div className="tts-demo3-scroll-b absolute inset-x-0 top-0 w-[390px]">
         {/* BG 2 — hero gradient, collage and colour-dodge wash (1669:54888) */}
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-[868px] bg-[linear-gradient(177.6deg,#523800_0.4%,#131313_52%)]">
+        <div
+          className="pointer-events-none absolute inset-x-0 top-0 h-[868px] bg-cover bg-top bg-no-repeat"
+          style={{
+            backgroundImage: `url("${SHOT_ROOT}/bg.png"), linear-gradient(177.6deg, #523800 0.4%, #131313 52%)`,
+          }}
+        >
           {/* Headimage — design places it at left 189, top 95, 182x168 (1669:54890) */}
           <div className="absolute right-[19px] top-[95px] h-[168px] w-[182px]">
             <TtsShot
               src={`${SHOT_ROOT}/brand-connect-hero.png`}
-              fallbackSrc={`${SHOT_ROOT}/brand-connect-hero.svg`}
               tone="none"
               fit="contain"
               className="absolute inset-0 size-full"
             />
           </div>
           <div className="absolute inset-x-0 top-[176px] h-[103px] bg-[linear-gradient(180deg,rgba(64,49,15,0)_0%,#2d220c_100%)]" />
-          {/* "Up" colour-dodge wash (1669:54896) — no export, approximated */}
-          <div className="absolute left-[-79px] top-[-76px] h-[391px] w-[329px] opacity-10 mix-blend-color-dodge [background:radial-gradient(ellipse_at_60%_70%,rgba(255,214,138,0.9),rgba(255,214,138,0)_70%)]" />
         </div>
 
         <div className="relative">
@@ -310,14 +311,20 @@ export function TtsBrandConnectScreen() {
             </span>
             {/* TTS_LOGO sits at left 141, top 59 in the design */}
             <span className="absolute left-[141px] top-[59px]">
-              <TtsIcon name="tts-logo" width={109} height={20} />
+              <TtsShot
+                src={`${SHOT_ROOT}/TTS_LOGO.png`}
+                fallbackSrc="/projects/tts-ui/tts-logo.svg"
+                tone="none"
+                fit="contain"
+                className="block h-[20px] w-[109px]"
+              />
             </span>
           </div>
 
           {/* Title (1669:54901) */}
           <div className="flex w-[200px] items-center p-[16px]">
             <p
-              className="flex-1 bg-clip-text text-[36px] font-extrabold italic leading-[0.9] text-transparent"
+              className="-mb-[0.14em] -mr-[0.06em] flex-1 bg-clip-text pb-[0.14em] pr-[0.06em] text-[36px] font-extrabold italic leading-[0.9] text-transparent"
               style={{ backgroundImage: GOLD_TEXT }}
             >
               Brand Connect Program
@@ -366,7 +373,7 @@ export function TtsBrandConnectScreen() {
                 <div className="flex flex-col gap-[8px]">
                   <div className="flex items-center gap-[8px]">
                     <span
-                      className="bg-clip-text text-[16px] font-extrabold italic leading-[0.9] text-transparent"
+                      className="-mb-[0.12em] -mr-[0.16em] bg-clip-text pb-[0.12em] pr-[0.16em] text-[16px] font-extrabold italic leading-[0.9] text-transparent"
                       style={{ backgroundImage: GOLD_TEXT }}
                     >
                       Goal

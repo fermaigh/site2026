@@ -17,6 +17,14 @@ function CursorIcon() {
   );
 }
 
+function ClaudeIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className="size-full">
+      <path d="M13.50 9.40L12.95 1.40L11.05 1.40L10.50 9.40ZM14.60 10.50L18.12 3.30L16.48 2.35L12.00 9.00ZM15.00 12.00L21.65 7.52L20.70 5.88L13.50 9.40ZM14.60 13.50L22.60 12.95L22.60 11.05L14.60 10.50ZM13.50 14.60L20.70 18.12L21.65 16.48L15.00 12.00ZM12.00 15.00L16.48 21.65L18.12 20.70L14.60 13.50ZM10.50 14.60L11.05 22.60L12.95 22.60L13.50 14.60ZM9.40 13.50L5.88 20.70L7.52 21.65L12.00 15.00ZM9.00 12.00L2.35 16.48L3.30 18.12L10.50 14.60ZM9.40 10.50L1.40 11.05L1.40 12.95L9.40 13.50ZM10.50 9.40L3.30 5.88L2.35 7.52L9.00 12.00ZM12.00 9.00L7.52 2.35L5.88 3.30L9.40 10.50Z" />
+    </svg>
+  );
+}
+
 function GithubIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" className="size-full">
@@ -43,7 +51,11 @@ export function SiteFooter() {
         <FooterBrandIcon>
           <CursorIcon />
         </FooterBrandIcon>
-        Cursor, hosted on
+        Cursor and
+        <FooterBrandIcon>
+          <ClaudeIcon />
+        </FooterBrandIcon>
+        Claude Code, hosted on
         <FooterBrandIcon>
           <GithubIcon />
         </FooterBrandIcon>
