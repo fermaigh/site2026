@@ -24,10 +24,14 @@ transparent backgrounds — the hero overlaps the intro copy by design.
 The left screen's products and shop avatar ship as vector art in this folder
 and need no Figma export:
 
-- `invitation-product-1.svg` — hydrating serum dropper bottle
-- `invitation-product-2.svg` — ceramide cream jar
-- `invitation-product-3.svg` — mineral sunscreen tube
-- `invitation-shop.svg` — Dewpoint Skin Co. mark
+- `invitation-product-1.svg` — makeup blender sponge (Figma `1664:38133`)
+- `invitation-product-2.svg` — velvet matte lipstick (Figma `1664:38134`)
+- `invitation-product-3.svg` — gold-lid radiance cream jar (Figma `1664:38135`)
+- `invitation-shop.svg` — Dewpoint Beauty Co. mark
+
+The three product slots redraw the photos at those Figma nodes, because this
+environment cannot reach figma.com to download the originals. Dropping the real
+exports in at the same filenames replaces them.
 
 Swap any of them for a real product photo by dropping a file with the same
 name at the same path; `TtsShot` takes whatever is there.
