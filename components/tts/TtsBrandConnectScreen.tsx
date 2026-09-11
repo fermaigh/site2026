@@ -237,8 +237,9 @@ export function TtsBrandConnectScreen() {
           <div className="absolute right-[19px] top-[95px] h-[184px] w-[201px]">
             <TtsShot
               src={`${SHOT_ROOT}/brand-connect-hero.png`}
+              fallbackSrc={`${SHOT_ROOT}/brand-connect-hero.svg`}
               tone="soft"
-              className="absolute inset-0 size-full"
+              className="absolute inset-0 size-full bg-contain bg-right-top"
             />
           </div>
           <div className="absolute inset-x-0 top-[176px] h-[103px] bg-[linear-gradient(180deg,rgba(64,49,15,0)_0%,#2d220c_100%)]" />
@@ -498,24 +499,6 @@ export function TtsBrandConnectScreen() {
           {/* clears the pinned bottom nav + home indicator */}
           <div className="h-[120px]" />
         </div>
-      </div>
-
-      {/* Tooltip (1669:55214) — points down at the My progress tab */}
-      <div className="absolute bottom-[92px] right-[12px] z-30 flex flex-col items-end drop-shadow-[0px_2px_6px_rgba(0,0,0,0.12)]">
-        <div className="flex min-h-[48px] max-w-[240px] items-center justify-center rounded-[10px] bg-[#00a2c9] px-[12px] py-[12px]">
-          <p className="max-w-[196px] text-[14px] font-semibold leading-[1.3] text-white">
-            You can tracking earnings and progress here
-          </p>
-        </div>
-        <svg
-          className="mr-[90px]"
-          width="16"
-          height="10"
-          viewBox="0 0 16 10"
-          fill="none"
-        >
-          <path d="M8 10 0.5 0h15z" fill="#00a2c9" />
-        </svg>
       </div>
 
       {/* Bottom Nav Bar (1669:55220) + home indicator */}

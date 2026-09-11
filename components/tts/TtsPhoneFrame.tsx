@@ -53,11 +53,14 @@ export function TtsPhoneFrame({
  */
 export function TtsShot({
   src,
+  fallbackSrc,
   className,
   tone = "light",
   style,
 }: {
   src: string;
+  /** Shown when `src` is absent — a 404 layer is dropped, not rendered. */
+  fallbackSrc?: string;
   className?: string;
   tone?: "light" | "gold" | "soft" | "dark";
   style?: React.CSSProperties;
@@ -78,7 +81,16 @@ export function TtsShot({
       className={`block overflow-hidden bg-cover bg-center bg-no-repeat ${
         className ?? ""
       }`}
-      style={{ backgroundImage: `url("${src}"), ${placeholder}`, ...style }}
+      style={{
+        backgroundImage: [
+          `url("${src}")`,
+          fallbackSrc ? `url("${fallbackSrc}")` : null,
+          placeholder,
+        ]
+          .filter(Boolean)
+          .join(", "),
+        ...style,
+      }}
       aria-hidden
     />
   );
