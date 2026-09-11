@@ -174,7 +174,7 @@ export const projects: Project[] = [
       role: "Lead Product Designer",
       team: "Founder, 2 PMs, 8 Engineers, 2 Designers",
       duration: "2023–2024",
-      ownership: "Hiring Manager, Franchise Owner, Applicant experiences",
+      ownership: "Hiring Manager Core experience, Franchise Admin tool, Job Applicant experiences",
       lead: {
         parts: [
           "Joined shortly after ",
@@ -188,92 +188,68 @@ export const projects: Project[] = [
       },
       sections: [
         {
-          heading: "Overview",
-          blocks: [
+          heading: "Impact",
+          bullets: [
             {
-              heading: "Impact",
-              bullets: [
+              parts: [
+                "↑ ",
+                { bold: "87% interview conversation rate" },
+              ],
+            },
+            {
+              parts: [
+                "↓ ",
+                { bold: "27% 90-day employee turnover" },
+              ],
+            },
+            {
+              parts: [
+                "Enabled ",
+                { bold: "enterprise adoption" },
+                " across brands including ",
                 {
-                  parts: [
-                    "↑ ",
-                    { bold: "87% interview conversation rate" },
-                  ],
-                },
-                {
-                  parts: [
-                    "↓ ",
-                    { bold: "27% 90-day employee turnover" },
-                  ],
-                },
-                {
-                  parts: [
-                    "Enabled ",
-                    { bold: "enterprise adoption" },
-                    " across brands including ",
-                    {
-                      bold: "McDonald's, Chick-fil-A, Burger King, and Taco Bell",
-                    },
-                  ],
-                },
-                {
-                  parts: [
-                    "Helped scale the product through the company's ",
-                    {
-                      text: "acquisition by Humanly.io",
-                      href: "https://www.humanly.io/blog/humanly-expands-to-create-an-end-to-end-conversational-ai-hiring-platform",
-                    },
-                  ],
+                  bold: "McDonald's, Chick-fil-A, Burger King, and Taco Bell",
                 },
               ],
             },
             {
-              heading: "My contributions",
-              bullets: [
+              parts: [
+                "Helped scale the product through the company's ",
                 {
-                  parts: [
-                    "Shaped ",
-                    { bold: "product strategy and vision" },
-                    " alongside company leadership.",
-                  ],
-                },
-                {
-                  parts: [
-                    { bold: "Led end-to-end design" },
-                    " across multiple product areas, from concept to launch.",
-                  ],
-                },
-                {
-                  parts: [
-                    "Drove product decisions through ",
-                    { bold: "user research, data, and rapid experimentation" },
-                    ".",
-                  ],
-                },
-                {
-                  parts: [
-                    "Influenced ",
-                    { bold: "roadmap prioritization" },
-                    " with founders, product, and engineering.",
-                  ],
-                },
-                {
-                  parts: [
-                    "Established scalable design processes and a ",
-                    { bold: "design system" },
-                    " to accelerate delivery.",
-                  ],
-                },
-                {
-                  parts: [
-                    { bold: "Mentored designers" },
-                    " and elevated design quality across the organization.",
-                  ],
+                  text: "acquisition by Humanly.io",
+                  href: "https://www.humanly.io/blog/humanly-expands-to-create-an-end-to-end-conversational-ai-hiring-platform",
                 },
               ],
             },
           ],
         },
+        {
+          heading: "My contributions",
+          bullets: [
+            {
+              parts: [
+                "Shaped ",
+                { bold: "product strategy and vision" },
+                " alongside company leadership.",
+              ],
+            },
+            {
+              parts: [
+                { bold: "Led end-to-end design" },
+                " across multiple product areas, from concept to launch.",
+              ],
+            },
+            {
+              parts: [
+                "Established scalable design processes and a ",
+                { bold: "design system" },
+                " to accelerate delivery.",
+              ],
+            },
+          ],
+        },
       ],
+      closingNote: "Full case study details available upon request.",
     },
   },
   {
