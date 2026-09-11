@@ -14,7 +14,6 @@ Export from Figma `Portifolio-Site` (file `oytNfnJhXHIPt6irQh5l9L`):
 | `benefit-2.png` | `1668:54201` | 44×44, transparent |
 | `benefit-3.png` | `1668:54207` | 44×44, transparent |
 | `goal-badge.png` | `1668:54222` (94 asset) | 94×94, transparent |
-| `bc-product-1.png` … `bc-product-6.png` | `1668:54243`, `54274`, `54305`, `54370`, `54402`, `54434` | 171×173 |
 
 The 3D renders (`brand-connect-hero`, `benefit-*`, `goal-badge`) need
 transparent backgrounds — the hero overlaps the intro copy by design.
@@ -28,6 +27,10 @@ and need no Figma export:
 - `invitation-product-2.svg` — velvet matte lipstick (Figma `1664:38134`)
 - `invitation-product-3.svg` — gold-lid radiance cream jar (Figma `1664:38135`)
 - `invitation-shop.svg` — Dewpoint Beauty Co. mark
+- `bc-product-1.svg` … `bc-product-6.svg` — the six Brand Connect grid items
+  (ivory tank, emerald slip dress, straight-leg trousers, mesh-strap watch,
+  square sunglasses, centella gel), redrawn from the photos in Figma
+  `1669:54958` / `54989` / `55020` / `55082` / `55151` / `55183`
 
 The three product slots redraw the photos at those Figma nodes, because this
 environment cannot reach figma.com to download the originals. Dropping the real
