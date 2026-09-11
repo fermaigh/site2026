@@ -66,6 +66,9 @@ export function TtsMobileDemo() {
 
   return (
     <section className="mt-16 sm:mt-20" aria-label="Creator mobile live demo">
+      <h3 className="mb-8 font-sans text-[clamp(1.125rem,4vw,1.5rem)] font-semibold tracking-tight text-foreground px-4 sm:px-6">
+        Engage Creators in the TikTok app
+      </h3>
       <div
         ref={stageRef}
         className="tts-collab-stage @container"
