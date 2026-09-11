@@ -35,12 +35,9 @@ function GithubIcon() {
 
 function ChatGPTIcon() {
   return (
-    <img
-      src="https://upload.wikimedia.org/wikipedia/commons/e/ef/ChatGPT-Logo.svg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original"
-      alt="ChatGPT"
-      className="size-full"
-      style={{ filter: 'currentColor' }}
-    />
+    <svg viewBox="0 0 24 24" fill="currentColor" className="size-full">
+      <path d="M19.52 11.996a7.52 7.52 0 0 0-.496-5.35.75.75 0 0 0-.748-.43c-.19.018-.334.15-.375.328a6.048 6.048 0 0 1 .354 4.458.75.75 0 0 0 .748.871c.19-.018.335-.15.375-.329.04-.178.048-.357.142-.548ZM12 3.5a8.5 8.5 0 1 0 8.5 8.5A8.51 8.51 0 0 0 12 3.5Zm4.82 10.152a3.22 3.22 0 1 1 0-6.44 3.22 3.22 0 0 1 0 6.44Z" />
+    </svg>
   );
 }
 
