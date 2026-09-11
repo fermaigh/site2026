@@ -367,7 +367,7 @@ export function TtsBrandConnectScreen() {
                     >
                       Goal
                     </span>
-                    <span className="w-[143px] text-[12px] italic leading-[1.3] tracking-[0.1608px] text-[#e8ddbc]">
+                    <span className="w-[143px] whitespace-nowrap text-[12px] italic leading-[1.3] tracking-[0.1608px] text-[#e8ddbc]">
                       Feb 24 - March 31, 2026
                     </span>
                   </div>
