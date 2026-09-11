@@ -1,26 +1,23 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 152 152" width="152" height="152">
   <defs>
-    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#e8f1e6"/><stop offset="1" stop-color="#cfe3cd"/>
+    <linearGradient id="bul" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#c62d27"/><stop offset="0.38" stop-color="#f2564a"/>
+      <stop offset="0.72" stop-color="#dd3a30"/><stop offset="1" stop-color="#a82019"/>
     </linearGradient>
-    <linearGradient id="jar2" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#e4eee2"/><stop offset="0.35" stop-color="#fbfdfa"/>
-      <stop offset="0.7" stop-color="#dbe8d8"/><stop offset="1" stop-color="#bcd0b8"/>
+    <linearGradient id="bar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#1a1a1c"/><stop offset="0.35" stop-color="#4a4a4f"/>
+      <stop offset="0.7" stop-color="#232326"/><stop offset="1" stop-color="#121214"/>
     </linearGradient>
-    <linearGradient id="lid2" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#7d8f74"/><stop offset="0.4" stop-color="#a8b89f"/>
-      <stop offset="1" stop-color="#6e8065"/>
+    <linearGradient id="gld" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#a8823c"/><stop offset="0.35" stop-color="#f0d79a"/>
+      <stop offset="0.7" stop-color="#cfa860"/><stop offset="1" stop-color="#8f6c30"/>
     </linearGradient>
   </defs>
-  <rect width="152" height="152" fill="url(#bg2)"/>
-  <ellipse cx="76" cy="126" rx="38" ry="6" fill="#6e806540"/>
-  <rect x="42" y="70" width="68" height="52" rx="10" fill="url(#jar2)"/>
-  <rect x="42" y="70" width="68" height="52" rx="10" fill="none" stroke="#00000012"/>
-  <rect x="38" y="46" width="76" height="28" rx="8" fill="url(#lid2)"/>
-  <rect x="38" y="46" width="76" height="28" rx="8" fill="none" stroke="#00000014"/>
-  <rect x="46" y="52" width="10" height="16" rx="5" fill="#ffffff4d"/>
-  <rect x="54" y="86" width="44" height="4" rx="2" fill="#5f7357a6"/>
-  <rect x="54" y="96" width="30" height="3.5" rx="1.75" fill="#5f735773"/>
-  <rect x="54" y="105" width="20" height="3.5" rx="1.75" fill="#5f735759"/>
-  <circle cx="118" cy="38" r="6" fill="#ffffff73"/>
+  <rect width="152" height="152" fill="#fdfbfb"/>
+  <ellipse cx="76" cy="130" rx="26" ry="5" fill="#00000012"/>
+  <path d="M62 70V40l16-12 12 9v33z" fill="url(#bul)"/>
+  <path d="M62 70V40l16-12 3 2-6 40z" fill="#ffffff2b"/>
+  <rect x="60" y="70" width="32" height="14" rx="2" fill="url(#gld)"/>
+  <rect x="60" y="84" width="32" height="44" rx="3" fill="url(#bar)"/>
+  <rect x="65" y="90" width="5" height="32" rx="2.5" fill="#ffffff26"/>
 </svg>

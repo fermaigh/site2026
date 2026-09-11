@@ -111,31 +111,31 @@ function Star() {
 const PRODUCTS = [
   {
     shot: "invitation-product-1",
-    title: "Hyaluronic Dew Drops Hydrating Serum 30ml",
-    earn: "2.85",
-    price: "18.99",
-    rating: "4.8",
-    sold: "12.4K",
+    title: "Latex-Free Teardrop Makeup Blender Sponge",
+    earn: "1.35",
+    price: "8.99",
+    rating: "4.9",
+    sold: "42.7K",
     cta: "Post video",
     tag: "Sample requested",
   },
   {
     shot: "invitation-product-2",
-    title: "Ceramide Barrier Repair Cream 50ml",
-    earn: "4.08",
-    price: "24.00",
-    rating: "4.9",
-    sold: "3,208",
+    title: "Velvet Matte Lipstick in Cherry Rouge",
+    earn: "2.64",
+    price: "16.50",
+    rating: "4.7",
+    sold: "9,540",
     cta: "Post video",
     tag: null,
   },
   {
     shot: "invitation-product-3",
-    title: "Invisible Mineral Sunscreen SPF 50 Gel",
-    earn: "2.03",
-    price: "14.50",
-    rating: "4.7",
-    sold: "28.1K",
+    title: "24K Gold Radiance Rich Cream 50ml",
+    earn: "5.44",
+    price: "32.00",
+    rating: "4.8",
+    sold: "5.1K",
     cta: "Add",
     tag: null,
   },
@@ -363,7 +363,7 @@ export function TtsInvitationScreen() {
             <div className="flex flex-col gap-[4px]">
               <span className="flex items-center gap-[4px]">
                 <span className="text-[17px] font-medium text-black">
-                  Dewpoint Skin Co.
+                  Dewpoint Beauty Co.
                 </span>
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <circle cx="8" cy="8" r="8" fill="#20d5ec" />
@@ -406,26 +406,14 @@ export function TtsInvitationScreen() {
           </span>
           <div className="flex flex-col gap-[8px] rounded-[8px] bg-black/5 px-[16px] py-[12px]">
             <div className="flex gap-[8px]">
-              <svg
-                className="mt-[2px] shrink-0"
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-              >
-                <path
-                  d="M8 1.6c3.6 0 6.4 2.3 6.4 5.2S11.6 12 8 12c-.7 0-1.4-.1-2-.3l-3 1.6.7-2.6A5.2 5.2 0 0 1 1.6 6.8C1.6 3.9 4.4 1.6 8 1.6Z"
-                  fill="rgba(0,0,0,0.55)"
-                />
-              </svg>
               <div className="flex flex-col gap-[2px]">
                 <p className="text-[15px] font-semibold leading-[1.3] text-black">
                   Message from the shop
                 </p>
                 <p className="text-[15px] leading-[1.3] text-black/50">
-                  Hi Rebecca, we loved your skin barrier routine series.
-                  We&rsquo;d love to send you our Dew Drops serum and Ceramide
-                  Cream to try &mdash; samples are on us, and you&rsquo;ll earn
+                  Hi Rebecca, we loved your everyday glam tutorials. We&rsquo;d
+                  love to send you our Cherry Rouge lipstick and Gold Radiance
+                  cream to try &mdash; samples are on us, and you&rsquo;ll earn
                   12&ndash;17% on every sale from your videos.
                 </p>
                 <p className="pt-[6px] text-[14px] font-semibold text-[#fe2c55]">
@@ -442,7 +430,7 @@ export function TtsInvitationScreen() {
       {/* pinned action bar */}
       <div className="absolute inset-x-0 bottom-0 z-20 bg-white">
         <div className="flex items-stretch gap-[8px] px-[16px] py-[12px]">
-          <span className="flex h-[48px] w-[56px] items-center justify-center rounded-[8px] bg-black/5">
+          <span className="flex h-[48px] w-[56px] items-center justify-center rounded-full bg-black/5">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
               <path
                 d="M10 2.4c4.3 0 7.6 2.7 7.6 6.2S14.3 15 10 15c-.9 0-1.7-.1-2.5-.4l-3.6 1.9.9-3.1A6.2 6.2 0 0 1 2.4 8.6C2.4 5.1 5.7 2.4 10 2.4Z"
@@ -450,10 +438,10 @@ export function TtsInvitationScreen() {
               />
             </svg>
           </span>
-          <span className="flex h-[48px] flex-1 items-center justify-center rounded-[8px] bg-black/5 text-[16px] font-medium text-black">
+          <span className="flex h-[48px] flex-1 items-center justify-center rounded-full bg-black/5 text-[16px] font-medium text-black">
             Not interested
           </span>
-          <span className="flex h-[48px] flex-1 items-center justify-center rounded-[8px] bg-[#fe2c55] text-[16px] font-medium text-white">
+          <span className="flex h-[48px] flex-1 items-center justify-center rounded-full bg-[#fe2c55] text-[16px] font-medium text-white">
             Add all
           </span>
         </div>
