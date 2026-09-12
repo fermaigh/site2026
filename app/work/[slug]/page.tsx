@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { PageShell } from "@/components/PageShell";
 import { RichTextContent } from "@/components/RichText";
 import { TtsProductDemo } from "@/components/tts/TtsProductDemo";
+import { HiringDemo } from "@/components/hiring/HiringDemo";
 import {
   getCaseStudyProjects,
   getProject,
@@ -195,6 +196,12 @@ export default async function CaseStudyPage({ params }: PageProps) {
         {caseStudy.showcase === "target-collaboration" ? (
           <div className="reveal reveal-delay-3 mt-10 w-full sm:mt-12">
             <TtsProductDemo />
+          </div>
+        ) : null}
+
+        {caseStudy.showcase === "hiring-platform" ? (
+          <div className="reveal reveal-delay-3 mt-10 w-full sm:mt-12">
+            <HiringDemo />
           </div>
         ) : null}
       </article>
