@@ -65,7 +65,7 @@ export type CaseStudy = {
   /** Closing note shown at the end of the case study page */
   closingNote?: string;
   /** Live product UI demo rendered below the closing note */
-  showcase?: "target-collaboration" | "hiring-platform";
+  showcase?: "target-collaboration";
 };
 
 export type Project = {
@@ -250,7 +250,6 @@ export const projects: Project[] = [
         },
       ],
       closingNote: "Full case study details available upon request.",
-      showcase: "hiring-platform",
     },
   },
   {
