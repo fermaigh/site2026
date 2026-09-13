@@ -186,9 +186,6 @@ export function ScreenWall({ gallery }: { gallery: CaseStudyGallery }) {
                         ? "(max-width: 640px) 24vw, (max-width: 1024px) 16vw, 115px"
                         : "(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 220px"
                     }
-                    // Placeholder screens are SVG; the optimizer declines those.
-                    // Real raster exports drop this and optimize normally.
-                    unoptimized={screen.src.endsWith(".svg")}
                   />
                 </figure>
               ))}
