@@ -1,7 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
+import {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  useSyncExternalStore,
+  type CSSProperties,
+} from "react";
 import type { CaseStudyGallery, GalleryScreen } from "@/data/projects";
 
 /** Per-column drift direction and strength; alternating signs read as parallax. */
@@ -40,6 +47,19 @@ function useColumnCount() {
   return cols;
 }
 
+/** The shuffle never changes after mount, so there is nothing to subscribe to. */
+const subscribeNever = () => () => {};
+
+/** Fisher-Yates, so every arrangement is equally likely. */
+function shuffle<T>(items: T[]): T[] {
+  const out = items.slice();
+  for (let i = out.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [out[i], out[j]] = [out[j], out[i]];
+  }
+  return out;
+}
+
 /** Shortest-column-first by rendered height (aspect ratio at a fixed column
  *  width), so columns finish at roughly the same depth. */
 function distribute(screens: GalleryScreen[], cols: number) {
@@ -67,9 +87,22 @@ export function ScreenWall({ gallery }: { gallery: CaseStudyGallery }) {
   const amplitudeRef = useRef(0);
   const cols = useColumnCount();
 
+  // File order on the server and through hydration, then shuffled, so each
+  // visit gets a different arrangement with no hydration mismatch. The wall
+  // sits far below the fold, so the reorder is never seen.
+  const hydrated = useSyncExternalStore(
+    subscribeNever,
+    () => true,
+    () => false,
+  );
+  const order = useMemo(
+    () => (hydrated ? shuffle(gallery.screens) : gallery.screens),
+    [hydrated, gallery.screens],
+  );
+
   const screens = useMemo(
-    () => (cols === 2 ? gallery.screens.slice(0, PHONE_LIMIT) : gallery.screens),
-    [gallery.screens, cols],
+    () => (cols === 2 ? order.slice(0, PHONE_LIMIT) : order),
+    [order, cols],
   );
   const buckets = useMemo(() => distribute(screens, cols), [screens, cols]);
 

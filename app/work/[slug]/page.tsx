@@ -187,16 +187,16 @@ export default async function CaseStudyPage({ params }: PageProps) {
           ))}
         </div>
 
-        {caseStudy.gallery ? (
-          <div className="reveal reveal-delay-3 mt-10 w-full sm:mt-12">
-            <ScreenWall gallery={caseStudy.gallery} />
-          </div>
-        ) : null}
-
         {caseStudy.closingNote ? (
           <p className="reveal reveal-delay-3 mt-10 w-full font-sans text-[15px] leading-[1.65] text-[#E11919] sm:mt-12 sm:text-[17px]">
             {caseStudy.closingNote}
           </p>
+        ) : null}
+
+        {caseStudy.gallery ? (
+          <div className="reveal reveal-delay-3 mt-10 w-full sm:mt-12">
+            <ScreenWall gallery={caseStudy.gallery} />
+          </div>
         ) : null}
 
         {caseStudy.showcase === "target-collaboration" ? (

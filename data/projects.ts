@@ -76,9 +76,9 @@ export type CaseStudy = {
   /** Intro paragraph shown under the title (and under meta lines when set) */
   lead?: RichText;
   sections: CaseStudySection[];
-  /** Cropped, drifting wall of product screens, shown above the closing note */
+  /** Cropped, drifting wall of product screens, closing out the page */
   gallery?: CaseStudyGallery;
-  /** Closing note shown at the end of the case study page */
+  /** Closing note shown after the sections, ahead of any gallery */
   closingNote?: string;
   /** Live product UI demo rendered below the closing note */
   showcase?: "target-collaboration";
