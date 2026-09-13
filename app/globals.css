@@ -1377,23 +1377,15 @@ html.is-loading body {
   width: 100%;
   height: clamp(480px, 76vh, 900px);
   overflow: hidden;
+  /* Same bezel as the live product demos. Light in both themes, as those are. */
   border-radius: 16px;
-  /* Feather the top and bottom so screens bleed out of frame instead of
-     hard-cutting — the wall reads as a window onto more work. */
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    transparent 0%,
-    #000 11%,
-    #000 88%,
-    transparent 100%
-  );
-  mask-image: linear-gradient(
-    to bottom,
-    transparent 0%,
-    #000 11%,
-    #000 88%,
-    transparent 100%
-  );
+  background: #f5f5f5;
+  box-shadow:
+    0 6px 16px rgba(0, 0, 0, 0.06),
+    0 1px 3px rgba(0, 0, 0, 0.04);
+  /* Inset left and right so the mat reads as a frame; the top and bottom stay
+     flush, since being cut off there is what says the wall continues. */
+  padding-inline: clamp(10px, 1.6vw, 18px);
 }
 
 .screen-wall-grid {
@@ -1447,21 +1439,6 @@ html.is-loading body {
   box-shadow:
     0 2px 4px rgba(0, 0, 0, 0.08),
     0 14px 34px rgba(0, 0, 0, 0.14);
-}
-
-/* Shadows carry no weight on a dark ground, so definition comes from a rim. */
-.dark .screen-wall-item {
-  opacity: 0.72;
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.08),
-    0 8px 22px rgba(0, 0, 0, 0.4);
-}
-
-.dark .screen-wall-item:hover {
-  opacity: 1;
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.16),
-    0 16px 38px rgba(0, 0, 0, 0.55);
 }
 
 @media (prefers-reduced-motion: reduce) {
