@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useLayoutEffect, useRef } from "react";
+import { DemoCursorHand } from "@/components/DemoCursorHand";
 import { TtsIcon } from "@/components/tts/TtsIcon";
 import { useDemoPlayback } from "@/components/useDemoPlayback";
 
@@ -238,7 +239,7 @@ function AssistantCursor() {
         />
       </svg>
       <span className="tts-find-cursor-hand">
-        <TtsIcon name="cursor-pointer" width={24} height={25} />
+        <DemoCursorHand />
       </span>
     </span>
   );
@@ -263,7 +264,7 @@ function PanelCursor() {
         />
       </svg>
       <span className="tts-find-panel-cursor-hand">
-        <TtsIcon name="cursor-pointer" width={24} height={25} />
+        <DemoCursorHand />
       </span>
     </span>
   );

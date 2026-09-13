@@ -1,6 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { useLayoutEffect, useRef } from "react";
+import { DemoCursorHand } from "@/components/DemoCursorHand";
 import { useDemoPlayback } from "@/components/useDemoPlayback";
 import {
   APPLICANTS,
@@ -34,24 +36,76 @@ function Chrome() {
   );
 }
 
+const NAV = [
+  { id: "dashboard", label: "Dashboard", icon: IconChart },
+  { id: "jobs", label: "Jobs", icon: IconBriefcase },
+  { id: "applicants", label: "Applicants", icon: IconPeople },
+  { id: "campaigns", label: "Campaigns", icon: IconMegaphone },
+] as const;
+
+function IconChart() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
+      <path d="M6 15v4M12 9v10M18 13v6" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function IconBriefcase() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
+      <rect x="3" y="7.5" width="18" height="12" rx="2.5" />
+      <path d="M9 7.5V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1.5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function IconPeople() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
+      <circle cx="9" cy="8.5" r="3" />
+      <path d="M3.5 19a5.5 5.5 0 0 1 11 0" strokeLinecap="round" />
+      <path d="M16 6.2a3 3 0 0 1 0 4.6M17.5 19a5.6 5.6 0 0 0-1.6-3.9" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function IconMegaphone() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
+      <path d="M4 10.5v3a1.5 1.5 0 0 0 1.5 1.5H8l6 4V5l-6 4H5.5A1.5 1.5 0 0 0 4 10.5Z" strokeLinejoin="round" />
+      <path d="M17.5 9.5a3.5 3.5 0 0 1 0 5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 function Sidebar() {
   return (
     <aside className="hiring-sidebar">
-      <div className="hiring-logo">Spr✳ckets</div>
+      <div className="hiring-logo">
+        <Image
+          src="/projects/hiring-app/sprockets-logo.png"
+          alt=""
+          width={104}
+          height={44}
+          sizes="104px"
+        />
+      </div>
       <nav className="hiring-nav">
-        <span className="hiring-nav-item">
-          <span className="hiring-nav-icon" aria-hidden>
-            ▤
+        {NAV.map(({ id, label, icon: Icon }) => (
+          <span
+            key={id}
+            className={`hiring-nav-item${id === "applicants" ? " is-active" : ""}`}
+          >
+            <span className="hiring-nav-icon">
+              <Icon />
+            </span>
+            {label}
+            {id === "applicants" ? (
+              <span className="hiring-nav-badge">4 New</span>
+            ) : null}
           </span>
-          Jobs
-        </span>
-        <span className="hiring-nav-item is-active">
-          <span className="hiring-nav-icon" aria-hidden>
-            ◎
-          </span>
-          Applicants
-          <span className="hiring-nav-badge">4 New</span>
-        </span>
+        ))}
       </nav>
     </aside>
   );
@@ -348,7 +402,13 @@ export function HiringApplicantsDemo() {
               </div>
 
               <span className="hiring-cursor" aria-hidden>
-                <svg className="hiring-cursor-arrow" width="24" height="30" viewBox="0 0 18 22" fill="none">
+                <svg
+                  className="hiring-cursor-arrow"
+                  width="24"
+                  height="30"
+                  viewBox="0 0 18 22"
+                  fill="none"
+                >
                   <path
                     d="M1 1L16.5 12.2L9.4 13.1L13.2 20.4L10.3 21.7L6.4 14.3L1 18.8V1Z"
                     fill="#171718"
@@ -357,15 +417,9 @@ export function HiringApplicantsDemo() {
                     strokeLinejoin="round"
                   />
                 </svg>
-                <svg className="hiring-cursor-hand" width="26" height="30" viewBox="0 0 24 26" fill="none">
-                  <path
-                    d="M8 11V4.5a2 2 0 1 1 4 0V10h1V6a2 2 0 1 1 4 0v5h1V8a2 2 0 1 1 4 0v9a7 7 0 0 1-7 7h-2a7 7 0 0 1-7-7v-4a2 2 0 1 1 4 0v-2Z"
-                    fill="#171718"
-                    stroke="white"
-                    strokeWidth="1.2"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                <span className="hiring-cursor-hand">
+                  <DemoCursorHand />
+                </span>
               </span>
             </div>
           </div>

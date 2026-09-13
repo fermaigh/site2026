@@ -1,9 +1,9 @@
 "use client";
 
 import { useLayoutEffect, useRef } from "react";
+import { DemoCursorHand } from "@/components/DemoCursorHand";
 import { TtsCreateCollaboration } from "@/components/tts/TtsCreateCollaboration";
 import { TtsFindCreatorsDemo } from "@/components/tts/TtsFindCreatorsDemo";
-import { TtsIcon } from "@/components/tts/TtsIcon";
 import { TtsMobileDemo } from "@/components/tts/TtsMobileDemo";
 import { TtsTargetCollaboration } from "@/components/tts/TtsTargetCollaboration";
 import { useDemoPlayback } from "@/components/useDemoPlayback";
@@ -137,7 +137,7 @@ export function TtsProductDemo() {
                     />
                   </svg>
                   <span className="tts-cursor-hand">
-                    <TtsIcon name="cursor-pointer" width={24} height={25} />
+                    <DemoCursorHand />
                   </span>
                 </div>
               </TtsTargetCollaboration>
