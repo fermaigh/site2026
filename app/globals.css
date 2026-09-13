@@ -1375,7 +1375,7 @@ html.is-loading body {
 .screen-wall {
   position: relative;
   width: 100%;
-  height: clamp(420px, 62vh, 720px);
+  height: clamp(480px, 76vh, 900px);
   overflow: hidden;
   border-radius: 16px;
   /* Feather the top and bottom so screens bleed out of frame instead of
@@ -1401,8 +1401,9 @@ html.is-loading body {
   grid-template-columns: repeat(var(--wall-cols, 5), minmax(0, 1fr));
   align-items: start;
   gap: 12px;
-  /* Start above the frame so the first row is already cropped. */
-  margin-top: -40px;
+  /* Measured at runtime from the real column heights, so the wall crops and
+     travels as far as the content can afford and never exposes a column edge. */
+  margin-top: calc(var(--wall-crop, 0px) * -1);
 }
 
 .screen-wall-col {
@@ -1419,8 +1420,10 @@ html.is-loading body {
   overflow: hidden;
   border-radius: 8px;
   background: #ffffff;
-  opacity: 0.8;
-  filter: saturate(0.9);
+  /* These screens are near-white, so they wash into the page if held back as
+     far as a higher-contrast set could be. */
+  opacity: 0.9;
+  filter: saturate(0.96);
   box-shadow:
     0 1px 2px rgba(0, 0, 0, 0.06),
     0 6px 16px rgba(0, 0, 0, 0.07);
@@ -1429,10 +1432,6 @@ html.is-loading body {
     filter 0.3s ease,
     transform 0.3s ease,
     box-shadow 0.3s ease;
-}
-
-.screen-wall-item[data-tone="dark"] {
-  background: #16191a;
 }
 
 .screen-wall-item img {
@@ -1479,11 +1478,4 @@ html.is-loading body {
   .screen-wall-item:hover {
     transform: none;
   }
-}
-
-/* A phone shot at full column width reads as a slab, not a phone. */
-.screen-wall-item[data-kind="phone"] {
-  width: 52%;
-  margin-inline: auto;
-  border-radius: 12px;
 }

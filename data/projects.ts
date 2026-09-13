@@ -55,11 +55,6 @@ export type GalleryScreen = {
   /** Intrinsic pixel size — sets each tile's aspect ratio in the column layout */
   width: number;
   height: number;
-  /** Backing colour behind a transparent or still-loading image */
-  tone?: "light" | "dark";
-  /** Phones render at a fraction of the column width so they read as phones
-   *  beside the browser windows rather than as full-width slabs */
-  kind?: "browser" | "phone";
 };
 
 export type CaseStudyGallery = {
@@ -278,26 +273,25 @@ export const projects: Project[] = [
         summary:
           "A wall of screens from the hiring platform, spanning manager dashboards, applicant scoring, campaign tooling, franchise administration, and the mobile candidate experience.",
         screens: [
-          { src: "/projects/hiring-app/screens/screen-01.png", width: 2800, height: 1800, tone: "light" },
-          { src: "/projects/hiring-app/screens/screen-02.png", width: 2800, height: 2360, tone: "light" },
-          { src: "/projects/hiring-app/screens/screen-03.png", width: 2800, height: 1760, tone: "light" },
-          { src: "/projects/hiring-app/screens/screen-04.png", width: 1800, height: 2440, tone: "dark" },
-          { src: "/projects/hiring-app/screens/screen-05.png", width: 2800, height: 1920, tone: "light" },
-          { src: "/projects/hiring-app/screens/screen-06.png", width: 2800, height: 2640, tone: "light" },
-          { src: "/projects/hiring-app/screens/screen-07.png", width: 780, height: 1688, tone: "light", kind: "phone" },
-          { src: "/projects/hiring-app/screens/screen-08.png", width: 2800, height: 1800, tone: "light" },
-          { src: "/projects/hiring-app/screens/screen-09.png", width: 1720, height: 2480, tone: "dark" },
-          { src: "/projects/hiring-app/screens/screen-10.png", width: 2800, height: 2040, tone: "light" },
-          { src: "/projects/hiring-app/screens/screen-11.png", width: 780, height: 1688, tone: "light", kind: "phone" },
-          { src: "/projects/hiring-app/screens/screen-12.png", width: 2800, height: 1760, tone: "light" },
-          { src: "/projects/hiring-app/screens/screen-13.png", width: 2800, height: 2520, tone: "light" },
-          { src: "/projects/hiring-app/screens/screen-14.png", width: 1760, height: 2360, tone: "dark" },
-          { src: "/projects/hiring-app/screens/screen-15.png", width: 2800, height: 1880, tone: "light" },
-          { src: "/projects/hiring-app/screens/screen-16.png", width: 780, height: 1688, tone: "light", kind: "phone" },
-          { src: "/projects/hiring-app/screens/screen-17.png", width: 2800, height: 2200, tone: "light" },
-          { src: "/projects/hiring-app/screens/screen-18.png", width: 2800, height: 1800, tone: "light" },
-          { src: "/projects/hiring-app/screens/screen-19.png", width: 1800, height: 2400, tone: "dark" },
-          { src: "/projects/hiring-app/screens/screen-20.png", width: 780, height: 1688, tone: "light", kind: "phone" },
+          { src: "/projects/hiring-app/screens/screen-01.png", width: 2928, height: 2158 },
+          { src: "/projects/hiring-app/screens/screen-02.png", width: 2928, height: 3074 },
+          { src: "/projects/hiring-app/screens/screen-03.png", width: 2880, height: 1714 },
+          { src: "/projects/hiring-app/screens/screen-04.png", width: 2928, height: 2640 },
+          { src: "/projects/hiring-app/screens/screen-05.png", width: 2938, height: 1762 },
+          { src: "/projects/hiring-app/screens/screen-06.png", width: 2938, height: 2770 },
+          { src: "/projects/hiring-app/screens/screen-07.png", width: 2938, height: 1762 },
+          { src: "/projects/hiring-app/screens/screen-08.png", width: 2938, height: 1762 },
+          { src: "/projects/hiring-app/screens/screen-09.png", width: 2928, height: 3070 },
+          { src: "/projects/hiring-app/screens/screen-10.png", width: 2928, height: 2332 },
+          { src: "/projects/hiring-app/screens/screen-11.png", width: 2928, height: 1762 },
+          { src: "/projects/hiring-app/screens/screen-12.png", width: 2928, height: 1748 },
+          { src: "/projects/hiring-app/screens/screen-13.png", width: 2928, height: 2934 },
+          { src: "/projects/hiring-app/screens/screen-14.png", width: 2928, height: 1748 },
+          { src: "/projects/hiring-app/screens/screen-15.png", width: 2906, height: 2188 },
+          { src: "/projects/hiring-app/screens/screen-16.png", width: 3114, height: 2762 },
+          { src: "/projects/hiring-app/screens/screen-17.png", width: 2928, height: 1762 },
+          { src: "/projects/hiring-app/screens/screen-18.png", width: 2900, height: 1734 },
+          { src: "/projects/hiring-app/screens/screen-19.png", width: 2900, height: 3326 },
         ],
       },
       closingNote: "Full case study details available upon request.",
