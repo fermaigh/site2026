@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PageShell } from "@/components/PageShell";
 import { RichTextContent } from "@/components/RichText";
+import { HiringApplicantsDemo } from "@/components/hiring/HiringApplicantsDemo";
 import { ScreenWall } from "@/components/ScreenWall";
 import { TtsProductDemo } from "@/components/tts/TtsProductDemo";
 import {
@@ -193,15 +194,21 @@ export default async function CaseStudyPage({ params }: PageProps) {
           </p>
         ) : null}
 
-        {caseStudy.gallery ? (
+        {caseStudy.showcase === "hiring-applicants" ? (
           <div className="reveal reveal-delay-3 mt-10 w-full sm:mt-12">
-            <ScreenWall gallery={caseStudy.gallery} />
+            <HiringApplicantsDemo />
           </div>
         ) : null}
 
         {caseStudy.showcase === "target-collaboration" ? (
           <div className="reveal reveal-delay-3 mt-10 w-full sm:mt-12">
             <TtsProductDemo />
+          </div>
+        ) : null}
+
+        {caseStudy.gallery ? (
+          <div className="reveal reveal-delay-3 mt-10 w-full sm:mt-12">
+            <ScreenWall gallery={caseStudy.gallery} />
           </div>
         ) : null}
       </article>

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useLayoutEffect, useRef } from "react";
 import { TtsIcon } from "@/components/tts/TtsIcon";
-import { useDemoPlayback } from "@/components/tts/useDemoPlayback";
+import { useDemoPlayback } from "@/components/useDemoPlayback";
 
 const ASSET_ROOT = "/projects/tts-ui/find-creators";
 

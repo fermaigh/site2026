@@ -6,7 +6,7 @@ import { TtsFindCreatorsDemo } from "@/components/tts/TtsFindCreatorsDemo";
 import { TtsIcon } from "@/components/tts/TtsIcon";
 import { TtsMobileDemo } from "@/components/tts/TtsMobileDemo";
 import { TtsTargetCollaboration } from "@/components/tts/TtsTargetCollaboration";
-import { useDemoPlayback } from "@/components/tts/useDemoPlayback";
+import { useDemoPlayback } from "@/components/useDemoPlayback";
 
 const CLIP_PAD = 8;
 const VIEWPORT_SCALE = 0.96;
