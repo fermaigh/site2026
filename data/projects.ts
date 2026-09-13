@@ -50,6 +50,26 @@ export type CaseStudySection = {
   blocks?: CaseStudyBlock[];
 };
 
+export type GalleryScreen = {
+  src: string;
+  /** Intrinsic pixel size — sets each tile's aspect ratio in the column layout */
+  width: number;
+  height: number;
+  /** Backing colour behind a transparent or still-loading image */
+  tone?: "light" | "dark";
+  /** Phones render at a fraction of the column width so they read as phones
+   *  beside the browser windows rather than as full-width slabs */
+  kind?: "browser" | "phone";
+};
+
+export type CaseStudyGallery = {
+  heading: string;
+  caption?: string;
+  /** Announced in place of twenty individual alt strings, which would be noise */
+  summary: string;
+  screens: GalleryScreen[];
+};
+
 export type CaseStudy = {
   /** FAANG-style meta lines shown under the title */
   role?: string;
@@ -62,6 +82,8 @@ export type CaseStudy = {
   /** Intro paragraph shown under the title (and under meta lines when set) */
   lead?: RichText;
   sections: CaseStudySection[];
+  /** Cropped, drifting wall of product screens, shown above the closing note */
+  gallery?: CaseStudyGallery;
   /** Closing note shown at the end of the case study page */
   closingNote?: string;
   /** Live product UI demo rendered below the closing note */
@@ -249,6 +271,35 @@ export const projects: Project[] = [
           ],
         },
       ],
+      gallery: {
+        heading: "Across the product",
+        caption:
+          "A cross-section of the platform — manager dashboards, applicant scoring, campaign tooling, franchise administration, and the candidate-facing mobile flow.",
+        summary:
+          "A wall of screens from the hiring platform, spanning manager dashboards, applicant scoring, campaign tooling, franchise administration, and the mobile candidate experience.",
+        screens: [
+          { src: "/projects/hiring-app/screens/screen-01.svg", width: 1400, height: 900, tone: "light" },
+          { src: "/projects/hiring-app/screens/screen-02.svg", width: 1400, height: 1180, tone: "light" },
+          { src: "/projects/hiring-app/screens/screen-03.svg", width: 1400, height: 880, tone: "light" },
+          { src: "/projects/hiring-app/screens/screen-04.svg", width: 900, height: 1220, tone: "dark" },
+          { src: "/projects/hiring-app/screens/screen-05.svg", width: 1400, height: 960, tone: "light" },
+          { src: "/projects/hiring-app/screens/screen-06.svg", width: 1400, height: 1320, tone: "light" },
+          { src: "/projects/hiring-app/screens/screen-07.svg", width: 390, height: 844, tone: "light", kind: "phone" },
+          { src: "/projects/hiring-app/screens/screen-08.svg", width: 1400, height: 900, tone: "light" },
+          { src: "/projects/hiring-app/screens/screen-09.svg", width: 860, height: 1240, tone: "dark" },
+          { src: "/projects/hiring-app/screens/screen-10.svg", width: 1400, height: 1020, tone: "light" },
+          { src: "/projects/hiring-app/screens/screen-11.svg", width: 390, height: 844, tone: "light", kind: "phone" },
+          { src: "/projects/hiring-app/screens/screen-12.svg", width: 1400, height: 880, tone: "light" },
+          { src: "/projects/hiring-app/screens/screen-13.svg", width: 1400, height: 1260, tone: "light" },
+          { src: "/projects/hiring-app/screens/screen-14.svg", width: 880, height: 1180, tone: "dark" },
+          { src: "/projects/hiring-app/screens/screen-15.svg", width: 1400, height: 940, tone: "light" },
+          { src: "/projects/hiring-app/screens/screen-16.svg", width: 390, height: 844, tone: "light", kind: "phone" },
+          { src: "/projects/hiring-app/screens/screen-17.svg", width: 1400, height: 1100, tone: "light" },
+          { src: "/projects/hiring-app/screens/screen-18.svg", width: 1400, height: 900, tone: "light" },
+          { src: "/projects/hiring-app/screens/screen-19.svg", width: 900, height: 1200, tone: "dark" },
+          { src: "/projects/hiring-app/screens/screen-20.svg", width: 390, height: 844, tone: "light", kind: "phone" },
+        ],
+      },
       closingNote: "Full case study details available upon request.",
     },
   },

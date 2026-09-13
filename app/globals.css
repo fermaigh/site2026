@@ -1368,3 +1368,122 @@ html.is-loading body {
     animation: none !important;
   }
 }
+
+/* Screen wall — a cropped, drifting collage of product screens. The value is
+   breadth at a glance, not legibility, so screens rest muted and only lift
+   under the pointer. */
+.screen-wall {
+  position: relative;
+  width: 100%;
+  height: clamp(420px, 62vh, 720px);
+  overflow: hidden;
+  border-radius: 16px;
+  /* Feather the top and bottom so screens bleed out of frame instead of
+     hard-cutting — the wall reads as a window onto more work. */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #000 11%,
+    #000 88%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #000 11%,
+    #000 88%,
+    transparent 100%
+  );
+}
+
+.screen-wall-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--wall-cols, 5), minmax(0, 1fr));
+  align-items: start;
+  gap: 12px;
+  /* Start above the frame so the first row is already cropped. */
+  margin-top: -40px;
+}
+
+.screen-wall-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: var(--wall-offset, 0px);
+  transform: translate3d(0, var(--wall-shift, 0px), 0);
+  will-change: transform;
+}
+
+.screen-wall-item {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #ffffff;
+  opacity: 0.8;
+  filter: saturate(0.9);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.06),
+    0 6px 16px rgba(0, 0, 0, 0.07);
+  transition:
+    opacity 0.3s ease,
+    filter 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.screen-wall-item[data-tone="dark"] {
+  background: #16191a;
+}
+
+.screen-wall-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.screen-wall-item:hover {
+  opacity: 1;
+  filter: saturate(1);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.08),
+    0 14px 34px rgba(0, 0, 0, 0.14);
+}
+
+/* Shadows carry no weight on a dark ground, so definition comes from a rim. */
+.dark .screen-wall-item {
+  opacity: 0.72;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 8px 22px rgba(0, 0, 0, 0.4);
+}
+
+.dark .screen-wall-item:hover {
+  opacity: 1;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.16),
+    0 16px 38px rgba(0, 0, 0, 0.55);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* The wall still shows its breadth; it just holds still. */
+  .screen-wall-col {
+    transform: none;
+    will-change: auto;
+  }
+
+  .screen-wall-item {
+    transition: none;
+  }
+
+  .screen-wall-item:hover {
+    transform: none;
+  }
+}
+
+/* A phone shot at full column width reads as a slab, not a phone. */
+.screen-wall-item[data-kind="phone"] {
+  width: 52%;
+  margin-inline: auto;
+  border-radius: 12px;
+}
