@@ -1882,6 +1882,7 @@ html.is-loading body {
   background: #fff;
   border-left: 1px solid #e0e1e4;
   box-shadow: -12px 0 32px rgba(0, 0, 0, 0.09);
+  overflow: hidden;
   transform: translateX(104%);
   animation: hiring-drawer-slide 20s cubic-bezier(0.22, 1, 0.36, 1) infinite;
 }
@@ -1897,18 +1898,18 @@ html.is-loading body {
   font-size: 15px;
   color: #313131;
 }
-.hiring-drawer-pane {
-  position: absolute;
-  inset: 0;
+.hiring-drawer-track {
   display: flex;
+  width: 200%;
+  height: 100%;
+  animation: hiring-drawer-track 20s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+.hiring-drawer-pane {
+  display: flex;
+  flex: none;
   flex-direction: column;
-}
-.hiring-drawer-pane[data-pane="first"] {
-  animation: hiring-pane-first 20s linear infinite;
-}
-.hiring-drawer-pane[data-pane="second"] {
-  opacity: 0;
-  animation: hiring-pane-second 20s linear infinite;
+  width: 50%;
+  height: 100%;
 }
 .hiring-drawer-head {
   display: flex;
@@ -2107,7 +2108,7 @@ html.is-loading body {
 .hiring-cursor-arrow,
 .hiring-cursor-hand,
 .hiring-drawer,
-.hiring-drawer-pane,
+.hiring-drawer-track,
 .hiring-row[data-row="rayna"],
 .hiring-row[data-row="corey"] {
   animation-play-state: paused;
@@ -2116,7 +2117,7 @@ html.is-loading body {
 .hiring-demo-active .hiring-cursor-arrow,
 .hiring-demo-active .hiring-cursor-hand,
 .hiring-demo-active .hiring-drawer,
-.hiring-demo-active .hiring-drawer-pane,
+.hiring-demo-active .hiring-drawer-track,
 .hiring-demo-active .hiring-row[data-row="rayna"],
 .hiring-demo-active .hiring-row[data-row="corey"] {
   animation-play-state: running;
@@ -2238,25 +2239,14 @@ html.is-loading body {
   }
 }
 
-@keyframes hiring-pane-first {
+@keyframes hiring-drawer-track {
   0%,
-  59% {
-    opacity: 1;
+  60% {
+    transform: translateX(0);
   }
-  63%,
+  66%,
   100% {
-    opacity: 0;
-  }
-}
-
-@keyframes hiring-pane-second {
-  0%,
-  59% {
-    opacity: 0;
-  }
-  63%,
-  100% {
-    opacity: 1;
+    transform: translateX(-50%);
   }
 }
 
@@ -2297,7 +2287,7 @@ html.is-loading body {
   }
 
   .hiring-drawer,
-  .hiring-drawer-pane,
+  .hiring-drawer-track,
   .hiring-row[data-row="rayna"],
   .hiring-row[data-row="corey"],
   .hiring-cursor-arrow,

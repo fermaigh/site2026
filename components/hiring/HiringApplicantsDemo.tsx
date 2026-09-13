@@ -102,7 +102,7 @@ function Sidebar() {
             </span>
             {label}
             {id === "applicants" ? (
-              <span className="hiring-nav-badge">4 New</span>
+              <span className="hiring-nav-badge">2 New</span>
             ) : null}
           </span>
         ))}
@@ -391,11 +391,13 @@ export function HiringApplicantsDemo() {
                     <span className="hiring-drawer-close" data-cursor-target="close">
                       ✕
                     </span>
-                    <div className="hiring-drawer-pane" data-pane="first">
-                      <DrawerBody applicant={first} />
-                    </div>
-                    <div className="hiring-drawer-pane" data-pane="second">
-                      <DrawerBody applicant={second} />
+                    <div className="hiring-drawer-track">
+                      <div className="hiring-drawer-pane">
+                        <DrawerBody applicant={first} />
+                      </div>
+                      <div className="hiring-drawer-pane">
+                        <DrawerBody applicant={second} />
+                      </div>
                     </div>
                   </aside>
                 </main>

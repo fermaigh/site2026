@@ -210,12 +210,14 @@ export const projects: Project[] = [
               parts: [
                 "↑ ",
                 { bold: "87% interview conversation rate" },
+                " for clients using Sprockets",
               ],
             },
             {
               parts: [
                 "↓ ",
                 { bold: "27% 90-day employee turnover" },
+                " for clients using Sprockets",
               ],
             },
             {
