@@ -58,9 +58,8 @@ export type GalleryScreen = {
 };
 
 export type CaseStudyGallery = {
-  heading: string;
   caption?: string;
-  /** Announced in place of twenty individual alt strings, which would be noise */
+  /** Announced in place of per-screen alt strings, which would be noise */
   summary: string;
   screens: GalleryScreen[];
 };
@@ -267,7 +266,6 @@ export const projects: Project[] = [
         },
       ],
       gallery: {
-        heading: "Across the product",
         caption:
           "A cross-section of the platform — manager dashboards, applicant scoring, campaign tooling, franchise administration, and the candidate-facing mobile flow.",
         summary:

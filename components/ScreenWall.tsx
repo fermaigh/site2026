@@ -185,11 +185,8 @@ export function ScreenWall({ gallery }: { gallery: CaseStudyGallery }) {
 
   return (
     <section>
-      <h3 className="font-sans text-[clamp(1.125rem,4vw,1.5rem)] font-semibold tracking-tight text-foreground">
-        {gallery.heading}
-      </h3>
       {gallery.caption ? (
-        <p className="mt-2 max-w-xl font-sans text-[14px] leading-relaxed text-pretty text-foreground/55 sm:mt-3 sm:text-[15px]">
+        <p className="w-full font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]">
           {gallery.caption}
         </p>
       ) : null}
