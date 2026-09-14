@@ -1610,6 +1610,7 @@ html.is-loading body {
   color: #ffffff;
 }
 .hiring-nav-badge {
+  position: relative;
   margin-left: auto;
   padding: 3px 9px;
   border-radius: 999px;
@@ -1794,6 +1795,7 @@ html.is-loading body {
   color: #0a1516;
 }
 .hiring-new {
+  display: inline-block;
   padding: 2px 8px;
   border-radius: 999px;
   background: #e9e9e9;
@@ -2066,6 +2068,53 @@ html.is-loading body {
   line-height: 1;
 }
 
+.hiring-badge-count[data-when="after"] {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+}
+
+.hiring-row[data-row="corey"] .hiring-new {
+  animation: hiring-new-clear 20s steps(1, end) infinite;
+}
+.hiring-badge-count[data-when="before"] {
+  animation: hiring-badge-before 20s steps(1, end) infinite;
+}
+.hiring-badge-count[data-when="after"] {
+  animation: hiring-badge-after 20s steps(1, end) infinite;
+}
+
+@keyframes hiring-new-clear {
+  0% {
+    display: inline-block;
+    opacity: 1;
+  }
+  60% {
+    display: none;
+    opacity: 0;
+  }
+}
+
+@keyframes hiring-badge-before {
+  0% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 0;
+  }
+}
+
+@keyframes hiring-badge-after {
+  0% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+}
+
 /* Pointer */
 .hiring-cursor {
   position: absolute;
@@ -2112,7 +2161,9 @@ html.is-loading body {
 .hiring-drawer,
 .hiring-drawer-pane,
 .hiring-row[data-row="rayna"],
-.hiring-row[data-row="corey"] {
+.hiring-row[data-row="corey"],
+.hiring-row[data-row="corey"] .hiring-new,
+.hiring-badge-count {
   animation-play-state: paused;
 }
 .hiring-demo-active .hiring-cursor,
@@ -2121,7 +2172,9 @@ html.is-loading body {
 .hiring-demo-active .hiring-drawer,
 .hiring-demo-active .hiring-drawer-pane,
 .hiring-demo-active .hiring-row[data-row="rayna"],
-.hiring-demo-active .hiring-row[data-row="corey"] {
+.hiring-demo-active .hiring-row[data-row="corey"],
+.hiring-demo-active .hiring-row[data-row="corey"] .hiring-new,
+.hiring-demo-active .hiring-badge-count {
   animation-play-state: running;
 }
 
@@ -2299,6 +2352,8 @@ html.is-loading body {
   .hiring-drawer-pane,
   .hiring-row[data-row="rayna"],
   .hiring-row[data-row="corey"],
+  .hiring-row[data-row="corey"] .hiring-new,
+  .hiring-badge-count,
   .hiring-cursor-arrow,
   .hiring-cursor-hand {
     animation: none;

@@ -102,7 +102,14 @@ function Sidebar() {
             </span>
             {label}
             {id === "applicants" ? (
-              <span className="hiring-nav-badge">2 New</span>
+              <span className="hiring-nav-badge">
+                <span className="hiring-badge-count" data-when="before">
+                  2 New
+                </span>
+                <span className="hiring-badge-count" data-when="after">
+                  1 New
+                </span>
+              </span>
             ) : null}
           </span>
         ))}
