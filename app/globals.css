@@ -1898,18 +1898,20 @@ html.is-loading body {
   font-size: 15px;
   color: #313131;
 }
-.hiring-drawer-track {
-  display: flex;
-  width: 200%;
-  height: 100%;
-  animation: hiring-drawer-track 20s cubic-bezier(0.65, 0, 0.35, 1) infinite;
-}
 .hiring-drawer-pane {
+  position: absolute;
+  inset: 0;
   display: flex;
-  flex: none;
   flex-direction: column;
-  width: 50%;
-  height: 100%;
+}
+/* steps(1) so the record is replaced outright — the panel does not move and
+   nothing cross-fades; the fields simply hold the next applicant. */
+.hiring-drawer-pane[data-pane="first"] {
+  animation: hiring-pane-first 20s steps(1, end) infinite;
+}
+.hiring-drawer-pane[data-pane="second"] {
+  opacity: 0;
+  animation: hiring-pane-second 20s steps(1, end) infinite;
 }
 .hiring-drawer-head {
   display: flex;
@@ -2108,7 +2110,7 @@ html.is-loading body {
 .hiring-cursor-arrow,
 .hiring-cursor-hand,
 .hiring-drawer,
-.hiring-drawer-track,
+.hiring-drawer-pane,
 .hiring-row[data-row="rayna"],
 .hiring-row[data-row="corey"] {
   animation-play-state: paused;
@@ -2117,7 +2119,7 @@ html.is-loading body {
 .hiring-demo-active .hiring-cursor-arrow,
 .hiring-demo-active .hiring-cursor-hand,
 .hiring-demo-active .hiring-drawer,
-.hiring-demo-active .hiring-drawer-track,
+.hiring-demo-active .hiring-drawer-pane,
 .hiring-demo-active .hiring-row[data-row="rayna"],
 .hiring-demo-active .hiring-row[data-row="corey"] {
   animation-play-state: running;
@@ -2239,14 +2241,21 @@ html.is-loading body {
   }
 }
 
-@keyframes hiring-drawer-track {
-  0%,
-  60% {
-    transform: translateX(0);
+@keyframes hiring-pane-first {
+  0% {
+    opacity: 1;
   }
-  66%,
-  100% {
-    transform: translateX(-50%);
+  60% {
+    opacity: 0;
+  }
+}
+
+@keyframes hiring-pane-second {
+  0% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
   }
 }
 
@@ -2259,7 +2268,7 @@ html.is-loading body {
   59% {
     background-color: #eff9fb;
   }
-  63%,
+  61%,
   100% {
     background-color: transparent;
   }
@@ -2270,7 +2279,7 @@ html.is-loading body {
   59% {
     background-color: transparent;
   }
-  63%,
+  61%,
   95% {
     background-color: #eff9fb;
   }
@@ -2287,7 +2296,7 @@ html.is-loading body {
   }
 
   .hiring-drawer,
-  .hiring-drawer-track,
+  .hiring-drawer-pane,
   .hiring-row[data-row="rayna"],
   .hiring-row[data-row="corey"],
   .hiring-cursor-arrow,

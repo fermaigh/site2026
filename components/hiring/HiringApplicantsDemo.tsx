@@ -391,13 +391,11 @@ export function HiringApplicantsDemo() {
                     <span className="hiring-drawer-close" data-cursor-target="close">
                       ✕
                     </span>
-                    <div className="hiring-drawer-track">
-                      <div className="hiring-drawer-pane">
-                        <DrawerBody applicant={first} />
-                      </div>
-                      <div className="hiring-drawer-pane">
-                        <DrawerBody applicant={second} />
-                      </div>
+                    <div className="hiring-drawer-pane" data-pane="first">
+                      <DrawerBody applicant={first} />
+                    </div>
+                    <div className="hiring-drawer-pane" data-pane="second">
+                      <DrawerBody applicant={second} />
                     </div>
                   </aside>
                 </main>
