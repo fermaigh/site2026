@@ -6,13 +6,18 @@ import { TtsCreateCollaboration } from "@/components/tts/TtsCreateCollaboration"
 import { TtsFindCreatorsDemo } from "@/components/tts/TtsFindCreatorsDemo";
 import { TtsMobileDemo } from "@/components/tts/TtsMobileDemo";
 import { TtsTargetCollaboration } from "@/components/tts/TtsTargetCollaboration";
+import { useDemoFit } from "@/components/useDemoFit";
 import { useDemoPlayback } from "@/components/useDemoPlayback";
 
+/** Seller Center is authored at this width; narrower stages scale down. */
+const UI_WIDTH = 1440;
 const CLIP_PAD = 8;
 const VIEWPORT_SCALE = 0.96;
 
 export function TtsProductDemo() {
+  const stageRef = useRef<HTMLDivElement>(null);
   const cameraRef = useRef<HTMLDivElement>(null);
+  const fitRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     const camera = cameraRef.current;
@@ -105,6 +110,7 @@ export function TtsProductDemo() {
     };
   }, []);
 
+  useDemoFit(stageRef, fitRef, UI_WIDTH);
   useDemoPlayback(cameraRef, "tts-demo1-active");
 
   return (
@@ -113,12 +119,14 @@ export function TtsProductDemo() {
         Seller–Creator Collaboration tooling
       </h3>
       <div
-        className="tts-collab-stage @container"
+        ref={stageRef}
+        className="tts-collab-stage"
         aria-label="TikTok Shop Affiliate Target Collaborations"
       >
         <div className="tts-collab-bezel">
           <div ref={cameraRef} className="tts-collab-camera">
-            <div className="tts-demo1-list-page">
+            <div ref={fitRef} className="tts-demo-fit">
+              <div className="tts-demo1-list-page">
               <TtsTargetCollaboration>
                 <div className="tts-collab-cursor" aria-hidden="true">
                   <svg
@@ -141,8 +149,9 @@ export function TtsProductDemo() {
                   </span>
                 </div>
               </TtsTargetCollaboration>
+              </div>
+              <TtsCreateCollaboration />
             </div>
-            <TtsCreateCollaboration />
           </div>
         </div>
       </div>

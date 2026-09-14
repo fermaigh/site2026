@@ -2366,3 +2366,12 @@ html.is-loading body {
     background-color: #eff9fb;
   }
 }
+
+/* Demos are authored at Seller Center's width and scaled down to fit a
+   narrower stage. The transform leaves the layout box at full width, which the
+   camera clips, so the page never scrolls sideways. */
+.tts-demo-fit {
+  position: relative;
+  width: 1440px;
+  transform-origin: top left;
+}
