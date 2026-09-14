@@ -110,7 +110,7 @@ export function TtsTargetCollaboration({
     <div className="tts-collab-ui flex w-full min-w-0 flex-col bg-[#F5F5F5] text-[#171718]">
       <TtsSellerTopBar />
 
-      <div className="flex min-w-0 bg-[#f5f5f5]">
+      <div className="flex min-w-0 flex-1 bg-[#f5f5f5]">
         <aside className="w-12 shrink-0 bg-white px-1 py-3 @[700px]:w-[200px] @[700px]:px-2 @[700px]:py-4">
           {NAV.map((item, index) => {
             if ("divider" in item && item.divider) {

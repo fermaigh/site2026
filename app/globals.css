@@ -2374,4 +2374,14 @@ html.is-loading body {
   position: relative;
   width: 1440px;
   transform-origin: top left;
+  /* Closer than the stage, so @-variants inside resolve against 1440px at
+     every viewport instead of against the stage's live width. */
+  container-type: inline-size;
+}
+
+/* Demo 1 fills the frame, so its nav rail reaches the bottom edge rather than
+   stopping where the page content happens to end. */
+.tts-demo-fit > .tts-demo1-list-page,
+.tts-demo-fit > .tts-demo1-list-page > .tts-collab-ui {
+  height: 100%;
 }

@@ -466,7 +466,7 @@ function CreatorRow({
 }) {
   return (
     <div
-      className="grid min-w-[760px] grid-cols-[28px_minmax(240px,1fr)_90px_90px_90px_90px_90px_148px] items-center border-b border-black/10 bg-white"
+      className="grid min-w-[760px] grid-cols-[28px_minmax(240px,1fr)_90px_90px_90px_90px_90px_184px] items-center border-b border-black/10 bg-white"
       {...(index === 3 ? { "data-tts-find-clip-end": "" } : {})}
     >
       <span className="ml-3 size-4 rounded border border-black/25 bg-white" />
@@ -534,7 +534,7 @@ function CreatorRow({
           {value}
         </span>
       ))}
-      <div className="flex items-center justify-end gap-1 pr-3">
+      <div className="flex items-center justify-end gap-1 pl-6 pr-3">
         <span className="flex h-11 w-[92px] items-center justify-center rounded-sm bg-[#009995] text-[14px] font-medium text-white">
           Invite
         </span>
@@ -636,7 +636,7 @@ function FindCreatorsScreen() {
               </span>
             </div>
             <div className="overflow-x-auto">
-              <div className="grid min-w-[760px] grid-cols-[28px_minmax(240px,1fr)_90px_90px_90px_90px_90px_148px] items-center bg-[#f7f7f7] py-3 text-[11px] text-black/55 @[700px]:text-[12px]">
+              <div className="grid min-w-[760px] grid-cols-[28px_minmax(240px,1fr)_90px_90px_90px_90px_90px_184px] items-center bg-[#f7f7f7] py-3 text-[11px] text-black/55 @[700px]:text-[12px]">
                 <span />
                 <span className="px-3">Creator</span>
                 <span className="text-center">Top video</span>

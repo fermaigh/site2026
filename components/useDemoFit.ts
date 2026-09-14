@@ -52,6 +52,14 @@ export function useDemoFit(
 
       const height = measure(fit);
       if (height <= 0) return;
+
+      // Bound the fit box to what is actually on screen. Content below still
+      // renders and is clipped by the camera, but anything positioned against
+      // the bottom edge — a floating panel, say — now resolves inside the
+      // frame rather than against the full page height.
+      const bounded = `${Math.round(height)}px`;
+      if (fit.style.height !== bounded) fit.style.height = bounded;
+
       const next = `${Math.max(1, Math.round(height * scale))}px`;
       if (camera.style.height !== next) camera.style.height = next;
     };
