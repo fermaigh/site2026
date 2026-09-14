@@ -709,16 +709,20 @@ html.is-loading body {
   animation: tts-find-chat-thinking-dots 1.2s steps(4, end) infinite;
 }
 
+/* Both states sit in flow and only one is rendered at a time, so the row is
+   as wide as the copy currently showing and the arrow keeps a constant gap
+   after it — moving right when the longer line replaces the shorter one. */
 .tts-find-chat-thinking-active {
   display: inline-block;
-  width: 90px;
-  animation: tts-find-chat-thinking-active 12s linear infinite;
+  animation: tts-find-chat-thinking-active 12s steps(1, end) infinite;
 }
 
 .tts-find-chat-thought-complete {
-  position: absolute;
-  left: 24px;
-  animation: tts-find-chat-thought-complete 12s linear infinite;
+  /* Rendered by default so the animation is created at all — Chrome does not
+     run animations on an element whose base style is display: none. The
+     keyframes hide it for the first stretch instead. */
+  display: inline-block;
+  animation: tts-find-chat-thought-complete 12s steps(1, end) infinite;
 }
 
 .tts-find-chat-response {
@@ -1069,24 +1073,20 @@ html.is-loading body {
 }
 
 @keyframes tts-find-chat-thinking-active {
-  0%,
-  77% {
-    opacity: 1;
+  0% {
+    display: inline-block;
   }
-  79%,
-  100% {
-    opacity: 0;
+  78% {
+    display: none;
   }
 }
 
 @keyframes tts-find-chat-thought-complete {
-  0%,
-  77% {
-    opacity: 0;
+  0% {
+    display: none;
   }
-  79%,
-  100% {
-    opacity: 1;
+  78% {
+    display: inline-block;
   }
 }
 
