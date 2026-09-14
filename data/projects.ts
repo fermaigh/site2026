@@ -80,6 +80,8 @@ export type CaseStudy = {
   gallery?: CaseStudyGallery;
   /** Closing note shown after the sections, ahead of any gallery */
   closingNote?: string;
+  /** Link to passcode-gated work, shown in place of a closing note */
+  gatedLink?: { label: string; href: string };
   /** Live product UI demo rendered below the closing note */
   showcase?: "target-collaboration" | "hiring-applicants";
 };
@@ -175,7 +177,7 @@ export const projects: Project[] = [
           ],
         },
       ],
-      closingNote: "Full case study details available upon request.",
+      gatedLink: { label: "View Case Studies", href: "/case-studies" },
       showcase: "target-collaboration",
     },
   },
