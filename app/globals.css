@@ -1599,15 +1599,14 @@ html.is-loading body {
   height: 26px;
   flex: none;
   border-radius: 6px;
-  color: #313131;
-}
-.hiring-nav-icon svg {
-  width: 18px;
-  height: 18px;
+  color: #0a1516;
 }
 .hiring-nav-item.is-active .hiring-nav-icon {
-  background: #0a1516;
-  color: #ffffff;
+  color: inherit;
+}
+.hiring-nav-icon svg {
+  width: 21px;
+  height: 21px;
 }
 .hiring-nav-badge {
   position: relative;

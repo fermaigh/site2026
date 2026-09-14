@@ -36,45 +36,94 @@ function Chrome() {
   );
 }
 
-const NAV = [
-  { id: "dashboard", label: "Dashboard", icon: IconChart },
-  { id: "jobs", label: "Jobs", icon: IconBriefcase },
-  { id: "applicants", label: "Applicants", icon: IconPeople },
-  { id: "campaigns", label: "Campaigns", icon: IconMegaphone },
-] as const;
+type NavIcon = (props: { active?: boolean }) => React.JSX.Element;
 
-function IconChart() {
+const NAV: { id: string; label: string; icon: NavIcon }[] = [
+  { id: "dashboard", label: "Dashboard", icon: IconDashboard },
+  { id: "jobs", label: "Jobs", icon: IconJobs },
+  { id: "applicants", label: "Applicants", icon: IconApplicants },
+  { id: "campaigns", label: "Campaigns", icon: IconCampaigns },
+];
+
+/** Bar chart inside a rounded frame. */
+function IconDashboard() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
-      <path d="M6 15v4M12 9v10M18 13v6" strokeLinecap="round" />
+    <svg viewBox="0 0 24 24" fill="none">
+      <rect
+        x="3.6"
+        y="3.6"
+        width="16.8"
+        height="16.8"
+        rx="4.6"
+        stroke="currentColor"
+        strokeWidth="1.9"
+      />
+      <g fill="currentColor">
+        <rect x="7.8" y="12.4" width="1.9" height="3.9" rx="0.7" />
+        <rect x="11.05" y="8.3" width="1.9" height="8" rx="0.7" />
+        <rect x="14.3" y="10.6" width="1.9" height="5.7" rx="0.7" />
+      </g>
     </svg>
   );
 }
 
-function IconBriefcase() {
+/** Briefcase with a handle and a clasp band. */
+function IconJobs() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
-      <rect x="3" y="7.5" width="18" height="12" rx="2.5" />
-      <path d="M9 7.5V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1.5" strokeLinecap="round" />
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.9"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect x="3.2" y="7.6" width="17.6" height="11.8" rx="3.2" />
+      <path d="M9.1 7.6V6.7a2.1 2.1 0 0 1 2.1-2.1h1.6a2.1 2.1 0 0 1 2.1 2.1v.9" />
+      <path d="M3.4 11.7c2.6 1.5 5.5 2.3 8.6 2.3s6-.8 8.6-2.3" />
+      <path d="M10.7 13.9h2.6" />
     </svg>
   );
 }
 
-function IconPeople() {
+/** Two figures. Selected renders the solid variant, as in the design; the
+ *  outline variant is what the other rows use. */
+function IconApplicants({ active }: { active?: boolean }) {
+  if (active) {
+    return (
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <circle cx="15" cy="7.9" r="3.7" />
+        <path d="M15 13.1c3.4 0 5.9 2.3 5.9 5.2 0 .6-.5 1.1-1.1 1.1h-9.6c-.6 0-1.1-.5-1.1-1.1 0-2.9 2.5-5.2 5.9-5.2Z" />
+        <circle cx="7.3" cy="10.4" r="2.9" />
+        <path d="M7.3 14.5c1.2 0 2.3.3 3.1.9a6.6 6.6 0 0 0-1.9 3.4c-.1.3 0 .6.1.9H4.2c-.6 0-1.1-.5-1.1-1.1 0-2.4 1.8-4.1 4.2-4.1Z" />
+      </svg>
+    );
+  }
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
-      <circle cx="9" cy="8.5" r="3" />
-      <path d="M3.5 19a5.5 5.5 0 0 1 11 0" strokeLinecap="round" />
-      <path d="M16 6.2a3 3 0 0 1 0 4.6M17.5 19a5.6 5.6 0 0 0-1.6-3.9" strokeLinecap="round" />
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9">
+      <circle cx="15" cy="7.9" r="3.3" />
+      <path d="M9.6 19.3c0-3 2.4-5.3 5.4-5.3s5.4 2.3 5.4 5.3" strokeLinecap="round" />
+      <circle cx="7" cy="10.6" r="2.5" />
+      <path d="M3.3 19.3c0-2.2 1.6-3.9 3.7-3.9.7 0 1.4.2 2 .5" strokeLinecap="round" />
     </svg>
   );
 }
 
-function IconMegaphone() {
+/** Megaphone with sound waves. */
+function IconCampaigns() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
-      <path d="M4 10.5v3a1.5 1.5 0 0 0 1.5 1.5H8l6 4V5l-6 4H5.5A1.5 1.5 0 0 0 4 10.5Z" strokeLinejoin="round" />
-      <path d="M17.5 9.5a3.5 3.5 0 0 1 0 5" strokeLinecap="round" />
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.9"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M4.9 9.4 13.4 5.3c.9-.4 1.9.2 1.9 1.2v11c0 1-1 1.6-1.9 1.2L4.9 14.6c-.7-.3-1.2-1-1.2-1.8v-1.6c0-.8.5-1.5 1.2-1.8Z" />
+      <path d="M7.6 14.1v3.4a1.7 1.7 0 0 0 3.4 0v-1.8" />
+      <path d="M18.3 9.8a3.9 3.9 0 0 1 0 4.4" />
+      <path d="M20.7 7.9a7.3 7.3 0 0 1 0 8.2" />
     </svg>
   );
 }
@@ -98,7 +147,7 @@ function Sidebar() {
             className={`hiring-nav-item${id === "applicants" ? " is-active" : ""}`}
           >
             <span className="hiring-nav-icon">
-              <Icon />
+              <Icon active={id === "applicants"} />
             </span>
             {label}
             {id === "applicants" ? (
