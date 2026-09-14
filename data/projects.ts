@@ -394,6 +394,7 @@ export const projects: Project[] = [
           ],
         },
       ],
+      closingNote: "Full case study details available upon request.",
     },
   },
   {
@@ -500,6 +501,7 @@ export const projects: Project[] = [
           ],
         },
       ],
+      closingNote: "Full case study details available upon request.",
     },
   },
 ];
