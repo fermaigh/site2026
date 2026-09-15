@@ -61,7 +61,7 @@ export function VideoAvatarFrame() {
       <canvas ref={canvasRef} style={{ display: "none" }} />
       <button
         onClick={() => router.push("/about")}
-        className="relative ml-0 size-[75px] shrink-0 overflow-hidden rounded-full bg-transparent hover:opacity-80 active:opacity-70 transition-opacity border-0 p-0 cursor-pointer sm:size-[107px] md:size-32 scale-95"
+        className="relative ml-0 size-[75px] shrink-0 overflow-hidden rounded-full bg-transparent hover:opacity-80 active:opacity-70 transition-opacity border-0 p-0 cursor-pointer sm:size-[107px] md:size-32 scale-75"
         aria-label="Go to about page"
       >
         {frameData && (
