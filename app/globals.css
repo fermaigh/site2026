@@ -2416,3 +2416,77 @@ html.is-loading body {
 /* Demo 1 fills the frame, so its nav rail reaches the bottom edge rather than
    stopping where the page content happens to end. */
 .tts-demo-fit > .tts-demo1-list-page,
+
+/* Logo 3D coin flip effect */
+@keyframes coin-flip-1 {
+  0% {
+    transform: perspective(800px) rotateY(0deg) rotateX(0deg);
+  }
+  50% {
+    transform: perspective(800px) rotateY(180deg) rotateX(25deg);
+  }
+  100% {
+    transform: perspective(800px) rotateY(360deg) rotateX(0deg);
+  }
+}
+
+@keyframes coin-flip-2 {
+  0% {
+    transform: perspective(800px) rotateY(0deg) rotateX(0deg);
+  }
+  50% {
+    transform: perspective(800px) rotateY(180deg) rotateX(-20deg);
+  }
+  100% {
+    transform: perspective(800px) rotateY(360deg) rotateX(0deg);
+  }
+}
+
+@keyframes coin-flip-3 {
+  0% {
+    transform: perspective(800px) rotateX(0deg) rotateY(0deg);
+  }
+  50% {
+    transform: perspective(800px) rotateX(180deg) rotateY(30deg);
+  }
+  100% {
+    transform: perspective(800px) rotateX(360deg) rotateY(0deg);
+  }
+}
+
+@keyframes coin-flip-4 {
+  0% {
+    transform: perspective(800px) rotateX(0deg) rotateZ(0deg);
+  }
+  50% {
+    transform: perspective(800px) rotateX(180deg) rotateZ(15deg);
+  }
+  100% {
+    transform: perspective(800px) rotateX(360deg) rotateZ(0deg);
+  }
+}
+
+.logo-hover {
+  cursor: pointer;
+  transform-style: preserve-3d;
+}
+
+.logo-hover:hover {
+  animation: coin-flip-1 2s cubic-bezier(0.34, 1.56, 0.64, 1) 1;
+}
+
+.logo-hover:nth-child(1):hover {
+  animation: coin-flip-1 2s cubic-bezier(0.34, 1.56, 0.64, 1) 1;
+}
+
+.logo-hover:nth-child(2):hover {
+  animation: coin-flip-2 2s cubic-bezier(0.34, 1.56, 0.64, 1) 1;
+}
+
+.logo-hover:nth-child(3):hover {
+  animation: coin-flip-3 2s cubic-bezier(0.34, 1.56, 0.64, 1) 1;
+}
+
+.logo-hover:nth-child(4):hover {
+  animation: coin-flip-4 2s cubic-bezier(0.34, 1.56, 0.64, 1) 1;
+}
