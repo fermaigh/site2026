@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { LandingTopBar } from "@/components/LandingTopBar";
+import { VideoAvatarFrame } from "@/components/VideoAvatarFrame";
 
 export function SiteHero() {
   return (
@@ -7,17 +7,7 @@ export function SiteHero() {
       <LandingTopBar />
 
       <div className="reveal reveal-delay-1 flex items-start gap-4 pb-8 sm:items-center sm:gap-6 sm:pb-10 md:gap-7 md:pb-12">
-        {/* Previous sizes ÷ 1.5 (112/160/192 → 75/107/128). Circle stays on the page left edge. */}
-        <div className="relative ml-0 size-[75px] shrink-0 overflow-hidden rounded-full bg-[#d9d9d9] sm:size-[107px] md:size-32">
-          <Image
-            src="/avatar.webp"
-            alt="Xiaoye Lin"
-            fill
-            priority
-            sizes="(max-width: 640px) 75px, (max-width: 768px) 107px, 128px"
-            className="scale-[1.45] object-cover object-[33%_12%]"
-          />
-        </div>
+        <VideoAvatarFrame />
 
         <div className="min-w-0 flex-1">
           <h1 className="font-sans text-[clamp(1.5rem,5.5vw,2.25rem)] font-semibold leading-tight tracking-tight text-foreground">
