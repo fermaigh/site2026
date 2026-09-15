@@ -68,7 +68,7 @@ export function VideoAvatarFrame() {
           <img
             src={frameData}
             alt="Xiaoye Lin"
-            className="scale-70 object-cover object-[33%_12%] w-full h-full"
+            className="scale-[0.84] object-cover object-[33%_12%] w-full h-full"
           />
         )}
       </button>
