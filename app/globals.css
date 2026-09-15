@@ -2490,3 +2490,35 @@ html.is-loading body {
 .logo-hover:nth-child(4):hover {
   animation: coin-flip-4 2s cubic-bezier(0.34, 1.56, 0.64, 1) 1;
 }
+
+/* Hand wave animation */
+@keyframes hand-wave {
+  0% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(14deg);
+  }
+  20% {
+    transform: rotate(-8deg);
+  }
+  30% {
+    transform: rotate(14deg);
+  }
+  40% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+  60% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.hero-section:hover .wave-emoji {
+  animation: hand-wave 0.6s ease-in-out 1;
+}
