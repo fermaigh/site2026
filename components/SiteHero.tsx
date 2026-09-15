@@ -1,5 +1,6 @@
 import { LandingTopBar } from "@/components/LandingTopBar";
 import { VideoAvatarFrame } from "@/components/VideoAvatarFrame";
+import { PronunciationAudio } from "@/components/PronunciationAudio";
 
 export function SiteHero() {
   return (
@@ -17,7 +18,7 @@ export function SiteHero() {
             </span>
           </h1>
           <p className="mt-1 font-sans text-[14px] italic text-foreground/45 sm:text-[15px]">
-            pronounced as &ldquo;shall-yay&rdquo;
+            <PronunciationAudio />
           </p>
           <p className="mt-2 max-w-xl font-sans text-[14px] leading-relaxed text-pretty text-foreground/70 sm:text-[15px] md:text-[16px]">
             AI native, design thoughtful, strategic and useful products for
