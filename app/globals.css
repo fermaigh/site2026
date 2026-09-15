@@ -2419,3 +2419,26 @@ html.is-loading body {
 .tts-demo-fit > .tts-demo1-list-page > .tts-collab-ui {
   height: 100%;
 }
+
+/* Logo hover clip effect */
+@keyframes logo-clip {
+  0% {
+    clip-path: polygon(50% 0%, 50% 0%, 50% 100%, 50% 100%);
+  }
+  25% {
+    clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%);
+  }
+  50% {
+    clip-path: polygon(50% 0%, 100% 0%, 100% 50%, 100% 100%, 50% 100%, 50% 50%);
+  }
+  75% {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 50% 100%, 0% 100%);
+  }
+  100% {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+}
+
+.logo-hover:hover {
+  animation: logo-clip 2s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+}
