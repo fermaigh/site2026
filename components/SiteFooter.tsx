@@ -55,27 +55,7 @@ export function SiteFooter() {
   return (
     <footer className="w-full border-t border-foreground/10 py-10 sm:py-12 md:py-14">
       <p className="w-full font-sans text-[13px] leading-relaxed text-pretty text-foreground/70 sm:text-[15px]">
-        Vibe coded with
-        <FooterBrandIcon>
-          <CursorIcon />
-        </FooterBrandIcon>
-        Cursor,
-        <FooterBrandIcon>
-          <ClaudeIcon />
-        </FooterBrandIcon>
-        Claude Code and
-        <FooterBrandIcon>
-          <ChatGPTIcon />
-        </FooterBrandIcon>
-        ChatGPT, hosted on
-        <FooterBrandIcon>
-          <GithubIcon />
-        </FooterBrandIcon>
-        Github, deployed on
-        <FooterBrandIcon>
-          <VercelIcon />
-        </FooterBrandIcon>
-        Vercel.
+        Designed by human, Built by AI
       </p>
       <p className="mt-3 font-sans text-[12px] text-foreground/40 sm:mt-4 sm:text-[13px]">
         © {year} Xiaoye Lin

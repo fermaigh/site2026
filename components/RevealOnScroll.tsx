@@ -47,9 +47,24 @@ export function RevealOnScroll() {
           .sort(inDocumentOrder);
 
         arriving.forEach((el, index) => {
+          // Get element position for diagonal effect
+          const rect = el.getBoundingClientRect();
+          const viewportWidth = window.innerWidth;
+          const viewportHeight = window.innerHeight;
+
+          // Normalize positions to 0-1 range
+          const verticalNorm = Math.max(0, Math.min(1, rect.top / viewportHeight));
+          const horizontalNorm = Math.max(0, Math.min(1, rect.left / viewportWidth));
+
+          // Combine position-based delay with document order delay
+          // Vertical position weighted more heavily (80%) than horizontal (20%)
+          const positionFactor = Math.min(verticalNorm * 0.8 + horizontalNorm * 0.2, 1);
+          const positionSteps = Math.ceil(positionFactor * 2); // 0-2 extra steps for subtle diagonal
+          const totalSteps = Math.min(index + positionSteps, MAX_STEPS);
+
           el.style.setProperty(
             "--reveal-delay",
-            `${Math.min(index, MAX_STEPS) * STEP_MS}ms`,
+            `${totalSteps * STEP_MS}ms`,
           );
           el.classList.add("is-revealing");
           observer.unobserve(el);
