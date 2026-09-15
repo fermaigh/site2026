@@ -151,14 +151,18 @@
 }
 
 /* Quiet, faster entrance motion */
-@keyframes reveal-up {
+/* Content wipes in from its left edge. RevealOnScroll staggers elements in
+   document order, so a screenful cascades down the page. */
+@keyframes reveal-wipe {
   from {
+    clip-path: inset(0 100% 0 0);
     opacity: 0;
-    transform: translateY(6px);
+    transform: translateX(-10px);
   }
   to {
+    clip-path: inset(0 0 0 0);
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(0);
   }
 }
 
@@ -187,20 +191,43 @@
   }
 }
 
-.reveal {
-  animation: reveal-up 0.35s ease-in both;
+/* Unarmed — no JS, or reduced motion — leaves every block plainly visible.
+   The waiting state hides with opacity alone, deliberately: a clip-path here
+   zeroes the element's own intersection rect, so IntersectionObserver would
+   never see it arrive and it would stay hidden forever. The keyframes own the
+   clip instead, which is safe because by then it has been unobserved. */
+.reveal-armed .reveal {
+  opacity: 0;
 }
 
+.reveal-armed .reveal.is-revealing {
+  animation: reveal-wipe 0.62s cubic-bezier(0.33, 1, 0.68, 1) both;
+  animation-delay: var(--reveal-delay, 0ms);
+  will-change: clip-path, opacity, transform;
+}
+
+/* Drop the clip once it has played: inset(0) still clips, which would cut the
+   shadows the live demos let spill past their edges. */
+.reveal-armed .reveal.is-revealed {
+  clip-path: none;
+  opacity: 1;
+  transform: none;
+  animation: none;
+  will-change: auto;
+}
+
+/* Hand-placed tiers remain a sensible starting offset; the observer overrides
+   them inline with the real document-order position. */
 .reveal-delay-1 {
-  animation-delay: 40ms;
+  --reveal-delay: 60ms;
 }
 
 .reveal-delay-2 {
-  animation-delay: 80ms;
+  --reveal-delay: 120ms;
 }
 
 .reveal-delay-3 {
-  animation-delay: 120ms;
+  --reveal-delay: 180ms;
 }
 
 .page-shell-enter {
@@ -1337,6 +1364,13 @@ html.is-loading body {
   .reveal-delay-3,
   .page-shell-enter {
     animation: none;
+  }
+
+  /* Belt and braces: even if the root were armed, nothing stays hidden. */
+  .reveal-armed .reveal {
+    clip-path: none;
+    opacity: 1;
+    transform: none;
   }
 
   .page-loader {
