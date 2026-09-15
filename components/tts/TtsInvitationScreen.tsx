@@ -111,7 +111,7 @@ function Star() {
 const PRODUCTS = [
   {
     shot: "invitation-product-1",
-    photo: "sponge",
+    photo: "invitation-product-1",
     title: "Latex-Free Teardrop Makeup Blender Sponge",
     earn: "1.35",
     price: "8.99",
@@ -122,7 +122,7 @@ const PRODUCTS = [
   },
   {
     shot: "invitation-product-2",
-    photo: "lipstick",
+    photo: "invitation-product-2",
     title: "Velvet Matte Lipstick in Cherry Rouge",
     earn: "2.64",
     price: "16.50",
@@ -133,7 +133,7 @@ const PRODUCTS = [
   },
   {
     shot: "invitation-product-3",
-    photo: "essence",
+    photo: "invitation-product-3",
     title: "24K Gold Radiance Essence 50ml",
     earn: "5.44",
     price: "32.00",
@@ -361,7 +361,7 @@ export function TtsInvitationScreen() {
           </p>
           <div className="flex items-center gap-[12px]">
             <TtsShot
-              src={`${SHOT_ROOT}/shop-avatar.png`}
+              src={`${SHOT_ROOT}/invitation-shop.svg`}
               tone="none"
               className="size-[56px] rounded-full"
             />

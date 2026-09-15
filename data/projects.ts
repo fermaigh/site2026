@@ -50,6 +50,20 @@ export type CaseStudySection = {
   blocks?: CaseStudyBlock[];
 };
 
+export type GalleryScreen = {
+  src: string;
+  /** Intrinsic pixel size — sets each tile's aspect ratio in the column layout */
+  width: number;
+  height: number;
+};
+
+export type CaseStudyGallery = {
+  caption?: string;
+  /** Announced in place of per-screen alt strings, which would be noise */
+  summary: string;
+  screens: GalleryScreen[];
+};
+
 export type CaseStudy = {
   /** FAANG-style meta lines shown under the title */
   role?: string;
@@ -62,10 +76,14 @@ export type CaseStudy = {
   /** Intro paragraph shown under the title (and under meta lines when set) */
   lead?: RichText;
   sections: CaseStudySection[];
-  /** Closing note shown at the end of the case study page */
+  /** Cropped, drifting wall of product screens, closing out the page */
+  gallery?: CaseStudyGallery;
+  /** Closing note shown after the sections, ahead of any gallery */
   closingNote?: string;
+  /** Link to passcode-gated work, shown in place of a closing note */
+  gatedLink?: { label: string; href: string };
   /** Live product UI demo rendered below the closing note */
-  showcase?: "target-collaboration";
+  showcase?: "target-collaboration" | "hiring-applicants";
 };
 
 export type Project = {
@@ -159,7 +177,7 @@ export const projects: Project[] = [
           ],
         },
       ],
-      closingNote: "Full case study details available upon request.",
+      gatedLink: { label: "View Case Studies", href: "/case-studies" },
       showcase: "target-collaboration",
     },
   },
@@ -174,7 +192,7 @@ export const projects: Project[] = [
       role: "Lead Product Designer",
       team: "Founder, 2 PMs, 8 Engineers, 2 Designers",
       duration: "2023–2024",
-      ownership: "Hiring Manager, Franchise Owner, Applicant experiences",
+      ownership: "Hiring Manager Core experience, Franchise Admin tool, Job Applicant experiences",
       lead: {
         parts: [
           "Joined shortly after ",
@@ -188,92 +206,98 @@ export const projects: Project[] = [
       },
       sections: [
         {
-          heading: "Overview",
-          blocks: [
+          heading: "Impact",
+          bullets: [
             {
-              heading: "Impact",
-              bullets: [
+              parts: [
+                "↑ ",
+                { bold: "87% interview conversation rate" },
+                " for clients using Sprockets",
+              ],
+            },
+            {
+              parts: [
+                "↓ ",
+                { bold: "27% 90-day employee turnover" },
+                " for clients using Sprockets",
+              ],
+            },
+            {
+              parts: [
+                "Enabled ",
+                { bold: "enterprise adoption" },
+                " across brands including ",
                 {
-                  parts: [
-                    "↑ ",
-                    { bold: "87% interview conversation rate" },
-                  ],
-                },
-                {
-                  parts: [
-                    "↓ ",
-                    { bold: "27% 90-day employee turnover" },
-                  ],
-                },
-                {
-                  parts: [
-                    "Enabled ",
-                    { bold: "enterprise adoption" },
-                    " across brands including ",
-                    {
-                      bold: "McDonald's, Chick-fil-A, Burger King, and Taco Bell",
-                    },
-                  ],
-                },
-                {
-                  parts: [
-                    "Helped scale the product through the company's ",
-                    {
-                      text: "acquisition by Humanly.io",
-                      href: "https://www.humanly.io/blog/humanly-expands-to-create-an-end-to-end-conversational-ai-hiring-platform",
-                    },
-                  ],
+                  bold: "McDonald's, Chick-fil-A, Burger King, and Taco Bell",
                 },
               ],
             },
             {
-              heading: "My contributions",
-              bullets: [
+              parts: [
+                "Helped scale the product through the company's ",
                 {
-                  parts: [
-                    "Shaped ",
-                    { bold: "product strategy and vision" },
-                    " alongside company leadership.",
-                  ],
-                },
-                {
-                  parts: [
-                    { bold: "Led end-to-end design" },
-                    " across multiple product areas, from concept to launch.",
-                  ],
-                },
-                {
-                  parts: [
-                    "Drove product decisions through ",
-                    { bold: "user research, data, and rapid experimentation" },
-                    ".",
-                  ],
-                },
-                {
-                  parts: [
-                    "Influenced ",
-                    { bold: "roadmap prioritization" },
-                    " with founders, product, and engineering.",
-                  ],
-                },
-                {
-                  parts: [
-                    "Established scalable design processes and a ",
-                    { bold: "design system" },
-                    " to accelerate delivery.",
-                  ],
-                },
-                {
-                  parts: [
-                    { bold: "Mentored designers" },
-                    " and elevated design quality across the organization.",
-                  ],
+                  text: "acquisition by Humanly.io",
+                  href: "https://www.humanly.io/blog/humanly-expands-to-create-an-end-to-end-conversational-ai-hiring-platform",
                 },
               ],
             },
           ],
         },
+        {
+          heading: "My contributions",
+          bullets: [
+            {
+              parts: [
+                "Shaped ",
+                { bold: "product strategy and vision" },
+                " alongside company leadership.",
+              ],
+            },
+            {
+              parts: [
+                { bold: "Led end-to-end design" },
+                " across multiple product areas, from concept to launch.",
+              ],
+            },
+            {
+              parts: [
+                "Established scalable design processes and a ",
+                { bold: "design system" },
+                " to accelerate delivery.",
+              ],
+            },
+          ],
+        },
       ],
+      gallery: {
+        caption:
+          "A cross-section of the platform — manager dashboards, applicant scoring, campaign tooling, franchise administration, and the candidate-facing mobile flow.",
+        summary:
+          "A wall of screens from the hiring platform, spanning manager dashboards, applicant scoring, campaign tooling, franchise administration, and the mobile candidate experience.",
+        screens: [
+          { src: "/projects/hiring-app/screens/screen-01.png", width: 2928, height: 2158 },
+          { src: "/projects/hiring-app/screens/screen-02.png", width: 2928, height: 3074 },
+          { src: "/projects/hiring-app/screens/screen-03.png", width: 2880, height: 1714 },
+          { src: "/projects/hiring-app/screens/screen-04.png", width: 2928, height: 2640 },
+          { src: "/projects/hiring-app/screens/screen-05.png", width: 2938, height: 1762 },
+          { src: "/projects/hiring-app/screens/screen-06.png", width: 2938, height: 2770 },
+          { src: "/projects/hiring-app/screens/screen-07.png", width: 2938, height: 1762 },
+          { src: "/projects/hiring-app/screens/screen-08.png", width: 2938, height: 1762 },
+          { src: "/projects/hiring-app/screens/screen-09.png", width: 2928, height: 3070 },
+          { src: "/projects/hiring-app/screens/screen-10.png", width: 2928, height: 2332 },
+          { src: "/projects/hiring-app/screens/screen-11.png", width: 2928, height: 1762 },
+          { src: "/projects/hiring-app/screens/screen-12.png", width: 2928, height: 1748 },
+          { src: "/projects/hiring-app/screens/screen-13.png", width: 2928, height: 2934 },
+          { src: "/projects/hiring-app/screens/screen-14.png", width: 2928, height: 1748 },
+          { src: "/projects/hiring-app/screens/screen-15.png", width: 2906, height: 2188 },
+          { src: "/projects/hiring-app/screens/screen-16.png", width: 3114, height: 2762 },
+          { src: "/projects/hiring-app/screens/screen-17.png", width: 2928, height: 1762 },
+          { src: "/projects/hiring-app/screens/screen-18.png", width: 2900, height: 1734 },
+          { src: "/projects/hiring-app/screens/screen-19.png", width: 2900, height: 3326 },
+        ],
+      },
+      closingNote: "Full case study details available upon request.",
+      showcase: "hiring-applicants",
     },
   },
   {
@@ -370,6 +394,7 @@ export const projects: Project[] = [
           ],
         },
       ],
+      closingNote: "Full case study details available upon request.",
     },
   },
   {
@@ -476,6 +501,7 @@ export const projects: Project[] = [
           ],
         },
       ],
+      closingNote: "Full case study details available upon request.",
     },
   },
 ];

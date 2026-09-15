@@ -4,7 +4,7 @@ import { useLayoutEffect, useRef } from "react";
 import { TtsBrandConnectScreen } from "@/components/tts/TtsBrandConnectScreen";
 import { TtsInvitationScreen } from "@/components/tts/TtsInvitationScreen";
 import { TtsPhoneFrame } from "@/components/tts/TtsPhoneFrame";
-import { useDemoPlayback } from "@/components/tts/useDemoPlayback";
+import { useDemoPlayback } from "@/components/useDemoPlayback";
 
 /** Two 410px devices plus the gutter between them. */
 const ROW_WIDTH = 852;

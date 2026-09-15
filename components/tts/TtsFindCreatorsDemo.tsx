@@ -1,11 +1,23 @@
 "use client";
 
 import Image from "next/image";
-import { useLayoutEffect, useRef } from "react";
+import { useRef } from "react";
+import { DemoCursorHand } from "@/components/DemoCursorHand";
 import { TtsIcon } from "@/components/tts/TtsIcon";
-import { useDemoPlayback } from "@/components/tts/useDemoPlayback";
+import { offsetTopWithin, useDemoFit } from "@/components/useDemoFit";
+import { useDemoPlayback } from "@/components/useDemoPlayback";
 
 const ASSET_ROOT = "/projects/tts-ui/find-creators";
+
+/** Seller Center is authored at this width; narrower stages scale down. */
+const UI_WIDTH = 1440;
+
+/** The demo shows the list down to its marker, not the whole page. */
+function visibleHeight(fit: HTMLElement) {
+  const marker = fit.querySelector<HTMLElement>("[data-tts-find-clip-end]");
+  if (!marker) return 0;
+  return offsetTopWithin(marker, fit) + marker.offsetHeight + 8;
+}
 
 type Creator = {
   avatar: string;
@@ -238,7 +250,7 @@ function AssistantCursor() {
         />
       </svg>
       <span className="tts-find-cursor-hand">
-        <TtsIcon name="cursor-pointer" width={24} height={25} />
+        <DemoCursorHand />
       </span>
     </span>
   );
@@ -263,7 +275,7 @@ function PanelCursor() {
         />
       </svg>
       <span className="tts-find-panel-cursor-hand">
-        <TtsIcon name="cursor-pointer" width={24} height={25} />
+        <DemoCursorHand />
       </span>
     </span>
   );
@@ -393,14 +405,16 @@ function AssistantPanel() {
             <span className="tts-find-chat-thinking-icon">
               <AssistantAsset name="assistant-thought" />
             </span>
-            <span className="tts-find-chat-thinking-active">
-              Thinking
-              <span className="tts-find-chat-thinking-dots">...</span>
-            </span>
-            <span className="tts-find-chat-thought-complete">
-              Thought for 4s
-            </span>
-            <AssistantAsset name="assistant-right" />
+            <div className="flex items-center gap-2">
+              <span className="tts-find-chat-thinking-active">
+                Thinking
+                <span className="tts-find-chat-thinking-dots">...</span>
+              </span>
+              <span className="tts-find-chat-thought-complete">
+                Thought for 4s
+              </span>
+              <AssistantAsset name="assistant-right" />
+            </div>
           </div>
           <div className="tts-find-chat-response">
             <p className="mt-3">
@@ -452,7 +466,7 @@ function CreatorRow({
 }) {
   return (
     <div
-      className="grid min-w-[760px] grid-cols-[28px_minmax(240px,1fr)_90px_90px_90px_90px_90px_148px] items-center border-b border-black/10 bg-white"
+      className="grid min-w-[760px] grid-cols-[28px_minmax(240px,1fr)_90px_90px_90px_90px_90px_184px] items-center border-b border-black/10 bg-white"
       {...(index === 3 ? { "data-tts-find-clip-end": "" } : {})}
     >
       <span className="ml-3 size-4 rounded border border-black/25 bg-white" />
@@ -520,7 +534,7 @@ function CreatorRow({
           {value}
         </span>
       ))}
-      <div className="flex items-center justify-end gap-1 pr-3">
+      <div className="flex items-center justify-end gap-1 pl-6 pr-3">
         <span className="flex h-11 w-[92px] items-center justify-center rounded-sm bg-[#009995] text-[14px] font-medium text-white">
           Invite
         </span>
@@ -622,7 +636,7 @@ function FindCreatorsScreen() {
               </span>
             </div>
             <div className="overflow-x-auto">
-              <div className="grid min-w-[760px] grid-cols-[28px_minmax(240px,1fr)_90px_90px_90px_90px_90px_148px] items-center bg-[#f7f7f7] py-3 text-[11px] text-black/55 @[700px]:text-[12px]">
+              <div className="grid min-w-[760px] grid-cols-[28px_minmax(240px,1fr)_90px_90px_90px_90px_90px_184px] items-center bg-[#f7f7f7] py-3 text-[11px] text-black/55 @[700px]:text-[12px]">
                 <span />
                 <span className="px-3">Creator</span>
                 <span className="text-center">Top video</span>
@@ -644,39 +658,11 @@ function FindCreatorsScreen() {
 }
 
 export function TtsFindCreatorsDemo() {
+  const stageRef = useRef<HTMLDivElement>(null);
   const cameraRef = useRef<HTMLDivElement>(null);
+  const fitRef = useRef<HTMLDivElement>(null);
 
-  useLayoutEffect(() => {
-    const camera = cameraRef.current;
-    if (!camera) return;
-
-    const clip = () => {
-      const marker = camera.querySelector<HTMLElement>(
-        "[data-tts-find-clip-end]",
-      );
-      if (!marker) return;
-      const next = `${Math.max(
-        Math.round(
-          marker.getBoundingClientRect().bottom -
-            camera.getBoundingClientRect().top +
-            8,
-        ),
-        1,
-      )}px`;
-      if (camera.style.height !== next) camera.style.height = next;
-    };
-
-    clip();
-    void document.fonts?.ready?.then(clip);
-    const observer = new ResizeObserver(clip);
-    observer.observe(camera);
-    window.addEventListener("resize", clip);
-    return () => {
-      observer.disconnect();
-      window.removeEventListener("resize", clip);
-    };
-  }, []);
-
+  useDemoFit(stageRef, fitRef, UI_WIDTH, cameraRef, visibleHeight);
   useDemoPlayback(cameraRef, "tts-find-active");
 
   return (
@@ -688,7 +674,8 @@ export function TtsFindCreatorsDemo() {
         Scale Creator Outreach with AI
       </h3>
       <div
-        className="tts-collab-stage @container"
+        ref={stageRef}
+        className="tts-collab-stage"
         aria-label="Interactive TikTok Shop Find Creators demo"
       >
         <div className="tts-collab-bezel">
@@ -697,8 +684,10 @@ export function TtsFindCreatorsDemo() {
             className="tts-collab-camera"
             data-tts-demo="find-creators"
           >
-            <FindCreatorsScreen />
-            <AssistantPanel />
+            <div ref={fitRef} className="tts-demo-fit">
+              <FindCreatorsScreen />
+              <AssistantPanel />
+            </div>
           </div>
         </div>
       </div>

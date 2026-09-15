@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PageShell } from "@/components/PageShell";
 import { RichTextContent } from "@/components/RichText";
+import { HiringApplicantsDemo } from "@/components/hiring/HiringApplicantsDemo";
+import { ScreenWall } from "@/components/ScreenWall";
+import { TransitionLink } from "@/components/TransitionLink";
 import { TtsProductDemo } from "@/components/tts/TtsProductDemo";
 import {
   getCaseStudyProjects,
@@ -112,6 +115,30 @@ function CaseStudySectionContent({ section }: { section: CaseStudySection }) {
   );
 }
 
+function GatedLink({ label, href }: { label: string; href: string }) {
+  return (
+    <TransitionLink
+      href={href}
+      className="reveal reveal-delay-3 mt-10 inline-flex min-h-11 items-center gap-2 rounded-full border border-foreground/15 bg-foreground px-5 font-sans text-[14px] font-medium text-background transition-opacity hover:opacity-80 active:opacity-70 sm:mt-12"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="size-4"
+        aria-hidden
+      >
+        <rect x="4.5" y="10.5" width="15" height="10" rx="2.6" />
+        <path d="M8 10.5V7.8a4 4 0 0 1 8 0v2.7" />
+      </svg>
+      {label}
+    </TransitionLink>
+  );
+}
+
 function MetaLine({ label, value }: { label: string; value: string }) {
   return (
     <p>
@@ -186,15 +213,31 @@ export default async function CaseStudyPage({ params }: PageProps) {
           ))}
         </div>
 
+        {caseStudy.gatedLink ? (
+          <GatedLink {...caseStudy.gatedLink} />
+        ) : null}
+
         {caseStudy.closingNote ? (
           <p className="reveal reveal-delay-3 mt-10 w-full font-sans text-[15px] leading-[1.65] text-[#E11919] sm:mt-12 sm:text-[17px]">
             {caseStudy.closingNote}
           </p>
         ) : null}
 
+        {caseStudy.showcase === "hiring-applicants" ? (
+          <div className="reveal reveal-delay-3 mt-10 w-full sm:mt-12">
+            <HiringApplicantsDemo />
+          </div>
+        ) : null}
+
         {caseStudy.showcase === "target-collaboration" ? (
           <div className="reveal reveal-delay-3 mt-10 w-full sm:mt-12">
             <TtsProductDemo />
+          </div>
+        ) : null}
+
+        {caseStudy.gallery ? (
+          <div className="reveal reveal-delay-3 mt-10 w-full sm:mt-12">
+            <ScreenWall gallery={caseStudy.gallery} />
           </div>
         ) : null}
       </article>

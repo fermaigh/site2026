@@ -33,6 +33,14 @@ function GithubIcon() {
   );
 }
 
+function ChatGPTIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className="size-full">
+      <path d="M19.52 11.996a7.52 7.52 0 0 0-.496-5.35.75.75 0 0 0-.748-.43c-.19.018-.334.15-.375.328a6.048 6.048 0 0 1 .354 4.458.75.75 0 0 0 .748.871c.19-.018.335-.15.375-.329.04-.178.048-.357.142-.548ZM12 3.5a8.5 8.5 0 1 0 8.5 8.5A8.51 8.51 0 0 0 12 3.5Zm4.82 10.152a3.22 3.22 0 1 1 0-6.44 3.22 3.22 0 0 1 0 6.44Z" />
+    </svg>
+  );
+}
+
 function VercelIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" className="size-full">
@@ -47,23 +55,7 @@ export function SiteFooter() {
   return (
     <footer className="w-full border-t border-foreground/10 py-10 sm:py-12 md:py-14">
       <p className="w-full font-sans text-[13px] leading-relaxed text-pretty text-foreground/70 sm:text-[15px]">
-        Vibe coded with
-        <FooterBrandIcon>
-          <CursorIcon />
-        </FooterBrandIcon>
-        Cursor and
-        <FooterBrandIcon>
-          <ClaudeIcon />
-        </FooterBrandIcon>
-        Claude Code, hosted on
-        <FooterBrandIcon>
-          <GithubIcon />
-        </FooterBrandIcon>
-        Github, deployed on
-        <FooterBrandIcon>
-          <VercelIcon />
-        </FooterBrandIcon>
-        Vercel.
+        Designed by human, Built by AI
       </p>
       <p className="mt-3 font-sans text-[12px] text-foreground/40 sm:mt-4 sm:text-[13px]">
         © {year} Xiaoye Lin

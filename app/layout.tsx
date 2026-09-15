@@ -4,6 +4,8 @@ import { Analytics } from "@vercel/analytics/next";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ThemeScript } from "@/components/ThemeScript";
 import { PageLoader } from "@/components/PageLoader";
+import { RevealOnScroll } from "@/components/RevealOnScroll";
+import { RevealScript } from "@/components/RevealScript";
 import "./globals.css";
 
 const inter = Inter({
@@ -51,10 +53,12 @@ export default function RootLayout({
     >
       <head>
         <ThemeScript />
+        <RevealScript />
       </head>
       <body className="flex min-h-full flex-col overflow-x-hidden bg-background font-sans text-foreground">
         <ThemeProvider>
           <PageLoader />
+          <RevealOnScroll />
           {children}
         </ThemeProvider>
         <Analytics />
