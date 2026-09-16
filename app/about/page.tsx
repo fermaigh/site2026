@@ -2,16 +2,9 @@
 
 import { useRef, useEffect } from "react";
 import { PageShell } from "@/components/PageShell";
+import { HobbyGallery } from "@/components/HobbyGallery";
 
 const EMAIL_HREF = "mailto:fermaigh@gmail.com";
-
-const HOBBY_PHOTOS = [
-  { alt: "Hobby photo 1" },
-  { alt: "Hobby photo 2" },
-  { alt: "Hobby photo 3" },
-  { alt: "Hobby photo 4" },
-  { alt: "Hobby photo 5" },
-];
 
 export default function AboutPage() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -90,20 +83,7 @@ export default function AboutPage() {
           <h2 className="font-sans text-[clamp(1.125rem,4vw,1.5rem)] font-semibold tracking-tight text-foreground">
             Outside of work
           </h2>
-          <div className="mt-6 grid grid-cols-2 gap-3 sm:mt-8 sm:grid-cols-3 sm:gap-4 md:grid-cols-5">
-            {HOBBY_PHOTOS.map((photo, index) => (
-              <div
-                key={photo.alt}
-                className={`relative aspect-square overflow-hidden rounded-xl bg-[#d9d9d9] sm:rounded-2xl ${
-                  index === 0 ? "col-span-2 sm:col-span-1" : ""
-                }`}
-              >
-                <div className="absolute inset-0 flex items-center justify-center font-sans text-[13px] text-foreground/35">
-                  {photo.alt}
-                </div>
-              </div>
-            ))}
-          </div>
+          <HobbyGallery />
         </section>
       </article>
     </PageShell>

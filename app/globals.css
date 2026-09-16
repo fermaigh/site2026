@@ -2416,6 +2416,9 @@ html.is-loading body {
 /* Demo 1 fills the frame, so its nav rail reaches the bottom edge rather than
    stopping where the page content happens to end. */
 .tts-demo-fit > .tts-demo1-list-page,
+.tts-demo-fit > .tts-demo1-list-page > .tts-collab-ui {
+  height: 100%;
+}
 
 /* Logo 3D coin flip effect */
 @keyframes coin-flip-1 {
