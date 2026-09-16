@@ -1,18 +1,19 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 type HobbyPhoto = {
   title: string;
-  src?: string;
+  src: string;
 };
 
 const HOBBY_PHOTOS: HobbyPhoto[] = [
-  { title: "Photo one" },
-  { title: "Photo two" },
-  { title: "Photo three" },
-  { title: "Photo four" },
-  { title: "Photo five" },
+  { title: "Mechanical Keyboards", src: "/hobbies/hobby-1.jpg" },
+  { title: "Gaming Setup", src: "/hobbies/hobby-2.jpg" },
+  { title: "Coffee & Code", src: "/hobbies/hobby-3.jpg" },
+  { title: "Outdoor Adventure", src: "/hobbies/hobby-4.jpg" },
+  { title: "Design Workspace", src: "/hobbies/hobby-5.jpg" },
 ];
 
 /** Fanned resting angle per card, left to right. */
@@ -29,7 +30,7 @@ export function HobbyGallery() {
 
         return (
           <div
-            key={photo.title}
+            key={photo.src}
             className="relative -ml-8 cursor-pointer transition-transform duration-300 ease-out first:ml-0 sm:-ml-10"
             style={{
               transform: isHovered
@@ -49,9 +50,14 @@ export function HobbyGallery() {
             </span>
 
             <div className="rounded-md border border-foreground/10 bg-background p-2 shadow-md sm:p-2.5">
-              <div className="flex size-24 items-center justify-center rounded-sm bg-foreground/10 text-center font-sans text-[11px] leading-tight text-foreground/35 sm:size-28 md:size-32">
-                {photo.title}
-              </div>
+              <Image
+                src={photo.src}
+                alt={photo.title}
+                width={240}
+                height={240}
+                className="rounded-sm size-24 object-cover sm:size-28 md:size-32"
+                priority={index < 2}
+              />
             </div>
           </div>
         );
