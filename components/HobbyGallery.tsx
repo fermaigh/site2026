@@ -9,11 +9,11 @@ type HobbyPhoto = {
 };
 
 const HOBBY_PHOTOS: HobbyPhoto[] = [
-  { title: "Mechanical Keyboards", src: "/hobbies/hobby-1.jpg" },
-  { title: "Gaming Setup", src: "/hobbies/hobby-2.jpg" },
-  { title: "Coffee & Code", src: "/hobbies/hobby-3.jpg" },
-  { title: "Outdoor Adventure", src: "/hobbies/hobby-4.jpg" },
-  { title: "Design Workspace", src: "/hobbies/hobby-5.jpg" },
+  { title: "Doodle at rooftop", src: "/hobbies/hobby-1.jpg" },
+  { title: "Anime from memory", src: "/hobbies/hobby-2.jpg" },
+  { title: "Creative storytelling", src: "/hobbies/hobby-3.jpg" },
+  { title: "Hearthstone custom design", src: "/hobbies/hobby-4.jpg" },
+  { title: "Piggy 60% HHKB", src: "/hobbies/hobby-5.jpg" },
 ];
 
 /** Fanned resting angle per card, left to right. */
