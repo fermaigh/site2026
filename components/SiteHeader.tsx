@@ -3,7 +3,6 @@ import { HoverBackArrow } from "@/components/HoverBackArrow";
 
 const LINKEDIN_URL = "https://www.linkedin.com/in/xiaoyelin/";
 const GITHUB_URL = "https://github.com/fermaigh";
-const EMAIL_HREF = "mailto:fermaigh@gmail.com";
 
 export function SiteHeader({ backHref = "/" }: { backHref?: string }) {
   return (
@@ -23,12 +22,6 @@ export function SiteHeader({ backHref = "/" }: { backHref?: string }) {
         >
           About me
         </TransitionLink>
-        <a
-          href={EMAIL_HREF}
-          className="inline-flex min-h-11 items-center font-sans text-[14px] tracking-tight text-foreground transition-opacity hover:opacity-60 active:opacity-50 sm:text-[15px]"
-        >
-          Email me
-        </a>
         <a
           href={LINKEDIN_URL}
           target="_blank"
