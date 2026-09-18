@@ -73,12 +73,22 @@ export function CaseStudyGate() {
   if (unlocked) {
     return (
       <article className="pb-16 sm:pb-24">
-        <h1 className="reveal mt-8 font-sans text-[clamp(1.75rem,6vw,2.75rem)] font-semibold leading-[1.1] tracking-tight text-foreground">
-          Case studies
-        </h1>
-        <p className="reveal reveal-delay-1 mt-4 max-w-xl font-sans text-[15px] leading-[1.65] text-pretty text-foreground/55 sm:mt-6 sm:text-[17px]">
-          Nothing here yet.
-        </p>
+        <div className="reveal mt-8">
+          <h1 className="font-sans text-[clamp(1.75rem,6vw,2.75rem)] font-semibold leading-[1.1] tracking-tight text-foreground">
+            Bridge the gap for two-sided marketplace at a scale
+          </h1>
+          <p className="mt-6 max-w-2xl font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]">
+            A big part of my work has been designing for 'two-sided connection' problem. TikTok Shop generates roughly $11.4M in daily GMV from seller-creator affiliate collaborations.
+          </p>
+        </div>
+
+        <div className="reveal reveal-delay-1 mt-12 h-px bg-foreground/10" />
+
+        <section className="reveal reveal-delay-2 mt-12">
+          <h2 className="font-sans text-[clamp(1.125rem,4vw,1.5rem)] font-semibold tracking-tight text-foreground">
+            Unhealthy matching - Invite concentrated leads less conversion
+          </h2>
+        </section>
       </article>
     );
   }
