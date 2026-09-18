@@ -41,6 +41,202 @@ function LockIcon() {
   );
 }
 
+/** Relative invite volume per creator — the point is the cliff after the top three. */
+const INVITE_SHARE = [92, 78, 64, 8, 6, 5, 4, 3, 3];
+
+function ConcentrationDiagram() {
+  return (
+    <div className="rounded-xl border border-foreground/10 bg-foreground/[0.03] p-5 sm:p-8">
+      <div className="flex flex-col gap-7 sm:flex-row sm:items-center sm:gap-8">
+        <div className="sm:flex-1">
+          <p className="font-mono text-[11px] uppercase tracking-wider text-foreground/45">
+            Sellers
+          </p>
+          <div className="mt-3 grid grid-cols-6 gap-1.5 sm:gap-2">
+            {Array.from({ length: 24 }, (_, i) => (
+              <span
+                key={i}
+                className="aspect-square rounded-[5px] border border-foreground/15 bg-foreground/[0.07]"
+              />
+            ))}
+          </div>
+        </div>
+
+        <div
+          className="flex items-center justify-center gap-2 text-foreground/35 sm:w-28 sm:flex-col"
+          aria-hidden
+        >
+          <span className="h-px flex-1 bg-current sm:h-10 sm:w-px sm:flex-none" />
+          <span className="font-mono text-[10px] uppercase tracking-wider whitespace-nowrap">
+            invites
+          </span>
+          <span className="h-px flex-1 bg-current sm:h-10 sm:w-px sm:flex-none" />
+        </div>
+
+        <div className="sm:flex-1">
+          <p className="font-mono text-[11px] uppercase tracking-wider text-foreground/45">
+            Creators
+          </p>
+          <div className="mt-3 flex flex-col gap-1.5">
+            {INVITE_SHARE.map((share, i) => (
+              <div key={i} className="flex items-center gap-2">
+                <span
+                  className={`size-5 shrink-0 rounded-full ${
+                    i < 3 ? "bg-foreground/80" : "bg-foreground/10"
+                  }`}
+                />
+                <span className="h-2 flex-1 overflow-hidden rounded-full bg-foreground/[0.06]">
+                  <span
+                    className={`block h-full rounded-full ${
+                      i < 3 ? "bg-foreground/80" : "bg-foreground/15"
+                    }`}
+                    style={{ width: `${share}%` }}
+                  />
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <p className="mt-6 border-t border-foreground/10 pt-4 font-sans text-[13px] text-foreground/55 sm:mt-7">
+        Invites pile onto the same three creators — and only{" "}
+        <span className="font-semibold text-foreground">20%</span> ever get
+        seen.
+      </p>
+    </div>
+  );
+}
+
+const RECOMMENDED = [
+  {
+    name: "Marcus Webb",
+    handle: "@webbworks",
+    revenue: "$45.5K",
+    items: "1,323",
+    views: "4.3K",
+    engagement: "23.8%",
+  },
+  {
+    name: "Kayla Tran",
+    handle: "@alignedwithkay",
+    revenue: "$1.24M",
+    items: "4,545",
+    views: "12K",
+    engagement: "46.90%",
+  },
+  {
+    name: "Priya Nair",
+    handle: "@priyaglows",
+    revenue: "$10K",
+    items: "53.9K",
+    views: "4.3K",
+    engagement: "12.4%",
+  },
+  {
+    name: "Skincare Pro",
+    handle: "@skincarepro",
+    revenue: "$8.2K",
+    items: "12.4K",
+    views: "2.1K",
+    engagement: "9.7%",
+  },
+];
+
+const METRIC_COLUMNS = [
+  "Revenue",
+  "Items sold",
+  "Avg. video views",
+  "Engagement rate",
+] as const;
+
+function InviteDrawer() {
+  return (
+    <div className="rounded-xl border border-foreground/10 bg-foreground/[0.03] p-4 sm:p-6">
+      <div className="flex items-baseline justify-between">
+        <p className="font-sans text-[15px] font-semibold text-foreground">
+          Add creators
+        </p>
+        <span className="font-mono text-[11px] text-foreground/40">
+          0/50 selected
+        </span>
+      </div>
+
+      <div className="mt-4 flex gap-5 border-b border-foreground/10">
+        <span className="-mb-px border-b-2 border-foreground pb-2 font-sans text-[13px] font-medium text-foreground">
+          Recommended creators
+        </span>
+        <span className="pb-2 font-sans text-[13px] text-foreground/40">
+          Manage creators
+        </span>
+      </div>
+
+      <div className="overflow-x-auto">
+        <table className="mt-1 w-full min-w-[640px] border-collapse text-left">
+          <thead>
+            <tr>
+              <th className="py-3 pr-4 font-sans text-[11px] font-medium text-foreground/45">
+                Creator
+              </th>
+              {METRIC_COLUMNS.map((column) => (
+                <th
+                  key={column}
+                  className="py-3 pl-4 text-right font-sans text-[11px] font-medium text-foreground/45"
+                >
+                  {column}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {RECOMMENDED.map((creator) => (
+              <tr
+                key={creator.handle}
+                className="border-t border-foreground/[0.07]"
+              >
+                <td className="py-3 pr-4">
+                  <span className="flex items-center gap-2.5">
+                    <span className="size-7 shrink-0 rounded-full bg-foreground/10" />
+                    <span className="flex flex-col">
+                      <span className="font-sans text-[13px] font-medium text-foreground">
+                        {creator.name}
+                      </span>
+                      <span className="font-mono text-[11px] text-foreground/45">
+                        {creator.handle}
+                      </span>
+                    </span>
+                  </span>
+                </td>
+                <td className="py-3 pl-4 text-right font-mono text-[12px] text-foreground/75">
+                  {creator.revenue}
+                </td>
+                <td className="py-3 pl-4 text-right font-mono text-[12px] text-foreground/75">
+                  {creator.items}
+                </td>
+                <td className="py-3 pl-4 text-right font-mono text-[12px] text-foreground/75">
+                  {creator.views}
+                </td>
+                <td className="py-3 pl-4 text-right font-mono text-[12px] text-foreground/75">
+                  {creator.engagement}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div className="mt-5 flex justify-end gap-2.5 border-t border-foreground/10 pt-4">
+        <span className="rounded-full border border-foreground/15 px-4 py-1.5 font-sans text-[13px] text-foreground/70">
+          Cancel
+        </span>
+        <span className="rounded-full bg-foreground px-4 py-1.5 font-sans text-[13px] font-medium text-background">
+          Add
+        </span>
+      </div>
+    </div>
+  );
+}
+
 export function CaseStudyGate() {
   // false on the server and through hydration, so there is no mismatch.
   const remembered = useSyncExternalStore(
@@ -93,118 +289,22 @@ export function CaseStudyGate() {
 
           <p className="mt-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-5 sm:text-[17px]">
             Overtime, we are seeing sellers are gravitating to top creators, the
-            concentrate attention makes it hard for sellers to find the real fit,
-            promotes an unhealthy environment on our platform in long term.
+            concentrate attention makes it hard for sellers to find the real
+            fit, promotes an unhealthy environment on our platform in long term.
           </p>
 
           <figure className="mt-8 sm:mt-10">
-            <div className="aspect-[1750/742] w-full overflow-hidden rounded-xl border border-foreground/10 bg-gradient-to-b from-foreground/[0.05] to-foreground/[0.03] p-12">
-              <div className="flex h-full items-center justify-between gap-12">
-                <div className="flex-1">
-                  <p className="mb-4 font-sans text-sm font-medium text-foreground/60">Sellers</p>
-                  <div className="grid grid-cols-3 gap-4">
-                    {[...Array(9)].map((_, i) => (
-                      <div key={i} className="flex flex-col items-center gap-2">
-                        <div className="rounded-lg border-2 border-pink-400/30 bg-gradient-to-br from-pink-100/40 to-pink-50/20 p-3 sm:p-4">
-                          <svg className="h-6 w-6 text-pink-600/60 sm:h-8 sm:w-8" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" />
-                          </svg>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="flex flex-col items-center gap-3 sm:gap-4">
-                  <svg className="h-12 w-12 text-amber-400 sm:h-16 sm:w-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
-                </div>
-
-                <div className="flex-1">
-                  <p className="mb-4 font-sans text-sm font-medium text-foreground/60">Top creators</p>
-                  <div className="flex flex-col gap-4">
-                    {[...Array(3)].map((_, i) => (
-                      <div key={i} className="flex items-center gap-3">
-                        <div className="rounded-lg border border-amber-300/40 bg-gradient-to-br from-amber-50/60 to-amber-50/20 p-3 sm:p-4">
-                          <div className="h-8 w-8 rounded-full bg-amber-300/50 sm:h-10 sm:w-10" />
-                        </div>
-                        <span className="text-xs font-semibold text-foreground/70 sm:text-sm">@creator</span>
-                      </div>
-                    ))}
-                    <div className="mt-2 text-right">
-                      <p className="font-sans text-xs font-semibold text-teal-600 sm:text-sm">20% seen</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <ConcentrationDiagram />
           </figure>
 
           <p className="mt-6 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-8 sm:text-[17px]">
-            In today&apos;s product, when our users try to create a collaboration
-            invite, they rely on a handful of familiar performance metrics to
-            determine who to send to.
+            In today&apos;s product, when our users try to create a
+            collaboration invite, they rely on a handful of familiar performance
+            metrics to determine who to send to.
           </p>
 
           <figure className="mt-8 sm:mt-10">
-            <div className="aspect-[1440/960] w-full overflow-hidden rounded-xl border border-foreground/10 bg-foreground/[0.03] p-8">
-              <div className="flex h-full flex-col gap-6">
-                <div className="flex items-center justify-between">
-                  <h3 className="font-sans text-lg font-semibold text-foreground">Add creators</h3>
-                  <button className="text-foreground/40 hover:text-foreground/60">✕</button>
-                </div>
-
-                <div className="flex gap-4 border-b border-foreground/10 pb-4">
-                  <button className="font-sans text-sm font-medium text-foreground">Recommended creators</button>
-                  <button className="font-sans text-sm font-medium text-foreground/40 hover:text-foreground/60">Manage creators</button>
-                </div>
-
-                <div className="flex-1 overflow-x-auto">
-                  <table className="w-full font-sans text-sm">
-                    <thead>
-                      <tr className="border-b border-foreground/10">
-                        <th className="py-3 text-left font-medium text-foreground/60">Creators</th>
-                        <th className="py-3 text-right font-medium text-foreground/60">Video</th>
-                        <th className="py-3 text-right font-medium text-foreground/60">Revenue</th>
-                        <th className="py-3 text-right font-medium text-foreground/60">Items sold</th>
-                        <th className="py-3 text-right font-medium text-foreground/60">Avg. video views</th>
-                        <th className="py-3 text-right font-medium text-foreground/60">Engagement</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {[
-                        { name: "Marcus Webb", handle: "@sportboosts", revenue: "$45.5k", items: "1,323", views: "$4.3k", engagement: "23.8%" },
-                        { name: "Kayla Tran", handle: "@trendthatvibe", revenue: "$124M", items: "4,545", views: "12k", engagement: "46.90%" },
-                        { name: "Priya Nair", handle: "@priyaglows", revenue: "$10k", items: "53.9k", views: "$4.3k", engagement: "12.4%" },
-                      ].map((creator, i) => (
-                        <tr key={i} className="border-b border-foreground/5 hover:bg-foreground/[0.02]">
-                          <td className="py-4">
-                            <div className="flex items-center gap-3">
-                              <div className="h-8 w-8 rounded-full bg-gradient-to-br from-blue-300 to-blue-200" />
-                              <div>
-                                <p className="font-medium text-foreground">{creator.name}</p>
-                                <p className="text-xs text-foreground/50">{creator.handle}</p>
-                              </div>
-                            </div>
-                          </td>
-                          <td className="py-4 text-right text-foreground/60">—</td>
-                          <td className="py-4 text-right font-medium text-foreground">{creator.revenue}</td>
-                          <td className="py-4 text-right text-foreground/60">{creator.items}</td>
-                          <td className="py-4 text-right text-foreground/60">{creator.views}</td>
-                          <td className="py-4 text-right font-medium text-foreground">{creator.engagement}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-
-                <div className="flex justify-end gap-3 pt-4">
-                  <button className="rounded-full border border-foreground/15 px-5 py-2 font-sans text-sm font-medium text-foreground hover:bg-foreground/[0.02]">Cancel</button>
-                  <button className="rounded-full bg-teal-500 px-5 py-2 font-sans text-sm font-medium text-white hover:bg-teal-600">Add</button>
-                </div>
-              </div>
-            </div>
+            <InviteDrawer />
           </figure>
         </section>
       </article>
