@@ -84,10 +84,14 @@ export function RevealOnScroll() {
     };
     document.addEventListener("animationend", onAnimationEnd, true);
 
+    // State lives in the class list rather than a one-shot flag: React owns
+    // `className`, so re-rendering a reused node (the passcode gate swapping
+    // its locked view for the unlocked one) drops `is-revealed` and would
+    // otherwise strand the block at opacity 0 forever. observe() is idempotent.
     const scan = () => {
       for (const el of document.querySelectorAll<HTMLElement>(".reveal")) {
-        if (el.dataset.revealSeen) continue;
-        el.dataset.revealSeen = "1";
+        if (el.classList.contains("is-revealing")) continue;
+        if (el.classList.contains("is-revealed")) continue;
         observer.observe(el);
       }
     };

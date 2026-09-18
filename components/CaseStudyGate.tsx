@@ -78,7 +78,9 @@ export function CaseStudyGate() {
             Bridge the gap for two-sided marketplace at a scale
           </h1>
           <p className="mt-6 max-w-2xl font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]">
-            A big part of my work has been designing for 'two-sided connection' problem. TikTok Shop generates roughly $11.4M in daily GMV from seller-creator affiliate collaborations.
+            A big part of my work has been designing for &apos;two-sided
+            connection&apos; problem. TikTok Shop generates roughly $11.4M in
+            daily GMV from seller-creator affiliate collaborations.
           </p>
         </div>
 
@@ -88,6 +90,16 @@ export function CaseStudyGate() {
           <h2 className="font-sans text-[clamp(1.125rem,4vw,1.5rem)] font-semibold tracking-tight text-foreground">
             Unhealthy matching - Invite concentrated leads less conversion
           </h2>
+
+          <p className="mt-4 max-w-2xl font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-5 sm:text-[17px]">
+            Overtime, we are seeing sellers are gravitating to top creators, the
+            concentrate attention makes it hard for sellers to find the real fit,
+            promotes an unhealthy environment on our platform in long term.
+          </p>
+
+          <figure className="mt-8 sm:mt-10">
+            <div className="aspect-[1750/742] w-full overflow-hidden rounded-xl border border-foreground/10 bg-foreground/[0.03]" />
+          </figure>
         </section>
       </article>
     );
