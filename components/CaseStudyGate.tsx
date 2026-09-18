@@ -114,7 +114,13 @@ export function CaseStudyGate() {
           </p>
 
           <figure className="mt-8 sm:mt-10">
-            <div className="aspect-[1440/960] w-full overflow-hidden rounded-xl border border-foreground/10 bg-foreground/[0.03]" />
+            <div className="aspect-[1440/960] w-full overflow-hidden rounded-xl border border-foreground/10 bg-foreground/[0.03]">
+              <iframe
+                src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/design/oytNfnJhXHIPt6irQh5l9L/Portifolio-Site?node-id=1835-111444&m=dev"
+                allowFullScreen
+                className="h-full w-full"
+              />
+            </div>
           </figure>
         </section>
       </article>
