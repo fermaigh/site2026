@@ -102,10 +102,14 @@ export function CaseStudyGate() {
           </figure>
 
           <p className="mt-6 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-8 sm:text-[17px]">
-            In today's product, when our users try to create a collaboration
+            In today&apos;s product, when our users try to create a collaboration
             invite, they rely on a handful of familiar performance metrics to
             determine who to send to while creating an invite.
           </p>
+
+          <figure className="mt-8 sm:mt-10">
+            <div className="aspect-[1440/960] w-full overflow-hidden rounded-xl border border-foreground/10 bg-foreground/[0.03]" />
+          </figure>
         </section>
       </article>
     );
