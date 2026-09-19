@@ -848,7 +848,7 @@ export function CaseStudyGate() {
           </figure>
 
           <p className="mt-6 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-8 sm:text-[17px]">
-            I learned providing a pre-matched list and updates while typing would be expensive, within the given resources engineering wouldn't be able to achieve it. They suggested to defer this, I did not want to completely lose giving users feedback as they input, so I traded off for this solution: Indicating we are capturing your needs.
+            Engineering validation revealed that real-time matching would be too costly within our constraints. Rather than removing feedback entirely, I preserved the underlying principle with a lighter interaction: <span className="font-semibold text-foreground">acknowledge that the system is capturing and interpreting seller intent as they type</span>.
           </p>
 
           {/* Create Collaboration Full Interface */}
