@@ -574,6 +574,10 @@ export function CaseStudyGate() {
             </figure>
           </div>
 
+          <p className="mt-6 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-8 sm:text-[17px]">
+            The left one feels overwhelming and not reasonable, while the right one has the risk of relying on user's input completely. Then I iterated the solution.
+          </p>
+
           {/* Full-width Creator Preference Card */}
           <figure className="mt-8 sm:mt-10 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
             <div className="bg-white rounded-lg shadow-lg p-6">
