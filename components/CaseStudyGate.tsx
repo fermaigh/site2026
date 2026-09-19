@@ -1277,6 +1277,150 @@ export function CaseStudyGate() {
               </div>
             </div>
           </figure>
+
+          <figure className="mt-8 sm:mt-10 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
+            <div className="bg-background rounded-lg border border-foreground/10 overflow-hidden">
+              {/* Top Navigation */}
+              <div className="flex items-center justify-between px-6 py-4 border-b border-foreground/10 bg-foreground/[0.02]">
+                <div className="flex items-center gap-2">
+                  <div className="w-6 h-6 rounded-sm bg-foreground/20" />
+                  <span className="font-semibold text-[15px] text-foreground">Seller Center</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <button className="p-2 hover:bg-foreground/5 rounded">
+                    <svg className="w-5 h-5 text-foreground/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <circle cx="12" cy="12" r="10" />
+                      <path d="M12 16v-4M12 8h.01" />
+                    </svg>
+                  </button>
+                  <div className="w-8 h-8 rounded-full bg-foreground/15" />
+                </div>
+              </div>
+
+              {/* Page Header with Back Button */}
+              <div className="px-6 py-4 border-b border-foreground/10">
+                <div className="flex items-center gap-3">
+                  <button className="p-2 hover:bg-foreground/5 rounded text-foreground/60 hover:text-foreground">
+                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </button>
+                  <h2 className="text-[18px] font-semibold text-foreground">Collaboration Overview</h2>
+                </div>
+              </div>
+
+              {/* Tabs */}
+              <div className="flex gap-6 px-6 border-b border-foreground/10 bg-foreground/[0.02]">
+                <button className="py-4 text-[14px] font-medium text-foreground border-b-2 border-foreground">All</button>
+                <button className="py-4 text-[14px] text-foreground/50 hover:text-foreground/70">Active</button>
+              </div>
+
+              {/* Content */}
+              <div className="p-6 space-y-6">
+                {/* Store Collaboration Boards */}
+                <div>
+                  <h3 className="text-[15px] font-semibold text-foreground mb-4">Active Collaborations</h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    {[
+                      { store: "Default Store", desc: "Summer Collection", progress: 65 },
+                      { store: "Beauty Hub", desc: "Spring Launch", progress: 45, warning: true },
+                      { store: "Fashion Forward", desc: "New Arrivals", progress: 85 },
+                      { store: "Home & Living", desc: "Seasonal Update", progress: 30 },
+                    ].map((item, idx) => (
+                      <div key={idx} className="border border-foreground/10 rounded-lg p-4 bg-foreground/[0.02]">
+                        <div className="flex items-start justify-between mb-3">
+                          <div>
+                            <p className="text-[13px] font-semibold text-foreground">{item.store}</p>
+                            <p className="text-[12px] text-foreground/50 mt-1">{item.desc}</p>
+                          </div>
+                          <button className="text-foreground/40 hover:text-foreground/60">
+                            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                              <circle cx="12" cy="5" r="2" />
+                              <circle cx="12" cy="12" r="2" />
+                              <circle cx="12" cy="19" r="2" />
+                            </svg>
+                          </button>
+                        </div>
+                        <div className="space-y-2">
+                          <div className="w-full h-1.5 bg-foreground/10 rounded-full overflow-hidden">
+                            <div className="h-full bg-foreground" style={{width: `${item.progress}%`}} />
+                          </div>
+                          <p className="text-[11px] text-foreground/50">{item.progress}% Complete</p>
+                          {item.warning && (
+                            <div className="flex items-center gap-1 mt-2 text-[11px] text-foreground/60">
+                              <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor">
+                                <circle cx="12" cy="12" r="10" />
+                              </svg>
+                              Attention needed
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Collaborations Table */}
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-[15px] font-semibold text-foreground">All Collaborations</h3>
+                    <button className="text-[13px] text-foreground/60 hover:text-foreground">Edit invitations</button>
+                  </div>
+
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-[12px]">
+                      <thead>
+                        <tr className="border-b border-foreground/10 bg-foreground/[0.02]">
+                          <th className="text-left font-medium text-foreground/70 px-4 py-3">Creator</th>
+                          <th className="text-left font-medium text-foreground/70 px-4 py-3">Product</th>
+                          <th className="text-left font-medium text-foreground/70 px-4 py-3">Sent Date</th>
+                          <th className="text-left font-medium text-foreground/70 px-4 py-3">Status</th>
+                          <th className="text-left font-medium text-foreground/70 px-4 py-3">Engagement</th>
+                          <th className="text-left font-medium text-foreground/70 px-4 py-3">Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {[
+                          { creator: "Sarah Chen", product: "Blender Beauty 美妆蛋", sent: "12/15/2026", status: "Accepted", engagement: "4.2K views" },
+                          { creator: "Emma Davis", product: "Essence精华", sent: "12/10/2026", status: "In Review", engagement: "2.1K views" },
+                          { creator: "Lisa Wong", product: "Skincare Pro Kit", sent: "12/08/2026", status: "Sent", engagement: "1.8K views" },
+                          { creator: "Maya Patel", product: "Glow Serum", sent: "12/05/2026", status: "Accepted", engagement: "5.6K views" },
+                        ].map((item, idx) => (
+                          <tr key={idx} className="border-b border-foreground/5 hover:bg-foreground/[0.02]">
+                            <td className="px-4 py-3">
+                              <div className="flex items-center gap-2">
+                                <div className="w-6 h-6 rounded-full bg-foreground/15" />
+                                <span className="text-foreground">{item.creator}</span>
+                              </div>
+                            </td>
+                            <td className="px-4 py-3 text-foreground/70">{item.product}</td>
+                            <td className="px-4 py-3 text-foreground/60">{item.sent}</td>
+                            <td className="px-4 py-3">
+                              <span className={`text-[11px] font-medium px-2 py-1 rounded-full ${
+                                item.status === "Accepted" ? "bg-foreground/10 text-foreground" :
+                                item.status === "In Review" ? "bg-foreground/5 text-foreground/60" :
+                                "bg-foreground/5 text-foreground/50"
+                              }`}>
+                                {item.status}
+                              </span>
+                            </td>
+                            <td className="px-4 py-3 text-foreground/60">{item.engagement}</td>
+                            <td className="px-4 py-3">
+                              <button className="text-foreground/50 hover:text-foreground">
+                                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                  <path d="M13 9l3 3L8 20H4v-4l9-11z" />
+                                </svg>
+                              </button>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </figure>
         </section>
       </article>
     );
