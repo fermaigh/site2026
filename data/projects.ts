@@ -296,7 +296,7 @@ export const projects: Project[] = [
           { src: "/projects/hiring-app/screens/screen-19.png", width: 2900, height: 3326 },
         ],
       },
-      closingNote: "Full case study details available upon request.",
+      gatedLink: { label: "View Case Studies", href: "/case-studies" },
       showcase: "hiring-applicants",
     },
   },
