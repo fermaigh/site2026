@@ -1508,7 +1508,11 @@ export function CaseStudyGate() {
 
           <DeliverableScreenshot />
 
-          <div className="grid grid-cols-1 gap-6 mt-12 sm:grid-cols-2 sm:mt-16">
+          <h3 className="mt-12 font-sans text-[18px] font-semibold tracking-tight text-foreground/80 sm:mt-16">
+            Business Impacts
+          </h3>
+
+          <div className="grid grid-cols-1 gap-6 mt-6 sm:grid-cols-2 sm:mt-8">
             <div className="rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
               <h4 className="font-sans text-[20px] font-bold text-foreground mb-3">
                 3× higher match rate
