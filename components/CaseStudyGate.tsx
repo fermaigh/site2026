@@ -1122,6 +1122,10 @@ export function CaseStudyGate() {
           </p>
 
           <p className="mt-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]">
+            So I suggested a different approach, show an alert only when sample approval rate drops and approaching to the threshold, with action item to take them to handle sample request, and try to improve the rate.
+          </p>
+
+          <p className="mt-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]">
             The legal and product team suggested to inform sellers if any of their existing collaboration are about to exceed a certain number.
           </p>
 
