@@ -441,13 +441,13 @@ export function CaseStudyGate() {
             Today, sellers rely on a set of familiar performance metrics when deciding which creators to invite, reinforcing the same behavior rather than helping them discover better matches.
           </p>
 
-          <p className="mt-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]">
-            The company wanted to test a new <span className="font-semibold">platform-driven approach</span> alongside the existing experience. I was brought in to define what that experience should be: creating meaningful value for sellers while driving <span className="font-semibold">adoption and collaboration success</span> for the business.
-          </p>
-
           <figure className="mt-8 sm:mt-10">
             <InviteDrawer />
           </figure>
+
+          <p className="mt-8 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-10 sm:text-[17px]">
+            The company wanted to test a new <span className="font-semibold">platform-driven approach</span> alongside the existing experience. I was brought in to define what that experience should be: creating meaningful value for sellers while driving <span className="font-semibold">adoption and collaboration success</span> for the business.
+          </p>
 
           <div className="mt-12 h-px bg-foreground/10" />
 
