@@ -445,6 +445,8 @@ export function CaseStudyGate() {
             <InviteDrawer />
           </figure>
 
+          <div className="mt-12 h-px bg-foreground/10" />
+
           <h3 className="mt-6 font-sans text-[clamp(1rem,4vw,1.25rem)] font-semibold tracking-tight text-foreground">
             Shaping the Product Direction
           </h3>
