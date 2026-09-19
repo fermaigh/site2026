@@ -454,6 +454,125 @@ export function CaseStudyGate() {
             Took a look at other platforms who might have solved the similar
             business problem, and discovered common patterns.
           </p>
+
+          <div className="grid grid-cols-1 gap-6 mt-8 sm:grid-cols-2 sm:mt-10">
+            {/* Left View - Creator Demographics Filter */}
+            <figure className="rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
+              <div className="bg-white rounded-lg shadow-lg p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <h3 className="font-sans text-[15px] font-semibold text-foreground">
+                      Creator demographics
+                    </h3>
+                    <p className="text-[13px] text-foreground/60 mt-1">
+                      Choose the preference
+                    </p>
+                  </div>
+                  <button className="text-foreground/40 hover:text-foreground/60">
+                    ↑
+                  </button>
+                </div>
+
+                <div className="space-y-5 border-b border-foreground/10 pb-5">
+                  <div>
+                    <p className="text-[13px] font-medium text-foreground mb-2">
+                      Creator gender
+                    </p>
+                    <div className="flex gap-4">
+                      <label className="flex items-center gap-2 cursor-pointer">
+                        <input type="checkbox" className="w-4 h-4" />
+                        <span className="text-[13px] text-foreground/70">Female</span>
+                      </label>
+                      <label className="flex items-center gap-2 cursor-pointer">
+                        <input type="checkbox" className="w-4 h-4" />
+                        <span className="text-[13px] text-foreground/70">Male</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div>
+                    <p className="text-[13px] font-medium text-foreground mb-2">
+                      Creator age
+                    </p>
+                    <div className="flex flex-wrap gap-3">
+                      {["18-24", "25-34", "35-44", "45-54", "55+"].map((age) => (
+                        <label key={age} className="flex items-center gap-2 cursor-pointer">
+                          <input type="checkbox" className="w-4 h-4" />
+                          <span className="text-[12px] text-foreground/70">{age}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="text-[13px] font-medium text-foreground mb-2 block">
+                      Category
+                    </label>
+                    <select className="w-full px-3 py-2 border border-foreground/15 rounded text-[13px] text-foreground/70 bg-transparent">
+                      <option>Select category</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="text-[13px] font-medium text-foreground mb-2 block">
+                      Creator language
+                    </label>
+                    <select className="w-full px-3 py-2 border border-foreground/15 rounded text-[13px] text-foreground/70 bg-transparent">
+                      <option>Select language</option>
+                    </select>
+                  </div>
+
+                  <label className="flex items-start gap-2 cursor-pointer">
+                    <input type="checkbox" className="w-4 h-4 mt-0.5" />
+                    <div>
+                      <p className="text-[12px] font-medium text-foreground">
+                        Not invited in past 90 days
+                      </p>
+                      <p className="text-[11px] text-foreground/50">
+                        Creators who are in active collaboration even if were invited 90 days ago will excluded
+                      </p>
+                    </div>
+                  </label>
+                </div>
+
+                <div className="mt-5 space-y-3">
+                  {["Follower demographics", "Performance", "Other"].map((section) => (
+                    <button
+                      key={section}
+                      className="w-full flex items-center justify-between px-4 py-3 border border-foreground/10 rounded text-[13px] font-medium text-foreground hover:bg-foreground/[0.02]"
+                    >
+                      {section}
+                      <span className="text-foreground/40">↓</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </figure>
+
+            {/* Right View - Describe Preferred Creators */}
+            <figure className="rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
+              <div className="bg-white rounded-lg shadow-lg p-6">
+                <div>
+                  <h3 className="font-sans text-[15px] font-semibold text-foreground">
+                    Describe preferred creators
+                  </h3>
+                  <p className="text-[13px] text-foreground/60 mt-1">
+                    Explain creator demographics, sales performance, content style and etc.
+                  </p>
+                </div>
+
+                <textarea
+                  placeholder="Type here..."
+                  maxLength={500}
+                  className="w-full mt-4 p-3 border border-cyan-500 rounded text-[13px] text-foreground placeholder:text-foreground/30 resize-none h-48 focus:outline-none focus-visible:ring-1 focus-visible:ring-cyan-500"
+                />
+
+                <div className="flex justify-end mt-2">
+                  <span className="text-[12px] text-foreground/50">0/500</span>
+                </div>
+              </div>
+            </figure>
+          </div>
         </section>
       </article>
     );
