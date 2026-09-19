@@ -573,6 +573,106 @@ export function CaseStudyGate() {
               </div>
             </figure>
           </div>
+
+          {/* Full-width Creator Preference Card */}
+          <figure className="mt-8 sm:mt-10 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
+            <div className="bg-white rounded-lg shadow-lg p-6">
+              <div className="space-y-6">
+                {/* Header Section */}
+                <div className="space-y-1">
+                  <h3 className="font-sans text-[16px] font-semibold text-foreground">
+                    Describe your preference
+                  </h3>
+                  <p className="text-[14px] text-foreground/60">
+                    Your input will help targeting right creators.
+                  </p>
+                </div>
+
+                {/* Textarea Section */}
+                <div className="space-y-2">
+                  <div className="border border-foreground/15 rounded p-4 bg-foreground/[0.01] min-h-[140px]">
+                    <p className="font-sans text-[14px] leading-[1.6] text-foreground/80">
+                      Creators in my category who post routine videos, show before-and-after results, and honest product reviews. Audience skews female, 18–35, highly engaged. We'd love creators who are consistent, genuine, and open to long-term collaboration. Bonus if they've worked with beauty or personal care brands before.
+                    </p>
+                  </div>
+                  <div className="flex justify-end">
+                    <span className="text-[12px] text-foreground/50 bg-foreground/[0.05] px-3 py-1 rounded">
+                      400/500
+                    </span>
+                  </div>
+                </div>
+
+                {/* Divider */}
+                <div className="border-t border-foreground/10" />
+
+                {/* Add more criteria */}
+                <div className="flex items-center gap-2 cursor-pointer group">
+                  <span className="text-foreground/40 group-hover:text-foreground/60 transition-colors text-[14px]">
+                    ▼
+                  </span>
+                  <div className="flex items-center gap-2">
+                    <h4 className="font-sans text-[16px] font-semibold text-foreground">
+                      Add more criteria
+                    </h4>
+                    <svg
+                      className="size-4 text-foreground/50"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <circle cx="12" cy="12" r="10" />
+                      <path d="M12 16v-4m0-4v.01" />
+                    </svg>
+                  </div>
+                </div>
+
+                {/* Three buttons */}
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                  {[
+                    {
+                      title: "Creator demography",
+                      desc: "Age, language and category etc."
+                    },
+                    {
+                      title: "Creator performance",
+                      desc: "Follower, viewers and engagement"
+                    },
+                    {
+                      title: "Target audience",
+                      desc: "Location, spending power"
+                    }
+                  ].map((item) => (
+                    <button
+                      key={item.title}
+                      className="border border-foreground/15 rounded p-4 flex gap-4 items-start hover:bg-foreground/[0.02] transition-colors text-left"
+                    >
+                      <div className="flex-shrink-0 w-5 h-5 mt-1">
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          className="text-foreground/60"
+                        >
+                          <circle cx="12" cy="12" r="10" />
+                          <path d="M12 8v8M8 12h8" />
+                        </svg>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="font-sans text-[14px] font-semibold text-foreground">
+                          {item.title}
+                        </p>
+                        <p className="font-sans text-[12px] text-foreground/50 mt-1">
+                          {item.desc}
+                        </p>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </figure>
         </section>
       </article>
     );
