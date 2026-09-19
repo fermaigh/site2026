@@ -1275,11 +1275,11 @@ export function CaseStudyGate() {
           </figure>
 
           <p className="mt-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]">
-            In my opinion, this solution would not make sense to user. Users trust the platform to do the match for them, then later on they get punishment, and they are not able to do too much.
+            I saw a gap in this approach: the platform was doing the matching, but sellers would only learn about the consequence after the risk had already accumulated with limited ability to course-correct. This could erode trust in the platform-driven experience.
           </p>
 
           <p className="mt-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]">
-            So I suggested a different approach, show an alert only when sample approval rate drops and approaching to the threshold, with action item to take them to handle sample request, and try to improve the rate.
+            I proposed intervening earlier: Surfacing an alert when the sample approval rate begins approaching the threshold, explain what it is, and give sellers a direct path to review pending sample requests and improve the rate.
           </p>
 
           <figure className="mt-8 sm:mt-10 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
