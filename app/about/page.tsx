@@ -65,7 +65,7 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <div className="reveal reveal-delay-1 md:reveal-delay-2 mt-8 md:mt-0">
+          <div className="reveal reveal-delay-1 md:reveal-delay-2 mt-8 md:mt-0 w-full aspect-square rounded-full overflow-hidden">
             <video
               ref={videoRef}
               src="/about-demo.mov"
@@ -73,7 +73,7 @@ export default function AboutPage() {
               muted
               loop
               playsInline
-              className="w-full aspect-square object-contain"
+              className="w-full h-full object-cover"
               style={{ backgroundColor: "transparent" }}
             />
           </div>
