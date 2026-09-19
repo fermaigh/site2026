@@ -41,100 +41,143 @@ function LockIcon() {
   );
 }
 
+/**
+ * Illustration for the concentration diagram, authored in Figma at 1750 × 742
+ * (Portifolio Site, node 1856-34187). Every coordinate below is that frame's
+ * own, so the composition is the Figma one rather than a reinterpretation.
+ */
+const ART = "/case-studies/concentration";
+const STAGE_WIDTH = 1750;
+const STAGE_HEIGHT = 742;
+
+/** Storefronts are 190 × 189, laid out 3 × 3 from the frame at (35.5, 47.531). */
+const STORE_SIZE = { width: 190, height: 189 };
+const STORE_X = [58.548, 262.999, 466.452];
+const STORE_Y = [92.522, 281.522, 483.522];
+
+/** Creator cards are 86.249 × 116.168 in both the highlighted and muted frames. */
+const CARD_SIZE = { width: 86.249, height: 116.168 };
+const TOP_CARD_X = [999.199, 1117.97, 1236.742];
+const TOP_CARD_Y = 148.396;
+const MUTED_CARD_X = [999.915, 1117.97, 1236.026];
+const MUTED_CARD_Y = [380.929, 525.759];
+
+/**
+ * Labels are Inter Bold 20/1.124 in the design. In an SVG the y is a baseline,
+ * not a box top, so each one is the frame's text-box top plus Inter's ascent
+ * within that line box.
+ */
+function StageLabel({
+  x,
+  y,
+  children,
+}: {
+  x: number;
+  y: number;
+  children: string;
+}) {
+  return (
+    <text
+      x={x}
+      y={y}
+      textAnchor="middle"
+      fontSize={20}
+      fontWeight={700}
+      fill="#000000"
+    >
+      {children}
+    </text>
+  );
+}
+
 function ConcentrationDiagram() {
   return (
     <div className="rounded-xl border border-foreground/10 bg-foreground/[0.03] p-5 sm:p-8">
-      <svg
-        viewBox="0 0 1024 480"
-        className="w-full"
-        style={{ maxWidth: "100%", height: "auto" }}
-        preserveAspectRatio="xMidYMid meet"
-      >
-        <defs>
-          <style>{`
-            .diagram-text { font-family: system-ui, sans-serif; font-size: 13px; font-weight: 600; }
-            .diagram-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.5; font-weight: 500; }
-            .store-icon { fill: none; stroke: rgba(0,0,0,0.15); stroke-width: 1.5; }
-            .seller { fill: rgba(0,0,0,0.08); }
-            .creator-top { fill: rgba(0,0,0,0.12); }
-            .creator-other { fill: rgba(0,0,0,0.05); }
-            .connection-line { stroke: rgba(0,0,0,0.1); stroke-width: 2; stroke-dasharray: 4,4; }
-          `}</style>
-        </defs>
-
-        {/* Sellers Section - Left */}
-        <g>
-          <text x="80" y="28" className="diagram-label" text-anchor="middle">
-            Sellers
-          </text>
-
-          {/* 3x3 Grid of stores */}
-          {[0, 1, 2].map((row) =>
-            [0, 1, 2].map((col) => {
-              const x = 20 + col * 80;
-              const y = 50 + row * 90;
-              return (
-                <g key={`seller-${row}-${col}`}>
-                  {/* Store box */}
-                  <rect x={x} y={y} width="60" height="75" rx="3" className="store-icon" />
-                  {/* Door indicator */}
-                  <circle cx={x + 20} cy={y + 50} r="8" className="seller" />
-                  <circle cx={x + 45} cy={y + 50} r="8" className="seller" />
-                </g>
-              );
-            })
+      {/*
+        The artwork is fixed-colour line art drawn for Figma's #F5F5F5 canvas,
+        so it keeps that canvas in both themes — on the dark theme its #333
+        strokes would otherwise disappear into the page.
+      */}
+      <div className="overflow-hidden rounded-lg bg-[#F5F5F5]">
+        <svg
+          viewBox={`0 0 ${STAGE_WIDTH} ${STAGE_HEIGHT}`}
+          // Scales down to the column and never past 1:1, so the composition
+          // shrinks as one piece instead of reflowing on a narrow screen.
+          className="block h-auto w-full"
+          style={{ maxWidth: STAGE_WIDTH }}
+          preserveAspectRatio="xMidYMid meet"
+          role="img"
+          aria-label="Nine sellers all sending invites to the same three top creators, while the rest go unseen — only 20% of invites are opened."
+        >
+          {STORE_Y.map((y, row) =>
+            STORE_X.map((x, col) => (
+              <image
+                key={`store-${row}-${col}`}
+                href={`${ART}/seller-store.svg`}
+                x={x}
+                y={y}
+                {...STORE_SIZE}
+              />
+            )),
           )}
-        </g>
 
-        {/* Center - Flow Diagram */}
-        <g>
-          {/* Arrow pointing down then right */}
-          <line x1="280" y1="100" x2="380" y2="150" className="connection-line" />
-          <polygon points="380,150 375,145 378,155" fill="rgba(0,0,0,0.1)" />
-        </g>
+          <image
+            href={`${ART}/invites.svg`}
+            x={699.446}
+            y={224.253}
+            width={223.861}
+            height={184.127}
+          />
 
-        {/* Creators Section - Right */}
-        <g>
-          <text x="700" y="28" className="diagram-label" text-anchor="middle">
-            Creators
-          </text>
+          {TOP_CARD_X.map((x, i) => (
+            <image
+              key={`top-card-${i}`}
+              href={`${ART}/creator-card-top.svg`}
+              x={x}
+              y={TOP_CARD_Y}
+              {...CARD_SIZE}
+            />
+          ))}
 
-          {/* Top 3 Creators - Highlighted */}
-          {[0, 1, 2].map((i) => {
-            const x = 580 + i * 90;
-            const y = 50;
-            return (
-              <g key={`creator-top-${i}`}>
-                <rect x={x} y={y} width="65" height="65" rx="2" className="store-icon" />
-                <circle cx={x + 32.5} cy={y + 32.5} r="14" className="creator-top" />
-              </g>
-            );
-          })}
+          {MUTED_CARD_Y.map((y, row) =>
+            MUTED_CARD_X.map((x, col) => (
+              <image
+                key={`muted-card-${row}-${col}`}
+                href={`${ART}/creator-card-muted.svg`}
+                x={x}
+                y={y}
+                {...CARD_SIZE}
+              />
+            )),
+          )}
 
-          {/* Other Creators - 6 in grid */}
-          {[0, 1, 2, 3, 4, 5].map((i) => {
-            const row = Math.floor(i / 3);
-            const col = i % 3;
-            const x = 580 + col * 90;
-            const y = 140 + row * 90;
-            return (
-              <g key={`creator-other-${i}`}>
-                <rect x={x} y={y} width="65" height="65" rx="2" className="store-icon" opacity="0.5" />
-                <circle cx={x + 32.5} cy={y + 32.5} r="12" className="creator-other" />
-              </g>
-            );
-          })}
-        </g>
+          <image
+            href={`${ART}/arrow.svg`}
+            x={1335}
+            y={62}
+            width={114}
+            height={69}
+          />
 
-        {/* Right side - 20% indicator */}
-        <g>
-          <text x="920" y="28" className="diagram-label" text-anchor="middle">
-            20% Seen
-          </text>
-          <circle cx="920" cy="85" r="25" fill="none" stroke="rgba(0,0,0,0.1)" stroke-width="2" />
-          <circle cx="920" cy="85" r="18" fill="rgba(0,0,0,0.05)" />
-        </g>
-      </svg>
+          <image
+            href={`${ART}/envelope-open.svg`}
+            x={1530.273}
+            y={161.869}
+            width={139.999}
+            height={110.681}
+          />
+
+          <StageLabel x={346.942} y={111.69}>
+            Sellers
+          </StageLabel>
+          <StageLabel x={1151.377} y={117.96}>
+            Top creators
+          </StageLabel>
+          <StageLabel x={1591.888} y={122.83}>
+            20% seen
+          </StageLabel>
+        </svg>
+      </div>
 
       <p className="mt-6 border-t border-foreground/10 pt-4 font-sans text-[13px] text-foreground/55 sm:mt-7">
         Invites pile onto the same three creators — and only{" "}
