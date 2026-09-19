@@ -851,10 +851,11 @@ export function CaseStudyGate() {
             I learned providing a pre-matched list and updates while typing would be expensive, within the given resources engineering wouldn't be able to achieve it. They suggested to defer this, I did not want to completely lose giving users feedback as they input, so I traded off for this solution: Indicating we are capturing your needs.
           </p>
 
-          {/* Seller Center Navigation */}
+          {/* Create Collaboration Full Interface */}
           <figure className="mt-8 sm:mt-10 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
-            <div className="bg-foreground/95 rounded-lg shadow-lg overflow-hidden">
-              <div className="flex items-center justify-between px-6 py-3 h-15">
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+              {/* Top Navigation Bar */}
+              <div className="flex items-center justify-between px-6 py-3 bg-foreground/95 border-b border-foreground/10">
                 {/* Left section */}
                 <div className="flex items-center gap-6">
                   {/* Logo */}
@@ -929,6 +930,169 @@ export function CaseStudyGate() {
                       <span className="text-white text-[10px] font-bold">T</span>
                     </div>
                     <span className="text-white text-[13px] hidden sm:inline">Testaccount</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Collaboration Content */}
+              <div className="p-8">
+                {/* Header */}
+                <div className="mb-8">
+                  <div className="flex items-center gap-3 mb-6">
+                    <button className="text-foreground/60 hover:text-foreground">←</button>
+                    <h3 className="font-sans text-[24px] font-semibold text-foreground">
+                      Create collaboration
+                    </h3>
+                  </div>
+
+                  {/* Progress Steps */}
+                  <div className="flex items-center gap-4">
+                    {[
+                      { label: "General info", done: true },
+                      { label: "Products", done: true },
+                      { label: "Creators", active: true },
+                      { label: "Review", num: 4 }
+                    ].map((step, i) => (
+                      <div key={i} className="flex items-center gap-2">
+                        {step.done && (
+                          <>
+                            <div className="w-6 h-6 rounded-full bg-cyan-500 flex items-center justify-center text-white text-xs">✓</div>
+                            <span className="text-[13px] text-foreground/60">{step.label}</span>
+                          </>
+                        )}
+                        {step.active && (
+                          <>
+                            <div className="w-6 h-6 rounded-full bg-cyan-500 text-white flex items-center justify-center text-xs font-semibold">●</div>
+                            <span className="text-[13px] font-semibold text-foreground">{step.label}</span>
+                          </>
+                        )}
+                        {step.num && (
+                          <>
+                            <div className="w-6 h-6 rounded-full bg-foreground/10 flex items-center justify-center text-[11px] text-foreground/40">{step.num}</div>
+                            <span className="text-[13px] text-foreground/40">{step.label}</span>
+                          </>
+                        )}
+                        {i < 3 && <div className="w-8 h-px bg-foreground/15" />}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Two-column layout */}
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                  {/* Left content */}
+                  <div className="lg:col-span-2">
+                    <div className="space-y-4">
+                      <div>
+                        <h4 className="text-[15px] font-semibold text-foreground mb-1">
+                          Describe your preference
+                        </h4>
+                        <p className="text-[13px] text-cyan-600 flex items-center gap-1">
+                          <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" /></svg>
+                          Saving...
+                        </p>
+                      </div>
+                      <div className="border-2 border-blue-400 rounded p-4 bg-blue-50/30 min-h-[80px]">
+                        <p className="text-[13px] leading-[1.6] text-foreground/80">
+                          Skincare and self-care creators who post routine videos, before-and-after results, and honest product reviews. Audience skews female, 18–35, highly engaged. We'd love creators who are consistent, genuine, and open to long-term collaboration. Bonus if they've worked with beauty or personal care brands before.
+                        </p>
+                      </div>
+                      <div className="flex justify-end">
+                        <span className="text-[11px] text-foreground/50">400/500</span>
+                      </div>
+
+                      {/* Add more criteria */}
+                      <div className="flex items-center gap-2 cursor-pointer text-foreground/60 hover:text-foreground/80 pt-2">
+                        <span className="text-[13px]">▶</span>
+                        <span className="text-[13px] font-medium">Add more criteria</span>
+                        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <circle cx="12" cy="12" r="10" />
+                          <path d="M12 16v-4m0-4v.01" />
+                        </svg>
+                      </div>
+
+                      {/* Action buttons */}
+                      <div className="flex gap-3 pt-4">
+                        <button className="px-6 py-2 border border-foreground/20 rounded text-[14px] font-medium text-foreground/70 hover:text-foreground hover:border-foreground/40">
+                          Previous
+                        </button>
+                        <button className="px-6 py-2 bg-cyan-600 text-white rounded text-[14px] font-medium hover:bg-cyan-700">
+                          Next
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Right preview panel */}
+                  <div className="lg:col-span-1 space-y-6">
+                    {/* Creator preview header */}
+                    <div>
+                      <p className="text-[13px] font-semibold text-foreground mb-3">Creator preview</p>
+                      <div className="flex flex-col items-center">
+                        <div className="w-full max-w-xs bg-black rounded-3xl p-3 shadow-lg">
+                          <div className="bg-foreground rounded-2xl p-4 aspect-video flex items-center justify-center">
+                            <div className="text-center">
+                              <p className="text-[11px] font-medium text-white/80 mb-2">Invitation</p>
+                              <p className="text-[9px] text-white/60">Preview</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Overview tab */}
+                    <div className="border-b border-foreground/10 pb-2">
+                      <button className="text-[13px] font-medium text-foreground">Overview</button>
+                    </div>
+
+                    {/* Shop info */}
+                    <div className="space-y-3">
+                      <div>
+                        <p className="text-[12px] font-semibold text-foreground mb-2">About this shop</p>
+                        <div className="flex items-center gap-2">
+                          <div className="w-8 h-8 rounded-full bg-foreground/20" />
+                          <div>
+                            <p className="text-[13px] font-medium text-foreground">SkinCare Shop</p>
+                            <p className="text-[11px] text-foreground/50">4.8/5.0 • 154 sales</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div>
+                        <p className="text-[12px] font-semibold text-foreground mb-2">Preferred content type</p>
+                        <p className="text-[13px] text-foreground/70">Short video</p>
+                      </div>
+
+                      <div>
+                        <p className="text-[12px] font-semibold text-foreground mb-2">Incentives</p>
+                        <div className="space-y-1 text-[12px]">
+                          <div className="flex justify-between">
+                            <span className="text-foreground/60">Free sample</span>
+                            <span className="text-foreground">Auto-approval</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-foreground/60">Commission rate</span>
+                            <span className="text-foreground">12.45%-16.34%</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-foreground/60">Product price</span>
+                            <span className="text-foreground">$23.99-$123.99</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div>
+                        <p className="text-[12px] font-semibold text-foreground mb-3">Products</p>
+                        <div className="flex gap-2 mb-3">
+                          {[1, 2, 3].map((i) => (
+                            <div key={i} className="w-12 h-12 bg-foreground/15 rounded" />
+                          ))}
+                        </div>
+                        <button className="w-full py-2 bg-red-600 text-white text-[12px] font-medium rounded hover:bg-red-700">
+                          Accept
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
