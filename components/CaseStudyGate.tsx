@@ -445,8 +445,11 @@ export function CaseStudyGate() {
             <InviteDrawer />
           </figure>
 
-          <p className="mt-6 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-8 sm:text-[17px]">
-            My goal was to explore direction and align with the team. I took a look at other platforms and discovered common patterns. I started with the solution (left), providing structure inputs.
+          <h3 className="mt-6 font-sans text-[clamp(1rem,4vw,1.25rem)] font-semibold tracking-tight text-foreground">
+            Shaping the Product Direction
+          </h3>
+          <p className="mt-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-5 sm:text-[17px]">
+            I explored patterns across other platforms and brought two directions to the team: structured inputs that guide decisions, and a more open-ended approach that gives sellers greater control.
           </p>
 
           <div className="grid grid-cols-1 gap-6 mt-8 sm:grid-cols-2 sm:mt-10">
