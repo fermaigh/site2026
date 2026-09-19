@@ -1425,6 +1425,12 @@ export function CaseStudyGate() {
               </div>
             </div>
           </figure>
+
+          <div className="mt-12 h-px bg-foreground/10" />
+
+          <h2 className="mt-12 font-sans text-[clamp(1.125rem,4vw,1.5rem)] font-semibold tracking-tight text-foreground">
+            Result
+          </h2>
         </section>
       </article>
     );
