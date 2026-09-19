@@ -1,6 +1,12 @@
 "use client";
 
-import { useRef, useState, useSyncExternalStore, type FormEvent } from "react";
+import {
+  useLayoutEffect,
+  useRef,
+  useState,
+  useSyncExternalStore,
+  type FormEvent,
+} from "react";
 
 import { useDemoFit } from "@/components/useDemoFit";
 
@@ -751,6 +757,337 @@ function InviteDrawer() {
   );
 }
 
+/* ---- Creator filter panel — Figma "Portifolio Site", node 1838-134960 ---- */
+
+const FILTER_ART = "/projects/tts-ui/creator-filters";
+/** The accordion card's authored width in Figma. */
+const FILTER_WIDTH = 819;
+
+type FilterControl =
+  | { kind: "checkboxes"; label: string; options: string[] }
+  | { kind: "select"; label: string; value?: string }
+  | { kind: "note"; label: string; description: string };
+
+type FilterSection = {
+  title: string;
+  subtitle?: string;
+  controls: FilterControl[];
+  /** Options pre-ticked and selects pre-filled, so the exploratory sections
+   *  read as a filled-in wireframe rather than an empty shell. */
+  preset?: string[];
+};
+
+/**
+ * Only the first section is specified in Figma. The rest are placeholder
+ * controls standing in for the rest of the exploration — same control
+ * vocabulary, dummy values — so the panel reads as an early draft.
+ */
+const FILTER_SECTIONS: FilterSection[] = [
+  {
+    title: "Creator demographics",
+    subtitle: "Choose the preference",
+    controls: [
+      { kind: "checkboxes", label: "Creator gender", options: ["Female", "Male"] },
+      {
+        kind: "checkboxes",
+        label: "Creator age",
+        options: ["18-24", "25-34", "35-44", "45 -54", "55+"],
+      },
+      { kind: "select", label: "Category" },
+      { kind: "select", label: "Creator language" },
+      {
+        kind: "note",
+        label: "Not invited in past 90 days",
+        description:
+          "Creators who are in active collaboration even if were invited 90 days ago will excluded",
+      },
+    ],
+  },
+  {
+    title: "Follower demographics",
+    controls: [
+      { kind: "checkboxes", label: "Follower gender", options: ["Female", "Male"] },
+      {
+        kind: "checkboxes",
+        label: "Follower age",
+        options: ["18-24", "25-34", "35-44", "45 -54", "55+"],
+      },
+      { kind: "select", label: "Follower location", value: "United States, +2" },
+      { kind: "select", label: "Follower interests", value: "Beauty, Wellness" },
+    ],
+    preset: ["Follower gender:Female", "Follower age:25-34", "Follower age:35-44"],
+  },
+  {
+    title: "Performance",
+    controls: [
+      {
+        kind: "checkboxes",
+        label: "Items sold (last 30 days)",
+        options: ["<100", "100-1K", "1K-10K", "10K+"],
+      },
+      { kind: "select", label: "GMV range", value: "$10K - $100K" },
+      { kind: "select", label: "Engagement rate", value: "Above 5%" },
+      {
+        kind: "note",
+        label: "Consistent posting cadence",
+        description:
+          "Creators who posted at least four shoppable videos in the last 30 days",
+      },
+    ],
+    preset: ["Items sold (last 30 days):1K-10K", "Consistent posting cadence"],
+  },
+  {
+    title: "Other",
+    controls: [
+      { kind: "checkboxes", label: "Account type", options: ["Individual", "Agency"] },
+      { kind: "select", label: "Content language", value: "English" },
+      {
+        kind: "note",
+        label: "Accepts free samples",
+        description:
+          "Only show creators who have sample requests turned on for their shop",
+      },
+    ],
+    preset: ["Account type:Individual", "Accepts free samples"],
+  },
+];
+
+function FilterIcon({ name }: { name: string }) {
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={`${FILTER_ART}/${name}.svg`}
+      alt=""
+      width={16}
+      height={16}
+      className="size-[16px]"
+    />
+  );
+}
+
+function FilterCheckbox({
+  label,
+  description,
+  checked,
+  onToggle,
+}: {
+  label: string;
+  description?: string;
+  checked: boolean;
+  onToggle: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onToggle}
+      aria-pressed={checked}
+      className="flex items-start gap-[8px] text-left"
+    >
+      <span className="flex items-start py-[2px]">
+        <span
+          className={`flex size-[16px] items-center justify-center overflow-hidden rounded-[4px] ${
+            checked
+              ? "bg-[#009995]"
+              : "border border-[#d3d4d5] bg-white"
+          }`}
+        >
+          {checked ? <FilterIcon name="check" /> : null}
+        </span>
+      </span>
+      <span className="flex flex-col justify-center">
+        <span className="whitespace-nowrap text-[14px] leading-[20px] text-[#171718]">
+          {label}
+        </span>
+        {description ? (
+          <span className="text-[12px] leading-[18px] text-black/55">
+            {description}
+          </span>
+        ) : null}
+      </span>
+    </button>
+  );
+}
+
+/** Non-functional by design — the exploration never specified the menu. */
+function FilterSelect({ value }: { value?: string }) {
+  return (
+    <div className="flex h-[36px] w-full items-center justify-between gap-[4px] overflow-hidden rounded-[4px] border border-[#d3d4d5] bg-white px-[12px] py-[4px]">
+      <span className="truncate text-[14px] leading-[20px] text-[#171718]">
+        {value ?? ""}
+      </span>
+      <FilterIcon name="chevron-down" />
+    </div>
+  );
+}
+
+function FilterFieldLabel({ children }: { children: string }) {
+  return (
+    <span className="whitespace-nowrap text-[14px] font-medium leading-[20px] text-[#171718]">
+      {children}
+    </span>
+  );
+}
+
+/**
+ * Scales the panel down to its column and re-measures as sections open and
+ * close. useDemoFit pins the fit element's height, which a panel that changes
+ * height on click cannot use.
+ */
+function useFilterPanelFit(
+  stageRef: React.RefObject<HTMLDivElement | null>,
+  cardRef: React.RefObject<HTMLDivElement | null>,
+) {
+  useLayoutEffect(() => {
+    const stage = stageRef.current;
+    const card = cardRef.current;
+    if (!stage || !card) return;
+
+    const apply = () => {
+      const available = stage.clientWidth;
+      if (!available) return;
+      const scale = Math.min(1, available / FILTER_WIDTH);
+      const transform = `scale(${scale})`;
+      if (card.style.transform !== transform) card.style.transform = transform;
+      // offsetHeight ignores the transform, so this is the authored height.
+      const next = `${Math.round(card.offsetHeight * scale)}px`;
+      if (stage.style.height !== next) stage.style.height = next;
+    };
+
+    apply();
+    void document.fonts?.ready?.then(apply);
+
+    const observer = new ResizeObserver(apply);
+    observer.observe(stage);
+    observer.observe(card);
+    window.addEventListener("resize", apply);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", apply);
+    };
+  }, [stageRef, cardRef]);
+}
+
+function CreatorFilterPanel() {
+  const stageRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+  // Figma shows the first section open and the rest collapsed.
+  const [openSections, setOpenSections] = useState<string[]>([
+    FILTER_SECTIONS[0].title,
+  ]);
+  const [ticked, setTicked] = useState<string[]>(() =>
+    FILTER_SECTIONS.flatMap((section) => section.preset ?? []),
+  );
+
+  useFilterPanelFit(stageRef, cardRef);
+
+  const toggleSection = (title: string) =>
+    setOpenSections((open) =>
+      open.includes(title)
+        ? open.filter((t) => t !== title)
+        : [...open, title],
+    );
+
+  const toggleTick = (key: string) =>
+    setTicked((on) =>
+      on.includes(key) ? on.filter((k) => k !== key) : [...on, key],
+    );
+
+  return (
+    <figure className="rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
+      <div ref={stageRef} className="relative w-full overflow-hidden">
+        <div
+          ref={cardRef}
+          className="absolute left-0 top-0 flex flex-col gap-[8px] font-sans"
+          style={{ width: FILTER_WIDTH, transformOrigin: "top left" }}
+        >
+          {FILTER_SECTIONS.map((section) => {
+            const isOpen = openSections.includes(section.title);
+            const panelId = `filter-${section.title.replace(/\s+/g, "-").toLowerCase()}`;
+
+            return (
+              <div
+                key={section.title}
+                // Figma draws the stroke inside the frame, so it must not add to the
+                // box height: an inset outline keeps the 486px/60px heights exact.
+                className="flex flex-col gap-[16px] overflow-hidden rounded-[4px] bg-white p-[16px] outline outline-1 -outline-offset-1 outline-[#d3d4d5]"
+              >
+                <div className="flex w-full items-center gap-[16px]">
+                  <div className="flex min-w-0 flex-1 flex-col gap-[2px]">
+                    <span className="truncate text-[20px] font-medium leading-[28px] text-[#171718]">
+                      {section.title}
+                    </span>
+                    {section.subtitle ? (
+                      <span className="truncate text-[12px] leading-[18px] text-[#6c6d6f]">
+                        {section.subtitle}
+                      </span>
+                    ) : null}
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => toggleSection(section.title)}
+                    aria-expanded={isOpen}
+                    aria-controls={panelId}
+                    aria-label={`${isOpen ? "Collapse" : "Expand"} ${section.title}`}
+                    className="flex min-h-[24px] min-w-[24px] items-center justify-center rounded-[4px] p-[4px] transition-colors hover:bg-black/5"
+                  >
+                    <FilterIcon name={isOpen ? "chevron-up" : "chevron-down"} />
+                  </button>
+                </div>
+
+                {isOpen ? (
+                  <div id={panelId} className="flex w-full flex-col gap-[32px]">
+                    {section.controls.map((control) => {
+                      if (control.kind === "note") {
+                        return (
+                          <FilterCheckbox
+                            key={control.label}
+                            label={control.label}
+                            description={control.description}
+                            checked={ticked.includes(control.label)}
+                            onToggle={() => toggleTick(control.label)}
+                          />
+                        );
+                      }
+                      return (
+                        <div
+                          key={control.label}
+                          className="flex w-full flex-col gap-[8px]"
+                        >
+                          <span className="flex h-[20px] items-center">
+                            <FilterFieldLabel>{control.label}</FilterFieldLabel>
+                          </span>
+                          {control.kind === "select" ? (
+                            <FilterSelect value={control.value} />
+                          ) : (
+                            <div className="flex flex-wrap items-center gap-x-[43px] gap-y-[12px]">
+                              {control.options.map((option) => {
+                                const key = `${control.label}:${option}`;
+                                return (
+                                  <FilterCheckbox
+                                    key={option}
+                                    label={option}
+                                    checked={ticked.includes(key)}
+                                    onToggle={() => toggleTick(key)}
+                                  />
+                                );
+                              })}
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                ) : null}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </figure>
+  );
+}
+
 function DeliverableScreenshot() {
   return (
     <figure className="mt-8 sm:mt-10 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
@@ -845,98 +1182,8 @@ export function CaseStudyGate() {
           </p>
 
           <div className="grid grid-cols-1 gap-6 mt-8 sm:grid-cols-2 sm:mt-10">
-            {/* Left View - Creator Demographics Filter */}
-            <figure className="rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
-              <div className="bg-white rounded-lg shadow-lg p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <div>
-                    <h3 className="font-sans text-[15px] font-semibold text-foreground">
-                      Creator demographics
-                    </h3>
-                    <p className="text-[13px] text-foreground/60 mt-1">
-                      Choose the preference
-                    </p>
-                  </div>
-                  <button className="text-foreground/40 hover:text-foreground/60">
-                    ↑
-                  </button>
-                </div>
-
-                <div className="space-y-5 border-b border-foreground/10 pb-5">
-                  <div>
-                    <p className="text-[13px] font-medium text-foreground mb-2">
-                      Creator gender
-                    </p>
-                    <div className="flex gap-4">
-                      <label className="flex items-center gap-2 cursor-pointer">
-                        <input type="checkbox" className="w-4 h-4" />
-                        <span className="text-[13px] text-foreground/70">Female</span>
-                      </label>
-                      <label className="flex items-center gap-2 cursor-pointer">
-                        <input type="checkbox" className="w-4 h-4" />
-                        <span className="text-[13px] text-foreground/70">Male</span>
-                      </label>
-                    </div>
-                  </div>
-
-                  <div>
-                    <p className="text-[13px] font-medium text-foreground mb-2">
-                      Creator age
-                    </p>
-                    <div className="flex flex-wrap gap-3">
-                      {["18-24", "25-34", "35-44", "45-54", "55+"].map((age) => (
-                        <label key={age} className="flex items-center gap-2 cursor-pointer">
-                          <input type="checkbox" className="w-4 h-4" />
-                          <span className="text-[12px] text-foreground/70">{age}</span>
-                        </label>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="text-[13px] font-medium text-foreground mb-2 block">
-                      Category
-                    </label>
-                    <select className="w-full px-3 py-2 border border-foreground/15 rounded text-[13px] text-foreground/70 bg-transparent">
-                      <option>Select category</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="text-[13px] font-medium text-foreground mb-2 block">
-                      Creator language
-                    </label>
-                    <select className="w-full px-3 py-2 border border-foreground/15 rounded text-[13px] text-foreground/70 bg-transparent">
-                      <option>Select language</option>
-                    </select>
-                  </div>
-
-                  <label className="flex items-start gap-2 cursor-pointer">
-                    <input type="checkbox" className="w-4 h-4 mt-0.5" />
-                    <div>
-                      <p className="text-[12px] font-medium text-foreground">
-                        Not invited in past 90 days
-                      </p>
-                      <p className="text-[11px] text-foreground/50">
-                        Creators who are in active collaboration even if were invited 90 days ago will excluded
-                      </p>
-                    </div>
-                  </label>
-                </div>
-
-                <div className="mt-5 space-y-3">
-                  {["Follower demographics", "Performance", "Other"].map((section) => (
-                    <button
-                      key={section}
-                      className="w-full flex items-center justify-between px-4 py-3 border border-foreground/10 rounded text-[13px] font-medium text-foreground hover:bg-foreground/[0.02]"
-                    >
-                      {section}
-                      <span className="text-foreground/40">↓</span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </figure>
+            {/* Left View — Figma node 1838-134960 */}
+            <CreatorFilterPanel />
 
             {/* Right View - Describe Preferred Creators */}
             <figure className="rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
