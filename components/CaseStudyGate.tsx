@@ -381,50 +381,13 @@ function InviteDrawer() {
 }
 
 function DeliverableScreenshot() {
-  const [zoom, setZoom] = useState(100);
-
-  const handleZoomIn = () => {
-    setZoom((prev) => Math.min(prev + 25, 200));
-  };
-
-  const handleZoomOut = () => {
-    setZoom((prev) => Math.max(prev - 25, 75));
-  };
-
   return (
-    <figure className="mt-8 sm:mt-10">
-      <div className="rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
-        {/* Zoom Controls */}
-        <div className="flex gap-2 mb-4">
-          <button
-            onClick={handleZoomOut}
-            disabled={zoom <= 75}
-            className="px-3 py-2 rounded border border-foreground/20 bg-foreground/5 text-[13px] text-foreground/70 hover:bg-foreground/10 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            Zoom out
-          </button>
-          <div className="flex items-center px-3 py-2 rounded border border-foreground/10 bg-foreground/[0.02] text-[13px] text-foreground/70 min-w-16 justify-center">
-            {zoom}%
-          </div>
-          <button
-            onClick={handleZoomIn}
-            disabled={zoom >= 200}
-            className="px-3 py-2 rounded border border-foreground/20 bg-foreground/5 text-[13px] text-foreground/70 hover:bg-foreground/10 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            Zoom in
-          </button>
-        </div>
-
-        {/* Image Container with Zoom */}
-        <div className="overflow-auto rounded-lg bg-white" style={{ maxHeight: "600px" }}>
-          <img
-            src="https://www.figma.com/api/mcp/asset/d29a64d4-dbf5-45be-95ca-4085825685ac/daa65.png"
-            alt="Final deliverables - Seller landing and creation experience screens"
-            className="w-full h-auto"
-            style={{ transform: `scale(${zoom / 100})`, transformOrigin: "top left" }}
-          />
-        </div>
-      </div>
+    <figure className="mt-8 sm:mt-10 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
+      <img
+        src="https://www.figma.com/api/mcp/asset/d29a64d4-dbf5-45be-95ca-4085825685ac/daa65.png"
+        alt="Final deliverables - Seller landing and creation experience screens"
+        className="w-full h-auto rounded-lg"
+      />
     </figure>
   );
 }
