@@ -1485,8 +1485,8 @@ export function CaseStudyGate() {
             Result
           </h2>
 
-          <h3 className="mt-8 font-sans text-[28px] font-bold tracking-tight text-foreground sm:mt-10">
-            Final deliverable
+          <h3 className="mt-8 font-sans text-[18px] font-semibold tracking-tight text-foreground/80 sm:mt-10">
+            Final design deliverable
           </h3>
 
           <div className="mt-6 space-y-4 sm:mt-8">
