@@ -75,6 +75,38 @@ export function HiringCaseStudy() {
             <p className="mt-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-6 sm:text-[17px]">
               Sprockets has launched their MVP that used by internal customer success team to help franchise business (fast food / gas stations) source hourly works and hire better for them, the core technology behind it is an AI analysis on candidates answers from an online assessment. The company faced a bottleneck to continue grow, they planned to refresh the MVP products for more self-serviced within the same target market. I joined the team to see how self-serviced should be fleshed out and still maintain its core value of mvp.
             </p>
+
+            <div className="grid grid-cols-1 gap-6 mt-8 sm:mt-10 sm:grid-cols-2">
+              <figure className="rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
+                <div className="flex flex-col items-center justify-center py-12">
+                  <h3 className="font-sans text-[16px] font-semibold text-foreground mb-8">
+                    Sourcing and filtering
+                  </h3>
+                  <div className="w-full aspect-video flex items-center justify-center bg-foreground/5 rounded-lg">
+                    <img
+                      src="https://www.figma.com/api/mcp/asset/95eeec98-a249-4ec3-a55b-6dcd5ee49443/2be08.svg"
+                      alt="Sourcing and filtering illustration showing candidate filtering interface"
+                      className="w-full h-auto max-w-xs"
+                    />
+                  </div>
+                </div>
+              </figure>
+
+              <figure className="rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
+                <div className="flex flex-col items-center justify-center py-12">
+                  <h3 className="font-sans text-[16px] font-semibold text-foreground mb-8">
+                    Job application
+                  </h3>
+                  <div className="w-full aspect-video flex items-center justify-center bg-foreground/5 rounded-lg">
+                    <img
+                      src="https://www.figma.com/api/mcp/asset/f55d7c46-19e4-451d-9e8e-62ae0b37ce1b/6f59c.svg"
+                      alt="Job application illustration showing candidate profile and application status"
+                      className="w-full h-auto max-w-xs"
+                    />
+                  </div>
+                </div>
+              </figure>
+            </div>
           </section>
         </div>
       </article>
