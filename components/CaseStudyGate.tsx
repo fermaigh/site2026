@@ -676,6 +676,10 @@ export function CaseStudyGate() {
               </div>
             </div>
           </figure>
+
+          <p className="mt-6 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-8 sm:text-[17px]">
+            Holistically, it would be nice to see the automatically matched list and updates whenever new edits happen.
+          </p>
         </section>
       </article>
     );
