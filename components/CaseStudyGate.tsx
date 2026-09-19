@@ -1507,6 +1507,29 @@ export function CaseStudyGate() {
           </div>
 
           <DeliverableScreenshot />
+
+          <div className="grid grid-cols-1 gap-6 mt-12 sm:grid-cols-2 sm:mt-16">
+            <div className="rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
+              <h4 className="font-sans text-[20px] font-bold text-foreground mb-3">
+                3× higher match rate
+              </h4>
+              <p className="font-sans text-[13px] text-foreground/80 leading-[1.65]">
+                <span className="font-medium text-foreground/70">(content output)</span>
+              </p>
+              <p className="font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 mt-4 sm:text-[16px]">
+                Platform-matched collaborations generated 3× more content than manual invites within the first 60 days after launch.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
+              <h4 className="font-sans text-[20px] font-bold text-foreground mb-3">
+                89% positive seller sentiment
+              </h4>
+              <p className="font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 mt-4 sm:text-[16px]">
+                Among 543 surveyed sellers, 89% reported positive results from platform-matched collaborations and found the experience easier to use.
+              </p>
+            </div>
+          </div>
         </section>
       </article>
     );
