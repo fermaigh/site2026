@@ -572,7 +572,7 @@ export function CaseStudyGate() {
           </div>
 
           <p className="mt-6 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-8 sm:text-[17px]">
-            The left one feels overwhelming and not reasonable, while the right one has the risk of relying on user's input completely. Then I iterated the solution.
+            By evaluating the rationale, strengths, and tradeoffs behind each direction, I landed on a new approach that guides seller intent without over-constraining it.
           </p>
 
           {/* Full-width Creator Preference Card */}
