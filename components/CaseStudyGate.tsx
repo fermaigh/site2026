@@ -455,6 +455,9 @@ export function CaseStudyGate() {
 
           <figure className="mt-8 sm:mt-10">
             <InviteDrawer />
+            <figcaption className="mt-4 font-sans text-[13px] leading-[1.6] text-foreground/60 sm:text-[14px]">
+              Today's experience: Sellers manually select creators by browsing through lists and filtering by familiar metrics like follower count, engagement rate, and past collaboration history.
+            </figcaption>
           </figure>
 
           <p className="mt-8 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-10 sm:text-[17px]">
