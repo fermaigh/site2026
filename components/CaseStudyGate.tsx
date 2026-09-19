@@ -1098,6 +1098,12 @@ export function CaseStudyGate() {
               </div>
             </div>
           </figure>
+
+          <p className="mt-8 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-10 sm:text-[17px]">
+            This tradeoff kept the experience responsive and trustworthy, while giving us a feasible path to ship and learn.
+          </p>
+
+          <div className="mt-12 h-px bg-foreground/10" />
         </section>
       </article>
     );
