@@ -1426,6 +1426,10 @@ export function CaseStudyGate() {
             </div>
           </figure>
 
+          <p className="mt-8 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-10 sm:text-[17px]">
+            This shifted compliance from a <span className="font-semibold">late-stage warning to proactive guidance</span>, which breaks down complex requirements into clear, timely information and an action sellers could take before reaching the threshold.
+          </p>
+
           <div className="mt-12 h-px bg-foreground/10" />
 
           <h2 className="mt-12 font-sans text-[clamp(1.125rem,4vw,1.5rem)] font-semibold tracking-tight text-foreground">
