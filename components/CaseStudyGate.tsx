@@ -1275,7 +1275,7 @@ export function CaseStudyGate() {
           </figure>
 
           <p className="mt-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]">
-            I saw a gap in this approach: the platform was doing the matching, but sellers would only learn about the consequence after the risk had already accumulated with limited ability to course-correct. This could erode trust in the platform-driven experience.
+            I saw a gap in this approach: <span className="font-semibold text-foreground">the platform was doing the matching, but sellers would only learn about the consequence after the risk had already accumulated with limited ability to course-correct.</span> This could erode trust in the platform-driven experience.
           </p>
 
           <p className="mt-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]">
