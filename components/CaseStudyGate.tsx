@@ -1118,6 +1118,10 @@ export function CaseStudyGate() {
           </p>
 
           <p className="mt-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]">
+            In my opinion, this solution would not make sense to user. Users trust the platform to do the match for them, then later on they get punishment, and they are not able to do too much.
+          </p>
+
+          <p className="mt-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]">
             The legal and product team suggested to inform sellers if any of their existing collaboration are about to exceed a certain number.
           </p>
 
