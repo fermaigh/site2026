@@ -449,6 +449,11 @@ export function CaseStudyGate() {
           <figure className="mt-8 sm:mt-10">
             <InviteDrawer />
           </figure>
+
+          <p className="mt-6 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-8 sm:text-[17px]">
+            Took a look at other platforms who might have solved the similar
+            business problem, and discovered common patterns.
+          </p>
         </section>
       </article>
     );
