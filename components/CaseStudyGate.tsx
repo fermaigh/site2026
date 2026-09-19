@@ -846,6 +846,94 @@ export function CaseStudyGate() {
               </div>
             </div>
           </figure>
+
+          <p className="mt-6 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-8 sm:text-[17px]">
+            I learned providing a pre-matched list and updates while typing would be expensive, within the given resources engineering wouldn't be able to achieve it. They suggested to defer this, I did not want to completely lose giving users feedback as they input, so I traded off for this solution: Indicating we are capturing your needs.
+          </p>
+
+          {/* Seller Center Navigation */}
+          <figure className="mt-8 sm:mt-10 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
+            <div className="bg-foreground/95 rounded-lg shadow-lg overflow-hidden">
+              <div className="flex items-center justify-between px-6 py-3 h-15">
+                {/* Left section */}
+                <div className="flex items-center gap-6">
+                  {/* Logo */}
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-6 bg-white/20 rounded flex items-center justify-center">
+                      <span className="text-white text-[10px] font-bold">TikTok</span>
+                    </div>
+                    <div className="w-px h-4 bg-white/20" />
+                    <span className="text-white text-[16px] font-semibold">Seller Center</span>
+                  </div>
+
+                  {/* Search */}
+                  <div className="hidden sm:flex items-center gap-2 bg-foreground/80 px-3 py-2 rounded text-[13px] max-w-xs">
+                    <svg className="w-4 h-4 text-white/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <circle cx="11" cy="11" r="8" />
+                      <path d="m21 21-4.35-4.35" />
+                    </svg>
+                    <span className="text-white/60">Ask anything</span>
+                    <span className="ml-auto text-white/40 text-[11px]">⌘+K</span>
+                  </div>
+                </div>
+
+                {/* Right section */}
+                <div className="flex items-center gap-4">
+                  {/* Assistant */}
+                  <div className="flex items-center gap-2 text-white text-[13px]">
+                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <circle cx="12" cy="12" r="10" />
+                      <path d="M8 12h8" />
+                    </svg>
+                    <span>Assistant</span>
+                  </div>
+
+                  {/* Help */}
+                  <button className="p-2 hover:bg-white/10 rounded">
+                    <svg className="w-5 h-5 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <circle cx="12" cy="12" r="10" />
+                      <path d="M12 16v-4M12 8h.01" />
+                    </svg>
+                  </button>
+
+                  {/* Divider */}
+                  <div className="w-px h-5 bg-white/20" />
+
+                  {/* Messages */}
+                  <div className="flex items-center gap-2 relative">
+                    <button className="p-2 hover:bg-white/10 rounded">
+                      <svg className="w-5 h-5 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                      </svg>
+                    </button>
+                    <span className="text-white text-[12px] font-medium">Customer Messages</span>
+                    <div className="absolute -top-1 -right-1 w-5 h-5 bg-red-600 text-white text-[10px] rounded-full flex items-center justify-center font-semibold">
+                      8
+                    </div>
+                  </div>
+
+                  {/* Notifications */}
+                  <button className="p-2 hover:bg-white/10 rounded relative">
+                    <svg className="w-5 h-5 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                      <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                    </svg>
+                    <div className="absolute -top-1 -right-1 w-5 h-5 bg-red-600 text-white text-[10px] rounded-full flex items-center justify-center font-semibold">
+                      8
+                    </div>
+                  </button>
+
+                  {/* Account */}
+                  <div className="flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full">
+                    <div className="w-6 h-6 bg-foreground/60 rounded-full flex items-center justify-center">
+                      <span className="text-white text-[10px] font-bold">T</span>
+                    </div>
+                    <span className="text-white text-[13px] hidden sm:inline">Testaccount</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </figure>
         </section>
       </article>
     );
