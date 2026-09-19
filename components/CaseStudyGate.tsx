@@ -1104,6 +1104,22 @@ export function CaseStudyGate() {
           </p>
 
           <div className="mt-12 h-px bg-foreground/10" />
+
+          <h2 className="mt-12 font-sans text-[clamp(1.125rem,4vw,1.5rem)] font-semibold tracking-tight text-foreground">
+            Balancing User Value &amp; Compliance
+          </h2>
+
+          <p className="mt-6 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-8 sm:text-[17px]">
+            At platform scale, I often balance user value with platform compliance: Simplifying complex requirements while ensuring the experience remains clear, trustworthy, and sustainable for everyone in the ecosystem.
+          </p>
+
+          <p className="mt-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]">
+            In this case, the compliance design had to satisfy was: if sellers repeatedly rejected sample requests, the system could keep recruiting more creators until the campaign limits were reached. This could lead to creator spam and undermine the intent of the matching experience.
+          </p>
+
+          <p className="mt-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]">
+            The legal and product team suggested to inform sellers if any of their existing collaboration are about to exceed a certain number.
+          </p>
         </section>
       </article>
     );
