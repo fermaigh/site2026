@@ -760,8 +760,9 @@ function InviteDrawer() {
 /* ---- Creator filter panel — Figma "Portifolio Site", node 1838-134960 ---- */
 
 const FILTER_ART = "/projects/tts-ui/creator-filters";
-/** The accordion card's authored width in Figma. */
+/** The accordion stack's authored width; its Figma frame adds a 15px inset. */
 const FILTER_WIDTH = 819;
+const FILTER_FRAME = FILTER_WIDTH + 30;
 
 type FilterControl =
   | { kind: "checkboxes"; label: string; options: string[] }
@@ -936,6 +937,7 @@ function FilterFieldLabel({ children }: { children: string }) {
 function useFilterPanelFit(
   stageRef: React.RefObject<HTMLDivElement | null>,
   cardRef: React.RefObject<HTMLDivElement | null>,
+  width: number,
 ) {
   useLayoutEffect(() => {
     const stage = stageRef.current;
@@ -945,7 +947,7 @@ function useFilterPanelFit(
     const apply = () => {
       const available = stage.clientWidth;
       if (!available) return;
-      const scale = Math.min(1, available / FILTER_WIDTH);
+      const scale = Math.min(1, available / width);
       const transform = `scale(${scale})`;
       if (card.style.transform !== transform) card.style.transform = transform;
       // offsetHeight ignores the transform, so this is the authored height.
@@ -965,7 +967,7 @@ function useFilterPanelFit(
       observer.disconnect();
       window.removeEventListener("resize", apply);
     };
-  }, [stageRef, cardRef]);
+  }, [stageRef, cardRef, width]);
 }
 
 function CreatorFilterPanel() {
@@ -979,7 +981,7 @@ function CreatorFilterPanel() {
     FILTER_SECTIONS.flatMap((section) => section.preset ?? []),
   );
 
-  useFilterPanelFit(stageRef, cardRef);
+  useFilterPanelFit(stageRef, cardRef, FILTER_FRAME);
 
   const toggleSection = (title: string) =>
     setOpenSections((open) =>
@@ -998,8 +1000,10 @@ function CreatorFilterPanel() {
       <div ref={stageRef} className="relative w-full overflow-hidden">
         <div
           ref={cardRef}
-          className="absolute left-0 top-0 flex flex-col gap-[8px] font-sans"
-          style={{ width: FILTER_WIDTH, transformOrigin: "top left" }}
+          // The Figma frame is a white surface; without it the panel's own
+          // text would sit on the page background and vanish on the dark theme.
+          className="absolute left-0 top-0 flex flex-col gap-[8px] rounded-[8px] bg-white px-[15px] py-[16px] font-sans shadow-[0_2px_10px_rgba(0,0,0,0.06)]"
+          style={{ width: FILTER_FRAME, transformOrigin: "top left" }}
         >
           {FILTER_SECTIONS.map((section) => {
             const isOpen = openSections.includes(section.title);
@@ -1082,6 +1086,78 @@ function CreatorFilterPanel() {
               </div>
             );
           })}
+        </div>
+      </div>
+    </figure>
+  );
+}
+
+/* ---- Describe creators — Figma "Portifolio Site", node 1839-135488 ---- */
+
+/** The text field's authored width; its Figma frame adds a 15px inset. */
+const DESCRIBE_WIDTH = 818;
+const DESCRIBE_FRAME = DESCRIBE_WIDTH + 30;
+const DESCRIBE_LIMIT = 500;
+
+/**
+ * The example a seller sees before typing. Figma specifies only the focused,
+ * empty state, so this stands in for the resting one: a concrete prompt that
+ * shows the kind of description the field expects.
+ */
+const DESCRIBE_PLACEHOLDER =
+  "e.g. Beauty and skincare creators in the US with a mostly female audience aged 18-34. " +
+  "I'm looking for people who post tutorial-style videos, have driven at least $10K in " +
+  "affiliate GMV in the last 30 days, and are open to receiving free samples.";
+
+function DescribeCreatorsPanel() {
+  const stageRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [value, setValue] = useState("");
+
+  useFilterPanelFit(stageRef, cardRef, DESCRIBE_FRAME);
+
+  return (
+    <figure className="rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
+      <div ref={stageRef} className="relative w-full overflow-hidden">
+        <div
+          ref={cardRef}
+          // Same white Figma frame as the sibling panel — its title and
+          // subtitle sit on this surface, not on the page background.
+          className="absolute left-0 top-0 flex flex-col gap-[8px] rounded-[8px] bg-white px-[15px] py-[17px] font-sans shadow-[0_2px_10px_rgba(0,0,0,0.06)]"
+          style={{ width: DESCRIBE_FRAME, transformOrigin: "top left" }}
+        >
+          <div className="flex w-full flex-col justify-center gap-[4px]">
+            <p className="whitespace-nowrap text-[16px] font-medium leading-[24px] text-black/92">
+              Describe preferred creators
+            </p>
+            <div className="flex h-[24px] items-start overflow-hidden">
+              <p className="w-[669px] text-[14px] leading-[20px] text-[#6c6d6f]">
+                Explain creator demographics, sales performance, content style
+                and etc.
+              </p>
+            </div>
+          </div>
+
+          {/*
+            Figma draws only the focused field, in primary/core-pressed. At
+            rest it takes the neutral border its sibling controls use, and
+            focus-within restores the specified teal on click.
+          */}
+          <div className="flex h-[295px] w-full items-end gap-[8px] rounded-[4px] border border-[#d3d4d5] bg-white px-[12px] py-[6px] transition-colors focus-within:border-[#017976]">
+            <textarea
+              value={value}
+              onChange={(event) =>
+                setValue(event.target.value.slice(0, DESCRIBE_LIMIT))
+              }
+              maxLength={DESCRIBE_LIMIT}
+              placeholder={DESCRIBE_PLACEHOLDER}
+              aria-label="Describe preferred creators"
+              className="h-full flex-1 resize-none self-stretch bg-transparent text-[14px] leading-[20px] text-[#171718] caret-[#171718] outline-none placeholder:text-[#a9abad]"
+            />
+            <span className="shrink-0 rounded-[4px] bg-[#ececed] px-[2px] text-right text-[12px] leading-[18px] text-[#6c6d6f]">
+              {value.length}/{DESCRIBE_LIMIT}
+            </span>
+          </div>
         </div>
       </div>
     </figure>
@@ -1185,29 +1261,8 @@ export function CaseStudyGate() {
             {/* Left View — Figma node 1838-134960 */}
             <CreatorFilterPanel />
 
-            {/* Right View - Describe Preferred Creators */}
-            <figure className="rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
-              <div className="bg-white rounded-lg shadow-lg p-6">
-                <div>
-                  <h3 className="font-sans text-[15px] font-semibold text-foreground">
-                    Describe preferred creators
-                  </h3>
-                  <p className="text-[13px] text-foreground/60 mt-1">
-                    Explain creator demographics, sales performance, content style and etc.
-                  </p>
-                </div>
-
-                <textarea
-                  placeholder="Type here..."
-                  maxLength={500}
-                  className="w-full mt-4 p-3 border border-cyan-500 rounded text-[13px] text-foreground placeholder:text-foreground/30 resize-none h-48 focus:outline-none focus-visible:ring-1 focus-visible:ring-cyan-500"
-                />
-
-                <div className="flex justify-end mt-2">
-                  <span className="text-[12px] text-foreground/50">0/500</span>
-                </div>
-              </div>
-            </figure>
+            {/* Right View — Figma node 1839-135488 */}
+            <DescribeCreatorsPanel />
           </div>
 
           <p className="mt-6 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-8 sm:text-[17px]">
