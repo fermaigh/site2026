@@ -427,7 +427,7 @@ export function CaseStudyGate() {
 
         <section className="reveal reveal-delay-2 mt-12">
           <h2 className="font-sans text-[clamp(1.125rem,4vw,1.5rem)] font-semibold tracking-tight text-foreground">
-            Unhealthy matching - Invite concentrated leads less conversion
+            Context
           </h2>
 
           <p className="mt-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-5 sm:text-[17px]">
