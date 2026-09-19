@@ -417,9 +417,8 @@ export function CaseStudyGate() {
             Bridge the gap for two-sided marketplace at a scale
           </h1>
           <p className="mt-6 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]">
-            A big part of my work has been designing for &apos;two-sided
-            connection&apos; problem. TikTok Shop generates roughly $11.4M in
-            daily GMV from seller-creator affiliate collaborations.
+            Much of my work focuses on designing multi-sided marketplaces at scale.
+            This case study shows how I bring useful, trustworthy, and strategic thinking to a complex matching problem at TikTok Shop—partnering with global cross-functional teams on an ecosystem generating ~$11.4M in daily affiliate GMV.
           </p>
         </div>
 
