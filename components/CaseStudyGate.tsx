@@ -1,6 +1,8 @@
 "use client";
 
-import { useState, useSyncExternalStore, type FormEvent } from "react";
+import { useRef, useState, useSyncExternalStore, type FormEvent } from "react";
+
+import { useDemoFit } from "@/components/useDemoFit";
 
 /**
  * Soft gate only. This check runs in the browser, so the passcode ships in the
@@ -188,234 +190,560 @@ function ConcentrationDiagram() {
   );
 }
 
-const RECOMMENDED = [
+/* ---- "Add creators" screen — Figma "Portifolio Site", node 1835-111444 ---- */
+
+/**
+ * The Seller Center "Add creators" drawer, over the dimmed Invite creators
+ * page. Authored in Figma at 1440 x 960; every number below is in that frame's
+ * own pixels, and the whole screen is scaled down to the column as one piece
+ * rather than reflowing — the same camera/fit rig the other demos use.
+ *
+ * The design sets TikTok Sans, which this site does not ship. It inherits
+ * Inter, as the other Seller Center screens here already do.
+ */
+const SCREEN = "/projects/tts-ui/add-creators";
+const SCREEN_HEIGHT = 960;
+/** Module scope so the fit hook's effect does not re-run every render. */
+const screenHeight = () => SCREEN_HEIGHT;
+
+/**
+ * Head and body column widths disagree in the source file — the head gives
+ * Creators 329px against the body's 308px, so the labels sit slightly left of
+ * their values. Reproduced as drawn rather than quietly reconciled.
+ */
+const HEAD_COLUMNS = [329, 90, 126, 127, 127, 127];
+const ROW_COLUMNS = [308, 90, 126, 127, 126, 126, 126];
+
+type AddCreatorRow = {
+  name: string;
+  handle: string;
+  pps: string;
+  categories: string;
+  audience: string;
+  avatar: string;
+  /** Absent for the part-row at the fold, which is a flat grey block. */
+  video?: string;
+  /** The first row's still carries a heavier scrim than the rest. */
+  videoScrim?: number;
+  tags?: string[];
+  /** Revenue, items sold, average video views, engagement rate, and the
+   *  fifth column the drawer clips — all as typed in the design. */
+  metrics: [string, string, string, string, string];
+};
+
+const ADD_CREATORS: AddCreatorRow[] = [
   {
     name: "Marcus Webb",
     handle: "@webbworks",
-    pps: "PPS 4.8/5.0",
+    pps: "4.8/5.0",
     categories: "Sports, Outdoor",
-    followers: "874k",
-    range: "Male 30%, 25-50",
-    revenue: "$45.5K",
-    items: "1,323",
-    views: "4.3K",
-    engagement: "23.8%",
+    audience: "174.4K, Male 30%, 25-50",
+    avatar: "avatar-marcus.png",
+    video: "video-marcus.jpg",
+    videoScrim: 0.2,
+    metrics: ["$45.5K", "1,323", "$4.3K", "23.8%", "0.8%"],
   },
   {
     name: "Kayla Tran",
-    handle: "@alignedwithkay",
-    pps: "PPS 4.3/5.0",
-    categories: "Wellness & Supplements, +2",
-    followers: "1.2M",
-    range: "Female 70%, 25-50",
-    status: "Previously invited",
-    tags: ["Women Fashion", "+2"],
-    revenue: "$1.24M",
-    items: "4,545",
-    views: "12K",
-    engagement: "46.90%",
+    handle: "alignedwithkay",
+    pps: "4.3/5.0",
+    categories: "Wellness & Supplements,+2",
+    audience: "1.2M, Female 70%, 25-50",
+    avatar: "avatar-kayla.png",
+    video: "video-kayla.jpg",
+    tags: ["Previously invited", "Women Fashion", "+2"],
+    metrics: ["$1.24M", "4,545", "12k", "46.90%", "0.8%"],
   },
   {
     name: "Priya Nair",
     handle: "@priyaglows",
-    pps: "PPS 4.9/5.0",
+    pps: "4.9/5.0",
     categories: "Beauty, Fashion",
-    followers: "456k",
-    range: "Female 56%, 18-24",
+    audience: "45K, Female 56%, 18-24",
+    avatar: "avatar-priya.png",
+    video: "video-priya.jpg",
     tags: ["Skin Care Pro"],
-    revenue: "$10K",
-    items: "53.9K",
-    views: "4.3K",
-    engagement: "12.4%",
+    metrics: ["$10K", "53.9K", "$4.3K", "12.4%", "0.8%"],
   },
   {
     name: "Skincare Pro",
-    handle: "@skincarepro",
-    pps: "PPS 4.2/5.0",
+    handle: "skincare pro",
+    pps: "4.26/5.0",
     categories: "Beauty",
-    followers: "320k",
-    range: "Female 65%, 18-30",
-    revenue: "$8.2K",
-    items: "12.4K",
-    views: "2.1K",
-    engagement: "9.7%",
+    audience: "320K, Female 65%, 18-30",
+    avatar: "avatar-skincare.png",
+    metrics: ["$8.2K", "12.4K", "$2.1K", "9.70%", "0.8%"],
   },
 ];
 
-function InviteDrawer() {
-  const [selectedTab, setSelectedTab] = useState<"recommended" | "manage">(
-    "recommended"
+function ScreenIcon({
+  name,
+  size,
+  className,
+}: {
+  name: string;
+  size: number;
+  className?: string;
+}) {
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={`${SCREEN}/${name}.svg`}
+      alt=""
+      width={size}
+      height={size}
+      className={className}
+      style={{ width: size, height: size }}
+    />
   );
+}
+
+function ScreenImage({
+  name,
+  width,
+  height,
+  className,
+}: {
+  name: string;
+  width: number;
+  height: number;
+  className?: string;
+}) {
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={`${SCREEN}/${name}`}
+      alt=""
+      width={width}
+      height={height}
+      className={className}
+      style={{ width, height }}
+    />
+  );
+}
+
+/** A metric with the design's hairline rule under it. */
+function MetricCell({ value, width, rule = true }: { value: string; width: number; rule?: boolean }) {
+  return (
+    <div
+      className="flex shrink-0 flex-col items-center justify-center self-stretch border-b border-[#d3d4d5] p-[12px]"
+      style={{ width }}
+    >
+      <span
+        className={`text-right text-[14px] leading-[20px] text-[#262627] ${rule ? "border-b border-[#c3c4c5]" : ""}`}
+      >
+        {value}
+      </span>
+    </div>
+  );
+}
+
+function AddCreatorsTableRow({ row }: { row: AddCreatorRow }) {
+  const [creator, video, ...metrics] = ROW_COLUMNS;
 
   return (
-    <div className="rounded-xl border border-foreground/10 bg-foreground/[0.03] p-5 sm:p-8 overflow-hidden">
-      {/* Modal Preview */}
-      <div className="bg-white rounded-lg shadow-lg overflow-hidden border border-foreground/20">
-        {/* Header */}
-        <div className="bg-gradient-to-r from-foreground/95 to-foreground/90 px-6 py-4 flex items-center justify-between text-white">
-          <h2 className="text-lg font-semibold">Add creators</h2>
-          <button className="text-white/70 hover:text-white text-2xl leading-none">×</button>
-        </div>
+    <div className="flex h-[170px] items-start">
+      <div className="flex shrink-0 gap-[8px] self-stretch border-b border-[#d3d4d5] py-[12px] pl-[12px]">
+        <span className="flex h-[20px] shrink-0 items-center py-px">
+          <span className="size-[16px] rounded-[4px] border border-[#d3d4d5] bg-white" />
+        </span>
+      </div>
 
-        {/* Tabs and Filter */}
-        <div className="px-6 pt-4">
-          <div className="flex gap-6 border-b border-foreground/10">
-            <button
-              onClick={() => setSelectedTab("recommended")}
-              className={`pb-3 text-[13px] font-medium transition-colors ${
-                selectedTab === "recommended"
-                  ? "border-b-2 border-foreground text-foreground"
-                  : "text-foreground/50 hover:text-foreground/70"
-              }`}
-            >
-              Recommended creators
-            </button>
-            <button
-              onClick={() => setSelectedTab("manage")}
-              className={`pb-3 text-[13px] transition-colors ${
-                selectedTab === "manage"
-                  ? "border-b-2 border-foreground text-foreground"
-                  : "text-foreground/50 hover:text-foreground/70"
-              }`}
-            >
-              Add from Manage creators
-            </button>
-          </div>
-
-          {selectedTab === "recommended" && (
-            <div className="mt-4 flex items-center gap-4 pb-4">
-              <label className="text-[12px] text-foreground/60 font-medium">
-                Recommendation reasons
-              </label>
-              <select className="rounded border border-foreground/20 bg-white px-3 py-1 text-[12px] text-foreground">
-                <option>All</option>
-                <option>High engagement</option>
-                <option>Similar audience</option>
-              </select>
-              <button className="ml-auto text-[12px] text-blue-500 hover:text-blue-600">
-                Reset
-              </button>
+      <div
+        className="flex shrink-0 flex-col items-start gap-[8px] self-stretch border-b border-[#d3d4d5] px-[12px] py-[20px]"
+        style={{ width: creator }}
+      >
+        <div className="flex w-full items-start gap-[8px]">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={`${SCREEN}/${row.avatar}`}
+            alt=""
+            width={56}
+            height={56}
+            className="size-[56px] shrink-0 rounded-full object-cover"
+          />
+          <div className="flex min-w-0 flex-1 flex-col gap-[8px]">
+            <div className="flex flex-col justify-center">
+              <p className="truncate text-[14px] font-medium leading-[20px] text-[#262627]">
+                {row.name}
+              </p>
+              <p className="text-[12px] leading-[18px] text-[#575757] opacity-90">
+                {row.handle}
+              </p>
+              <div className="flex items-start">
+                <span className="text-[12px] leading-[18px] text-[#262627] opacity-90">
+                  PPS:
+                </span>
+                <span className="border-b border-[#c3c4c5] text-right text-[12px] leading-[18px] text-[#262627]">
+                  {row.pps}
+                </span>
+              </div>
             </div>
-          )}
+            <div className="flex flex-col justify-center gap-[2px]">
+              <div className="flex w-full items-center gap-[6px]">
+                <ScreenIcon name="icon-bag" size={14} />
+                <p className="min-w-0 flex-1 text-[12px] leading-[18px] text-[#262627] opacity-90">
+                  {row.categories}
+                </p>
+              </div>
+              <div className="flex w-full items-center gap-[6px]">
+                <ScreenIcon name="icon-audience" size={14} />
+                <p className="min-w-0 flex-1 text-[12px] leading-[18px] text-[#262627] opacity-90">
+                  {row.audience}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        {row.tags?.length ? (
+          <div className="flex items-center gap-[4px]">
+            {row.tags.map((tag) => (
+              <span
+                key={tag}
+                className="flex h-[20px] max-w-[186px] items-center justify-center overflow-hidden rounded-[10px] bg-[#ececed] px-[6px] text-[12px] leading-[18px] text-[#171718]"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        ) : null}
+      </div>
+
+      <div
+        className="flex shrink-0 flex-col items-center justify-center self-stretch border-b border-[#d3d4d5] p-[12px]"
+        style={{ width: video }}
+      >
+        <div className="relative h-[78px] w-[60.667px] overflow-hidden rounded-[8px] bg-[#626262]">
+          {row.video ? (
+            <>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={`${SCREEN}/${row.video}`}
+                alt=""
+                className="absolute inset-0 size-full object-cover"
+              />
+              <span
+                className="absolute inset-0"
+                style={{ background: `rgba(0,0,0,${row.videoScrim ?? 0.15})` }}
+              />
+              <ScreenIcon
+                name="icon-play-fill"
+                size={16}
+                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+              />
+            </>
+          ) : null}
+        </div>
+      </div>
+
+      {metrics.map((width, i) => (
+        <MetricCell
+          key={width + "-" + i}
+          value={row.metrics[i]}
+          width={width}
+          // "Item sold" is the one column the design leaves unruled.
+          rule={i !== 1}
+        />
+      ))}
+    </div>
+  );
+}
+
+/** A completed step in the wizard behind the drawer. */
+function PageStep({ icon, label }: { icon: string; label: string }) {
+  return (
+    <div className="flex h-[76px] w-[852px] shrink-0 items-center justify-between overflow-hidden rounded-[8px] bg-white p-[24px]">
+      <div className="flex items-center gap-[12px]">
+        <ScreenIcon name={icon} size={icon === "icon-step-done" ? 24 : 23} />
+        <p className="whitespace-nowrap text-[20px] font-medium leading-[28px] text-[#171718]">
+          {label}
+        </p>
+      </div>
+    </div>
+  );
+}
+
+/** Red notification pill used twice in the nav. */
+function NavBadge({ className }: { className?: string }) {
+  return (
+    <span
+      className={`flex min-h-[16px] min-w-[16px] items-center justify-center rounded-full border border-white bg-[#e14140] p-[4px] text-center text-[12px] font-medium leading-[18px] text-white ${className ?? ""}`}
+    >
+      8
+    </span>
+  );
+}
+
+function ScreenTopNav() {
+  return (
+    <div className="flex h-[60px] w-[1440px] items-center bg-[rgba(0,0,0,0.92)] text-white">
+      <div className="flex h-full items-center gap-[10px] px-[16px]">
+        <div className="flex items-center gap-[16px]">
+          <ScreenImage name="nav-logo.svg" width={80} height={31} />
+          <span className="h-[16px] w-px bg-white/50" />
+          <span className="whitespace-nowrap text-[20px] font-medium">
+            Seller Center
+          </span>
+        </div>
+        <div className="flex w-[400px] items-center justify-between rounded-[4px] bg-[#1f2021] px-[12px] py-[8px]">
+          <span className="flex items-center gap-[8px]">
+            <ScreenIcon name="nav-search" size={16} />
+            <span className="whitespace-nowrap text-[14px] font-medium leading-[20px] text-white opacity-65">
+              Ask anything
+            </span>
+          </span>
+          <span className="whitespace-nowrap text-[14px] font-medium leading-[20px] text-white opacity-65">
+            ⌘+K
+          </span>
+        </div>
+      </div>
+
+      {/* Anchored right: Inter's metrics differ from the design's TikTok Sans,
+          so pinning the right edge keeps the account pill where it belongs. */}
+      <div className="flex flex-1 items-center justify-end gap-[8px] pr-[16px]">
+        <span className="flex items-center gap-[8px]">
+          <ScreenIcon name="nav-ai" size={24} />
+          <span className="whitespace-nowrap text-[14px] font-medium leading-[20px]">
+            Assistant
+          </span>
+        </span>
+        <span className="flex items-center justify-center rounded-[4px] px-[16px] py-[6px]">
+          <ScreenIcon name="nav-help" size={24} />
+        </span>
+        <span className="h-[16px] w-px bg-[#f9f9f9] opacity-50" />
+        <span className="flex items-center justify-center gap-[4px] rounded-[4px] px-[16px] py-[8px]">
+          <ScreenIcon name="nav-messages" size={24} />
+          <span className="whitespace-nowrap text-[14px] font-medium leading-[20px]">
+            Customer Messages
+          </span>
+          <NavBadge />
+        </span>
+        <span className="flex h-[36px] items-center justify-center rounded-[4px] px-[16px] py-[8px]">
+          <span className="relative size-[24px]">
+            <ScreenIcon name="nav-notice" size={24} />
+            <NavBadge className="absolute left-[15px] top-[-7px]" />
+          </span>
+        </span>
+        <span className="flex h-[36px] items-center px-[16px] py-[4px]">
+          <span className="flex h-[36px] items-center gap-[8px] rounded-full bg-white/20 pr-[16px]">
+            <span className="flex size-[36px] items-center justify-center rounded-full bg-[#6c6c6c]">
+              <ScreenIcon name="nav-account" size={18} />
+            </span>
+            <span className="max-w-[200px] truncate text-[14px] font-medium leading-[20px]">
+              Testaccount
+            </span>
+          </span>
+        </span>
+      </div>
+    </div>
+  );
+}
+
+function AddCreatorsScreen() {
+  return (
+    <div className="tts-collab-ui @container relative h-[960px] w-[1440px] overflow-hidden bg-[#f5f5f5]">
+      <ScreenTopNav />
+
+      {/* The Invite creators wizard, almost entirely behind the drawer. */}
+      <div className="absolute left-[200px] top-[76px] w-[1040px]">
+        <div className="flex h-[36px] items-start gap-[8px]">
+          <span className="flex h-[36px] w-[32px] shrink-0 flex-col items-center py-[2px]">
+            <span className="flex h-[32px] w-px items-center justify-center rounded-[4px] bg-[#ececed]">
+              <ScreenIcon name="icon-left-arrow" size={16} />
+            </span>
+          </span>
+          <p className="whitespace-nowrap text-[28px] font-bold leading-[36px] text-[#171718]">
+            Invite creators to collaborate
+          </p>
+        </div>
+        <div className="mt-[16px] flex flex-col gap-[16px]">
+          <PageStep icon="icon-step-done" label="Invitation info" />
+          <PageStep icon="icon-check-circle" label="Products" />
+          <PageStep icon="icon-check-circle" label="Set up free samples" />
+          <div className="relative h-[523px] w-[852px] overflow-hidden rounded-[8px] bg-white">
+            <div className="flex flex-col items-start p-[24px]">
+              <div className="flex items-center gap-[12px]">
+                <ScreenIcon name="icon-step-current" size={21} />
+                <p className="whitespace-nowrap text-[20px] font-medium leading-[28px] text-[#171718]">
+                  Choose creators
+                </p>
+              </div>
+            </div>
+            <div className="absolute left-[26px] top-[80px] flex w-[827px] flex-col gap-[16px]">
+              <div className="flex h-[36px] w-[442px] items-center rounded-[4px] border border-black/14 bg-white px-[12px]">
+                <p className="flex-1 text-[14px] leading-[20px] text-black/35">
+                  Search creator by user name or user ID
+                </p>
+                <ScreenIcon name="icon-search" size={16} />
+              </div>
+              <div className="flex h-[362px] w-full flex-col items-center overflow-hidden rounded-[4px] border border-black/14 bg-white">
+                <div className="flex w-full items-start">
+                  <div className="flex shrink-0 gap-[4px] bg-[#f9f9f9] py-[12px] pl-[12px]">
+                    <span className="flex h-[20px] shrink-0 items-center py-px">
+                      <span className="size-[16px] rounded-[4px] border border-[#d3d4d5] bg-white" />
+                    </span>
+                  </div>
+                  <div className="flex min-w-0 flex-1 gap-[4px] bg-[#f9f9f9] p-[12px]">
+                    <p className="text-[12px] font-medium leading-[18px] text-[#171718]">
+                      Creators
+                    </p>
+                  </div>
+                </div>
+                <div className="flex h-[320px] w-[524px] flex-col items-center justify-center gap-[16px] py-[24px]">
+                  <div className="flex w-full flex-col items-center justify-center gap-[8px]">
+                    <span className="relative size-[72px] overflow-hidden">
+                      <ScreenIcon
+                        name="icon-empty"
+                        size={45}
+                        className="absolute left-[4.5px] top-[4.5px]"
+                      />
+                    </span>
+                    <div className="flex w-full flex-col items-center gap-[4px] text-center text-[14px] leading-[20px]">
+                      <p className="w-full font-medium text-black/92">
+                        Choose creators to collaborate with
+                      </p>
+                      <p className="w-full text-black/55">
+                        Creators who match well with your shop are more likely
+                        to accept your invitation. Invite up to 50 creators to
+                        this target collaboration. You can add pre-selected
+                        creators in groups, or add them one by one using the
+                        search bar.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-center gap-[8px]">
+                    <span className="flex items-center justify-center rounded-[4px] bg-[#009995] px-[8px] py-[3px] text-[12px] font-medium leading-[18px] text-white">
+                      Add recommended creators
+                    </span>
+                    <span className="flex items-center justify-center rounded-[4px] bg-[#ececed] px-[8px] py-[3px] text-[12px] font-medium leading-[18px] text-[#171718]">
+                      Add from Manage creators
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Drawer scrim — pd/color/neutral/overlay */}
+      <div className="absolute inset-x-0 bottom-0 top-[60px] bg-[#17171873]" />
+
+      <div
+        className="absolute left-[448px] top-[60px] h-[900px] w-[992px] bg-white"
+        style={{ boxShadow: "-8px 0 20px rgba(0,0,0,0.122)" }}
+      >
+        <div className="flex h-[76px] items-start p-[24px]">
+          <p className="flex-1 truncate text-[20px] font-medium leading-[28px] text-[#171718]">
+            Add creators
+          </p>
+          <span className="flex size-[24px] shrink-0 items-center justify-center rounded-[4px]">
+            <ScreenIcon name="icon-close" size={16} />
+          </span>
         </div>
 
-        {/* Table */}
-        {selectedTab === "recommended" && (
-          <div className="overflow-x-auto max-h-96">
-            <table className="w-full border-collapse">
-              <thead className="bg-foreground/[0.03]">
-                <tr>
-                  <th className="w-8 px-4 py-3 text-left">
-                    <input type="checkbox" />
-                  </th>
-                  <th className="px-4 py-3 text-left text-[11px] font-medium text-foreground/60">
-                    Creators
-                  </th>
-                  <th className="px-4 py-3 text-center text-[11px] font-medium text-foreground/60">
-                    Video
-                  </th>
-                  <th className="px-4 py-3 text-right text-[11px] font-medium text-foreground/60">
-                    Revenue
-                  </th>
-                  <th className="px-4 py-3 text-right text-[11px] font-medium text-foreground/60">
-                    Item sold
-                  </th>
-                  <th className="px-4 py-3 text-right text-[11px] font-medium text-foreground/60">
-                    Ave. video views
-                  </th>
-                  <th className="px-4 py-3 text-right text-[11px] font-medium text-foreground/60">
-                    Engagement rate
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {RECOMMENDED.map((creator) => (
-                  <tr
-                    key={creator.handle}
-                    className="border-t border-foreground/10 hover:bg-foreground/[0.02]"
-                  >
-                    <td className="w-8 px-4 py-4">
-                      <input type="checkbox" />
-                    </td>
-                    <td className="px-4 py-4">
-                      <div className="flex items-start gap-3">
-                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-purple-400 flex-shrink-0" />
-                        <div className="flex-1">
-                          <p className="text-[13px] font-medium text-foreground">
-                            {creator.name}
-                          </p>
-                          <p className="text-[11px] text-foreground/50">
-                            {creator.handle}
-                          </p>
-                          <p className="text-[10px] text-foreground/50 mt-1">
-                            {creator.pps}
-                          </p>
-                          <p className="text-[11px] text-foreground/60 mt-1">
-                            {creator.categories}
-                          </p>
-                          <p className="text-[10px] text-foreground/40">
-                            {creator.followers} • {creator.range}
-                          </p>
-                          {creator.status && (
-                            <p className="text-[10px] text-foreground/50 italic mt-1">
-                              {creator.status}
-                            </p>
-                          )}
-                          {creator.tags && (
-                            <div className="mt-2 flex flex-wrap gap-1">
-                              {creator.tags.map((tag, i) => (
-                                <span
-                                  key={i}
-                                  className="text-[9px] bg-foreground/[0.08] text-foreground/60 px-1.5 py-0.5 rounded"
-                                >
-                                  {tag}
-                                </span>
-                              ))}
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    </td>
-                    <td className="px-4 py-4 text-center">
-                      <div className="w-14 h-10 bg-foreground/10 rounded" />
-                    </td>
-                    <td className="px-4 py-4 text-right">
-                      <p className="text-[12px] text-foreground/80 font-mono">
-                        {creator.revenue}
-                      </p>
-                    </td>
-                    <td className="px-4 py-4 text-right">
-                      <p className="text-[12px] text-foreground/80 font-mono">
-                        {creator.items}
-                      </p>
-                    </td>
-                    <td className="px-4 py-4 text-right">
-                      <p className="text-[12px] text-foreground/80 font-mono">
-                        {creator.views}
-                      </p>
-                    </td>
-                    <td className="px-4 py-4 text-right">
-                      <p className="text-[12px] text-foreground/80 font-mono">
-                        {creator.engagement}
-                      </p>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+        <div className="absolute left-[24px] top-[76px] h-[736px] w-[944px]">
+          <div className="flex h-[24px] items-center gap-[24px]">
+            <span className="text-[12px] font-medium leading-[18px] text-[#171718]">
+              Add from Manage creators
+            </span>
+            <span className="flex h-[24px] flex-col items-center justify-between pt-[3px]">
+              <span className="text-[12px] font-medium leading-[18px] text-[#171718]">
+                Recommended creators
+              </span>
+              <span className="h-[2px] w-full bg-[#009995]" />
+            </span>
           </div>
-        )}
 
-        {/* Footer */}
-        <div className="px-6 py-4 border-t border-foreground/10 bg-foreground/[0.02] flex items-center justify-between">
-          <p className="text-[12px] text-foreground/60">0/50 creator selected</p>
-          <div className="flex gap-3">
-            <button className="px-6 py-2 rounded-full border border-foreground/20 text-[13px] text-foreground/70 hover:bg-foreground/5">
-              Cancel
-            </button>
-            <button className="px-6 py-2 rounded-full bg-cyan-500 text-white text-[13px] font-medium hover:bg-cyan-600">
-              Add
-            </button>
+          <div className="absolute left-0 top-[40px] flex w-[944px] items-start justify-between">
+            <div className="flex h-[36px] w-[496px] items-center gap-[8px] overflow-hidden rounded-[4px] border border-black/14 bg-white px-[12px] py-[8px]">
+              <span className="flex shrink-0 items-center gap-[2px] whitespace-nowrap text-[14px] leading-[20px] text-[#262627]">
+                Recommendation reasons
+                <ScreenIcon name="icon-caret-down" size={16} />
+              </span>
+              <span className="min-w-0 flex-1 text-[14px] leading-[20px] text-[#262627]">
+                All
+              </span>
+              <ScreenIcon name="icon-down" size={16} className="shrink-0" />
+            </div>
+            <span className="flex items-center justify-center rounded-[4px] px-[12px] py-[6px] text-[14px] font-medium leading-[20px] text-[#b7e5e2]">
+              Reset
+            </span>
+          </div>
+
+          <div className="absolute left-0 top-[92px] h-[644px] w-[944px] overflow-hidden">
+            <div className="flex h-[60px] items-start">
+              <div className="flex shrink-0 gap-[4px] self-stretch bg-[#f9f9f9] py-[12px] pl-[12px]">
+                <span className="flex h-[20px] shrink-0 items-center py-px">
+                  <span className="size-[16px] rounded-[4px] border border-[#d3d4d5] bg-white" />
+                </span>
+              </div>
+              {(
+                [
+                  ["Creators", false],
+                  ["Video", false],
+                  ["Revenue", true],
+                  ["Item sold", true],
+                  ["Ave. video \nviews", true],
+                  ["Engagement \nrate", true],
+                ] as const
+              ).map(([label, sortable], i) => (
+                <div
+                  key={label}
+                  className="flex shrink-0 gap-[4px] self-stretch bg-[#f9f9f9] p-[12px]"
+                  style={{ width: HEAD_COLUMNS[i] }}
+                >
+                  <p className="whitespace-pre text-right text-[12px] font-medium leading-[18px] text-[#171718]">
+                    {label}
+                  </p>
+                  {sortable ? (
+                    <span className="mt-px shrink-0">
+                      <ScreenIcon name="icon-sort" size={16} />
+                    </span>
+                  ) : null}
+                </div>
+              ))}
+            </div>
+            {ADD_CREATORS.map((row) => (
+              <AddCreatorsTableRow key={row.name} row={row} />
+            ))}
+            <span className="absolute right-0 top-0 h-full w-[8px] rounded-full bg-black/[0.02]" />
+          </div>
+        </div>
+
+        <div className="absolute inset-x-0 bottom-0 flex h-[88px] items-center justify-end gap-[12px] p-[24px]">
+          <p className="min-w-0 flex-1 text-[12px] leading-[18px]">
+            <span className="text-[#017b77]">0</span>
+            <span className="text-[#6c6d6f]">/50 creator selected</span>
+          </p>
+          <span className="flex items-center justify-center rounded-[4px] bg-[#ececed] px-[20px] py-[10px] text-[14px] font-medium leading-[20px] text-[#171718]">
+            Cancel
+          </span>
+          <span className="flex items-center justify-center rounded-[4px] bg-[#b7e5e2] px-[20px] py-[10px] text-[14px] font-medium leading-[20px] text-white">
+            Add
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function InviteDrawer() {
+  const stageRef = useRef<HTMLDivElement>(null);
+  const cameraRef = useRef<HTMLDivElement>(null);
+  const fitRef = useRef<HTMLDivElement>(null);
+
+  useDemoFit(stageRef, fitRef, 1440, cameraRef, screenHeight);
+
+  return (
+    <div className="rounded-xl border border-foreground/10 bg-foreground/[0.03] p-5 sm:p-8">
+      <div ref={stageRef} className="tts-collab-stage">
+        <div
+          ref={cameraRef}
+          className="tts-collab-camera overflow-hidden rounded-lg"
+        >
+          <div ref={fitRef} className="tts-demo-fit">
+            <AddCreatorsScreen />
           </div>
         </div>
       </div>
