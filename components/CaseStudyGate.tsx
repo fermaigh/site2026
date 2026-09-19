@@ -41,63 +41,100 @@ function LockIcon() {
   );
 }
 
-/** Relative invite volume per creator — the point is the cliff after the top three. */
-const INVITE_SHARE = [92, 78, 64, 8, 6, 5, 4, 3, 3];
-
 function ConcentrationDiagram() {
   return (
     <div className="rounded-xl border border-foreground/10 bg-foreground/[0.03] p-5 sm:p-8">
-      <div className="flex flex-col gap-7 sm:flex-row sm:items-center sm:gap-8">
-        <div className="sm:flex-1">
-          <p className="font-mono text-[11px] uppercase tracking-wider text-foreground/45">
+      <svg
+        viewBox="0 0 1024 480"
+        className="w-full"
+        style={{ maxWidth: "100%", height: "auto" }}
+        preserveAspectRatio="xMidYMid meet"
+      >
+        <defs>
+          <style>{`
+            .diagram-text { font-family: system-ui, sans-serif; font-size: 13px; font-weight: 600; }
+            .diagram-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.5; font-weight: 500; }
+            .store-icon { fill: none; stroke: rgba(0,0,0,0.15); stroke-width: 1.5; }
+            .seller { fill: rgba(0,0,0,0.08); }
+            .creator-top { fill: rgba(0,0,0,0.12); }
+            .creator-other { fill: rgba(0,0,0,0.05); }
+            .connection-line { stroke: rgba(0,0,0,0.1); stroke-width: 2; stroke-dasharray: 4,4; }
+          `}</style>
+        </defs>
+
+        {/* Sellers Section - Left */}
+        <g>
+          <text x="80" y="28" className="diagram-label" text-anchor="middle">
             Sellers
-          </p>
-          <div className="mt-3 grid grid-cols-6 gap-1.5 sm:gap-2">
-            {Array.from({ length: 24 }, (_, i) => (
-              <span
-                key={i}
-                className="aspect-square rounded-[5px] border border-foreground/15 bg-foreground/[0.07]"
-              />
-            ))}
-          </div>
-        </div>
+          </text>
 
-        <div
-          className="flex items-center justify-center gap-2 text-foreground/35 sm:w-28 sm:flex-col"
-          aria-hidden
-        >
-          <span className="h-px flex-1 bg-current sm:h-10 sm:w-px sm:flex-none" />
-          <span className="font-mono text-[10px] uppercase tracking-wider whitespace-nowrap">
-            invites
-          </span>
-          <span className="h-px flex-1 bg-current sm:h-10 sm:w-px sm:flex-none" />
-        </div>
+          {/* 3x3 Grid of stores */}
+          {[0, 1, 2].map((row) =>
+            [0, 1, 2].map((col) => {
+              const x = 20 + col * 80;
+              const y = 50 + row * 90;
+              return (
+                <g key={`seller-${row}-${col}`}>
+                  {/* Store box */}
+                  <rect x={x} y={y} width="60" height="75" rx="3" className="store-icon" />
+                  {/* Door indicator */}
+                  <circle cx={x + 20} cy={y + 50} r="8" className="seller" />
+                  <circle cx={x + 45} cy={y + 50} r="8" className="seller" />
+                </g>
+              );
+            })
+          )}
+        </g>
 
-        <div className="sm:flex-1">
-          <p className="font-mono text-[11px] uppercase tracking-wider text-foreground/45">
+        {/* Center - Flow Diagram */}
+        <g>
+          {/* Arrow pointing down then right */}
+          <line x1="280" y1="100" x2="380" y2="150" className="connection-line" />
+          <polygon points="380,150 375,145 378,155" fill="rgba(0,0,0,0.1)" />
+        </g>
+
+        {/* Creators Section - Right */}
+        <g>
+          <text x="700" y="28" className="diagram-label" text-anchor="middle">
             Creators
-          </p>
-          <div className="mt-3 flex flex-col gap-1.5">
-            {INVITE_SHARE.map((share, i) => (
-              <div key={i} className="flex items-center gap-2">
-                <span
-                  className={`size-5 shrink-0 rounded-full ${
-                    i < 3 ? "bg-foreground/80" : "bg-foreground/10"
-                  }`}
-                />
-                <span className="h-2 flex-1 overflow-hidden rounded-full bg-foreground/[0.06]">
-                  <span
-                    className={`block h-full rounded-full ${
-                      i < 3 ? "bg-foreground/80" : "bg-foreground/15"
-                    }`}
-                    style={{ width: `${share}%` }}
-                  />
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+          </text>
+
+          {/* Top 3 Creators - Highlighted */}
+          {[0, 1, 2].map((i) => {
+            const x = 580 + i * 90;
+            const y = 50;
+            return (
+              <g key={`creator-top-${i}`}>
+                <rect x={x} y={y} width="65" height="65" rx="2" className="store-icon" />
+                <circle cx={x + 32.5} cy={y + 32.5} r="14" className="creator-top" />
+              </g>
+            );
+          })}
+
+          {/* Other Creators - 6 in grid */}
+          {[0, 1, 2, 3, 4, 5].map((i) => {
+            const row = Math.floor(i / 3);
+            const col = i % 3;
+            const x = 580 + col * 90;
+            const y = 140 + row * 90;
+            return (
+              <g key={`creator-other-${i}`}>
+                <rect x={x} y={y} width="65" height="65" rx="2" className="store-icon" opacity="0.5" />
+                <circle cx={x + 32.5} cy={y + 32.5} r="12" className="creator-other" />
+              </g>
+            );
+          })}
+        </g>
+
+        {/* Right side - 20% indicator */}
+        <g>
+          <text x="920" y="28" className="diagram-label" text-anchor="middle">
+            20% Seen
+          </text>
+          <circle cx="920" cy="85" r="25" fill="none" stroke="rgba(0,0,0,0.1)" stroke-width="2" />
+          <circle cx="920" cy="85" r="18" fill="rgba(0,0,0,0.05)" />
+        </g>
+      </svg>
 
       <p className="mt-6 border-t border-foreground/10 pt-4 font-sans text-[13px] text-foreground/55 sm:mt-7">
         Invites pile onto the same three creators — and only{" "}
