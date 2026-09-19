@@ -1435,6 +1435,37 @@ export function CaseStudyGate() {
           <h2 className="mt-12 font-sans text-[clamp(1.125rem,4vw,1.5rem)] font-semibold tracking-tight text-foreground">
             Result
           </h2>
+
+          <h3 className="mt-8 font-sans text-[28px] font-bold tracking-tight text-foreground sm:mt-10">
+            Final deliverable
+          </h3>
+
+          <div className="mt-6 space-y-4 sm:mt-8">
+            {[
+              "The design for Seller landing, creation to post creation experience",
+              "Coverage on every general and edge cases",
+              "Updates to existing ecosystem touch points for the new feature"
+            ].map((item, idx) => (
+              <div key={idx} className="flex gap-4 items-start">
+                <svg className="w-6 h-6 mt-1 flex-shrink-0 text-foreground" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                </svg>
+                <p className="font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]">
+                  {item}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <figure className="mt-8 sm:mt-10 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
+            <div className="bg-foreground/[0.02] rounded-lg border border-foreground/10 p-6">
+              <img
+                src="https://www.figma.com/api/mcp/asset/d29a64d4-dbf5-45be-95ca-4085825685ac/daa65.png"
+                alt="Final deliverables - Seller landing and creation experience screens"
+                className="w-full h-auto rounded-lg"
+              />
+            </div>
+          </figure>
         </section>
       </article>
     );
