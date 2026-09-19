@@ -107,6 +107,24 @@ export function HiringCaseStudy() {
                 </div>
               </figure>
             </div>
+
+            <p className="mt-8 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-10 sm:text-[17px]">
+              I went through the internal team interview, workshops and field trips to uncover who the users are. Converted knowledge into detailed personas:
+            </p>
+
+            <ul className="mt-4 space-y-2 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]">
+              <li className="flex gap-3">
+                <span className="font-semibold text-foreground min-w-fit">Operation/Payer</span>
+                <span>— Decision maker - Corporation</span>
+              </li>
+              <li className="flex gap-3">
+                <span className="font-semibold text-foreground min-w-fit">Hiring manager</span>
+                <span>— Responsible for location staff - Work on site</span>
+              </li>
+              <li className="flex gap-3">
+                <span className="font-semibold text-foreground min-w-fit">Job applicants</span>
+              </li>
+            </ul>
           </section>
         </div>
       </article>
