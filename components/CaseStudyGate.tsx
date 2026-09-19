@@ -1118,14 +1118,6 @@ export function CaseStudyGate() {
           </p>
 
           <p className="mt-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]">
-            In my opinion, this solution would not make sense to user. Users trust the platform to do the match for them, then later on they get punishment, and they are not able to do too much.
-          </p>
-
-          <p className="mt-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]">
-            So I suggested a different approach, show an alert only when sample approval rate drops and approaching to the threshold, with action item to take them to handle sample request, and try to improve the rate.
-          </p>
-
-          <p className="mt-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]">
             The legal and product team suggested to inform sellers if any of their existing collaboration are about to exceed a certain number.
           </p>
 
@@ -1277,6 +1269,14 @@ export function CaseStudyGate() {
               </div>
             </div>
           </figure>
+
+          <p className="mt-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]">
+            In my opinion, this solution would not make sense to user. Users trust the platform to do the match for them, then later on they get punishment, and they are not able to do too much.
+          </p>
+
+          <p className="mt-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]">
+            So I suggested a different approach, show an alert only when sample approval rate drops and approaching to the threshold, with action item to take them to handle sample request, and try to improve the rate.
+          </p>
 
           <figure className="mt-8 sm:mt-10 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
             <div className="bg-background rounded-lg border border-foreground/10 overflow-hidden">
