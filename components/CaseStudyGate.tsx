@@ -1114,7 +1114,7 @@ export function CaseStudyGate() {
           </p>
 
           <p className="mt-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]">
-            In this case, the compliance design had to satisfy was: <span className="font-semibold text-foreground">If sellers repeatedly rejected sample requests, the system could keep recruiting more creators until the campaign limits were reached. This could lead to creator spam and undermine the intent of the matching experience.</span>
+            In this case, the compliance design had to satisfy was: <span className="font-semibold text-foreground">If sellers repeatedly rejected sample requests, the system could keep recruiting more creators until the requirements (The seller desired time and sample allowance) were reached. This could lead to creator spam and undermine the intent of the matching experience.</span>
           </p>
 
           <p className="mt-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]">
