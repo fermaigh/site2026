@@ -438,9 +438,7 @@ export function CaseStudyGate() {
           </figure>
 
           <p className="mt-6 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-8 sm:text-[17px]">
-            In today&apos;s product, when our users try to create a
-            collaboration invite, they rely on a handful of familiar performance
-            metrics to determine who to send to.
+            Today, sellers rely on a set of familiar performance metrics when deciding which creators to invite, reinforcing the same behavior rather than helping them discover better matches.
           </p>
 
           <figure className="mt-8 sm:mt-10">
