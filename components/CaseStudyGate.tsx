@@ -153,14 +153,22 @@ const RECOMMENDED = [
     items: "1,323",
     views: "4.3K",
     engagement: "23.8%",
+    categories: "Sports, Outdoor",
+    followers: "874k",
+    range: "Male 30%, 25-50",
   },
   {
     name: "Kayla Tran",
     handle: "@alignedwithkay",
     revenue: "$1.24M",
     items: "4,545",
-    views: "12K",
+    views: "12k",
     engagement: "46.90%",
+    categories: "Wellness & Supplements, +2",
+    followers: "1.2M",
+    range: "Female 70%, 25-50",
+    status: "Previously invited",
+    tags: ["Women Fashion", "+2"],
   },
   {
     name: "Priya Nair",
@@ -169,6 +177,10 @@ const RECOMMENDED = [
     items: "53.9K",
     views: "4.3K",
     engagement: "12.4%",
+    categories: "Beauty, Fashion",
+    followers: "456k",
+    range: "Female 56%, 18-24",
+    tags: ["Skin Care Pro"],
   },
   {
     name: "Skincare Pro",
@@ -177,20 +189,28 @@ const RECOMMENDED = [
     items: "12.4K",
     views: "2.1K",
     engagement: "9.7%",
+    categories: "Beauty",
+    followers: "320k",
+    range: "Female 65%, 18-30",
   },
 ];
 
 const METRIC_COLUMNS = [
+  "Video",
   "Revenue",
   "Items sold",
-  "Avg. video views",
+  "Ave. video views",
   "Engagement rate",
 ] as const;
 
 function InviteDrawer() {
+  const [selectedTab, setSelectedTab] = useState<"recommended" | "manage">(
+    "recommended"
+  );
+
   return (
-    <div className="rounded-xl border border-foreground/10 bg-foreground/[0.03] p-4 sm:p-6">
-      <div className="flex items-baseline justify-between">
+    <div className="rounded-xl border border-foreground/10 bg-foreground/[0.03] p-4 sm:p-6 max-h-[600px] flex flex-col">
+      <div className="flex items-baseline justify-between mb-4">
         <p className="font-sans text-[15px] font-semibold text-foreground">
           Add creators
         </p>
@@ -199,76 +219,137 @@ function InviteDrawer() {
         </span>
       </div>
 
-      <div className="mt-4 flex gap-5 border-b border-foreground/10">
-        <span className="-mb-px border-b-2 border-foreground pb-2 font-sans text-[13px] font-medium text-foreground">
+      <div className="flex gap-5 border-b border-foreground/10 mb-4">
+        <button
+          onClick={() => setSelectedTab("recommended")}
+          className={`pb-2 font-sans text-[13px] font-medium transition-colors ${
+            selectedTab === "recommended"
+              ? "border-b-2 border-foreground text-foreground"
+              : "text-foreground/40 hover:text-foreground/60"
+          }`}
+        >
           Recommended creators
-        </span>
-        <span className="pb-2 font-sans text-[13px] text-foreground/40">
+        </button>
+        <button
+          onClick={() => setSelectedTab("manage")}
+          className={`pb-2 font-sans text-[13px] transition-colors ${
+            selectedTab === "manage"
+              ? "border-b-2 border-foreground text-foreground"
+              : "text-foreground/40 hover:text-foreground/60"
+          }`}
+        >
           Manage creators
-        </span>
+        </button>
       </div>
 
-      <div className="overflow-x-auto">
-        <table className="mt-1 w-full min-w-[640px] border-collapse text-left">
-          <thead>
-            <tr>
-              <th className="py-3 pr-4 font-sans text-[11px] font-medium text-foreground/45">
-                Creator
-              </th>
-              {METRIC_COLUMNS.map((column) => (
-                <th
-                  key={column}
-                  className="py-3 pl-4 text-right font-sans text-[11px] font-medium text-foreground/45"
-                >
-                  {column}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {RECOMMENDED.map((creator) => (
-              <tr
-                key={creator.handle}
-                className="border-t border-foreground/[0.07]"
-              >
-                <td className="py-3 pr-4">
-                  <span className="flex items-center gap-2.5">
-                    <span className="size-7 shrink-0 rounded-full bg-foreground/10" />
-                    <span className="flex flex-col">
-                      <span className="font-sans text-[13px] font-medium text-foreground">
-                        {creator.name}
-                      </span>
-                      <span className="font-mono text-[11px] text-foreground/45">
-                        {creator.handle}
-                      </span>
-                    </span>
-                  </span>
-                </td>
-                <td className="py-3 pl-4 text-right font-mono text-[12px] text-foreground/75">
-                  {creator.revenue}
-                </td>
-                <td className="py-3 pl-4 text-right font-mono text-[12px] text-foreground/75">
-                  {creator.items}
-                </td>
-                <td className="py-3 pl-4 text-right font-mono text-[12px] text-foreground/75">
-                  {creator.views}
-                </td>
-                <td className="py-3 pl-4 text-right font-mono text-[12px] text-foreground/75">
-                  {creator.engagement}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      {selectedTab === "recommended" && (
+        <>
+          <div className="mb-4 flex items-center justify-between">
+            <label className="font-sans text-[12px] text-foreground/60">
+              Recommendation reasons
+            </label>
+            <select className="rounded border border-foreground/15 bg-transparent px-2 py-1 font-sans text-[12px] text-foreground/70">
+              <option>All</option>
+              <option>High engagement</option>
+              <option>Similar audience</option>
+            </select>
+          </div>
 
-      <div className="mt-5 flex justify-end gap-2.5 border-t border-foreground/10 pt-4">
-        <span className="rounded-full border border-foreground/15 px-4 py-1.5 font-sans text-[13px] text-foreground/70">
+          <div className="overflow-x-auto flex-1">
+            <table className="w-full min-w-[700px] border-collapse text-left">
+              <thead>
+                <tr>
+                  <th className="py-3 pr-2 font-sans text-[11px] font-medium text-foreground/45">
+                    <input type="checkbox" className="cursor-pointer" />
+                  </th>
+                  <th className="py-3 px-2 font-sans text-[11px] font-medium text-foreground/45">
+                    Creators
+                  </th>
+                  {METRIC_COLUMNS.map((column) => (
+                    <th
+                      key={column}
+                      className="py-3 px-2 text-right font-sans text-[11px] font-medium text-foreground/45"
+                    >
+                      {column}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {RECOMMENDED.map((creator) => (
+                  <tr
+                    key={creator.handle}
+                    className="border-t border-foreground/[0.07] hover:bg-foreground/[0.02] transition-colors"
+                  >
+                    <td className="py-3 pr-2">
+                      <input type="checkbox" className="cursor-pointer" />
+                    </td>
+                    <td className="py-3 px-2">
+                      <div className="flex items-start gap-2.5">
+                        <div className="mt-0.5 size-10 shrink-0 rounded bg-foreground/10" />
+                        <div className="flex-1 min-w-0">
+                          <p className="font-sans text-[13px] font-medium text-foreground">
+                            {creator.name}
+                          </p>
+                          <p className="font-mono text-[11px] text-foreground/45">
+                            {creator.handle}
+                          </p>
+                          <p className="mt-1 font-sans text-[11px] text-foreground/50">
+                            {creator.categories}
+                          </p>
+                          <p className="font-sans text-[10px] text-foreground/40">
+                            {creator.followers} • {creator.range}
+                          </p>
+                          {creator.status && (
+                            <p className="mt-1 font-sans text-[10px] text-foreground/50 italic">
+                              {creator.status}
+                            </p>
+                          )}
+                          {creator.tags && (
+                            <div className="mt-1.5 flex flex-wrap gap-1">
+                              {creator.tags.map((tag, i) => (
+                                <span
+                                  key={i}
+                                  className="inline-block rounded bg-foreground/[0.06] px-2 py-0.5 font-sans text-[10px] text-foreground/60"
+                                >
+                                  {tag}
+                                </span>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </td>
+                    <td className="py-3 px-2 text-right">
+                      <div className="h-8 w-12 rounded bg-foreground/10" />
+                    </td>
+                    <td className="py-3 px-2 text-right font-mono text-[12px] text-foreground/75">
+                      {creator.revenue}
+                    </td>
+                    <td className="py-3 px-2 text-right font-mono text-[12px] text-foreground/75">
+                      {creator.items}
+                    </td>
+                    <td className="py-3 px-2 text-right font-mono text-[12px] text-foreground/75">
+                      {creator.views}
+                    </td>
+                    <td className="py-3 px-2 text-right font-mono text-[12px] text-foreground/75">
+                      {creator.engagement}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
+      )}
+
+      <div className="mt-4 flex justify-end gap-2.5 border-t border-foreground/10 pt-4">
+        <button className="rounded-full border border-foreground/15 px-4 py-1.5 font-sans text-[13px] text-foreground/70 hover:bg-foreground/[0.05] transition-colors">
           Cancel
-        </span>
-        <span className="rounded-full bg-foreground px-4 py-1.5 font-sans text-[13px] font-medium text-background">
+        </button>
+        <button className="rounded-full bg-foreground px-4 py-1.5 font-sans text-[13px] font-medium text-background hover:opacity-90 transition-opacity">
           Add
-        </span>
+        </button>
       </div>
     </div>
   );
