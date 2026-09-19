@@ -451,8 +451,7 @@ export function CaseStudyGate() {
           </figure>
 
           <p className="mt-6 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-8 sm:text-[17px]">
-            Took a look at other platforms who might have solved the similar
-            business problem, and discovered common patterns.
+            My goal was to explore direction and align with the team. I took a look at other platforms and discovered common patterns. I started with the solution (left), providing structure inputs.
           </p>
 
           <div className="grid grid-cols-1 gap-6 mt-8 sm:grid-cols-2 sm:mt-10">
