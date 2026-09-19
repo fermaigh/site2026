@@ -149,59 +149,55 @@ const RECOMMENDED = [
   {
     name: "Marcus Webb",
     handle: "@webbworks",
+    pps: "PPS 4.8/5.0",
+    categories: "Sports, Outdoor",
+    followers: "874k",
+    range: "Male 30%, 25-50",
     revenue: "$45.5K",
     items: "1,323",
     views: "4.3K",
     engagement: "23.8%",
-    categories: "Sports, Outdoor",
-    followers: "874k",
-    range: "Male 30%, 25-50",
   },
   {
     name: "Kayla Tran",
     handle: "@alignedwithkay",
-    revenue: "$1.24M",
-    items: "4,545",
-    views: "12k",
-    engagement: "46.90%",
+    pps: "PPS 4.3/5.0",
     categories: "Wellness & Supplements, +2",
     followers: "1.2M",
     range: "Female 70%, 25-50",
     status: "Previously invited",
     tags: ["Women Fashion", "+2"],
+    revenue: "$1.24M",
+    items: "4,545",
+    views: "12K",
+    engagement: "46.90%",
   },
   {
     name: "Priya Nair",
     handle: "@priyaglows",
-    revenue: "$10K",
-    items: "53.9K",
-    views: "4.3K",
-    engagement: "12.4%",
+    pps: "PPS 4.9/5.0",
     categories: "Beauty, Fashion",
     followers: "456k",
     range: "Female 56%, 18-24",
     tags: ["Skin Care Pro"],
+    revenue: "$10K",
+    items: "53.9K",
+    views: "4.3K",
+    engagement: "12.4%",
   },
   {
     name: "Skincare Pro",
     handle: "@skincarepro",
+    pps: "PPS 4.2/5.0",
+    categories: "Beauty",
+    followers: "320k",
+    range: "Female 65%, 18-30",
     revenue: "$8.2K",
     items: "12.4K",
     views: "2.1K",
     engagement: "9.7%",
-    categories: "Beauty",
-    followers: "320k",
-    range: "Female 65%, 18-30",
   },
 ];
-
-const METRIC_COLUMNS = [
-  "Video",
-  "Revenue",
-  "Items sold",
-  "Ave. video views",
-  "Engagement rate",
-] as const;
 
 function InviteDrawer() {
   const [selectedTab, setSelectedTab] = useState<"recommended" | "manage">(
@@ -209,108 +205,125 @@ function InviteDrawer() {
   );
 
   return (
-    <div className="rounded-xl border border-foreground/10 bg-foreground/[0.03] p-4 sm:p-6 max-h-[600px] flex flex-col">
-      <div className="flex items-baseline justify-between mb-4">
-        <p className="font-sans text-[15px] font-semibold text-foreground">
-          Add creators
-        </p>
-        <span className="font-mono text-[11px] text-foreground/40">
-          0/50 selected
-        </span>
-      </div>
+    <div className="rounded-xl border border-foreground/10 bg-foreground/[0.03] p-5 sm:p-8 overflow-hidden">
+      {/* Modal Preview */}
+      <div className="bg-white rounded-lg shadow-lg overflow-hidden border border-foreground/20">
+        {/* Header */}
+        <div className="bg-gradient-to-r from-foreground/95 to-foreground/90 px-6 py-4 flex items-center justify-between text-white">
+          <h2 className="text-lg font-semibold">Add creators</h2>
+          <button className="text-white/70 hover:text-white text-2xl leading-none">×</button>
+        </div>
 
-      <div className="flex gap-5 border-b border-foreground/10 mb-4">
-        <button
-          onClick={() => setSelectedTab("recommended")}
-          className={`pb-2 font-sans text-[13px] font-medium transition-colors ${
-            selectedTab === "recommended"
-              ? "border-b-2 border-foreground text-foreground"
-              : "text-foreground/40 hover:text-foreground/60"
-          }`}
-        >
-          Recommended creators
-        </button>
-        <button
-          onClick={() => setSelectedTab("manage")}
-          className={`pb-2 font-sans text-[13px] transition-colors ${
-            selectedTab === "manage"
-              ? "border-b-2 border-foreground text-foreground"
-              : "text-foreground/40 hover:text-foreground/60"
-          }`}
-        >
-          Manage creators
-        </button>
-      </div>
-
-      {selectedTab === "recommended" && (
-        <>
-          <div className="mb-4 flex items-center justify-between">
-            <label className="font-sans text-[12px] text-foreground/60">
-              Recommendation reasons
-            </label>
-            <select className="rounded border border-foreground/15 bg-transparent px-2 py-1 font-sans text-[12px] text-foreground/70">
-              <option>All</option>
-              <option>High engagement</option>
-              <option>Similar audience</option>
-            </select>
+        {/* Tabs and Filter */}
+        <div className="px-6 pt-4">
+          <div className="flex gap-6 border-b border-foreground/10">
+            <button
+              onClick={() => setSelectedTab("recommended")}
+              className={`pb-3 text-[13px] font-medium transition-colors ${
+                selectedTab === "recommended"
+                  ? "border-b-2 border-foreground text-foreground"
+                  : "text-foreground/50 hover:text-foreground/70"
+              }`}
+            >
+              Recommended creators
+            </button>
+            <button
+              onClick={() => setSelectedTab("manage")}
+              className={`pb-3 text-[13px] transition-colors ${
+                selectedTab === "manage"
+                  ? "border-b-2 border-foreground text-foreground"
+                  : "text-foreground/50 hover:text-foreground/70"
+              }`}
+            >
+              Add from Manage creators
+            </button>
           </div>
 
-          <div className="overflow-x-auto flex-1">
-            <table className="w-full min-w-[700px] border-collapse text-left">
-              <thead>
+          {selectedTab === "recommended" && (
+            <div className="mt-4 flex items-center gap-4 pb-4">
+              <label className="text-[12px] text-foreground/60 font-medium">
+                Recommendation reasons
+              </label>
+              <select className="rounded border border-foreground/20 bg-white px-3 py-1 text-[12px] text-foreground">
+                <option>All</option>
+                <option>High engagement</option>
+                <option>Similar audience</option>
+              </select>
+              <button className="ml-auto text-[12px] text-blue-500 hover:text-blue-600">
+                Reset
+              </button>
+            </div>
+          )}
+        </div>
+
+        {/* Table */}
+        {selectedTab === "recommended" && (
+          <div className="overflow-x-auto max-h-96">
+            <table className="w-full border-collapse">
+              <thead className="bg-foreground/[0.03]">
                 <tr>
-                  <th className="py-3 pr-2 font-sans text-[11px] font-medium text-foreground/45">
-                    <input type="checkbox" className="cursor-pointer" />
+                  <th className="w-8 px-4 py-3 text-left">
+                    <input type="checkbox" />
                   </th>
-                  <th className="py-3 px-2 font-sans text-[11px] font-medium text-foreground/45">
+                  <th className="px-4 py-3 text-left text-[11px] font-medium text-foreground/60">
                     Creators
                   </th>
-                  {METRIC_COLUMNS.map((column) => (
-                    <th
-                      key={column}
-                      className="py-3 px-2 text-right font-sans text-[11px] font-medium text-foreground/45"
-                    >
-                      {column}
-                    </th>
-                  ))}
+                  <th className="px-4 py-3 text-center text-[11px] font-medium text-foreground/60">
+                    Video
+                  </th>
+                  <th className="px-4 py-3 text-right text-[11px] font-medium text-foreground/60">
+                    Revenue
+                  </th>
+                  <th className="px-4 py-3 text-right text-[11px] font-medium text-foreground/60">
+                    Item sold
+                  </th>
+                  <th className="px-4 py-3 text-right text-[11px] font-medium text-foreground/60">
+                    Ave. video views
+                  </th>
+                  <th className="px-4 py-3 text-right text-[11px] font-medium text-foreground/60">
+                    Engagement rate
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 {RECOMMENDED.map((creator) => (
                   <tr
                     key={creator.handle}
-                    className="border-t border-foreground/[0.07] hover:bg-foreground/[0.02] transition-colors"
+                    className="border-t border-foreground/10 hover:bg-foreground/[0.02]"
                   >
-                    <td className="py-3 pr-2">
-                      <input type="checkbox" className="cursor-pointer" />
+                    <td className="w-8 px-4 py-4">
+                      <input type="checkbox" />
                     </td>
-                    <td className="py-3 px-2">
-                      <div className="flex items-start gap-2.5">
-                        <div className="mt-0.5 size-10 shrink-0 rounded bg-foreground/10" />
-                        <div className="flex-1 min-w-0">
-                          <p className="font-sans text-[13px] font-medium text-foreground">
+                    <td className="px-4 py-4">
+                      <div className="flex items-start gap-3">
+                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-purple-400 flex-shrink-0" />
+                        <div className="flex-1">
+                          <p className="text-[13px] font-medium text-foreground">
                             {creator.name}
                           </p>
-                          <p className="font-mono text-[11px] text-foreground/45">
+                          <p className="text-[11px] text-foreground/50">
                             {creator.handle}
                           </p>
-                          <p className="mt-1 font-sans text-[11px] text-foreground/50">
+                          <p className="text-[10px] text-foreground/50 mt-1">
+                            {creator.pps}
+                          </p>
+                          <p className="text-[11px] text-foreground/60 mt-1">
                             {creator.categories}
                           </p>
-                          <p className="font-sans text-[10px] text-foreground/40">
+                          <p className="text-[10px] text-foreground/40">
                             {creator.followers} • {creator.range}
                           </p>
                           {creator.status && (
-                            <p className="mt-1 font-sans text-[10px] text-foreground/50 italic">
+                            <p className="text-[10px] text-foreground/50 italic mt-1">
                               {creator.status}
                             </p>
                           )}
                           {creator.tags && (
-                            <div className="mt-1.5 flex flex-wrap gap-1">
+                            <div className="mt-2 flex flex-wrap gap-1">
                               {creator.tags.map((tag, i) => (
                                 <span
                                   key={i}
-                                  className="inline-block rounded bg-foreground/[0.06] px-2 py-0.5 font-sans text-[10px] text-foreground/60"
+                                  className="text-[9px] bg-foreground/[0.08] text-foreground/60 px-1.5 py-0.5 rounded"
                                 >
                                   {tag}
                                 </span>
@@ -320,36 +333,48 @@ function InviteDrawer() {
                         </div>
                       </div>
                     </td>
-                    <td className="py-3 px-2 text-right">
-                      <div className="h-8 w-12 rounded bg-foreground/10" />
+                    <td className="px-4 py-4 text-center">
+                      <div className="w-14 h-10 bg-foreground/10 rounded" />
                     </td>
-                    <td className="py-3 px-2 text-right font-mono text-[12px] text-foreground/75">
-                      {creator.revenue}
+                    <td className="px-4 py-4 text-right">
+                      <p className="text-[12px] text-foreground/80 font-mono">
+                        {creator.revenue}
+                      </p>
                     </td>
-                    <td className="py-3 px-2 text-right font-mono text-[12px] text-foreground/75">
-                      {creator.items}
+                    <td className="px-4 py-4 text-right">
+                      <p className="text-[12px] text-foreground/80 font-mono">
+                        {creator.items}
+                      </p>
                     </td>
-                    <td className="py-3 px-2 text-right font-mono text-[12px] text-foreground/75">
-                      {creator.views}
+                    <td className="px-4 py-4 text-right">
+                      <p className="text-[12px] text-foreground/80 font-mono">
+                        {creator.views}
+                      </p>
                     </td>
-                    <td className="py-3 px-2 text-right font-mono text-[12px] text-foreground/75">
-                      {creator.engagement}
+                    <td className="px-4 py-4 text-right">
+                      <p className="text-[12px] text-foreground/80 font-mono">
+                        {creator.engagement}
+                      </p>
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-        </>
-      )}
+        )}
 
-      <div className="mt-4 flex justify-end gap-2.5 border-t border-foreground/10 pt-4">
-        <button className="rounded-full border border-foreground/15 px-4 py-1.5 font-sans text-[13px] text-foreground/70 hover:bg-foreground/[0.05] transition-colors">
-          Cancel
-        </button>
-        <button className="rounded-full bg-foreground px-4 py-1.5 font-sans text-[13px] font-medium text-background hover:opacity-90 transition-opacity">
-          Add
-        </button>
+        {/* Footer */}
+        <div className="px-6 py-4 border-t border-foreground/10 bg-foreground/[0.02] flex items-center justify-between">
+          <p className="text-[12px] text-foreground/60">0/50 creator selected</p>
+          <div className="flex gap-3">
+            <button className="px-6 py-2 rounded-full border border-foreground/20 text-[13px] text-foreground/70 hover:bg-foreground/5">
+              Cancel
+            </button>
+            <button className="px-6 py-2 rounded-full bg-cyan-500 text-white text-[13px] font-medium hover:bg-cyan-600">
+              Add
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
