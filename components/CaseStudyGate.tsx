@@ -196,6 +196,13 @@ function ConcentrationDiagram() {
   );
 }
 
+/**
+ * Small elevation on the product UI inside each view area, so the screen sits
+ * on the page rather than being flush with it. The first view area is a flat
+ * illustration and deliberately has none.
+ */
+const UI_SHADOW = "shadow-[0_2px_10px_rgba(0,0,0,0.08)]";
+
 /* ---- "Add creators" screen — Figma "Portifolio Site", node 1835-111444 ---- */
 
 /**
@@ -746,7 +753,7 @@ function InviteDrawer() {
       <div ref={stageRef} className="tts-collab-stage">
         <div
           ref={cameraRef}
-          className="tts-collab-camera overflow-hidden rounded-lg"
+          className={`tts-collab-camera overflow-hidden rounded-lg ${UI_SHADOW}`}
         >
           <div ref={fitRef} className="tts-demo-fit">
             <AddCreatorsScreen />
@@ -997,12 +1004,12 @@ function CreatorFilterPanel() {
 
   return (
     <figure className="rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
-      <div ref={stageRef} className="relative w-full overflow-hidden">
+      <div ref={stageRef} className="relative w-full">
         <div
           ref={cardRef}
           // The Figma frame is a white surface; without it the panel's own
           // text would sit on the page background and vanish on the dark theme.
-          className="absolute left-0 top-0 flex flex-col gap-[8px] rounded-[8px] bg-white px-[15px] py-[16px] font-sans shadow-[0_2px_10px_rgba(0,0,0,0.06)]"
+          className={`absolute left-0 top-0 flex flex-col gap-[8px] rounded-[8px] bg-white px-[15px] py-[16px] font-sans ${UI_SHADOW}`}
           style={{ width: FILTER_FRAME, transformOrigin: "top left" }}
         >
           {FILTER_SECTIONS.map((section) => {
@@ -1118,12 +1125,12 @@ function DescribeCreatorsPanel() {
 
   return (
     <figure className="rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
-      <div ref={stageRef} className="relative w-full overflow-hidden">
+      <div ref={stageRef} className="relative w-full">
         <div
           ref={cardRef}
           // Same white Figma frame as the sibling panel — its title and
           // subtitle sit on this surface, not on the page background.
-          className="absolute left-0 top-0 flex flex-col gap-[8px] rounded-[8px] bg-white px-[15px] py-[17px] font-sans shadow-[0_2px_10px_rgba(0,0,0,0.06)]"
+          className={`absolute left-0 top-0 flex flex-col gap-[8px] rounded-[8px] bg-white px-[15px] py-[17px] font-sans ${UI_SHADOW}`}
           style={{ width: DESCRIBE_FRAME, transformOrigin: "top left" }}
         >
           <div className="flex w-full flex-col justify-center gap-[4px]">
