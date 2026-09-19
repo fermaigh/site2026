@@ -169,33 +169,9 @@ export default async function CaseStudyPage({ params }: PageProps) {
     <PageShell>
       <article className="pb-8">
         <header className="reveal">
-          <div className="flex items-center gap-3 sm:gap-4">
-            <h1 className="font-sans text-[clamp(1.75rem,6vw,2.75rem)] font-semibold leading-[1.1] tracking-tight text-foreground">
-              {project.title}
-            </h1>
-            {project.slug === "tiktok-shop-affiliate" && (
-              <button
-                type="button"
-                className="inline-flex min-h-8 items-center gap-1.5 rounded-full border border-foreground/15 bg-foreground/5 px-3.5 py-1.5 font-sans text-[12px] font-medium text-foreground transition-opacity hover:opacity-80 active:opacity-70"
-                aria-label="AI native case study"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="size-3.5"
-                  aria-hidden
-                >
-                  <rect x="4.5" y="10.5" width="15" height="10" rx="2.6" />
-                  <path d="M8 10.5V7.8a4 4 0 0 1 8 0v2.7" />
-                </svg>
-                AI native
-              </button>
-            )}
-          </div>
+          <h1 className="font-sans text-[clamp(1.75rem,6vw,2.75rem)] font-semibold leading-[1.1] tracking-tight text-foreground">
+            {project.title}
+          </h1>
           <div className="mt-4 w-full space-y-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-6 sm:space-y-5 sm:text-[17px]">
             {hasMeta ? (
               <div className="space-y-1">
