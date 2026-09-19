@@ -106,7 +106,7 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    slug: "tiktok-shop-affiliate",
+    slug: "scaling-tiktok-shop-affiliates",
     title: "Scaling TikTok Shop Affiliates",
     description:
       "Led end-to-end design for TikTok Shop Affiliate seller tools, including AI agents and AI-assisted experiences, helping millions of merchants discover, connect with, and manage creator partnerships at scale. Simplified complex workflows, driving creator-led growth and millions in weekly GMV.",
@@ -177,12 +177,12 @@ export const projects: Project[] = [
           ],
         },
       ],
-      gatedLink: { label: "View Case Studies", href: "/case-studies/tiktok-shop-affiliate" },
+      gatedLink: { label: "View Case Studies", href: "/scaling-tiktok-shop-affiliates/case-study" },
       showcase: "target-collaboration",
     },
   },
   {
-    slug: "hiring-app",
+    slug: "ai-powered-hiring-platform",
     title: "AI-Powered Hiring Platform",
     description:
       "Led end-to-end design for Sprockets, helping franchise businesses hire faster and retain employees longer. Simplified the experience across employers and candidates while driving measurable business outcomes.",
@@ -296,7 +296,7 @@ export const projects: Project[] = [
           { src: "/projects/hiring-app/screens/screen-19.png", width: 2900, height: 3326 },
         ],
       },
-      gatedLink: { label: "View Case Studies", href: "/case-studies/hiring-app" },
+      gatedLink: { label: "View Case Studies", href: "/ai-powered-hiring-platform/case-study" },
       showcase: "hiring-applicants",
     },
   },
