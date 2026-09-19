@@ -430,9 +430,7 @@ export function CaseStudyGate() {
           </h2>
 
           <p className="mt-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-5 sm:text-[17px]">
-            Overtime, we are seeing sellers are gravitating to top creators, the
-            concentrate attention makes it hard for sellers to find the real
-            fit, promotes an unhealthy environment on our platform in long term.
+            Over time, seller attention increasingly concentrated on top creators. This made it harder for users to discover the right fit, while creating an unhealthy marketplace dynamic for the platform.
           </p>
 
           <figure className="mt-8 sm:mt-10">
