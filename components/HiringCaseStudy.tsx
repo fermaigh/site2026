@@ -70,10 +70,10 @@ export function HiringCaseStudy() {
         <div className="mt-12 space-y-10 border-t border-foreground/10 pt-10 sm:mt-16 sm:space-y-14 sm:pt-14 md:mt-20 md:pt-16">
           <section className="reveal">
             <h2 className="font-sans text-[clamp(1.125rem,4vw,1.5rem)] font-semibold tracking-tight text-foreground">
-              Project Overview
+              Context
             </h2>
             <p className="mt-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-6 sm:text-[17px]">
-              This case study documents the design and implementation of the AI-powered hiring platform, showcasing the process of turning complex hiring challenges into an intuitive experience for franchise businesses.
+              Sprockets has launched their MVP that used by internal customer success team to help franchise business (fast food / gas stations) source hourly works and hire better for them, the core technology behind it is an AI analysis on candidates answers from an online assessment. The company faced a bottleneck to continue grow, they planned to refresh the MVP products for more self-serviced within the same target market. I joined the team to see how self-serviced should be fleshed out and still maintain its core value of mvp.
             </p>
           </section>
         </div>
