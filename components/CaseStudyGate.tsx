@@ -1114,15 +1114,15 @@ export function CaseStudyGate() {
           </h2>
 
           <p className="mt-6 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-8 sm:text-[17px]">
-            At platform scale, I often balance user value with platform compliance: Simplifying complex requirements while ensuring the experience remains clear, trustworthy, and sustainable for everyone in the ecosystem.
+            At platform scale, I often balance user value with compliance: Simplifying complex requirements while keeping the experience clear, trustworthy, and actionable.
           </p>
 
           <p className="mt-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]">
-            In this case, the compliance design had to satisfy was: <span className="font-semibold text-foreground">If sellers repeatedly rejected sample requests, the system could keep recruiting more creators until the requirements (The seller desired time and sample allowance) were reached. This could lead to creator spam and undermine the intent of the matching experience.</span>
+            In this case, continuous matching introduced a compliance risk: <span className="font-semibold text-foreground">if sellers repeatedly rejected sample requests, the platform could continue recruiting creators until the seller-defined time or sample limits were reached, potentially creating spam and undermining the intent of the experience.</span>
           </p>
 
           <p className="mt-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]">
-            The legal and product team suggested to inform sellers if any of their existing collaboration are about to exceed a certain number.
+            Legal and Product initially proposed notifying sellers when a collaboration was approaching the outreach threshold.
           </p>
 
           <figure className="mt-8 sm:mt-10 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
