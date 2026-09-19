@@ -680,6 +680,172 @@ export function CaseStudyGate() {
           <p className="mt-6 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-8 sm:text-[17px]">
             Holistically, it would be nice to see the automatically matched list and updates whenever new edits happen.
           </p>
+
+          {/* Creator Collaboration Step */}
+          <figure className="mt-8 sm:mt-10 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
+            <div className="bg-white rounded-lg shadow-lg p-6">
+              {/* Header and Navigation */}
+              <div className="mb-8">
+                <div className="flex items-center gap-3 mb-6">
+                  <button className="text-foreground/60 hover:text-foreground">←</button>
+                  <h3 className="font-sans text-[20px] font-semibold text-foreground">
+                    Create collaboration
+                  </h3>
+                </div>
+
+                {/* Progress Steps */}
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="flex items-center gap-2">
+                    <div className="w-6 h-6 rounded-full bg-foreground/20 flex items-center justify-center text-[12px] text-foreground">✓</div>
+                    <span className="text-[13px] text-foreground/60">General info</span>
+                  </div>
+                  <div className="w-8 h-px bg-foreground/15" />
+                  <div className="flex items-center gap-2">
+                    <div className="w-6 h-6 rounded-full bg-foreground/20 flex items-center justify-center text-[12px] text-foreground">✓</div>
+                    <span className="text-[13px] text-foreground/60">Products</span>
+                  </div>
+                  <div className="w-8 h-px bg-foreground/15" />
+                  <div className="flex items-center gap-2">
+                    <div className="w-6 h-6 rounded-full bg-foreground text-white flex items-center justify-center text-[12px] font-semibold">●</div>
+                    <span className="text-[13px] font-semibold text-foreground">Creators</span>
+                  </div>
+                  <div className="w-8 h-px bg-foreground/15" />
+                  <div className="flex items-center gap-2">
+                    <div className="w-6 h-6 rounded-full bg-foreground/10 flex items-center justify-center text-[12px] text-foreground/40">4</div>
+                    <span className="text-[13px] text-foreground/40">Review</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Two-column layout */}
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                {/* Left content */}
+                <div className="lg:col-span-2 space-y-6">
+                  {/* Creators matched */}
+                  <div className="flex items-center gap-4 p-4 rounded bg-foreground/[0.02] border border-foreground/10">
+                    <div className="flex">
+                      {[0, 1, 2, 3, 4].map((i) => (
+                        <div
+                          key={i}
+                          className="w-8 h-8 rounded-full bg-foreground/20 border-2 border-white flex items-center justify-center text-[10px] font-semibold text-foreground -ml-2 first:ml-0"
+                        >
+                          C{i + 1}
+                        </div>
+                      ))}
+                    </div>
+                    <span className="text-[13px] font-medium text-foreground">
+                      125 creators automatically matched
+                    </span>
+                  </div>
+
+                  {/* Describe preference */}
+                  <div>
+                    <h4 className="text-[15px] font-semibold text-foreground mb-2">
+                      Describe your preference
+                    </h4>
+                    <p className="text-[13px] text-foreground/60 mb-3">
+                      Your input will help breaking matched creators.
+                    </p>
+                    <div className="border border-foreground/15 rounded p-4 bg-foreground/[0.01] min-h-[100px]">
+                      <p className="text-[13px] leading-[1.6] text-foreground/80">
+                        Skincare and self-care creators who post routine videos, before-and-after results, and honest product reviews. Audience skews female, 18–35, highly engaged. We'd love creators who are consistent, genuine, and open to long-term collaboration. Bonus if they've worked with beauty or personal care brands before.
+                      </p>
+                    </div>
+                    <div className="flex justify-end mt-2">
+                      <span className="text-[11px] text-foreground/50 bg-foreground/[0.05] px-2 py-1 rounded">
+                        400/500
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Add more criteria */}
+                  <div className="flex items-center gap-2 cursor-pointer text-foreground/60 hover:text-foreground/80">
+                    <span className="text-[13px]">▼</span>
+                    <span className="text-[13px] font-medium">Add more criteria</span>
+                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <circle cx="12" cy="12" r="10" />
+                      <path d="M12 16v-4m0-4v.01" />
+                    </svg>
+                  </div>
+
+                  {/* Action buttons */}
+                  <div className="flex gap-3 mt-6">
+                    <button className="px-6 py-2 border border-foreground/20 rounded text-[14px] font-medium text-foreground/60 hover:text-foreground hover:border-foreground/40">
+                      Previous
+                    </button>
+                    <button className="px-6 py-2 bg-foreground text-white rounded text-[14px] font-medium hover:opacity-80">
+                      Next
+                    </button>
+                  </div>
+                </div>
+
+                {/* Right preview panel */}
+                <div className="lg:col-span-1 space-y-6">
+                  {/* Phone preview */}
+                  <div className="flex flex-col items-center">
+                    <div className="w-full max-w-xs bg-black rounded-3xl p-3 shadow-lg">
+                      <div className="bg-foreground rounded-2xl p-4 aspect-video flex items-center justify-center">
+                        <div className="text-center">
+                          <p className="text-[11px] font-medium text-white/80 mb-2">Invitation</p>
+                          <p className="text-[9px] text-white/60">Preview</p>
+                        </div>
+                      </div>
+                    </div>
+                    <p className="text-[12px] text-foreground/50 mt-3">Creator preview</p>
+                  </div>
+
+                  {/* Shop info */}
+                  <div className="space-y-4 pt-4 border-t border-foreground/10">
+                    <div>
+                      <p className="text-[12px] font-semibold text-foreground mb-2">About this shop</p>
+                      <div className="flex items-center gap-2">
+                        <div className="w-8 h-8 rounded-full bg-foreground/20" />
+                        <div>
+                          <p className="text-[13px] font-medium text-foreground">SkinCare Shop</p>
+                          <p className="text-[11px] text-foreground/50">4.8/5.0 • 154 sales</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <p className="text-[12px] font-semibold text-foreground mb-2">Preferred content type</p>
+                      <p className="text-[13px] text-foreground/70">Short video</p>
+                    </div>
+
+                    <div>
+                      <p className="text-[12px] font-semibold text-foreground mb-2">Incentives</p>
+                      <div className="space-y-1 text-[12px]">
+                        <div className="flex justify-between">
+                          <span className="text-foreground/60">Free sample</span>
+                          <span className="text-foreground">Auto-approval</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-foreground/60">Commission rate</span>
+                          <span className="text-foreground">12.45%-16.34%</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-foreground/60">Product price</span>
+                          <span className="text-foreground">$23.99-$123.99</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <p className="text-[12px] font-semibold text-foreground mb-3">Products</p>
+                      <div className="flex gap-2 mb-3">
+                        {[1, 2, 3].map((i) => (
+                          <div key={i} className="w-12 h-12 bg-foreground/15 rounded" />
+                        ))}
+                      </div>
+                      <button className="w-full py-2 bg-foreground text-white text-[12px] font-medium rounded hover:opacity-80">
+                        Accept
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </figure>
         </section>
       </article>
     );
