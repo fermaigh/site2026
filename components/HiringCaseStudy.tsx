@@ -167,6 +167,36 @@ export function HiringCaseStudy() {
                 Research documentation: Affinity mapping from workshops, interview notes, user journey flows, and detailed persona cards developed from field research.
               </figcaption>
             </figure>
+
+            <p className="mt-12 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-14 sm:text-[17px]">
+              Continue developing into a user journey to visualize how each group of users get their jobs done, helping cross-functional teams visualize the system and prioritization roadmap.
+            </p>
+
+            <figure className="mt-10 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
+              <div className="w-full aspect-video flex items-center justify-center bg-foreground/5 rounded-lg">
+                <img
+                  src="https://www.figma.com/api/mcp/asset/37e42041-998a-4705-b619-7e7ebdd03bdf/2dbff.png"
+                  alt="User journey diagram showing how Operation, Hiring Manager, and Applicant users navigate through the hiring platform"
+                  className="w-full h-auto max-w-none"
+                />
+              </div>
+              <figcaption className="mt-6 font-sans text-[13px] leading-[1.6] text-foreground/60 sm:text-[14px]">
+                User journey mapping: Showing how different user groups (Operation/Payer, Hiring Manager, Job Applicants) navigate through the hiring workflow from onboarding through job completion.
+              </figcaption>
+            </figure>
+
+            <figure className="mt-10 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
+              <div className="w-full aspect-auto flex items-center justify-center bg-foreground/5 rounded-lg overflow-x-auto">
+                <img
+                  src="https://www.figma.com/api/mcp/asset/37e42041-998a-4705-b619-7e7ebdd03bdf/e03f9.png"
+                  alt="System prioritization roadmap showing UX vision and product areas for improvements across the platform"
+                  className="w-full h-auto max-w-none"
+                />
+              </div>
+              <figcaption className="mt-6 font-sans text-[13px] leading-[1.6] text-foreground/60 sm:text-[14px]">
+                System prioritization roadmap: UX vision principles (Efficiency, High quality, Effortless, Contextual, Humanity) and key product areas requiring improvements for optimal user experience across all platforms.
+              </figcaption>
+            </figure>
           </section>
         </div>
       </article>
