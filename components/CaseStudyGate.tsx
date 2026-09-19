@@ -678,7 +678,7 @@ export function CaseStudyGate() {
           </figure>
 
           <p className="mt-6 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-8 sm:text-[17px]">
-            Holistically, it would be nice to see the automatically matched list and updates whenever new edits happen.
+            Ideally, sellers would see their matched creator pool evolve in real time as they refine their needs, making the connection between <span className="font-semibold text-foreground">input and outcome visible</span> and building <span className="font-semibold text-foreground">trust in how the platform interprets their intent</span>.
           </p>
 
           {/* Creator Collaboration Step */}
