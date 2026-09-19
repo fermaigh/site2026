@@ -1120,6 +1120,155 @@ export function CaseStudyGate() {
           <p className="mt-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]">
             The legal and product team suggested to inform sellers if any of their existing collaboration are about to exceed a certain number.
           </p>
+
+          <figure className="mt-8 sm:mt-10 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
+            <div className="bg-background rounded-lg border border-foreground/10 overflow-hidden">
+              {/* Top Navigation */}
+              <div className="flex items-center justify-between px-6 py-4 border-b border-foreground/10 bg-foreground/[0.02]">
+                <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-2">
+                    <div className="w-6 h-6 rounded-sm bg-foreground/20" />
+                    <span className="font-semibold text-[15px] text-foreground">Seller Center</span>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <button className="p-2 hover:bg-foreground/5 rounded">
+                    <svg className="w-5 h-5 text-foreground/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <circle cx="12" cy="12" r="10" />
+                      <path d="M12 16v-4M12 8h.01" />
+                    </svg>
+                  </button>
+                  <div className="w-8 h-8 rounded-full bg-foreground/15" />
+                </div>
+              </div>
+
+              {/* Page Tabs */}
+              <div className="border-b border-foreground/10 px-6">
+                <div className="flex gap-8 py-4">
+                  <div className="pb-3 border-b-2 border-foreground text-[14px] font-medium text-foreground">
+                    <svg className="w-4 h-4 mb-1 inline mr-2" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-8zm10 0h8v8h-8v-8z" />
+                    </svg>
+                    Work with select creators
+                  </div>
+                  <div className="pb-3 text-[14px] text-foreground/50 hover:text-foreground/70 cursor-pointer">
+                    <svg className="w-4 h-4 mb-1 inline mr-2" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" />
+                    </svg>
+                    Set up products for all creators
+                  </div>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="p-6 space-y-6">
+                {/* Data Blocks */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  <div className="border border-foreground/10 rounded-lg p-4 bg-foreground/[0.02]">
+                    <p className="text-[13px] text-foreground/60 mb-3">Invitations with sample request review</p>
+                    <p className="text-[32px] font-semibold text-foreground">230</p>
+                    <p className="text-[12px] text-foreground/50 mt-2 flex items-center gap-1">
+                      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M13 9l3 3L8 20H4v-4l9-11z" />
+                      </svg>
+                      Go to Samples
+                    </p>
+                  </div>
+
+                  <div className="border border-foreground/10 rounded-lg p-4 bg-foreground/[0.02]">
+                    <p className="text-[13px] text-foreground/60 mb-3">All flat fee invites with timely tasks</p>
+                    <p className="text-[32px] font-semibold text-foreground">20</p>
+                  </div>
+
+                  <div className="border border-foreground/10 rounded-lg p-4 bg-foreground/[0.02] relative">
+                    <p className="text-[13px] text-foreground/60 mb-3 flex items-center gap-2">
+                      Collaborations nearing invite limit
+                      <svg className="w-4 h-4 text-foreground/40 cursor-help" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M12 16v-4M12 8h.01" />
+                      </svg>
+                    </p>
+                    <p className="text-[32px] font-semibold text-foreground">5</p>
+                    <p className="text-[12px] text-foreground/50 mt-2">⟹ Take action</p>
+                  </div>
+                </div>
+
+                {/* Filters and Controls */}
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <div className="flex-1 flex items-center gap-2 border border-foreground/10 rounded-lg px-3 py-2 bg-foreground/[0.02]">
+                    <svg className="w-4 h-4 text-foreground/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <circle cx="11" cy="11" r="8" />
+                      <path d="m21 21-4.35-4.35" />
+                    </svg>
+                    <input type="text" placeholder="Search collaborations" className="flex-1 text-[13px] bg-transparent outline-none text-foreground placeholder:text-foreground/30" />
+                  </div>
+                  <select className="px-3 py-2 border border-foreground/10 rounded-lg bg-background text-[13px] text-foreground cursor-pointer">
+                    <option>Sort by</option>
+                    <option>Recent</option>
+                    <option>Active</option>
+                  </select>
+                  <select className="px-3 py-2 border border-foreground/10 rounded-lg bg-background text-[13px] text-foreground cursor-pointer">
+                    <option>Status</option>
+                    <option>Pending</option>
+                    <option>Active</option>
+                  </select>
+                  <button className="px-4 py-2 text-[13px] text-foreground/60 hover:text-foreground">Clear filters</button>
+                </div>
+
+                {/* Table */}
+                <div className="overflow-x-auto">
+                  <table className="w-full text-[13px]">
+                    <thead>
+                      <tr className="border-b border-foreground/10 bg-foreground/[0.02]">
+                        <th className="text-left font-medium text-foreground/70 px-4 py-3">Collaboration</th>
+                        <th className="text-left font-medium text-foreground/70 px-4 py-3 w-24">Status</th>
+                        <th className="text-left font-medium text-foreground/70 px-4 py-3 w-32">Progress</th>
+                        <th className="text-left font-medium text-foreground/70 px-4 py-3 w-20">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[
+                        { name: "Summer Glow Skincare Launch", modified: "06/03/2026", products: "5 products" },
+                        { name: "Labor Day Gift Guide 2026", modified: "04/12/2026", products: "47 products" },
+                        { name: "Active Wear Spring Refresh", modified: "03/21/2026", products: "156 products" },
+                        { name: "Protein Snack Bar Sampling", modified: "01/13/2026", products: "22 products" },
+                        { name: "Home Fragrance Collection Drop", modified: "12/18/2026", products: "5 products" },
+                        { name: "Holiday Beauty Bundle 2025", modified: "12/01/2026", products: "18 products" },
+                      ].map((item, idx) => (
+                        <tr key={idx} className="border-b border-foreground/5 hover:bg-foreground/[0.02]">
+                          <td className="px-4 py-4">
+                            <p className="font-medium text-foreground">{item.name}</p>
+                            <p className="text-[12px] text-foreground/50 mt-1">Modified {item.modified} • {item.products}</p>
+                          </td>
+                          <td className="px-4 py-4">
+                            <div className="flex items-center gap-2">
+                              <div className="w-2 h-2 rounded-full bg-foreground/40" />
+                              <span className="text-foreground/60">{idx % 3 === 0 ? "Active" : idx % 3 === 1 ? "Pending" : "Sent"}</span>
+                            </div>
+                          </td>
+                          <td className="px-4 py-4">
+                            <div className="w-20 h-1.5 bg-foreground/10 rounded-full overflow-hidden">
+                              <div className={`h-full bg-foreground`} style={{width: `${(idx + 1) * 20}%`}} />
+                            </div>
+                            <p className="text-[11px] text-foreground/50 mt-1">{(idx + 1) * 20}%</p>
+                          </td>
+                          <td className="px-4 py-4">
+                            <button className="text-foreground/50 hover:text-foreground">
+                              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                                <circle cx="12" cy="5" r="2" />
+                                <circle cx="12" cy="12" r="2" />
+                                <circle cx="12" cy="19" r="2" />
+                              </svg>
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </figure>
         </section>
       </article>
     );
