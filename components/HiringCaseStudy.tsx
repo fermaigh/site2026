@@ -125,6 +125,48 @@ export function HiringCaseStudy() {
                 <span className="font-semibold text-foreground min-w-fit">Job applicants</span>
               </li>
             </ul>
+
+            <figure className="mt-10 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
+              <div className="space-y-6">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <img
+                    src="https://www.figma.com/api/mcp/asset/0931d153-f218-4453-9edb-66db7e6f6f6a/2ff33.png"
+                    alt="Research workshop - affinity mapping left"
+                    className="rounded-lg w-full h-auto object-cover border border-foreground/5"
+                  />
+                  <img
+                    src="https://www.figma.com/api/mcp/asset/0931d153-f218-4453-9edb-66db7e6f6f6a/888a6.png"
+                    alt="Research workshop - affinity mapping right"
+                    className="rounded-lg w-full h-auto object-cover border border-foreground/5"
+                  />
+                </div>
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <img
+                    src="https://www.figma.com/api/mcp/asset/0931d153-f218-4453-9edb-66db7e6f6f6a/4f251.png"
+                    alt="Research documentation - interview notes"
+                    className="rounded-lg w-full h-auto object-cover border border-foreground/5"
+                  />
+                  <img
+                    src="https://www.figma.com/api/mcp/asset/0931d153-f218-4453-9edb-66db7e6f6f6a/8c77b.png"
+                    alt="Research documentation - findings synthesis"
+                    className="rounded-lg w-full h-auto object-cover border border-foreground/5"
+                  />
+                </div>
+                <img
+                  src="https://www.figma.com/api/mcp/asset/0931d153-f218-4453-9edb-66db7e6f6f6a/d15b3.png"
+                  alt="User journey and interaction flows"
+                  className="rounded-lg w-full h-auto object-cover border border-foreground/5"
+                />
+                <img
+                  src="https://www.figma.com/api/mcp/asset/0931d153-f218-4453-9edb-66db7e6f6f6a/f73eb.png"
+                  alt="Detailed persona cards with research findings"
+                  className="rounded-lg w-full h-auto object-cover border border-foreground/5"
+                />
+              </div>
+              <figcaption className="mt-6 font-sans text-[13px] leading-[1.6] text-foreground/60 sm:text-[14px]">
+                Research documentation: Affinity mapping from workshops, interview notes, user journey flows, and detailed persona cards developed from field research.
+              </figcaption>
+            </figure>
           </section>
         </div>
       </article>
