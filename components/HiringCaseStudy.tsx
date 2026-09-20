@@ -43,9 +43,9 @@ const componentShowcaseItems = [
     caption: "Neutral foundations support the interface; semantic colors communicate status, while teal and blue support brand and illustration.",
   },
   {
-    id: "placeholder-1",
-    label: "Placeholder item 1",
-    caption: "Placeholder for an additional UI component and its supporting details.",
+    id: "buttons",
+    label: "Buttons",
+    caption: "Primary, secondary, and tertiary actions share three sizes, optional icons, and consistent idle, hover, active, and disabled states.",
   },
   {
     id: "placeholder-2",
@@ -745,6 +745,88 @@ export function HiringCaseStudy() {
                                 </div>
                               ))}
                             </div>
+                          </div>
+                        </div>
+                      ) : null}
+
+                      {item.id === "buttons" ? (
+                        <div className="w-full max-w-2xl overflow-hidden rounded-xl border border-foreground/10 bg-background">
+                          <div className="flex flex-col gap-3 border-b border-foreground/10 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+                            <div>
+                              <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-foreground/45">
+                                Button system
+                              </p>
+                              <p className="mt-1 font-sans text-[14px] font-medium text-foreground">
+                                Three levels of emphasis
+                              </p>
+                            </div>
+                            <div className="flex flex-wrap gap-2 font-mono text-[10px] text-foreground/55">
+                              <span className="rounded-full bg-foreground/[0.06] px-2.5 py-1">Large · 58</span>
+                              <span className="rounded-full bg-foreground/[0.06] px-2.5 py-1">Medium · 40</span>
+                              <span className="rounded-full bg-foreground/[0.06] px-2.5 py-1">Small · 32</span>
+                            </div>
+                          </div>
+
+                          <div className="grid bg-[#F9FAFB] sm:grid-cols-3">
+                            <div className="flex flex-col items-start border-b border-[#E9E9E9] p-5 sm:border-r sm:border-b-0 sm:p-6">
+                              <p className="font-mono text-[10px] text-[#87888A]">01 · Primary</p>
+                              <button
+                                type="button"
+                                className={`${sprocketsHeading.className} mt-4 h-10 rounded-[4px] bg-[#313131] px-4 text-[14px] font-medium leading-[18px] text-white transition-colors duration-150 hover:bg-[#0A1516] active:bg-[#0A1516]`}
+                              >
+                                Continue
+                              </button>
+                              <p className="mt-3 font-sans text-[11px] leading-[16px] text-[#4F5457]">
+                                Highest-emphasis action
+                              </p>
+                            </div>
+
+                            <div className="flex flex-col items-start border-b border-[#E9E9E9] p-5 sm:border-r sm:border-b-0 sm:p-6">
+                              <p className="font-mono text-[10px] text-[#87888A]">02 · Secondary</p>
+                              <button
+                                type="button"
+                                className={`${sprocketsHeading.className} mt-4 h-10 rounded-[4px] border border-[#313131] bg-white px-4 text-[14px] font-medium leading-[18px] text-[#313131] transition-colors duration-150 hover:border-[#0A1516] hover:bg-[#F5F5F5] hover:text-[#0A1516] active:bg-[#E9E9E9]`}
+                              >
+                                Save draft
+                              </button>
+                              <p className="mt-3 font-sans text-[11px] leading-[16px] text-[#4F5457]">
+                                Supporting action
+                              </p>
+                            </div>
+
+                            <div className="flex flex-col items-start p-5 sm:p-6">
+                              <p className="font-mono text-[10px] text-[#87888A]">03 · Tertiary</p>
+                              <button
+                                type="button"
+                                className={`${sprocketsHeading.className} mt-4 h-10 rounded-[4px] px-4 text-[14px] font-medium leading-[18px] text-[#313131] transition-colors duration-150 hover:text-[#0A1516] active:text-[#0A1516]`}
+                              >
+                                Cancel
+                              </button>
+                              <p className="mt-3 font-sans text-[11px] leading-[16px] text-[#4F5457]">
+                                Lowest-emphasis action
+                              </p>
+                            </div>
+                          </div>
+
+                          <div className="grid grid-cols-2 border-t border-foreground/10 sm:grid-cols-4">
+                            {[
+                              ["Idle", "Default"],
+                              ["Hover", "Clear feedback"],
+                              ["Active", "Pressed"],
+                              ["Disabled", "60% opacity"],
+                            ].map(([state, note], index) => (
+                              <div
+                                key={state}
+                                className={`px-4 py-3 ${index % 2 === 0 ? "border-r border-foreground/10" : ""} ${index < 2 ? "border-b border-foreground/10 sm:border-b-0" : ""} ${index === 1 ? "sm:border-r" : ""}`}
+                              >
+                                <p className="font-sans text-[11px] font-semibold leading-none text-foreground">
+                                  {state}
+                                </p>
+                                <p className="mt-1 font-mono text-[9px] leading-none text-foreground/45">
+                                  {note}
+                                </p>
+                              </div>
+                            ))}
                           </div>
                         </div>
                       ) : null}
