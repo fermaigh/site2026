@@ -2161,7 +2161,7 @@ export function CaseStudyGate() {
           </p>
 
           {/* Creator Collaboration Step */}
-          <figure className="mt-8 sm:mt-10 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
+          <figure className="hidden">
             <div className="bg-white rounded-lg shadow-lg p-6">
               {/* Header and Navigation */}
               <div className="mb-8">
