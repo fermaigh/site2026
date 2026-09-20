@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  useEffect,
   useLayoutEffect,
   useRef,
   useState,
@@ -1171,6 +1172,521 @@ function DescribeCreatorsPanel() {
   );
 }
 
+/* ---- AI preference screen — Figma "Portifolio Site", node 1841-135984 ---- */
+
+const AI = "/projects/tts-ui/ai-preference";
+const AI_WIDTH = 1440;
+const AI_HEIGHT = 866;
+const aiHeight = () => AI_HEIGHT;
+const AI_LIMIT = 500;
+
+/** The brief the design ships with, used as the field's starting value. */
+const AI_SEED =
+  "Skincare and self-care creators who post routine videos, before-and-after " +
+  "results, and honest product reviews. Audience skews female, 18–35, highly " +
+  "engaged. We'd love creators who are consistent, genuine, and open to " +
+  "long-term collaboration. Bonus if they've worked with beauty or personal " +
+  "care brands before.";
+
+/**
+ * The four dimensions the matcher reads out of the seller's brief. Each facet
+ * that lands narrows the pool, which is what makes the count move as they
+ * type. Keyword matching, not a model — this is a portfolio demo.
+ */
+type Facet = {
+  id: string;
+  label: string;
+  options: { value: string; match: RegExp; keep: number }[];
+};
+
+const AI_FACETS: Facet[] = [
+  {
+    id: "category",
+    label: "Category",
+    options: [
+      { value: "Beauty & skincare", match: /skin ?care|beauty|serum|routine|self[- ]care|cosmetic|makeup/i, keep: 0.42 },
+      { value: "Wellness & supplements", match: /wellness|supplement|vitamin|fitness|health/i, keep: 0.38 },
+      { value: "Fashion & apparel", match: /fashion|apparel|outfit|clothing|wardrobe/i, keep: 0.4 },
+      { value: "Home & lifestyle", match: /home|lifestyle|kitchen|decor|organi[sz]/i, keep: 0.36 },
+      { value: "Food & beverage", match: /food|snack|recipe|cooking|drink/i, keep: 0.34 },
+    ],
+  },
+  {
+    id: "followers",
+    label: "Follower size",
+    options: [
+      { value: "Nano · under 10K", match: /nano|under 10 ?k|small account/i, keep: 0.3 },
+      { value: "Micro · 10K–100K", match: /micro|10 ?k|50 ?k|100 ?k/i, keep: 0.55 },
+      { value: "Mid · 100K–1M", match: /mid[- ]tier|mid[- ]size|500 ?k/i, keep: 0.45 },
+      { value: "Macro · 1M+", match: /macro|1 ?m\b|million|large following|big creator/i, keep: 0.22 },
+    ],
+  },
+  {
+    id: "sales",
+    label: "Sales performance",
+    options: [
+      { value: "Proven sellers", match: /proven|high[- ]convert|strong sales|top seller|gmv|revenue|sales performance/i, keep: 0.4 },
+      { value: "Consistently active", match: /consistent|reliable|regular|steady|long[- ]term/i, keep: 0.62 },
+      { value: "Rising creators", match: /rising|emerging|new|growing|up[- ]and[- ]coming/i, keep: 0.5 },
+    ],
+  },
+  {
+    id: "style",
+    label: "Content style",
+    options: [
+      { value: "Reviews & demos", match: /review|demo|before[- ]and[- ]after|unbox|honest/i, keep: 0.5 },
+      { value: "Tutorials & routines", match: /tutorial|how[- ]to|routine|guide|step/i, keep: 0.52 },
+      { value: "Storytelling", match: /story|vlog|genuine|authentic|personal/i, keep: 0.58 },
+      { value: "LIVE selling", match: /live|stream|broadcast/i, keep: 0.3 },
+    ],
+  },
+];
+
+/** Every avatar the stack can draw from, so the faces change with the brief. */
+const AI_FACES = [
+  `${AI}/match-avatar-1.png`,
+  `${AI}/match-avatar-2.png`,
+  `${AI}/match-avatar-3.png`,
+  `${AI}/match-avatar-4.png`,
+  "/projects/tts-ui/add-creators/avatar-kayla.png",
+  "/projects/tts-ui/add-creators/avatar-priya.png",
+  "/projects/tts-ui/add-creators/avatar-marcus.png",
+  "/projects/tts-ui/add-creators/avatar-skincare.png",
+];
+
+/** Tuned so the brief the design ships with lands on Figma's own 125. */
+const AI_BASE_MATCHES = 960;
+
+type AiMatch = {
+  detected: { label: string; value: string | null }[];
+  count: number;
+  faces: string[];
+};
+
+/** Pure, so the same brief always yields the same match — no flicker. */
+function matchCreators(brief: string): AiMatch {
+  const detected = AI_FACETS.map((facet) => {
+    const hit = facet.options.find((option) => option.match.test(brief));
+    return { label: facet.label, value: hit?.value ?? null, keep: hit?.keep ?? 1 };
+  });
+
+  const count = Math.max(
+    6,
+    Math.round(detected.reduce((n, d) => n * d.keep, AI_BASE_MATCHES)),
+  );
+
+  // Hash the detected values, not just how many landed: counting alone lets
+  // two different briefs pick the same five faces.
+  const fingerprint = detected.map((d) => d.value ?? "-").join("|") + count;
+  let seed = 0;
+  for (let i = 0; i < fingerprint.length; i += 1) {
+    seed = (seed * 31 + fingerprint.charCodeAt(i)) | 0;
+  }
+  seed = Math.abs(seed);
+  const faces = Array.from(
+    { length: 5 },
+    (_, i) => AI_FACES[(seed + i) % AI_FACES.length],
+  );
+
+  return { detected: detected.map(({ label, value }) => ({ label, value })), count, faces };
+}
+
+function AiIcon({ name, size, className }: { name: string; size: number; className?: string }) {
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={`${AI}/${name}.svg`}
+      alt=""
+      width={size}
+      height={size}
+      className={className}
+      style={{ width: size, height: size }}
+    />
+  );
+}
+
+function AiStep({
+  label,
+  state,
+  line,
+}: {
+  label: string;
+  state: "done" | "current" | "todo";
+  line?: "done" | "next";
+}) {
+  return (
+    <div className="flex min-w-[140px] shrink-0 items-start gap-[8px]">
+      <span className="flex shrink-0 items-center px-px py-[2px]">
+        {state === "done" ? (
+          <span className="flex size-[20px] items-center justify-center overflow-hidden rounded-full border border-[#009995]">
+            <AiIcon name="step-finish" size={10} />
+          </span>
+        ) : state === "current" ? (
+          <span className="flex size-[20px] items-center justify-center rounded-full bg-[#009995] text-center text-[12px] leading-[18px] text-white">
+            3
+          </span>
+        ) : (
+          <span className="flex size-[20px] items-center justify-center rounded-full border border-[#d3d4d5] text-center text-[12px] leading-[18px] text-[#6c6d6f]">
+            4
+          </span>
+        )}
+      </span>
+      <span className="flex shrink-0 items-center gap-[8px]">
+        <span
+          className={`max-w-[200px] truncate text-[16px] leading-[24px] ${
+            state === "current"
+              ? "font-medium text-[#171718]"
+              : state === "todo"
+                ? "text-[#6c6d6f]"
+                : "text-[#171718]"
+          }`}
+        >
+          {label}
+        </span>
+        {line ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={`${AI}/step-line-${line}.svg`}
+            alt=""
+            className="h-[24px] w-[72px] shrink-0"
+          />
+        ) : null}
+      </span>
+    </div>
+  );
+}
+
+/** The invitation as the creator will receive it — static, straight from Figma. */
+function AiCreatorPreview() {
+  const rule = "h-px w-full bg-black/10";
+  // Measured off the Figma render, not its reported values: the codegen
+  // under-reports this nested instance's small labels by about 1.7x.
+  const sectionTitle = "text-[10px] font-bold leading-[1.3] text-[#161823]";
+  const rowLabel = "text-[8.8px] leading-[1.3] text-[#161823]";
+  const rowValue = "text-[8.8px] leading-[1.3] text-[rgba(22,24,35,0.6)]";
+
+  return (
+    <div className="absolute left-[1079px] top-[164px] flex w-[220px] flex-col gap-[20px]">
+      <p className="whitespace-nowrap text-[14px] font-medium leading-[20px] text-black">
+        Creator preview
+      </p>
+      <div className="relative h-[576px] w-[220px] overflow-hidden rounded-[7px] bg-black">
+        <div className="relative h-[124px] w-full overflow-hidden bg-white">
+          {/* Figma covers the hero photo with an opaque white fill, so the
+              gradient over it is all that ever shows. */}
+          <span className="absolute inset-0 bg-gradient-to-b from-black/60 to-black" />
+          <div className="absolute left-0 top-0 flex h-[26px] w-full items-center justify-between px-[9px]">
+            <span className="text-[8.8px] font-semibold leading-[10.5px] text-white">
+              9:41
+            </span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={`${AI}/phone-status.svg`} alt="" className="h-[7px] w-[39px]" />
+          </div>
+          <div className="absolute left-[9px] top-[29px]">
+            <AiIcon name="phone-back" size={14} />
+          </div>
+          <div className="absolute bottom-[16px] left-[9px]">
+            <p className="text-[18.8px] font-bold leading-[1.2] text-white">
+              Invitation
+            </p>
+            <p className="text-[8.8px] leading-[1.3] text-white/60">
+              Valid until Aug 21, 2026
+            </p>
+          </div>
+        </div>
+
+        <div className="flex h-[452px] w-full flex-col bg-white">
+          <div className="flex h-[23px] w-full shrink-0 items-stretch border-b border-black/10 px-[9px]">
+            <span className="relative flex flex-1 items-center justify-center text-[8.8px] font-medium leading-[1.3] text-black">
+              Overview
+              <span className="absolute bottom-0 left-0 right-0 h-[1.2px] bg-black" />
+            </span>
+            <span className="flex flex-1 items-center justify-center text-[8.8px] leading-[1.3] text-black/56">
+              Products (3)
+            </span>
+          </div>
+
+          <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
+            <div className="flex flex-col gap-[8px] px-[9px] pb-[12px] pt-[12px]">
+              <p className={sectionTitle}>About this shop</p>
+              <div className="flex items-center gap-[7px]">
+                <span className="flex size-[33px] items-center justify-center overflow-hidden rounded-full bg-black/25">
+                  <AiIcon name="shop-avatar" size={19} />
+                </span>
+                <div className="flex flex-col gap-[2px]">
+                  <p className="text-[9.97px] font-medium leading-[1.3] text-black">
+                    SkinCare Shop
+                  </p>
+                  <div className="flex items-center gap-[4px] text-[8.2px] leading-[1.3] text-[rgba(22,24,35,0.6)]">
+                    <span className="flex items-center gap-[2px]">
+                      <AiIcon name="icon-star" size={7} />
+                      4.5
+                      <AiIcon name="icon-info-circle" size={7} />
+                    </span>
+                    <span className="h-[5px] w-px bg-black/20" />
+                    <span>66.5K sold</span>
+                    <span className="h-[5px] w-px bg-black/20" />
+                    <span>103 collabs</span>
+                  </div>
+                </div>
+              </div>
+              <span className="flex w-fit items-center gap-[2px] rounded-[4px] bg-black/5 py-[1px] pl-[3.5px] pr-[1px] text-[4.5px] font-medium leading-[1.3] text-black">
+                Performs better than 97% of other shops
+                <AiIcon name="tag-chevron" size={5} />
+              </span>
+            </div>
+
+            <span className={rule} />
+            <div className="flex flex-col gap-[6px] px-[9px] pb-[12px] pt-[12px]">
+              <p className={sectionTitle}>Preferred content type</p>
+              <p className="text-[8.8px] leading-[1.3] text-black/72">Short Video</p>
+            </div>
+
+            <span className={rule} />
+            <div className="flex flex-col gap-[11px] px-[9px] pb-[12px] pt-[12px]">
+              <p className={sectionTitle}>Incentives</p>
+              <div className="flex items-center justify-between">
+                <span className={rowLabel}>Free sample</span>
+                <span className={rowValue}>Auto-approval</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className={rowLabel}>Commission rate</span>
+                <span className={rowValue}>12.45%-18.34%</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className={rowLabel}>Product price</span>
+                <span className={rowValue}>$23.99-$123.99</span>
+              </div>
+            </div>
+
+            <span className={rule} />
+            <div className="flex flex-col gap-[7px] px-[9px] pt-[12px]">
+              <p className="text-[9.97px] font-bold leading-[1.3] text-[#161823]">
+                Products
+              </p>
+              <div className="flex gap-[4px]">
+                {["blender", "lipstick", "essence"].map((product) => (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    key={product}
+                    src={`${AI}/product-${product}.png`}
+                    alt=""
+                    className="size-[64.67px] flex-1 object-cover"
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="absolute bottom-0 left-0 w-full bg-white">
+          <div className="px-[9px] py-[7px]">
+            <span className="flex h-[28px] w-full items-center justify-center rounded-[8px] bg-[#fe2c55] text-[9.4px] font-medium leading-[1.3] text-white">
+              Accept
+            </span>
+          </div>
+          <div className="flex h-[20px] items-end justify-center pb-[3px]">
+            <span className="h-[3px] w-[76px] rounded-full bg-black" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function AiPreferenceScreen() {
+  const [brief, setBrief] = useState(AI_SEED);
+  const [listening, setListening] = useState(false);
+  const [showCriteria, setShowCriteria] = useState(false);
+  const idleTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const match = matchCreators(brief);
+
+  useEffect(() => () => {
+    if (idleTimer.current) clearTimeout(idleTimer.current);
+  }, []);
+
+  const onType = (next: string) => {
+    setBrief(next.slice(0, AI_LIMIT));
+    setListening(true);
+    if (idleTimer.current) clearTimeout(idleTimer.current);
+    idleTimer.current = setTimeout(() => setListening(false), 900);
+  };
+
+  return (
+    <div className="tts-collab-ui @container relative h-[866px] w-[1440px] overflow-hidden bg-[#f5f5f5]">
+      <ScreenTopNav />
+
+      <div className="absolute left-[200px] top-[76px] w-[1040px]">
+        <div className="flex h-[36px] items-start gap-[8px]">
+          <span className="flex h-[36px] w-[32px] shrink-0 flex-col items-center py-[2px]">
+            <span className="flex h-[32px] w-px items-center justify-center rounded-[4px] bg-[#ececed]">
+              <ScreenIcon name="icon-left-arrow" size={16} />
+            </span>
+          </span>
+          <p className="whitespace-nowrap text-[28px] font-bold leading-[36px] text-[#171718]">
+            Create collaboration
+          </p>
+        </div>
+
+        <div className="mt-[16px] flex h-[24px] items-start gap-[8px]">
+          <AiStep label="General info" state="done" line="done" />
+          <AiStep label="Products" state="done" line="done" />
+          <AiStep label="Creators" state="current" line="next" />
+          <AiStep label="Review" state="todo" />
+        </div>
+
+        {/* Matched creators — count and faces both follow the brief. */}
+        <div className="mt-[16px] h-[82px] w-[849px] rounded-t-[8px] bg-white p-[24px]">
+          <div className="flex w-full items-center gap-[12px]">
+            <AiIcon name="icon-success" size={24} className="shrink-0" />
+            <div className="flex min-w-0 flex-1 items-center gap-[12px]">
+              <span className="flex w-[124px] shrink-0 items-start">
+                {match.faces.map((face, i) => (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    key={face + i}
+                    src={face}
+                    alt=""
+                    width={32}
+                    height={32}
+                    className="size-[32px] shrink-0 rounded-full border border-white object-cover"
+                    style={{ marginRight: i === match.faces.length - 1 ? 0 : -11 }}
+                  />
+                ))}
+              </span>
+              <p
+                aria-live="polite"
+                className="whitespace-nowrap text-[14px] leading-[20px] text-[#6c6d6f]"
+              >
+                {match.count} creators automatically matched
+              </p>
+            </div>
+            <span className="shrink-0 pt-[4px]">
+              <AiIcon name="icon-chevron-20" size={20} className="-rotate-90" />
+            </span>
+          </div>
+        </div>
+
+        <div className="mt-[16px] min-h-[281px] w-[849px] rounded-[8px] bg-white py-[17px]">
+          <div className="px-[15px]">
+            <p className="text-[16px] font-medium leading-[24px] text-black/92">
+              Describe your preference
+            </p>
+            <p className="mt-[4px] text-[14px] leading-[20px] text-[#6c6d6f]">
+              Your input will help tweaking matched creators.
+            </p>
+
+            <div className="relative mt-[8px] h-[157px] w-[818px]">
+              {/* The gradient sits in a 1px ring behind a white inner box. */}
+              <div
+                className="ai-border absolute inset-0 rounded-[4px] p-px"
+                data-listening={listening}
+                aria-hidden
+              >
+                <div className="size-full rounded-[3px] bg-white" />
+              </div>
+              <div className="relative flex h-full items-end gap-[8px] px-[12px] py-[6px]">
+                <textarea
+                  value={brief}
+                  onChange={(event) => onType(event.target.value)}
+                  maxLength={AI_LIMIT}
+                  aria-label="Describe your preference"
+                  className="h-full flex-1 resize-none self-stretch bg-transparent text-[14px] leading-[20px] text-[#171718] outline-none placeholder:text-[#a9abad]"
+                />
+                <span className="shrink-0 rounded-[4px] bg-[#ececed] px-[2px] text-right text-[12px] leading-[18px] text-[#6c6d6f]">
+                  {brief.length}/{AI_LIMIT}
+                </span>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setShowCriteria((open) => !open)}
+              aria-expanded={showCriteria}
+              className="mt-[10px] flex items-center gap-[8px]"
+            >
+              <AiIcon
+                name="icon-chevron-20"
+                size={16}
+                className={showCriteria ? "" : "-rotate-90"}
+              />
+              <span className="text-[16px] leading-[24px] text-[#171718]">
+                Add more criteria
+              </span>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/projects/tts-ui/question-circle-gray.svg"
+                alt=""
+                width={16}
+                height={16}
+                className="size-[16px]"
+              />
+            </button>
+
+            {/* What the brief was understood to say, on the four dimensions. */}
+            {showCriteria ? (
+              <div className="mt-[8px] grid grid-cols-2 gap-x-[24px] gap-y-[8px] pl-[24px]">
+                {match.detected.map((facet) => (
+                  <div
+                    key={facet.label}
+                    className="flex items-center justify-between gap-[8px] border-b border-[#ececed] pb-[6px]"
+                  >
+                    <span className="text-[13px] leading-[20px] text-[#6c6d6f]">
+                      {facet.label}
+                    </span>
+                    <span
+                      className={`text-[13px] leading-[20px] ${
+                        facet.value ? "font-medium text-[#009995]" : "text-[#a9abad]"
+                      }`}
+                    >
+                      {facet.value ?? "Any"}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            ) : null}
+          </div>
+        </div>
+
+        <div className="mt-[16px] flex w-[849px] items-center justify-end gap-[8px]">
+          <span className="flex h-[40px] items-center justify-center rounded-[4px] bg-[#ececed] px-[20px] text-[14px] font-medium leading-[20px] text-[#171718]">
+            Previous
+          </span>
+          <span className="flex h-[40px] items-center justify-center rounded-[4px] bg-[#009995] px-[20px] text-[14px] font-medium leading-[20px] text-white">
+            Next
+          </span>
+        </div>
+      </div>
+
+      <AiCreatorPreview />
+    </div>
+  );
+}
+
+function AiPreferencePanel() {
+  const stageRef = useRef<HTMLDivElement>(null);
+  const cameraRef = useRef<HTMLDivElement>(null);
+  const fitRef = useRef<HTMLDivElement>(null);
+
+  useDemoFit(stageRef, fitRef, AI_WIDTH, cameraRef, aiHeight);
+
+  return (
+    <figure className="mt-8 sm:mt-10 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
+      <div ref={stageRef} className="tts-collab-stage">
+        <div
+          ref={cameraRef}
+          className={`tts-collab-camera overflow-hidden rounded-lg ${UI_SHADOW}`}
+        >
+          <div ref={fitRef} className="tts-demo-fit">
+            <AiPreferenceScreen />
+          </div>
+        </div>
+      </div>
+    </figure>
+  );
+}
+
 function DeliverableScreenshot() {
   return (
     <figure className="mt-8 sm:mt-10 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
@@ -1276,105 +1792,8 @@ export function CaseStudyGate() {
             By evaluating the rationale, strengths, and tradeoffs behind each direction, I landed on a new approach that guides seller intent without over-constraining it.
           </p>
 
-          {/* Full-width Creator Preference Card */}
-          <figure className="mt-8 sm:mt-10 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
-            <div className="bg-white rounded-lg shadow-lg p-6">
-              <div className="space-y-6">
-                {/* Header Section */}
-                <div className="space-y-1">
-                  <h3 className="font-sans text-[16px] font-semibold text-foreground">
-                    Describe your preference
-                  </h3>
-                  <p className="text-[14px] text-foreground/60">
-                    Your input will help targeting right creators.
-                  </p>
-                </div>
-
-                {/* Textarea Section */}
-                <div className="space-y-2">
-                  <div className="border border-foreground/15 rounded p-4 bg-foreground/[0.01] min-h-[140px]">
-                    <p className="font-sans text-[14px] leading-[1.6] text-foreground/80">
-                      Creators in my category who post routine videos, show before-and-after results, and honest product reviews. Audience skews female, 18–35, highly engaged. We'd love creators who are consistent, genuine, and open to long-term collaboration. Bonus if they've worked with beauty or personal care brands before.
-                    </p>
-                  </div>
-                  <div className="flex justify-end">
-                    <span className="text-[12px] text-foreground/50 bg-foreground/[0.05] px-3 py-1 rounded">
-                      400/500
-                    </span>
-                  </div>
-                </div>
-
-                {/* Divider */}
-                <div className="border-t border-foreground/10" />
-
-                {/* Add more criteria */}
-                <div className="flex items-center gap-2 cursor-pointer group">
-                  <span className="text-foreground/40 group-hover:text-foreground/60 transition-colors text-[14px]">
-                    ▼
-                  </span>
-                  <div className="flex items-center gap-2">
-                    <h4 className="font-sans text-[16px] font-semibold text-foreground">
-                      Add more criteria
-                    </h4>
-                    <svg
-                      className="size-4 text-foreground/50"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                    >
-                      <circle cx="12" cy="12" r="10" />
-                      <path d="M12 16v-4m0-4v.01" />
-                    </svg>
-                  </div>
-                </div>
-
-                {/* Three buttons */}
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-                  {[
-                    {
-                      title: "Creator demography",
-                      desc: "Age, language and category etc."
-                    },
-                    {
-                      title: "Creator performance",
-                      desc: "Follower, viewers and engagement"
-                    },
-                    {
-                      title: "Target audience",
-                      desc: "Location, spending power"
-                    }
-                  ].map((item) => (
-                    <button
-                      key={item.title}
-                      className="border border-foreground/15 rounded p-4 flex gap-4 items-start hover:bg-foreground/[0.02] transition-colors text-left"
-                    >
-                      <div className="flex-shrink-0 w-5 h-5 mt-1">
-                        <svg
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          className="text-foreground/60"
-                        >
-                          <circle cx="12" cy="12" r="10" />
-                          <path d="M12 8v8M8 12h8" />
-                        </svg>
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="font-sans text-[14px] font-semibold text-foreground">
-                          {item.title}
-                        </p>
-                        <p className="font-sans text-[12px] text-foreground/50 mt-1">
-                          {item.desc}
-                        </p>
-                      </div>
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </figure>
+          {/* Full-width AI preference screen — Figma node 1841-135984 */}
+          <AiPreferencePanel />
 
           <p className="mt-6 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-8 sm:text-[17px]">
             Ideally, sellers would see their matched creator pool evolve in real time as they refine their needs, making the connection between <span className="font-semibold text-foreground">input and outcome visible</span> and building <span className="font-semibold text-foreground">trust in how the platform interprets their intent</span>.

@@ -2525,3 +2525,55 @@ html.is-loading body {
 .hero-section:hover .wave-emoji {
   animation: hand-wave 2s ease-in-out infinite;
 }
+
+/* ---------------------------------------------------------------------------
+   AI preference field — the "_Border animation finite" layer in Figma node
+   1841-135984. The border is a conic gradient; animating the angle is what
+   makes it read as the model listening while the seller types.
+
+   @property is what lets the angle animate at all — a plain custom property
+   interpolates discretely. Where it is unsupported the gradient simply sits
+   still, which is the Figma still frame.
+--------------------------------------------------------------------------- */
+@property --ai-angle {
+  syntax: "<angle>";
+  initial-value: 90deg;
+  inherits: false;
+}
+
+@keyframes ai-border-drift {
+  to {
+    --ai-angle: 450deg;
+  }
+}
+
+.ai-border {
+  background: conic-gradient(
+    from var(--ai-angle),
+    #fe2c55 0%,
+    #d9537c 12.28%,
+    #b47aa2 27.93%,
+    #8fa0c9 43.58%,
+    #6ac7ef 59.23%,
+    #758cf7 74.47%,
+    #7a6efb 82.08%,
+    #7f50ff 89.7%,
+    #9f47d5 91.44%,
+    #bf3eaa 93.17%,
+    #de3580 94.9%,
+    #fe2c55 96.64%
+  );
+  animation: ai-border-drift 9s linear infinite;
+}
+
+/* While the seller is typing the drift speeds up — the "listening" tell. */
+.ai-border[data-listening="true"] {
+  animation-duration: 2.2s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ai-border,
+  .ai-border[data-listening="true"] {
+    animation: none;
+  }
+}
