@@ -312,6 +312,21 @@ function ScreenIcon({
   );
 }
 
+/**
+ * Page-header back button — Figma node 1846-176256: a 32x32 secondary button
+ * around a 16px arrow. The codegen for the page header reported the button as
+ * 1px wide, which rendered it as a grey sliver with the arrow spilling out.
+ */
+function ScreenBackButton() {
+  return (
+    <span className="flex h-[36px] w-[32px] shrink-0 flex-col items-center py-[2px]">
+      <span className="flex size-[32px] items-center justify-center rounded-[4px] bg-[#ececed]">
+        <ScreenIcon name="icon-left-arrow" size={16} />
+      </span>
+    </span>
+  );
+}
+
 function ScreenImage({
   name,
   width,
@@ -561,6 +576,7 @@ function AddCreatorsScreen() {
       {/* The Invite creators wizard, almost entirely behind the drawer. */}
       <div className="absolute left-[200px] top-[76px] w-[1040px]">
         <div className="flex h-[36px] items-start gap-[8px]">
+          {/* This screen's own Figma frame draws no button fill here. */}
           <span className="flex h-[36px] w-[32px] shrink-0 flex-col items-center py-[2px]">
             <span className="flex h-[32px] w-px items-center justify-center rounded-[4px] bg-[#ececed]">
               <ScreenIcon name="icon-left-arrow" size={16} />
@@ -1782,11 +1798,7 @@ function AiPreferenceScreen() {
 
       <div className="ml-[200px] mt-[16px] w-[1040px]">
         <div className="flex h-[36px] items-start gap-[8px]">
-          <span className="flex h-[36px] w-[32px] shrink-0 flex-col items-center py-[2px]">
-            <span className="flex h-[32px] w-px items-center justify-center rounded-[4px] bg-[#ececed]">
-              <ScreenIcon name="icon-left-arrow" size={16} />
-            </span>
-          </span>
+          <ScreenBackButton />
           <p className="whitespace-nowrap text-[28px] font-bold leading-[36px] text-[#171718]">
             Create collaboration
           </p>
