@@ -243,7 +243,7 @@ export function HiringCaseStudy() {
                   type="button"
                   aria-pressed={executionMode === "before"}
                   onClick={() => setExecutionMode("before")}
-                  className={`min-h-[72px] rounded-xl border px-4 py-3 text-left font-sans text-[14px] leading-[1.45] transition-colors sm:text-[15px] ${
+                  className={`min-h-[72px] rounded-xl border px-4 py-3 text-center font-sans text-[14px] leading-[1.45] transition-colors sm:text-[15px] ${
                     executionMode === "before"
                       ? "border-foreground bg-foreground text-background"
                       : "border-foreground/15 bg-foreground/[0.03] text-foreground/70 hover:border-foreground/30 hover:text-foreground"
@@ -255,7 +255,7 @@ export function HiringCaseStudy() {
                   type="button"
                   aria-pressed={executionMode === "after"}
                   onClick={() => setExecutionMode("after")}
-                  className={`min-h-[72px] rounded-xl border px-4 py-3 text-left font-sans text-[14px] leading-[1.45] transition-colors sm:text-[15px] ${
+                  className={`min-h-[72px] rounded-xl border px-4 py-3 text-center font-sans text-[14px] leading-[1.45] transition-colors sm:text-[15px] ${
                     executionMode === "after"
                       ? "border-foreground bg-foreground text-background"
                       : "border-foreground/15 bg-foreground/[0.03] text-foreground/70 hover:border-foreground/30 hover:text-foreground"
