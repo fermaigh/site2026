@@ -84,33 +84,36 @@ export function HiringCaseStudy() {
               <br />
               To scale, the company needed to evolve from a <strong>service-led MVP into a self-service product</strong>—without losing the core value that made the MVP successful. I joined to help define what that experience should become.
             </p>
+            <p className="mt-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]">
+              Sprockets MVP consists of two pillars.
+            </p>
 
             <div className="grid grid-cols-1 gap-6 mt-8 sm:mt-10 sm:grid-cols-2">
               <figure className="rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
-                <div className="flex flex-col items-center justify-center py-12">
-                  <h3 className="font-sans text-[16px] font-semibold text-foreground mb-8">
+                <div className="flex flex-col items-center justify-center py-6">
+                  <h3 className="font-sans text-[16px] font-semibold text-foreground mb-4">
                     Sourcing and filtering
                   </h3>
-                  <div className="w-full aspect-video flex items-center justify-center bg-foreground/5 rounded-lg">
+                  <div className="flex w-full aspect-[2/1] items-center justify-center rounded-lg bg-foreground/5">
                     <img
                       src="https://www.figma.com/api/mcp/asset/95eeec98-a249-4ec3-a55b-6dcd5ee49443/2be08.svg"
                       alt="Sourcing and filtering illustration showing candidate filtering interface"
-                      className="w-full h-auto max-w-xs"
+                      className="h-full w-full max-w-xs object-contain"
                     />
                   </div>
                 </div>
               </figure>
 
               <figure className="rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
-                <div className="flex flex-col items-center justify-center py-12">
-                  <h3 className="font-sans text-[16px] font-semibold text-foreground mb-8">
+                <div className="flex flex-col items-center justify-center py-6">
+                  <h3 className="font-sans text-[16px] font-semibold text-foreground mb-4">
                     Job application
                   </h3>
-                  <div className="w-full aspect-video flex items-center justify-center bg-foreground/5 rounded-lg">
+                  <div className="flex w-full aspect-[2/1] items-center justify-center rounded-lg bg-foreground/5">
                     <img
                       src="https://www.figma.com/api/mcp/asset/f55d7c46-19e4-451d-9e8e-62ae0b37ce1b/6f59c.svg"
                       alt="Job application illustration showing candidate profile and application status"
-                      className="w-full h-auto max-w-xs"
+                      className="h-full w-full max-w-xs object-contain"
                     />
                   </div>
                 </div>
