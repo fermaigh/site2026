@@ -38,6 +38,7 @@ export function HiringCaseStudy() {
   const [value, setValue] = useState("");
   const [error, setError] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [afterSlide, setAfterSlide] = useState(0);
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -217,6 +218,60 @@ export function HiringCaseStudy() {
                 Detailed system flows: Comprehensive workflow diagram mapping how CRM administrators, Account Owners, Hiring Managers, and Applicants interact with the platform across different journey stages.
               </figcaption>
             </figure>
+
+            <div className="mt-12 border-t border-foreground/10 pt-10 sm:mt-14 sm:pt-12">
+              <h2 className="font-sans text-[clamp(1.125rem,4vw,1.5rem)] font-semibold tracking-tight text-foreground">
+                After: Operation view
+              </h2>
+            </div>
+
+            <div className="mt-10 space-y-6">
+              <figure className="rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
+                <div className="w-full aspect-video flex items-center justify-center bg-foreground/5 rounded-lg overflow-auto">
+                  {afterSlide === 0 && (
+                    <img
+                      src="https://www.figma.com/api/mcp/asset/f2226e71-b286-4e5e-9867-00726c1740df/44af3.png"
+                      alt="Dashboard and report system screen"
+                      className="w-full h-auto max-w-none"
+                    />
+                  )}
+                  {afterSlide === 1 && (
+                    <img
+                      src="https://www.figma.com/api/mcp/asset/67e92ba9-6741-422d-9da4-50dde9677813/3f10c.png"
+                      alt="Source automation tool screen"
+                      className="w-full h-auto max-w-none"
+                    />
+                  )}
+                  {afterSlide === 2 && (
+                    <img
+                      src="https://www.figma.com/api/mcp/asset/60e0334e-775d-4527-a482-ba27b237a1fa/98008.png"
+                      alt="Account level management screen"
+                      className="w-full h-auto max-w-none"
+                    />
+                  )}
+                </div>
+                <figcaption className="mt-6 font-sans text-[13px] leading-[1.6] text-foreground/60 sm:text-[14px]">
+                  {afterSlide === 0 && "Dashboard and report system: Centralized dashboard providing high-level insights, success metrics, and key performance indicators for operations management."}
+                  {afterSlide === 1 && "Source automation tool: Streamlined job creation and automation settings allowing operations teams to configure automated workflows and sourcing preferences."}
+                  {afterSlide === 2 && "Account level management: Dedicated company settings interface for managing organization preferences, branding, and administrative configurations."}
+                </figcaption>
+              </figure>
+
+              <div className="flex items-center justify-center gap-2">
+                {[0, 1, 2].map((index) => (
+                  <button
+                    key={index}
+                    onClick={() => setAfterSlide(index)}
+                    className={`h-2 rounded-full transition-all ${
+                      index === afterSlide
+                        ? "w-8 bg-foreground"
+                        : "w-2 bg-foreground/30 hover:bg-foreground/50"
+                    }`}
+                    aria-label={`View screen ${index + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
 
             <div className="mt-12 border-t border-foreground/10 pt-10 sm:mt-14 sm:pt-12">
               <h2 className="font-sans text-[clamp(1.125rem,4vw,1.5rem)] font-semibold tracking-tight text-foreground">
