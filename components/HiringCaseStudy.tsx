@@ -130,7 +130,7 @@ export function HiringCaseStudy() {
                   <img
                     src="https://www.figma.com/api/mcp/asset/f55d7c46-19e4-451d-9e8e-62ae0b37ce1b/6f59c.svg"
                     alt="Job application illustration showing candidate profile and application status"
-                    className="h-full w-full max-w-[180px] object-contain"
+                    className="h-full w-full max-w-[90px] object-contain"
                   />
                 </div>
                 <figcaption className="mt-4 font-sans text-[13px] leading-[1.6] text-foreground/60 sm:text-[14px]">
