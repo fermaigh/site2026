@@ -1199,7 +1199,18 @@ function ProactiveComplianceScreen() {
                     </span>
                   </button>
                 </div>
-                <button type="button" className="-ml-[3px] w-fit rounded-[3px] px-[3px] text-left text-[14px] leading-[18px] text-[#525253] transition-colors hover:bg-white/75 hover:text-[#017b77] focus-visible:bg-white/75 focus-visible:text-[#017b77] focus-visible:outline-none">View sample requests</button>
+                <button
+                  type="button"
+                  className="group/view-samples -ml-[4px] flex w-fit items-center gap-0 rounded-[4px] px-[4px] text-left text-[14px] leading-[18px] text-[#525253] transition-colors hover:bg-[#e4e4e4] hover:text-[#017b77] focus-visible:bg-[#e4e4e4] focus-visible:text-[#017b77] focus-visible:outline-none"
+                >
+                  <span>View sample requests</span>
+                  <span
+                    aria-hidden="true"
+                    className="flex w-0 shrink-0 -translate-x-[4px] items-center overflow-hidden opacity-0 transition-[width,opacity,transform] duration-150 ease-out group-hover/view-samples:ml-[2px] group-hover/view-samples:w-[16px] group-hover/view-samples:translate-x-0 group-hover/view-samples:opacity-100 group-focus-visible/view-samples:ml-[2px] group-focus-visible/view-samples:w-[16px] group-focus-visible/view-samples:translate-x-0 group-focus-visible/view-samples:opacity-100"
+                  >
+                    <TtsUiAsset name="launch.svg" size={16} />
+                  </span>
+                </button>
               </div>
             </div>
 
