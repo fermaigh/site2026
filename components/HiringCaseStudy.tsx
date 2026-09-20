@@ -90,33 +90,29 @@ export function HiringCaseStudy() {
 
             <div className="grid grid-cols-1 gap-6 mt-8 sm:mt-10 sm:grid-cols-2">
               <figure className="rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
-                <div className="flex flex-col items-center justify-center py-6">
-                  <h3 className="font-sans text-[16px] font-semibold text-foreground mb-4">
-                    Sourcing and filtering
-                  </h3>
-                  <div className="flex w-full aspect-[2/1] items-center justify-center rounded-lg bg-foreground/5">
-                    <img
-                      src="https://www.figma.com/api/mcp/asset/95eeec98-a249-4ec3-a55b-6dcd5ee49443/2be08.svg"
-                      alt="Sourcing and filtering illustration showing candidate filtering interface"
-                      className="h-full w-full max-w-xs object-contain"
-                    />
-                  </div>
+                <div className="flex aspect-[2/1] w-full items-center justify-center overflow-hidden">
+                  <img
+                    src="https://www.figma.com/api/mcp/asset/95eeec98-a249-4ec3-a55b-6dcd5ee49443/2be08.svg"
+                    alt="Sourcing and filtering illustration showing candidate filtering interface"
+                    className="h-full w-full max-w-[360px] object-contain"
+                  />
                 </div>
+                <figcaption className="mt-4 font-sans text-[13px] leading-[1.6] text-foreground/60 sm:text-[14px]">
+                  Sourcing and filtering
+                </figcaption>
               </figure>
 
               <figure className="rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
-                <div className="flex flex-col items-center justify-center py-6">
-                  <h3 className="font-sans text-[16px] font-semibold text-foreground mb-4">
-                    Job application
-                  </h3>
-                  <div className="flex w-full aspect-[2/1] items-center justify-center rounded-lg bg-foreground/5">
-                    <img
-                      src="https://www.figma.com/api/mcp/asset/f55d7c46-19e4-451d-9e8e-62ae0b37ce1b/6f59c.svg"
-                      alt="Job application illustration showing candidate profile and application status"
-                      className="h-full w-full max-w-xs object-contain"
-                    />
-                  </div>
+                <div className="flex aspect-[2/1] w-full items-center justify-center overflow-hidden">
+                  <img
+                    src="https://www.figma.com/api/mcp/asset/f55d7c46-19e4-451d-9e8e-62ae0b37ce1b/6f59c.svg"
+                    alt="Job application illustration showing candidate profile and application status"
+                    className="h-full w-full max-w-[180px] object-contain"
+                  />
                 </div>
+                <figcaption className="mt-4 font-sans text-[13px] leading-[1.6] text-foreground/60 sm:text-[14px]">
+                  Job application
+                </figcaption>
               </figure>
             </div>
 
