@@ -1,10 +1,17 @@
 "use client";
 
 import { useState, useSyncExternalStore, type FormEvent } from "react";
+import { Poppins } from "next/font/google";
 import { HiringApplicantsDemo } from "@/components/hiring/HiringApplicantsDemo";
 
 const PASSCODE = "0000";
 const SESSION_KEY = "hiring-case-study-unlocked";
+
+const sprocketsHeading = Poppins({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  display: "swap",
+});
 
 const personas = [
   {
@@ -28,7 +35,7 @@ const componentShowcaseItems = [
   {
     id: "font",
     label: "Font",
-    caption: "Typography system: Type styles and hierarchy used across the self-service platform.",
+    caption: "Poppins creates hierarchy and emphasis; Inter keeps product content clear and readable.",
   },
   {
     id: "color",
@@ -616,30 +623,57 @@ export function HiringCaseStudy() {
                       }`}
                     >
                       {item.id === "font" ? (
-                        <div className="w-full max-w-xl">
-                          <p className="font-sans text-[12px] font-semibold uppercase tracking-[0.16em] text-foreground/45">
-                            Primary typeface
-                          </p>
-                          <div className="mt-4 flex items-end gap-5 border-b border-foreground/10 pb-6">
-                            <span className="font-sans text-[64px] font-semibold leading-none tracking-tight text-foreground sm:text-[80px]">
-                              Aa
-                            </span>
-                            <p className="pb-1 font-sans text-[14px] leading-[1.55] text-foreground/60 sm:text-[15px]">
-                              Clear hierarchy for complex hiring workflows.
-                            </p>
+                        <div className="w-full max-w-2xl overflow-hidden rounded-xl border border-foreground/10 bg-background">
+                          <div className="flex flex-col gap-4 border-b border-foreground/10 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+                            <div>
+                              <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-foreground/45">
+                                Typography
+                              </p>
+                              <p className="mt-1 font-sans text-[14px] font-medium text-foreground">
+                                Poppins + Inter
+                              </p>
+                            </div>
+                            <div className="flex flex-wrap gap-2 font-mono text-[10px] text-foreground/55">
+                              <span className="rounded-full bg-foreground/[0.06] px-2.5 py-1">Headlines 12–40</span>
+                              <span className="rounded-full bg-foreground/[0.06] px-2.5 py-1">Body 10–18</span>
+                              <span className="rounded-full bg-foreground/[0.06] px-2.5 py-1">Eyebrow 10–16</span>
+                            </div>
                           </div>
-                          <div className="mt-5 grid grid-cols-3 gap-4 font-sans text-foreground">
-                            <div>
-                              <p className="text-[20px] font-semibold">Heading</p>
-                              <p className="mt-1 text-[12px] text-foreground/45">Semibold</p>
+
+                          <div className="grid sm:grid-cols-[1.08fr_0.92fr]">
+                            <div className="border-b border-foreground/10 p-5 sm:border-r sm:border-b-0 sm:p-6">
+                              <p className="font-mono text-[10px] text-foreground/45">H300 · 22/30 · Semibold</p>
+                              <p className={`${sprocketsHeading.className} mt-3 text-[22px] font-semibold leading-[30px] text-foreground`}>
+                                Hire people who thrive.
+                              </p>
+                              <p className="mt-2 font-sans text-[12px] leading-[18px] text-foreground/50">
+                                Default headline style
+                              </p>
                             </div>
-                            <div>
-                              <p className="text-[16px] font-medium">Label</p>
-                              <p className="mt-1 text-[12px] text-foreground/45">Medium</p>
+
+                            <div className="p-5 sm:p-6">
+                              <p className="font-mono text-[10px] text-foreground/45">P500 · 14/20 · Regular</p>
+                              <p className="mt-3 font-sans text-[14px] leading-[20px] text-foreground/75">
+                                Match applicants to the qualities shared by your top-performing employees.
+                              </p>
+                              <p className="mt-2 font-sans text-[12px] leading-[18px] text-foreground/50">
+                                Default paragraph style
+                              </p>
                             </div>
-                            <div>
-                              <p className="text-[14px]">Body</p>
-                              <p className="mt-1 text-[12px] text-foreground/45">Regular</p>
+                          </div>
+
+                          <div className="grid border-t border-foreground/10 sm:grid-cols-2">
+                            <div className="border-b border-foreground/10 px-5 py-4 sm:border-r sm:border-b-0 sm:px-6">
+                              <p className="font-mono text-[10px] text-foreground/45">B200 · 14/20 · Medium</p>
+                              <p className={`${sprocketsHeading.className} mt-2 text-[14px] font-medium leading-[20px] text-foreground`}>
+                                View applicants
+                              </p>
+                            </div>
+                            <div className="px-5 py-4 sm:px-6">
+                              <p className="font-mono text-[10px] text-foreground/45">E200 · 12/16 · Medium</p>
+                              <p className={`${sprocketsHeading.className} mt-2 text-[12px] font-medium uppercase leading-[16px] tracking-[0.04em] text-foreground`}>
+                                Candidate insights
+                              </p>
                             </div>
                           </div>
                         </div>
