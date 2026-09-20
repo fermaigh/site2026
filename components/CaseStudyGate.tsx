@@ -813,65 +813,57 @@ function TtsUiAsset({
   );
 }
 
-const COLLABORATION_MENU = [
-  ["menu-home.svg", "Home"],
-  ["menu-quick.svg", "Quick access"],
-  ["divider", ""],
-  ["menu-orders.svg", "Orders"],
-  ["menu-products.svg", "Products"],
-  ["menu-ship.svg", "Logistics"],
-  ["divider", ""],
-  ["menu-marketing.svg", "Marketing"],
-  ["menu-crm.svg", "Customers"],
-  ["influencer-selected.svg", "Affiliate"],
-] as const;
-
-const COLLABORATION_MENU_BOTTOM = [
-  ["menu-live.svg", "LIVE & Video"],
-  ["menu-growth.svg", "Growth"],
-  ["menu-more.svg", "App"],
-  ["divider", ""],
-  ["menu-data.svg", "Analytics"],
-  ["menu-health.svg", "Account Health"],
-  ["menu-finance.svg", "Finances"],
-] as const;
-
-function CollaborationMenuItems({
-  items,
-}: {
-  items: readonly (readonly [string, string])[];
-}) {
-  return items.map(([icon, label], index) =>
-    icon === "divider" ? (
-      <div key={`divider-${index}`} className="mx-[8px] my-[7px] h-px bg-[#d3d4d5]" />
-    ) : (
-      <div key={label} className="flex h-[38px] items-center gap-[12px] px-[16px] text-[14px] leading-[20px] text-[#262627]">
-        <TtsUiAsset name={icon} size={16} className="shrink-0" />
-        <span className="whitespace-nowrap">{label}</span>
-      </div>
-    ),
+function CollaborationNavItem({ icon, label }: { icon: string; label: string }) {
+  return (
+    <div className="flex h-[36px] w-[204px] shrink-0 items-center gap-[8px] overflow-hidden rounded-[4px] py-[2px] pl-[8px] pr-[6px] text-[14px] leading-[20px] text-[#171718]">
+      <TtsUiAsset name={icon} size={16} className="shrink-0" />
+      <span className="truncate whitespace-nowrap">{label}</span>
+    </div>
   );
+}
+
+function CollaborationDivider({ name = "menu-divider.svg" }: { name?: string }) {
+  return <TtsUiAsset name={name} size={204} className="h-[12px] w-[204px] shrink-0" />;
 }
 
 function CollaborationSidebar() {
   return (
-    <aside className="absolute left-0 top-[60px] h-[878px] w-[220px] overflow-hidden bg-white pt-[8px]">
-      <CollaborationMenuItems items={COLLABORATION_MENU} />
-      <div className="mx-[8px] flex h-[40px] items-center gap-[12px] rounded-[4px] bg-[#ececed] px-[16px] text-[14px] leading-[20px] text-[#017b77]">
-        <TtsUiAsset name="influencer-selected.svg" size={16} className="shrink-0" />
-        <span>Collaborations</span>
+    <aside className="absolute left-0 top-[60px] flex h-[884px] w-[220px] flex-col items-start gap-[2px] overflow-hidden bg-white px-[8px] py-[16px]">
+      <CollaborationNavItem icon="menu-home.svg" label="Home" />
+      <CollaborationNavItem icon="menu-quick.svg" label="Quick access" />
+      <CollaborationDivider />
+      <CollaborationNavItem icon="menu-orders.svg" label="Orders" />
+      <CollaborationNavItem icon="menu-products.svg" label="Products" />
+      <CollaborationNavItem icon="menu-ship.svg" label="Logistics" />
+      <CollaborationDivider />
+      <CollaborationNavItem icon="menu-marketing.svg" label="Marketing" />
+      <CollaborationNavItem icon="menu-crm.svg" label="Customers" />
+
+      <div className="flex w-[204px] shrink-0 flex-col gap-[2px]">
+        <CollaborationNavItem icon="influencer-selected.svg" label="Affiliate" />
+        {([
+          ["Collaborations", true],
+          ["Find creators", false],
+          ["Content management", false],
+          ["Samples", false],
+          ["Transactions", false],
+        ] as const).map(([label, selected]) => (
+          <div
+            key={label}
+            className={`flex h-[36px] w-[204px] shrink-0 items-center overflow-hidden rounded-[4px] py-[2px] pl-[32px] pr-[6px] text-[14px] leading-[20px] ${selected ? "bg-[#ebebeb] text-[#017b77]" : "text-[#6c6d6f]"}`}
+          >
+            <span className="truncate whitespace-nowrap">{label}</span>
+          </div>
+        ))}
       </div>
-      {[
-        "Find creators",
-        "Content management",
-        "Samples",
-        "Transactions",
-      ].map((label) => (
-        <div key={label} className="flex h-[38px] items-center pl-[40px] text-[14px] leading-[20px] text-[#6c6d6f]">
-          {label}
-        </div>
-      ))}
-      <CollaborationMenuItems items={COLLABORATION_MENU_BOTTOM} />
+
+      <CollaborationNavItem icon="menu-live.svg" label="LIVE & Video" />
+      <CollaborationNavItem icon="menu-growth.svg" label="Growth" />
+      <CollaborationNavItem icon="menu-more.svg" label="App" />
+      <CollaborationDivider name="menu-divider-2.svg" />
+      <CollaborationNavItem icon="menu-data.svg" label="Analytics" />
+      <CollaborationNavItem icon="menu-health.svg" label="Account Health" />
+      <CollaborationNavItem icon="menu-finance.svg" label="Finances" />
     </aside>
   );
 }
