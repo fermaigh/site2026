@@ -938,11 +938,11 @@ function FilterFieldLabel({ children }: { children: string }) {
 }
 
 /**
- * Scales the panel down to its column and re-measures as sections open and
- * close. useDemoFit pins the fit element's height, which a panel that changes
- * height on click cannot use.
+ * Scales a fixed-width panel down to its column and re-measures as its
+ * content grows. useDemoFit pins the fit element's height, so a panel that
+ * changes height on click cannot use it.
  */
-function useFilterPanelFit(
+function usePanelFit(
   stageRef: React.RefObject<HTMLDivElement | null>,
   cardRef: React.RefObject<HTMLDivElement | null>,
   width: number,
@@ -989,7 +989,7 @@ function CreatorFilterPanel() {
     FILTER_SECTIONS.flatMap((section) => section.preset ?? []),
   );
 
-  useFilterPanelFit(stageRef, cardRef, FILTER_FRAME);
+  usePanelFit(stageRef, cardRef, FILTER_FRAME);
 
   const toggleSection = (title: string) =>
     setOpenSections((open) =>
@@ -1122,7 +1122,7 @@ function DescribeCreatorsPanel() {
   const cardRef = useRef<HTMLDivElement>(null);
   const [value, setValue] = useState("");
 
-  useFilterPanelFit(stageRef, cardRef, DESCRIBE_FRAME);
+  usePanelFit(stageRef, cardRef, DESCRIBE_FRAME);
 
   return (
     <figure className="rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
@@ -1176,8 +1176,6 @@ function DescribeCreatorsPanel() {
 
 const AI = "/projects/tts-ui/ai-preference";
 const AI_WIDTH = 1440;
-const AI_HEIGHT = 866;
-const aiHeight = () => AI_HEIGHT;
 const AI_LIMIT = 500;
 
 /** The brief the design ships with, used as the field's starting value. */
@@ -1264,15 +1262,19 @@ type AiMatch = {
 };
 
 /** Pure, so the same brief always yields the same match — no flicker. */
-function matchCreators(brief: string): AiMatch {
+function matchCreators(brief: string, extraTicks: number): AiMatch {
   const detected = AI_FACETS.map((facet) => {
     const hit = facet.options.find((option) => option.match.test(brief));
     return { label: facet.label, value: hit?.value ?? null, keep: hit?.keep ?? 1 };
   });
 
+  // Each criterion ticked in an added section narrows the pool too, so the
+  // explicit controls move the count just like the written brief does.
   const count = Math.max(
     6,
-    Math.round(detected.reduce((n, d) => n * d.keep, AI_BASE_MATCHES)),
+    Math.round(
+      detected.reduce((n, d) => n * d.keep, AI_BASE_MATCHES) * 0.82 ** extraTicks,
+    ),
   );
 
   // Hash the detected values, not just how many landed: counting alone lets
@@ -1290,6 +1292,178 @@ function matchCreators(brief: string): AiMatch {
 
   return { detected: detected.map(({ label, value }) => ({ label, value })), count, faces };
 }
+
+/**
+ * The three criteria the design offers under "Add more criteria" (Figma node
+ * 1841-135884). Each button's own subtitle names the inputs its section
+ * holds, so the fields below come from the design rather than invented.
+ */
+type AiCriteriaField =
+  | { kind: "checkboxes"; label: string; options: string[] }
+  | { kind: "select"; label: string; value: string };
+
+type AiCriteria = {
+  id: string;
+  title: string;
+  hint: string;
+  fields: AiCriteriaField[];
+};
+
+const AI_CRITERIA: AiCriteria[] = [
+  {
+    id: "demography",
+    title: "Creator demography",
+    hint: "Age, language and category etc.",
+    fields: [
+      { kind: "checkboxes", label: "Creator gender", options: ["Female", "Male"] },
+      {
+        kind: "checkboxes",
+        label: "Creator age",
+        options: ["18-24", "25-34", "35-44", "45 -54", "55+"],
+      },
+      { kind: "select", label: "Category", value: "Beauty & personal care" },
+      { kind: "select", label: "Creator language", value: "English" },
+    ],
+  },
+  {
+    id: "performance",
+    title: "Creator performance",
+    hint: "Follower, viewers and engagement",
+    fields: [
+      {
+        kind: "checkboxes",
+        label: "Follower count",
+        options: ["<10K", "10K-100K", "100K-1M", "1M+"],
+      },
+      { kind: "select", label: "Average video views", value: "10K and above" },
+      { kind: "select", label: "Engagement rate", value: "Above 5%" },
+    ],
+  },
+  {
+    id: "audience",
+    title: "Target audience",
+    hint: "Location, spending power",
+    fields: [
+      {
+        kind: "checkboxes",
+        label: "Audience age",
+        options: ["18-24", "25-34", "35-44", "45+"],
+      },
+      { kind: "select", label: "Audience location", value: "United States" },
+      { kind: "select", label: "Spending power", value: "Medium to high" },
+    ],
+  },
+];
+
+/** Drawn inline: the design has no delete glyph, and nothing here to reuse. */
+function AiTrashIcon() {
+  return (
+    <svg
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.3"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="size-[16px]"
+      aria-hidden
+    >
+      <path d="M2.8 4.2h10.4" />
+      <path d="M6.4 4.2V3a.8.8 0 0 1 .8-.8h1.6a.8.8 0 0 1 .8.8v1.2" />
+      <path d="M12.2 4.2 11.7 13a.8.8 0 0 1-.8.8H5.1a.8.8 0 0 1-.8-.8L3.8 4.2" />
+      <path d="M6.7 7v4M9.3 7v4" />
+    </svg>
+  );
+}
+
+function AiCriteriaButton({
+  criteria,
+  onAdd,
+}: {
+  criteria: AiCriteria;
+  onAdd: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onAdd}
+      className="flex h-[75px] min-w-px flex-1 items-start gap-[7px] overflow-hidden rounded-[4px] border border-[#d3d4d5] p-[16px] text-left transition-colors hover:bg-black/[0.02]"
+    >
+      <AiIcon name="plus-circle" size={20} className="shrink-0" />
+      <span className="flex min-w-px flex-1 flex-col items-start">
+        <span className="w-full text-[14px] font-medium leading-[20px] text-[#171718]">
+          {criteria.title}
+        </span>
+        <span className="w-full text-[12px] leading-[18px] text-[#848688]">
+          {criteria.hint}
+        </span>
+      </span>
+    </button>
+  );
+}
+
+function AiCriteriaSection({
+  criteria,
+  ticked,
+  onToggle,
+  onRemove,
+}: {
+  criteria: AiCriteria;
+  ticked: string[];
+  onToggle: (key: string) => void;
+  onRemove: () => void;
+}) {
+  return (
+    <div className="mt-[10px] rounded-[4px] border border-[#d3d4d5] p-[16px]">
+      <div className="flex items-start justify-between gap-[16px]">
+        <div className="flex min-w-0 flex-col">
+          <span className="text-[14px] font-medium leading-[20px] text-[#171718]">
+            {criteria.title}
+          </span>
+          <span className="text-[12px] leading-[18px] text-[#848688]">
+            {criteria.hint}
+          </span>
+        </div>
+        <button
+          type="button"
+          onClick={onRemove}
+          aria-label={`Remove ${criteria.title}`}
+          className="flex size-[24px] shrink-0 items-center justify-center rounded-[4px] text-[#6c6d6f] transition-colors hover:bg-black/5 hover:text-[#171718]"
+        >
+          <AiTrashIcon />
+        </button>
+      </div>
+
+      <div className="mt-[16px] flex flex-col gap-[16px]">
+        {criteria.fields.map((field) => (
+          <div key={field.label} className="flex w-full flex-col gap-[8px]">
+            <span className="flex h-[20px] items-center">
+              <FilterFieldLabel>{field.label}</FilterFieldLabel>
+            </span>
+            {field.kind === "select" ? (
+              <FilterSelect value={field.value} />
+            ) : (
+              <div className="flex flex-wrap items-center gap-x-[43px] gap-y-[12px]">
+                {field.options.map((option) => {
+                  const key = `${criteria.id}:${field.label}:${option}`;
+                  return (
+                    <FilterCheckbox
+                      key={option}
+                      label={option}
+                      checked={ticked.includes(key)}
+                      onToggle={() => onToggle(key)}
+                    />
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 
 function AiIcon({ name, size, className }: { name: string; size: number; className?: string }) {
   return (
@@ -1498,9 +1672,11 @@ function AiPreferenceScreen() {
   const [brief, setBrief] = useState(AI_SEED);
   const [listening, setListening] = useState(false);
   const [showCriteria, setShowCriteria] = useState(false);
+  const [added, setAdded] = useState<string[]>([]);
+  const [ticked, setTicked] = useState<string[]>([]);
   const idleTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const match = matchCreators(brief);
+  const match = matchCreators(brief, ticked.length);
 
   useEffect(() => () => {
     if (idleTimer.current) clearTimeout(idleTimer.current);
@@ -1514,10 +1690,10 @@ function AiPreferenceScreen() {
   };
 
   return (
-    <div className="tts-collab-ui @container relative h-[866px] w-[1440px] overflow-hidden bg-[#f5f5f5]">
+    <div className="tts-collab-ui @container relative min-h-[866px] w-[1440px] overflow-hidden bg-[#f5f5f5] pb-[40px]">
       <ScreenTopNav />
 
-      <div className="absolute left-[200px] top-[76px] w-[1040px]">
+      <div className="ml-[200px] mt-[16px] w-[1040px]">
         <div className="flex h-[36px] items-start gap-[8px]">
           <span className="flex h-[36px] w-[32px] shrink-0 flex-col items-center py-[2px]">
             <span className="flex h-[32px] w-px items-center justify-center rounded-[4px] bg-[#ececed]">
@@ -1624,25 +1800,36 @@ function AiPreferenceScreen() {
               />
             </button>
 
-            {/* What the brief was understood to say, on the four dimensions. */}
             {showCriteria ? (
-              <div className="mt-[8px] grid grid-cols-2 gap-x-[24px] gap-y-[8px] pl-[24px]">
-                {match.detected.map((facet) => (
-                  <div
-                    key={facet.label}
-                    className="flex items-center justify-between gap-[8px] border-b border-[#ececed] pb-[6px]"
-                  >
-                    <span className="text-[13px] leading-[20px] text-[#6c6d6f]">
-                      {facet.label}
-                    </span>
-                    <span
-                      className={`text-[13px] leading-[20px] ${
-                        facet.value ? "font-medium text-[#009995]" : "text-[#a9abad]"
-                      }`}
-                    >
-                      {facet.value ?? "Any"}
-                    </span>
-                  </div>
+              <div className="mt-[10px]">
+                {/* Figma node 1841-135884 — one button per criteria group. */}
+                <div className="flex items-start gap-[10px]">
+                  {AI_CRITERIA.filter((c) => !added.includes(c.id)).map((c) => (
+                    <AiCriteriaButton
+                      key={c.id}
+                      criteria={c}
+                      onAdd={() => setAdded((list) => [...list, c.id])}
+                    />
+                  ))}
+                </div>
+
+                {AI_CRITERIA.filter((c) => added.includes(c.id)).map((c) => (
+                  <AiCriteriaSection
+                    key={c.id}
+                    criteria={c}
+                    ticked={ticked}
+                    onToggle={(key) =>
+                      setTicked((on) =>
+                        on.includes(key)
+                          ? on.filter((k) => k !== key)
+                          : [...on, key],
+                      )
+                    }
+                    onRemove={() => {
+                      setAdded((list) => list.filter((id) => id !== c.id));
+                      setTicked((on) => on.filter((k) => !k.startsWith(`${c.id}:`)));
+                    }}
+                  />
                 ))}
               </div>
             ) : null}
@@ -1666,21 +1853,21 @@ function AiPreferenceScreen() {
 
 function AiPreferencePanel() {
   const stageRef = useRef<HTMLDivElement>(null);
-  const cameraRef = useRef<HTMLDivElement>(null);
-  const fitRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
 
-  useDemoFit(stageRef, fitRef, AI_WIDTH, cameraRef, aiHeight);
+  // The screen grows when criteria sections are added, so it needs the
+  // re-measuring fit rather than useDemoFit's pinned height.
+  usePanelFit(stageRef, cardRef, AI_WIDTH);
 
   return (
-    <figure className="mt-8 sm:mt-10 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
-      <div ref={stageRef} className="tts-collab-stage">
+    <figure className="mt-8 sm:mt-10 overflow-hidden rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
+      <div ref={stageRef} className="relative w-full">
         <div
-          ref={cameraRef}
-          className={`tts-collab-camera overflow-hidden rounded-lg ${UI_SHADOW}`}
+          ref={cardRef}
+          className={`tts-demo-fit absolute left-0 top-0 overflow-hidden rounded-lg ${UI_SHADOW}`}
+          style={{ width: AI_WIDTH, transformOrigin: "top left" }}
         >
-          <div ref={fitRef} className="tts-demo-fit">
-            <AiPreferenceScreen />
-          </div>
+          <AiPreferenceScreen />
         </div>
       </div>
     </figure>

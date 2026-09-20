@@ -2563,12 +2563,12 @@ html.is-loading body {
     #de3580 94.9%,
     #fe2c55 96.64%
   );
-  animation: ai-border-drift 9s linear infinite;
+  animation: ai-border-drift 1s linear infinite;
 }
 
 /* While the seller is typing the drift speeds up — the "listening" tell. */
 .ai-border[data-listening="true"] {
-  animation-duration: 2.2s;
+  animation-duration: 0.6s;
 }
 
 @media (prefers-reduced-motion: reduce) {
