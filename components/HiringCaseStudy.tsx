@@ -571,7 +571,7 @@ export function HiringCaseStudy() {
             ) : null}
 
             <p className="mt-12 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-16 sm:text-[17px]">
-              To ship consistently and efficiently, I built a new design system that gave the team reusable patterns and a shared foundation for scaling the product.
+              I <strong>initiated and drove a new design system</strong> that standardized core patterns, reduced repetitive design and engineering work, and helped the team <strong>ship faster with greater consistency as the product scaled</strong>.
             </p>
 
             <div className="mt-6 space-y-4">
