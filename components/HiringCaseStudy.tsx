@@ -59,6 +59,10 @@ export function HiringCaseStudy() {
   const [afterSlide, setAfterSlide] = useState(0);
   const [hiringManagerSlide, setHiringManagerSlide] = useState(0);
   const [personaSlide, setPersonaSlide] = useState(0);
+  const [visiblePersonaSlide, setVisiblePersonaSlide] = useState(0);
+  const [loadedPersonaSlides, setLoadedPersonaSlides] = useState<boolean[]>(
+    () => personas.map(() => false),
+  );
   const [executionMode, setExecutionMode] = useState<"before" | "after">("after");
   const [afterAudience, setAfterAudience] = useState<
     "operations" | "hiring-manager" | "job-applicant"
@@ -220,16 +224,55 @@ export function HiringCaseStudy() {
 
             <div className="mt-10 space-y-6">
               <figure className="overflow-hidden rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
-                <div className="flex aspect-[814/383] w-full items-center justify-center overflow-hidden rounded-[18px]">
-                  <img
-                    key={personas[personaSlide].src}
-                    src={personas[personaSlide].src}
-                    alt={personas[personaSlide].alt}
-                    className="block h-full w-full rounded-[18px] object-contain"
-                  />
+                <div
+                  className="relative aspect-[814/383] w-full overflow-hidden rounded-[18px] bg-foreground/[0.04]"
+                  aria-busy={!loadedPersonaSlides[personaSlide]}
+                >
+                  {personas.map((persona, index) => (
+                    <img
+                      key={persona.src}
+                      src={persona.src}
+                      alt={index === visiblePersonaSlide ? persona.alt : ""}
+                      loading="eager"
+                      decoding="async"
+                      onLoad={(event) => {
+                        const image = event.currentTarget;
+                        void image
+                          .decode()
+                          .catch(() => undefined)
+                          .then(() => {
+                            setLoadedPersonaSlides((loaded) => {
+                              if (loaded[index]) return loaded;
+                              const next = [...loaded];
+                              next[index] = true;
+                              return next;
+                            });
+                            if (personaSlide === index) {
+                              setVisiblePersonaSlide(index);
+                            }
+                          });
+                      }}
+                      className={`absolute inset-0 block h-full w-full rounded-[18px] object-contain transition-opacity duration-300 ease-out ${
+                        index === visiblePersonaSlide ? "opacity-100" : "opacity-0"
+                      }`}
+                    />
+                  ))}
+                  <div
+                    className={`pointer-events-none absolute inset-0 flex items-center justify-center bg-background/20 transition-opacity duration-200 ${
+                      loadedPersonaSlides[personaSlide]
+                        ? "opacity-0"
+                        : "opacity-100"
+                    }`}
+                    role="status"
+                    aria-live="polite"
+                    aria-hidden={loadedPersonaSlides[personaSlide]}
+                  >
+                    <span className="size-5 animate-spin rounded-full border-2 border-foreground/15 border-t-foreground/60" />
+                    <span className="sr-only">Loading persona</span>
+                  </div>
                 </div>
                 <figcaption className="mt-6 font-sans text-[13px] leading-[1.6] text-foreground/60 sm:text-[14px]">
-                  {personas[personaSlide].caption}
+                  {personas[visiblePersonaSlide].caption}
                 </figcaption>
               </figure>
               <div className="flex items-center justify-center gap-2" aria-label="Persona carousel">
@@ -237,7 +280,12 @@ export function HiringCaseStudy() {
                   <button
                     key={index}
                     type="button"
-                    onClick={() => setPersonaSlide(index)}
+                    onClick={() => {
+                      setPersonaSlide(index);
+                      if (loadedPersonaSlides[index]) {
+                        setVisiblePersonaSlide(index);
+                      }
+                    }}
                     className={`h-2 rounded-full transition-all ${
                       index === personaSlide
                         ? "w-8 bg-foreground"
