@@ -202,7 +202,7 @@ export function HiringCaseStudy() {
 
             <div className="mt-12 border-t border-foreground/10 pt-10 sm:mt-14 sm:pt-12">
               <h2 className="font-sans text-[clamp(1.125rem,4vw,1.5rem)] font-semibold tracking-tight text-foreground">
-                Design Deliverables
+                Turning Research into vision and direction
               </h2>
               <p className="mt-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-6 sm:text-[17px]">
                 I then mapped how these users interact across the end-to-end hiring journey: turning fragmented operational knowledge into a <strong>shared view of the system</strong> that helped cross-functional teams align on product priorities and roadmap.
@@ -218,7 +218,7 @@ export function HiringCaseStudy() {
                 />
               </div>
               <figcaption className="mt-6 font-sans text-[13px] leading-[1.6] text-foreground/60 sm:text-[14px]">
-                User journey mapping: Showing how different user groups (Operation/Payer, Hiring Manager, Job Applicants) navigate through the hiring workflow from onboarding through job completion.
+                End-to-End User journey mapping: Showing how different user groups (Operation/Payer, Hiring Manager, Job Applicants) navigate through the hiring workflow from onboarding through job completion.
               </figcaption>
             </figure>
 
