@@ -175,9 +175,6 @@ export function HiringCaseStudy() {
                   className="rounded-lg w-full h-auto object-cover border border-foreground/5"
                 />
               </div>
-              <figcaption className="mt-6 font-sans text-[13px] leading-[1.6] text-foreground/60 sm:text-[14px]">
-                Team structure developed from field research.
-              </figcaption>
             </figure>
 
             <div className="mt-12 border-t border-foreground/10 pt-10 sm:mt-14 sm:pt-12">
