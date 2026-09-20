@@ -376,7 +376,7 @@ export function HiringCaseStudy() {
             </div>
 
             {executionMode === "after" ? (
-              <div className="mt-6 grid grid-cols-1 gap-2 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-1 sm:grid-cols-3" aria-label="After design user segment">
+              <div className="mt-6 grid grid-cols-1 gap-2 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-1 dark:border-foreground/15 dark:bg-foreground/[0.06] sm:grid-cols-3" aria-label="After design user segment">
                 {([
                   [
                     "operations",
@@ -399,16 +399,20 @@ export function HiringCaseStudy() {
                     type="button"
                     aria-pressed={afterAudience === value}
                     onClick={() => setAfterAudience(value)}
-                    className={`flex min-h-12 items-center justify-center gap-2 rounded-lg px-4 py-2 font-sans text-[14px] font-medium transition-colors ${
+                    className={`flex min-h-12 items-center justify-center gap-2 rounded-lg px-4 py-2 font-sans text-[14px] font-medium outline-none transition-colors focus-visible:ring-2 focus-visible:ring-foreground/30 ${
                       afterAudience === value
-                        ? "bg-background text-foreground shadow-sm"
-                        : "text-foreground/55 hover:text-foreground"
+                        ? "bg-background text-foreground shadow-sm dark:bg-foreground/[0.12] dark:text-foreground dark:ring-1 dark:ring-foreground/20 dark:shadow-none"
+                        : "text-foreground/55 hover:bg-foreground/[0.04] hover:text-foreground dark:text-foreground/60 dark:hover:bg-foreground/[0.08] dark:hover:text-foreground"
                     }`}
                   >
                     <img
                       src={avatar}
                       alt=""
-                      className="size-8 shrink-0 rounded-full object-cover"
+                      className={`size-8 shrink-0 rounded-full object-cover ring-1 ${
+                        afterAudience === value
+                          ? "ring-foreground/25 dark:ring-foreground/40"
+                          : "ring-foreground/10 dark:ring-foreground/20"
+                      }`}
                     />
                     {label}
                   </button>
