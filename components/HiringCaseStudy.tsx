@@ -63,10 +63,10 @@ export function HiringCaseStudy() {
       <article className="pb-16 sm:pb-24">
         <header className="reveal">
           <h1 className="font-sans text-[clamp(1.75rem,6vw,2.75rem)] font-semibold leading-[1.1] tracking-tight text-foreground">
-            Transfer stealth enterprise to self-service market-ready
+            Evolving a Service-Led MVP into a Self-Service Platform
           </h1>
           <p className="mt-6 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]">
-            Work with stakeholders to navigate through ambiguity to clear solution.
+            Navigating ambiguity toward a clear, useful, and scalable platform
           </p>
         </header>
 
