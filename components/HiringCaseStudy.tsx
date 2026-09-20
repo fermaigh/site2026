@@ -440,6 +440,31 @@ export function HiringCaseStudy() {
                 </figure>
               </div>
             ) : null}
+
+            <h3 className="mt-12 font-sans text-[18px] font-semibold tracking-tight text-foreground/80 sm:mt-16">
+              Business Impacts
+            </h3>
+            <p className="mt-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]">
+              Launched the platform and rollout to the existing clients
+            </p>
+            <div className="mt-6 grid grid-cols-1 gap-6 sm:mt-8 sm:grid-cols-2">
+              <div className="rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
+                <h4 className="mb-3 font-sans text-[20px] font-bold text-foreground">
+                  74%↓ less time
+                </h4>
+                <p className="mt-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[16px]">
+                  Customer success team spent 74% less with Sprockets weekly after fully adopted.
+                </p>
+              </div>
+              <div className="rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
+                <h4 className="mb-3 font-sans text-[20px] font-bold text-foreground">
+                  87%↑ interview conversion
+                </h4>
+                <p className="mt-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[16px]">
+                  With the newly designed job application flow, scored high applicants are able to proactively schedule interviews
+                </p>
+              </div>
+            </div>
           </section>
         </div>
       </article>
