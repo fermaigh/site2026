@@ -313,8 +313,11 @@ export function HiringCaseStudy() {
 
             <div className="mt-12 border-t border-foreground/10 pt-10 sm:mt-14 sm:pt-12">
               <h2 className="font-sans text-[clamp(1.125rem,4vw,1.5rem)] font-semibold tracking-tight text-foreground">
-                Design execution
+                Result
               </h2>
+              <h3 className="mt-8 font-sans text-[18px] font-semibold tracking-tight text-foreground/80">
+                Design deliverables
+              </h3>
               <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2" aria-label="Design execution state">
                 <button
                   type="button"
