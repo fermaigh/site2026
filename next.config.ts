@@ -5,6 +5,15 @@ const nextConfig: NextConfig = {
   experimental: {
     viewTransition: true,
   },
+  async redirects() {
+    return [
+      {
+        source: "/work/hiring-app",
+        destination: "/work/ai-powered-hiring-platform",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
