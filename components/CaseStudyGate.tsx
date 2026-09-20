@@ -2153,12 +2153,12 @@ export function CaseStudyGate() {
             By evaluating the rationale, strengths, and tradeoffs behind each direction, I landed on a new approach that guides seller intent without over-constraining it.
           </p>
 
-          {/* Full-width AI preference screen — Figma node 1841-135984 */}
-          <AiPreferencePanel />
-
           <p className="mt-6 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-8 sm:text-[17px]">
             Ideally, sellers would see their matched creator pool evolve in real time as they refine their needs, making the connection between <span className="font-semibold text-foreground">input and outcome visible</span> and building <span className="font-semibold text-foreground">trust in how the platform interprets their intent</span>.
           </p>
+
+          {/* Full-width AI preference screen — Figma node 1841-135984 */}
+          <AiPreferencePanel />
 
           {/* Creator Collaboration Step */}
           <figure className="hidden">
