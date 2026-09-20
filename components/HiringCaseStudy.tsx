@@ -175,6 +175,51 @@ export function HiringCaseStudy() {
 
             <div className="mt-12 border-t border-foreground/10 pt-10 sm:mt-14 sm:pt-12">
               <h2 className="font-sans text-[clamp(1.125rem,4vw,1.5rem)] font-semibold tracking-tight text-foreground">
+                Design Deliverables
+              </h2>
+            </div>
+
+            <figure className="mt-10 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
+              <div className="w-full aspect-video flex items-center justify-center bg-foreground/5 rounded-lg">
+                <img
+                  src="https://www.figma.com/api/mcp/asset/37e42041-998a-4705-b619-7e7ebdd03bdf/2dbff.png"
+                  alt="User journey diagram showing how Operation, Hiring Manager, and Applicant users navigate through the hiring platform"
+                  className="w-full h-auto max-w-none"
+                />
+              </div>
+              <figcaption className="mt-6 font-sans text-[13px] leading-[1.6] text-foreground/60 sm:text-[14px]">
+                User journey mapping: Showing how different user groups (Operation/Payer, Hiring Manager, Job Applicants) navigate through the hiring workflow from onboarding through job completion.
+              </figcaption>
+            </figure>
+
+            <figure className="mt-10 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
+              <div className="w-full aspect-auto flex items-center justify-center bg-foreground/5 rounded-lg overflow-x-auto">
+                <img
+                  src="https://www.figma.com/api/mcp/asset/37e42041-998a-4705-b619-7e7ebdd03bdf/e03f9.png"
+                  alt="System prioritization roadmap showing UX vision and product areas for improvements across the platform"
+                  className="w-full h-auto max-w-none"
+                />
+              </div>
+              <figcaption className="mt-6 font-sans text-[13px] leading-[1.6] text-foreground/60 sm:text-[14px]">
+                System prioritization roadmap: UX vision principles (Efficiency, High quality, Effortless, Contextual, Humanity) and key product areas requiring improvements for optimal user experience across all platforms.
+              </figcaption>
+            </figure>
+
+            <figure className="mt-10 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
+              <div className="w-full aspect-auto flex items-center justify-center bg-foreground/5 rounded-lg overflow-x-auto">
+                <img
+                  src="https://www.figma.com/api/mcp/asset/079a6df6-1e55-4bb0-8b3c-176a5f4ab378/b262e.png"
+                  alt="Detailed workflow diagram showing CRM, Account Owner, Hiring Manager, and Applicants user flows and platform touchpoints"
+                  className="w-full h-auto max-w-none"
+                />
+              </div>
+              <figcaption className="mt-6 font-sans text-[13px] leading-[1.6] text-foreground/60 sm:text-[14px]">
+                Detailed system flows: Comprehensive workflow diagram mapping how CRM administrators, Account Owners, Hiring Managers, and Applicants interact with the platform across different journey stages.
+              </figcaption>
+            </figure>
+
+            <div className="mt-12 border-t border-foreground/10 pt-10 sm:mt-14 sm:pt-12">
+              <h2 className="font-sans text-[clamp(1.125rem,4vw,1.5rem)] font-semibold tracking-tight text-foreground">
                 Before: All in one platform
               </h2>
             </div>
@@ -226,51 +271,6 @@ export function HiringCaseStudy() {
                 ))}
               </div>
             </div>
-
-            <div className="mt-12 border-t border-foreground/10 pt-10 sm:mt-14 sm:pt-12">
-              <h2 className="font-sans text-[clamp(1.125rem,4vw,1.5rem)] font-semibold tracking-tight text-foreground">
-                Design Deliverables
-              </h2>
-            </div>
-
-            <figure className="mt-10 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
-              <div className="w-full aspect-video flex items-center justify-center bg-foreground/5 rounded-lg">
-                <img
-                  src="https://www.figma.com/api/mcp/asset/37e42041-998a-4705-b619-7e7ebdd03bdf/2dbff.png"
-                  alt="User journey diagram showing how Operation, Hiring Manager, and Applicant users navigate through the hiring platform"
-                  className="w-full h-auto max-w-none"
-                />
-              </div>
-              <figcaption className="mt-6 font-sans text-[13px] leading-[1.6] text-foreground/60 sm:text-[14px]">
-                User journey mapping: Showing how different user groups (Operation/Payer, Hiring Manager, Job Applicants) navigate through the hiring workflow from onboarding through job completion.
-              </figcaption>
-            </figure>
-
-            <figure className="mt-10 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
-              <div className="w-full aspect-auto flex items-center justify-center bg-foreground/5 rounded-lg overflow-x-auto">
-                <img
-                  src="https://www.figma.com/api/mcp/asset/37e42041-998a-4705-b619-7e7ebdd03bdf/e03f9.png"
-                  alt="System prioritization roadmap showing UX vision and product areas for improvements across the platform"
-                  className="w-full h-auto max-w-none"
-                />
-              </div>
-              <figcaption className="mt-6 font-sans text-[13px] leading-[1.6] text-foreground/60 sm:text-[14px]">
-                System prioritization roadmap: UX vision principles (Efficiency, High quality, Effortless, Contextual, Humanity) and key product areas requiring improvements for optimal user experience across all platforms.
-              </figcaption>
-            </figure>
-
-            <figure className="mt-10 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
-              <div className="w-full aspect-auto flex items-center justify-center bg-foreground/5 rounded-lg overflow-x-auto">
-                <img
-                  src="https://www.figma.com/api/mcp/asset/079a6df6-1e55-4bb0-8b3c-176a5f4ab378/b262e.png"
-                  alt="Detailed workflow diagram showing CRM, Account Owner, Hiring Manager, and Applicants user flows and platform touchpoints"
-                  className="w-full h-auto max-w-none"
-                />
-              </div>
-              <figcaption className="mt-6 font-sans text-[13px] leading-[1.6] text-foreground/60 sm:text-[14px]">
-                Detailed system flows: Comprehensive workflow diagram mapping how CRM administrators, Account Owners, Hiring Managers, and Applicants interact with the platform across different journey stages.
-              </figcaption>
-            </figure>
           </section>
         </div>
       </article>
