@@ -23,6 +23,34 @@ const personas = [
   },
 ] as const;
 
+const componentShowcaseItems = [
+  {
+    id: "font",
+    label: "Font",
+    caption: "Typography system: Type styles and hierarchy used across the self-service platform.",
+  },
+  {
+    id: "color",
+    label: "Color",
+    caption: "Color system: Core interface colors and supporting accents.",
+  },
+  {
+    id: "placeholder-1",
+    label: "Placeholder item 1",
+    caption: "Placeholder for an additional UI component and its supporting details.",
+  },
+  {
+    id: "placeholder-2",
+    label: "Placeholder item 2",
+    caption: "Placeholder for an additional UI component and its supporting details.",
+  },
+  {
+    id: "placeholder-3",
+    label: "Placeholder item 3",
+    caption: "Placeholder for an additional UI component and its supporting details.",
+  },
+] as const;
+
 const subscribeNever = () => () => {};
 
 function readSession() {
@@ -58,6 +86,7 @@ export function HiringCaseStudy() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [afterSlide, setAfterSlide] = useState(0);
   const [hiringManagerSlide, setHiringManagerSlide] = useState(0);
+  const [componentShowcaseItem, setComponentShowcaseItem] = useState(0);
   const [personaSlide, setPersonaSlide] = useState(0);
   const [visiblePersonaSlide, setVisiblePersonaSlide] = useState(0);
   const [loadedPersonaSlides, setLoadedPersonaSlides] = useState<boolean[]>(
@@ -537,6 +566,112 @@ export function HiringCaseStudy() {
                 </figure>
               </div>
             ) : null}
+
+            <div className="mt-12 space-y-4 sm:mt-16">
+              <div
+                className="flex w-full gap-1 overflow-x-auto rounded-xl border border-foreground/10 bg-foreground/[0.03] p-1"
+                role="tablist"
+                aria-label="UI component showcase"
+              >
+                {componentShowcaseItems.map((item, index) => (
+                  <button
+                    key={item.id}
+                    id={`component-tab-${item.id}`}
+                    type="button"
+                    role="tab"
+                    aria-selected={componentShowcaseItem === index}
+                    aria-controls={`component-panel-${item.id}`}
+                    onClick={() => setComponentShowcaseItem(index)}
+                    className={`min-h-10 shrink-0 rounded-lg px-4 py-2 font-sans text-[14px] font-medium transition-colors ${
+                      componentShowcaseItem === index
+                        ? "bg-background text-foreground shadow-sm"
+                        : "text-foreground/55 hover:text-foreground"
+                    }`}
+                  >
+                    {item.label}
+                  </button>
+                ))}
+              </div>
+
+              <figure className="overflow-hidden rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
+                <div className="grid min-h-[280px] overflow-hidden rounded-lg bg-foreground/5">
+                  {componentShowcaseItems.map((item, index) => (
+                    <div
+                      key={item.id}
+                      id={`component-panel-${item.id}`}
+                      role="tabpanel"
+                      aria-labelledby={`component-tab-${item.id}`}
+                      aria-hidden={componentShowcaseItem !== index}
+                      className={`col-start-1 row-start-1 flex min-h-[280px] items-center justify-center p-6 transition-opacity duration-300 sm:p-10 ${
+                        componentShowcaseItem === index
+                          ? "visible opacity-100"
+                          : "pointer-events-none invisible opacity-0"
+                      }`}
+                    >
+                      {item.id === "font" ? (
+                        <div className="w-full max-w-xl">
+                          <p className="font-sans text-[12px] font-semibold uppercase tracking-[0.16em] text-foreground/45">
+                            Primary typeface
+                          </p>
+                          <div className="mt-4 flex items-end gap-5 border-b border-foreground/10 pb-6">
+                            <span className="font-sans text-[64px] font-semibold leading-none tracking-tight text-foreground sm:text-[80px]">
+                              Aa
+                            </span>
+                            <p className="pb-1 font-sans text-[14px] leading-[1.55] text-foreground/60 sm:text-[15px]">
+                              Clear hierarchy for complex hiring workflows.
+                            </p>
+                          </div>
+                          <div className="mt-5 grid grid-cols-3 gap-4 font-sans text-foreground">
+                            <div>
+                              <p className="text-[20px] font-semibold">Heading</p>
+                              <p className="mt-1 text-[12px] text-foreground/45">Semibold</p>
+                            </div>
+                            <div>
+                              <p className="text-[16px] font-medium">Label</p>
+                              <p className="mt-1 text-[12px] text-foreground/45">Medium</p>
+                            </div>
+                            <div>
+                              <p className="text-[14px]">Body</p>
+                              <p className="mt-1 text-[12px] text-foreground/45">Regular</p>
+                            </div>
+                          </div>
+                        </div>
+                      ) : null}
+
+                      {item.id === "color" ? (
+                        <div className="grid w-full max-w-xl grid-cols-2 gap-4 sm:grid-cols-4">
+                          {[
+                            ["Primary", "bg-foreground"],
+                            ["Secondary", "bg-foreground/60"],
+                            ["Subtle", "bg-foreground/15"],
+                            ["Surface", "bg-background"],
+                          ].map(([label, color]) => (
+                            <div key={label}>
+                              <div className={`aspect-square rounded-xl border border-foreground/10 ${color}`} />
+                              <p className="mt-2 font-sans text-[13px] font-medium text-foreground/70">
+                                {label}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+                      ) : null}
+
+                      {item.id.startsWith("placeholder") ? (
+                        <div className="w-full max-w-sm rounded-xl border border-dashed border-foreground/20 bg-background/40 p-8 text-center">
+                          <div className="mx-auto size-10 rounded-lg bg-foreground/10" />
+                          <p className="mt-4 font-sans text-[15px] font-medium text-foreground/60">
+                            {item.label}
+                          </p>
+                        </div>
+                      ) : null}
+                    </div>
+                  ))}
+                </div>
+                <figcaption className="mt-6 font-sans text-[13px] leading-[1.6] text-foreground/60 sm:text-[14px]">
+                  {componentShowcaseItems[componentShowcaseItem].caption}
+                </figcaption>
+              </figure>
+            </div>
 
             <h3 className="mt-12 font-sans text-[18px] font-semibold tracking-tight text-foreground/80 sm:mt-16">
               Business Impacts
