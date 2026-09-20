@@ -39,6 +39,7 @@ export function HiringCaseStudy() {
   const [error, setError] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [afterSlide, setAfterSlide] = useState(0);
+  const [hiringManagerSlide, setHiringManagerSlide] = useState(0);
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -318,6 +319,52 @@ export function HiringCaseStudy() {
                     onClick={() => setCurrentSlide(index)}
                     className={`h-2 rounded-full transition-all ${
                       index === currentSlide
+                        ? "w-8 bg-foreground"
+                        : "w-2 bg-foreground/30 hover:bg-foreground/50"
+                    }`}
+                    aria-label={`View screen ${index + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-12 border-t border-foreground/10 pt-10 sm:mt-14 sm:pt-12">
+              <h2 className="font-sans text-[clamp(1.125rem,4vw,1.5rem)] font-semibold tracking-tight text-foreground">
+                After: Hiring Manager view
+              </h2>
+            </div>
+
+            <div className="mt-10 space-y-6">
+              <figure className="rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
+                <div className="w-full aspect-video flex items-center justify-center bg-foreground/5 rounded-lg overflow-auto">
+                  {hiringManagerSlide === 0 && (
+                    <img
+                      src="https://www.figma.com/api/mcp/asset/9ee0f701-1246-4aeb-b3e9-57d2b91bc2f6/5498d.png"
+                      alt="View all talent source and interview prep in web app"
+                      className="w-full h-auto max-w-none"
+                    />
+                  )}
+                  {hiringManagerSlide === 1 && (
+                    <img
+                      src="https://www.figma.com/api/mcp/asset/5f98b044-04b9-4157-b7e4-956fbf13d318/ce628.png"
+                      alt="Scheduling and manage interview in mobile app"
+                      className="w-full h-auto max-w-none"
+                    />
+                  )}
+                </div>
+                <figcaption className="mt-6 font-sans text-[13px] leading-[1.6] text-foreground/60 sm:text-[14px]">
+                  {hiringManagerSlide === 0 && "Web application: Comprehensive view of all candidates, talent sources, and interview preparation tools for managing the hiring process across locations."}
+                  {hiringManagerSlide === 1 && "Mobile application: Scheduling and managing interviews on-the-go with calendar integration, availability management, and interview tracking."}
+                </figcaption>
+              </figure>
+
+              <div className="flex items-center justify-center gap-2">
+                {[0, 1].map((index) => (
+                  <button
+                    key={index}
+                    onClick={() => setHiringManagerSlide(index)}
+                    className={`h-2 rounded-full transition-all ${
+                      index === hiringManagerSlide
                         ? "w-8 bg-foreground"
                         : "w-2 bg-foreground/30 hover:bg-foreground/50"
                     }`}
