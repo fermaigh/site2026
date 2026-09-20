@@ -298,21 +298,38 @@ export function HiringCaseStudy() {
             {executionMode === "after" ? (
               <div className="mt-6 grid grid-cols-1 gap-2 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-1 sm:grid-cols-3" aria-label="After design user segment">
                 {([
-                  ["operations", "Operations"],
-                  ["hiring-manager", "Hiring Manager"],
-                  ["job-applicant", "Job Applicant"],
-                ] as const).map(([value, label]) => (
+                  [
+                    "operations",
+                    "Operations",
+                    "https://www.figma.com/api/mcp/asset/4ecf0ea9-fc6e-4143-a74b-cf1e21248c97/1b704.png",
+                  ],
+                  [
+                    "hiring-manager",
+                    "Hiring Manager",
+                    "https://www.figma.com/api/mcp/asset/1bd36dc2-f40c-414e-b0e0-435bad631aa3/52aea.png",
+                  ],
+                  [
+                    "job-applicant",
+                    "Job Applicant",
+                    "https://www.figma.com/api/mcp/asset/fdc30ef2-80e3-476b-b6eb-6b843bc82f6b/47e83.png",
+                  ],
+                ] as const).map(([value, label, avatar]) => (
                   <button
                     key={value}
                     type="button"
                     aria-pressed={afterAudience === value}
                     onClick={() => setAfterAudience(value)}
-                    className={`min-h-10 rounded-lg px-4 py-2 font-sans text-[14px] font-medium transition-colors ${
+                    className={`flex min-h-12 items-center justify-center gap-2 rounded-lg px-4 py-2 font-sans text-[14px] font-medium transition-colors ${
                       afterAudience === value
                         ? "bg-background text-foreground shadow-sm"
                         : "text-foreground/55 hover:text-foreground"
                     }`}
                   >
+                    <img
+                      src={avatar}
+                      alt=""
+                      className="size-8 shrink-0 rounded-full object-cover"
+                    />
                     {label}
                   </button>
                 ))}
