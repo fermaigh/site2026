@@ -2528,8 +2528,9 @@ html.is-loading body {
 
 /* ---------------------------------------------------------------------------
    AI preference field — the "_Border animation finite" layer in Figma node
-   1841-135984. The border is a conic gradient; animating the angle is what
-   makes it read as the model listening while the seller types.
+   1841-135984. The border is a conic gradient, and the angle animates once
+   when the seller activates the field: the model waking up to listen, not a
+   permanent spinner. The element is remounted per activation so it replays.
 
    @property is what lets the angle animate at all — a plain custom property
    interpolates discretely. Where it is unsupported the gradient simply sits
@@ -2563,17 +2564,12 @@ html.is-loading body {
     #de3580 94.9%,
     #fe2c55 96.64%
   );
-  animation: ai-border-drift 1s linear infinite;
+  animation: ai-border-drift 1s linear 1 both;
 }
 
-/* While the seller is typing the drift speeds up — the "listening" tell. */
-.ai-border[data-listening="true"] {
-  animation-duration: 0.6s;
-}
 
 @media (prefers-reduced-motion: reduce) {
-  .ai-border,
-  .ai-border[data-listening="true"] {
+  .ai-border {
     animation: none;
   }
 }

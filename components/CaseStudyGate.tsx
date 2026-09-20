@@ -1177,6 +1177,8 @@ function DescribeCreatorsPanel() {
 const AI = "/projects/tts-ui/ai-preference";
 const AI_WIDTH = 1440;
 const AI_LIMIT = 500;
+/** One rotation, matched to the .ai-border animation in globals.css. */
+const AI_SPIN_MS = 1000;
 
 /** The brief the design ships with, used as the field's starting value. */
 const AI_SEED =
@@ -1670,23 +1672,35 @@ function AiCreatorPreview() {
 
 function AiPreferenceScreen() {
   const [brief, setBrief] = useState(AI_SEED);
-  const [listening, setListening] = useState(false);
   const [showCriteria, setShowCriteria] = useState(false);
   const [added, setAdded] = useState<string[]>([]);
   const [ticked, setTicked] = useState<string[]>([]);
-  const idleTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  /**
+   * The field rests on a plain border. Activating it runs the gradient once —
+   * Figma calls that layer "_Border animation finite" — and it then settles
+   * into an ordinary focus border, the same teal its sibling field uses.
+   */
+  const [ring, setRing] = useState<"idle" | "spinning" | "focused">("idle");
+  /** Remounts the gradient so the one-shot replays on every activation. */
+  const [spin, setSpin] = useState(0);
+  const spinTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const match = matchCreators(brief, ticked.length);
 
   useEffect(() => () => {
-    if (idleTimer.current) clearTimeout(idleTimer.current);
+    if (spinTimer.current) clearTimeout(spinTimer.current);
   }, []);
 
-  const onType = (next: string) => {
-    setBrief(next.slice(0, AI_LIMIT));
-    setListening(true);
-    if (idleTimer.current) clearTimeout(idleTimer.current);
-    idleTimer.current = setTimeout(() => setListening(false), 900);
+  const onActivate = () => {
+    setSpin((n) => n + 1);
+    setRing("spinning");
+    if (spinTimer.current) clearTimeout(spinTimer.current);
+    spinTimer.current = setTimeout(() => setRing("focused"), AI_SPIN_MS);
+  };
+
+  const onDeactivate = () => {
+    if (spinTimer.current) clearTimeout(spinTimer.current);
+    setRing("idle");
   };
 
   return (
@@ -1754,10 +1768,17 @@ function AiPreferenceScreen() {
             </p>
 
             <div className="relative mt-[8px] h-[157px] w-[818px]">
-              {/* The gradient sits in a 1px ring behind a white inner box. */}
+              {/* One 1px ring in every state, so the field never shifts: a
+                  plain fill at rest and focused, the gradient mid-spin. */}
               <div
-                className="ai-border absolute inset-0 rounded-[4px] p-px"
-                data-listening={listening}
+                key={ring === "spinning" ? `spin-${spin}` : ring}
+                className={`absolute inset-0 rounded-[4px] p-px ${
+                  ring === "spinning"
+                    ? "ai-border"
+                    : ring === "focused"
+                      ? "bg-[#017976]"
+                      : "bg-[#d3d4d5]"
+                }`}
                 aria-hidden
               >
                 <div className="size-full rounded-[3px] bg-white" />
@@ -1765,7 +1786,9 @@ function AiPreferenceScreen() {
               <div className="relative flex h-full items-end gap-[8px] px-[12px] py-[6px]">
                 <textarea
                   value={brief}
-                  onChange={(event) => onType(event.target.value)}
+                  onChange={(event) => setBrief(event.target.value.slice(0, AI_LIMIT))}
+                  onFocus={onActivate}
+                  onBlur={onDeactivate}
                   maxLength={AI_LIMIT}
                   aria-label="Describe your preference"
                   className="h-full flex-1 resize-none self-stretch bg-transparent text-[14px] leading-[20px] text-[#171718] outline-none placeholder:text-[#a9abad]"
