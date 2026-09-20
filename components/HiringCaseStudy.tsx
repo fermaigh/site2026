@@ -17,7 +17,7 @@ const personas = [
     caption: "Hiring Manager: Manages hiring and staffing at individual locations.",
   },
   {
-    src: "https://www.figma.com/api/mcp/asset/87268ac2-3b6c-4bc4-91ca-be9f4103598a/9710a.png",
+    src: "https://www.figma.com/api/mcp/asset/7da1ec5a-6022-4f1e-bcb9-99cf54cf3136/47e04.png",
     alt: "Job Applicant persona for Job Applicant Jordan",
     caption: "Job Applicant: Applies and completes the assessment.",
   },
