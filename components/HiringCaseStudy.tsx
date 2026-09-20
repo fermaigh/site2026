@@ -172,6 +172,12 @@ export function HiringCaseStudy() {
               Continue developing into a user journey to visualize how each group of users get their jobs done, helping cross-functional teams visualize the system and prioritization roadmap.
             </p>
 
+            <div className="mt-12 border-t border-foreground/10 pt-10 sm:mt-14 sm:pt-12">
+              <h2 className="font-sans text-[clamp(1.125rem,4vw,1.5rem)] font-semibold tracking-tight text-foreground">
+                Design Deliverables
+              </h2>
+            </div>
+
             <figure className="mt-10 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
               <div className="w-full aspect-video flex items-center justify-center bg-foreground/5 rounded-lg">
                 <img
