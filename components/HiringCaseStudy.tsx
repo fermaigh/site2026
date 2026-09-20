@@ -174,14 +174,9 @@ export function HiringCaseStudy() {
                   alt="User journey and interaction flows"
                   className="rounded-lg w-full h-auto object-cover border border-foreground/5"
                 />
-                <img
-                  src="https://www.figma.com/api/mcp/asset/0931d153-f218-4453-9edb-66db7e6f6f6a/f73eb.png"
-                  alt="Detailed persona cards with research findings"
-                  className="rounded-lg w-full h-auto object-cover border border-foreground/5"
-                />
               </div>
               <figcaption className="mt-6 font-sans text-[13px] leading-[1.6] text-foreground/60 sm:text-[14px]">
-                Research documentation: Affinity mapping from workshops, interview notes, user journey flows, and detailed persona cards developed from field research.
+                Research documentation: Affinity mapping from workshops, interview notes, and user journey flows developed from field research.
               </figcaption>
             </figure>
 
@@ -204,6 +199,19 @@ export function HiringCaseStudy() {
               </div>
               <figcaption className="mt-6 font-sans text-[13px] leading-[1.6] text-foreground/60 sm:text-[14px]">
                 User journey mapping: Showing how different user groups (Operation/Payer, Hiring Manager, Job Applicants) navigate through the hiring workflow from onboarding through job completion.
+              </figcaption>
+            </figure>
+
+            <figure className="mt-10 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
+              <div className="w-full overflow-x-auto rounded-lg bg-foreground/5">
+                <img
+                  src="https://www.figma.com/api/mcp/asset/0931d153-f218-4453-9edb-66db7e6f6f6a/f73eb.png"
+                  alt="Detailed persona cards for Operations, Hiring Manager, and Job Applicant user groups"
+                  className="block h-auto w-full max-w-none"
+                />
+              </div>
+              <figcaption className="mt-6 font-sans text-[13px] leading-[1.6] text-foreground/60 sm:text-[14px]">
+                Detailed personas: Operations, Hiring Manager, and Job Applicant needs and responsibilities synthesized from field research.
               </figcaption>
             </figure>
 
