@@ -571,7 +571,11 @@ export function HiringCaseStudy() {
               </div>
             ) : null}
 
-            <div className="mt-12 space-y-4 sm:mt-16">
+            <p className="mt-12 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-16 sm:text-[17px]">
+              To ship consistently and efficiently, I built a new design system that gave the team reusable patterns and a shared foundation for scaling the product.
+            </p>
+
+            <div className="mt-6 space-y-4">
               <div
                 className="flex w-full gap-1 overflow-x-auto rounded-xl border border-foreground/10 bg-foreground/[0.03] p-1"
                 role="tablist"
