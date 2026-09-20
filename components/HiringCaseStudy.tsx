@@ -557,10 +557,12 @@ export function HiringCaseStudy() {
             {executionMode === "after" && afterAudience === "job-applicant" ? (
               <div className="mt-10 space-y-6">
                 <figure className="overflow-hidden rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
-                  <div className="flex aspect-video w-full items-center justify-center overflow-hidden rounded-lg bg-foreground/5">
+                  <div className="flex aspect-[2048/1109] w-full items-center justify-center overflow-hidden rounded-lg bg-foreground/5">
                     <img
-                      src="/projects/hiring-app/screens/screen-16.png"
-                      alt="Job applicant mobile interview and scheduling flow"
+                      src="/projects/hiring-app/job-applicant-flow.png"
+                      alt="Four-screen mobile job applicant flow covering interview onboarding, questions, analysis, and interview scheduling"
+                      width={2048}
+                      height={1109}
                       className="h-full w-full object-contain"
                     />
                   </div>
