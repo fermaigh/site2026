@@ -253,19 +253,6 @@ export function HiringCaseStudy() {
             <figure className="mt-10 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
               <div className="w-full aspect-auto flex items-center justify-center bg-foreground/5 rounded-lg overflow-x-auto">
                 <img
-                  src="https://www.figma.com/api/mcp/asset/37e42041-998a-4705-b619-7e7ebdd03bdf/e03f9.png"
-                  alt="System prioritization roadmap showing UX vision and product areas for improvements across the platform"
-                  className="w-full h-auto max-w-none"
-                />
-              </div>
-              <figcaption className="mt-6 font-sans text-[13px] leading-[1.6] text-foreground/60 sm:text-[14px]">
-                System prioritization roadmap: UX vision principles (Efficiency, High quality, Effortless, Contextual, Humanity) and key product areas requiring improvements for optimal user experience across all platforms.
-              </figcaption>
-            </figure>
-
-            <figure className="mt-10 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
-              <div className="w-full aspect-auto flex items-center justify-center bg-foreground/5 rounded-lg overflow-x-auto">
-                <img
                   src="https://www.figma.com/api/mcp/asset/079a6df6-1e55-4bb0-8b3c-176a5f4ab378/b262e.png"
                   alt="Detailed workflow diagram showing CRM, Account Owner, Hiring Manager, and Applicants user flows and platform touchpoints"
                   className="w-full h-auto max-w-none"
