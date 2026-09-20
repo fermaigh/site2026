@@ -259,7 +259,7 @@ export function HiringCaseStudy() {
                 />
               </div>
               <figcaption className="mt-6 font-sans text-[13px] leading-[1.6] text-foreground/60 sm:text-[14px]">
-                Detailed system flows: Comprehensive workflow diagram mapping how CRM administrators, Account Owners, Hiring Managers, and Applicants interact with the platform across different journey stages.
+                Comprehensive workflow diagram mapping key product areas and UX improvement for CRM administrators, Account Owners, Hiring Managers, and Applicants interact with the platform across different journey stages.
               </figcaption>
             </figure>
 
