@@ -176,7 +176,7 @@ export function HiringCaseStudy() {
                 />
               </div>
               <figcaption className="mt-6 font-sans text-[13px] leading-[1.6] text-foreground/60 sm:text-[14px]">
-                Research documentation: Affinity mapping from workshops, interview notes, and user journey flows developed from field research.
+                Team structure developed from field research.
               </figcaption>
             </figure>
 
