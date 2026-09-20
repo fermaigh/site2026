@@ -2,6 +2,7 @@
 
 import { useState, useSyncExternalStore, type FormEvent } from "react";
 import { Poppins } from "next/font/google";
+import { ChevronDown } from "lucide-react";
 import { HiringApplicantsDemo } from "@/components/hiring/HiringApplicantsDemo";
 
 const PASSCODE = "0000";
@@ -48,9 +49,9 @@ const componentShowcaseItems = [
     caption: "Primary, secondary, and tertiary actions share three sizes, optional icons, and consistent idle, hover, active, and disabled states.",
   },
   {
-    id: "placeholder-2",
-    label: "Placeholder item 2",
-    caption: "Placeholder for an additional UI component and its supporting details.",
+    id: "dropdown",
+    label: "Dropdown",
+    caption: "Single-select dropdown: The full field opens the menu, hover clarifies the target, selection updates the field, and unavailable options remain visible but muted.",
   },
   {
     id: "placeholder-3",
@@ -95,6 +96,8 @@ export function HiringCaseStudy() {
   const [afterSlide, setAfterSlide] = useState(0);
   const [hiringManagerSlide, setHiringManagerSlide] = useState(0);
   const [componentShowcaseItem, setComponentShowcaseItem] = useState(0);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [dropdownValue, setDropdownValue] = useState<string | null>(null);
   const [personaSlide, setPersonaSlide] = useState(0);
   const [visiblePersonaSlide, setVisiblePersonaSlide] = useState(0);
   const [loadedPersonaSlides, setLoadedPersonaSlides] = useState<boolean[]>(
@@ -827,6 +830,123 @@ export function HiringCaseStudy() {
                                 </p>
                               </div>
                             ))}
+                          </div>
+                        </div>
+                      ) : null}
+
+                      {item.id === "dropdown" ? (
+                        <div className="w-full max-w-2xl overflow-hidden rounded-xl border border-foreground/10 bg-background">
+                          <div className="flex flex-col gap-3 border-b border-foreground/10 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+                            <div>
+                              <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-foreground/45">
+                                Form interaction
+                              </p>
+                              <p className="mt-1 font-sans text-[14px] font-medium text-foreground">
+                                Single-select dropdown
+                              </p>
+                            </div>
+                            <div className="flex flex-wrap gap-2 font-mono text-[10px] text-foreground/55">
+                              <span className="rounded-full bg-foreground/[0.06] px-2.5 py-1">40px field</span>
+                              <span className="rounded-full bg-foreground/[0.06] px-2.5 py-1">300px default</span>
+                            </div>
+                          </div>
+
+                          <div className="flex min-h-[322px] items-start justify-center bg-[#F9FAFB] px-4 py-8 sm:px-8">
+                            <div
+                              className="relative w-full max-w-[300px]"
+                              onBlur={(event) => {
+                                if (!event.currentTarget.contains(event.relatedTarget)) {
+                                  setDropdownOpen(false);
+                                }
+                              }}
+                            >
+                              <label
+                                id="design-system-dropdown-label"
+                                className="block font-sans text-[12px] font-semibold leading-[18px] text-[#4F5457]"
+                              >
+                                User group
+                              </label>
+                              <button
+                                type="button"
+                                aria-haspopup="listbox"
+                                aria-expanded={dropdownOpen}
+                                aria-labelledby="design-system-dropdown-label design-system-dropdown-value"
+                                onClick={() => setDropdownOpen((open) => !open)}
+                                onKeyDown={(event) => {
+                                  if (event.key === "Escape") setDropdownOpen(false);
+                                }}
+                                className={`mt-2 flex h-10 w-full items-center justify-between rounded-[4px] border bg-white px-[7px] text-left font-sans text-[14px] leading-5 outline-none transition-colors ${
+                                  dropdownOpen
+                                    ? "border-[#87888A]"
+                                    : "border-[#D6D6D6] hover:border-[#87888A]"
+                                }`}
+                              >
+                                <span
+                                  id="design-system-dropdown-value"
+                                  className={dropdownValue ? "text-[#4F5457]" : "text-[#BEBFC2]"}
+                                >
+                                  {dropdownValue ?? "— Select —"}
+                                </span>
+                                <ChevronDown
+                                  aria-hidden
+                                  className={`size-4 shrink-0 text-[#4F5457] transition-transform duration-200 ${
+                                    dropdownOpen ? "rotate-180" : ""
+                                  }`}
+                                  strokeWidth={1.5}
+                                />
+                              </button>
+
+                              <div
+                                className={`absolute left-0 top-[68px] z-10 grid w-full overflow-hidden rounded-[4px] bg-white shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-1px_rgba(0,0,0,0.06)] transition-[grid-template-rows,opacity,transform] duration-200 ease-out ${
+                                  dropdownOpen
+                                    ? "grid-rows-[1fr] translate-y-0 opacity-100"
+                                    : "pointer-events-none grid-rows-[0fr] -translate-y-1 opacity-0"
+                                }`}
+                              >
+                                <div
+                                  className="min-h-0 overflow-hidden py-1"
+                                  role="listbox"
+                                  aria-labelledby="design-system-dropdown-label"
+                                >
+                                  {[
+                                    "Operations / Payer",
+                                    "Hiring Manager",
+                                    "Job Applicant",
+                                    "Regional customer success administrator",
+                                  ].map((option) => {
+                                    const selected = dropdownValue === option;
+                                    return (
+                                      <button
+                                        key={option}
+                                        type="button"
+                                        role="option"
+                                        aria-selected={selected}
+                                        onClick={() => {
+                                          setDropdownValue(option);
+                                          setDropdownOpen(false);
+                                        }}
+                                        className={`block w-full px-4 py-2 text-left font-sans text-[14px] leading-5 transition-colors hover:bg-[#CFF1F6] hover:text-[#0A1516] ${
+                                          selected
+                                            ? "bg-[#CFF1F6] font-semibold text-[#0A1516]"
+                                            : "font-normal text-[#4F5457]"
+                                        }`}
+                                      >
+                                        {option}
+                                      </button>
+                                    );
+                                  })}
+                                  <button
+                                    type="button"
+                                    role="option"
+                                    aria-selected="false"
+                                    disabled
+                                    className="block w-full cursor-not-allowed px-4 py-2 text-left font-sans text-[14px] font-normal leading-5 text-[#BEBFC2]"
+                                  >
+                                    Unavailable user group
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       ) : null}
