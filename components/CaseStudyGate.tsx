@@ -787,17 +787,21 @@ function InviteDrawer() {
 
 /* ---- Collaboration overview — Figma "Portifolio Site", node 1843-167231 ---- */
 
-const COLLABORATIONS_HEIGHT = 934;
+const COLLABORATIONS_HEIGHT = 944;
 const collaborationsHeight = () => COLLABORATIONS_HEIGHT;
 const TTS_UI = "/projects/tts-ui";
 
 function TtsUiAsset({
   name,
   size = 16,
+  width = size,
+  height = size,
   className,
 }: {
   name: string;
   size?: number;
+  width?: number;
+  height?: number;
   className?: string;
 }) {
   return (
@@ -805,10 +809,10 @@ function TtsUiAsset({
     <img
       src={`${TTS_UI}/${name}`}
       alt=""
-      width={size}
-      height={size}
+      width={width}
+      height={height}
       className={className}
-      style={{ width: size, height: size }}
+      style={{ width, height }}
     />
   );
 }
@@ -823,7 +827,7 @@ function CollaborationNavItem({ icon, label }: { icon: string; label: string }) 
 }
 
 function CollaborationDivider({ name = "menu-divider.svg" }: { name?: string }) {
-  return <TtsUiAsset name={name} size={204} className="h-[12px] w-[204px] shrink-0" />;
+  return <TtsUiAsset name={name} width={204} height={12} className="h-[12px] w-[204px] shrink-0" />;
 }
 
 function CollaborationSidebar() {
@@ -972,7 +976,7 @@ function CollaborationTable() {
 
 function CollaborationOverviewScreen() {
   return (
-    <div className="tts-collab-ui relative h-[934px] w-[1440px] overflow-hidden bg-[#f5f5f5]">
+    <div className="tts-collab-ui relative h-[944px] w-[1440px] overflow-hidden bg-[#f5f5f5]">
       <ScreenTopNav />
       <CollaborationSidebar />
 
