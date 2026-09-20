@@ -496,7 +496,7 @@ function PageStep({ icon, label }: { icon: string; label: string }) {
 function NavBadge({ className }: { className?: string }) {
   return (
     <span
-      className={`flex min-h-[16px] min-w-[16px] items-center justify-center rounded-full border border-white bg-[#e14140] p-[4px] text-center text-[12px] font-medium leading-[18px] text-white ${className ?? ""}`}
+      className={`flex size-[16px] shrink-0 items-center justify-center rounded-full border border-white bg-[#e14140] p-0 text-center text-[10px] font-medium leading-none text-white ${className ?? ""}`}
     >
       8
     </span>
