@@ -1201,7 +1201,7 @@ function ProactiveComplianceScreen() {
                 </div>
                 <button
                   type="button"
-                  className="group/view-samples -ml-[4px] flex w-fit items-center gap-0 rounded-[4px] px-[4px] text-left text-[14px] leading-[18px] text-[#525253] transition-colors hover:bg-[#e4e4e4] hover:text-[#017b77] focus-visible:bg-[#e4e4e4] focus-visible:text-[#017b77] focus-visible:outline-none"
+                  className="group/view-samples -ml-[4px] flex w-fit items-center gap-0 rounded-[4px] px-[4px] text-left text-[14px] leading-[18px] text-[#525253] transition-colors hover:bg-[#d3d4d5] hover:text-[#017b77] focus-visible:bg-[#d3d4d5] focus-visible:text-[#017b77] focus-visible:outline-none"
                 >
                   <span>View sample requests</span>
                   <span
