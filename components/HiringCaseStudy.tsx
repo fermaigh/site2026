@@ -40,6 +40,7 @@ export function HiringCaseStudy() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [afterSlide, setAfterSlide] = useState(0);
   const [hiringManagerSlide, setHiringManagerSlide] = useState(0);
+  const [personaSlide, setPersonaSlide] = useState(0);
   const [executionMode, setExecutionMode] = useState<"before" | "after">("after");
   const [afterAudience, setAfterAudience] = useState<
     "operations" | "hiring-manager" | "job-applicant"
@@ -199,18 +200,43 @@ export function HiringCaseStudy() {
               </figcaption>
             </figure>
 
-            <figure className="mt-10 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
-              <div className="w-full overflow-x-auto rounded-lg bg-foreground/5">
-                <img
-                  src="https://www.figma.com/api/mcp/asset/0931d153-f218-4453-9edb-66db7e6f6f6a/f73eb.png"
-                  alt="Detailed persona cards for Operations, Hiring Manager, and Job Applicant user groups"
-                  className="block h-auto w-full max-w-none"
-                />
+            <div className="mt-10 space-y-6">
+              <figure className="overflow-hidden rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
+                <div className="w-full overflow-hidden rounded-lg bg-foreground/5">
+                  <div
+                    className="w-[300%] transition-transform duration-300 ease-out"
+                    style={{ transform: `translateX(-${personaSlide * (100 / 3)}%)` }}
+                  >
+                    <img
+                      src="https://www.figma.com/api/mcp/asset/0931d153-f218-4453-9edb-66db7e6f6f6a/f73eb.png"
+                      alt="Detailed personas for Operations, Hiring Manager, and Job Applicant user groups"
+                      className="block h-auto w-full max-w-none"
+                    />
+                  </div>
+                </div>
+                <figcaption className="mt-6 font-sans text-[13px] leading-[1.6] text-foreground/60 sm:text-[14px]">
+                  {personaSlide === 0 && "Operations / Payer: Makes decisions at the organizational level."}
+                  {personaSlide === 1 && "Hiring Manager: Manages hiring and staffing at individual locations."}
+                  {personaSlide === 2 && "Job Applicant: Applies and completes the assessment."}
+                </figcaption>
+              </figure>
+              <div className="flex items-center justify-center gap-2" aria-label="Persona carousel">
+                {[0, 1, 2].map((index) => (
+                  <button
+                    key={index}
+                    type="button"
+                    onClick={() => setPersonaSlide(index)}
+                    className={`h-2 rounded-full transition-all ${
+                      index === personaSlide
+                        ? "w-8 bg-foreground"
+                        : "w-2 bg-foreground/30 hover:bg-foreground/50"
+                    }`}
+                    aria-label={`View persona ${index + 1}`}
+                    aria-current={index === personaSlide ? "true" : undefined}
+                  />
+                ))}
               </div>
-              <figcaption className="mt-6 font-sans text-[13px] leading-[1.6] text-foreground/60 sm:text-[14px]">
-                Detailed personas: Operations, Hiring Manager, and Job Applicant needs and responsibilities synthesized from field research.
-              </figcaption>
-            </figure>
+            </div>
 
             <figure className="mt-10 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
               <div className="w-full aspect-auto flex items-center justify-center bg-foreground/5 rounded-lg overflow-x-auto">
