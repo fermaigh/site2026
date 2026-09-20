@@ -113,9 +113,11 @@ export function HiringCaseStudy() {
               </figure>
             </div>
 
-            <p className="mt-8 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-10 sm:text-[17px]">
-              I went through the internal team interview, workshops and field trips to uncover who the users are. Converted knowledge into detailed personas:
-            </p>
+            <div className="mt-12 border-t border-foreground/10 pt-10 sm:mt-14 sm:pt-12">
+              <p className="font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]">
+                I went through the internal team interview, workshops and field trips to uncover who the users are. Converted knowledge into detailed personas:
+              </p>
+            </div>
 
             <ul className="mt-4 space-y-2 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]">
               <li className="flex gap-3">
