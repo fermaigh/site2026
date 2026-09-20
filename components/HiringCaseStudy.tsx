@@ -40,7 +40,7 @@ const componentShowcaseItems = [
   {
     id: "color",
     label: "Color",
-    caption: "Color system: Core interface colors and supporting accents.",
+    caption: "Neutral foundations support the interface; semantic colors communicate status, while teal and blue support brand and illustration.",
   },
   {
     id: "placeholder-1",
@@ -680,20 +680,72 @@ export function HiringCaseStudy() {
                       ) : null}
 
                       {item.id === "color" ? (
-                        <div className="grid w-full max-w-xl grid-cols-2 gap-4 sm:grid-cols-4">
-                          {[
-                            ["Primary", "bg-foreground"],
-                            ["Secondary", "bg-foreground/60"],
-                            ["Subtle", "bg-foreground/15"],
-                            ["Surface", "bg-background"],
-                          ].map(([label, color]) => (
-                            <div key={label}>
-                              <div className={`aspect-square rounded-xl border border-foreground/10 ${color}`} />
-                              <p className="mt-2 font-sans text-[13px] font-medium text-foreground/70">
-                                {label}
+                        <div className="w-full max-w-2xl overflow-hidden rounded-xl border border-foreground/10 bg-background">
+                          <div className="flex flex-col gap-3 border-b border-foreground/10 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+                            <div>
+                              <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-foreground/45">
+                                Color system
+                              </p>
+                              <p className="mt-1 font-sans text-[14px] font-medium text-foreground">
+                                Foundation + functional color
                               </p>
                             </div>
-                          ))}
+                            <span className="w-fit rounded-full bg-foreground/[0.06] px-2.5 py-1 font-mono text-[10px] text-foreground/55">
+                              7 families · 50–900 scales
+                            </span>
+                          </div>
+
+                          <div className="border-b border-foreground/10 p-5 sm:p-6">
+                            <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-foreground/45">
+                              Interface foundation
+                            </p>
+                            <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4">
+                              {[
+                                ["Canvas", "Gray 50", "#F9FAFB"],
+                                ["Stroke", "Gray 200", "#E9E9E9"],
+                                ["Body", "Gray 700", "#4F5457"],
+                                ["Action", "Gray 800", "#313131"],
+                              ].map(([label, token, color]) => (
+                                <div key={label} className="overflow-hidden rounded-lg border border-foreground/10">
+                                  <div className="h-12" style={{ backgroundColor: color }} />
+                                  <div className="bg-background px-2.5 py-2">
+                                    <p className="font-sans text-[11px] font-semibold leading-none text-foreground">
+                                      {label}
+                                    </p>
+                                    <p className="mt-1 font-mono text-[9px] leading-none text-foreground/45">
+                                      {token} · {color}
+                                    </p>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+
+                          <div className="p-5 sm:p-6">
+                            <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-foreground/45">
+                              Semantic, brand, and support
+                            </p>
+                            <div className="mt-3 grid grid-cols-2 gap-x-3 gap-y-4 sm:grid-cols-6">
+                              {[
+                                ["Error", "Red 800", "#AD001A"],
+                                ["Support", "Orange 500", "#F97316"],
+                                ["Attention", "Yellow 800", "#614B03"],
+                                ["Success", "Green 900", "#123F20"],
+                                ["Illustration", "Blue 500", "#79A6ED"],
+                                ["Brand", "Teal 500", "#60D1E0"],
+                              ].map(([label, token, color]) => (
+                                <div key={label} className="min-w-0">
+                                  <div className="h-7 w-full rounded-md" style={{ backgroundColor: color }} />
+                                  <p className="mt-2 truncate font-sans text-[10px] font-semibold leading-none text-foreground">
+                                    {label}
+                                  </p>
+                                  <p className="mt-1 truncate font-mono text-[9px] leading-none text-foreground/45">
+                                    {token}
+                                  </p>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
                         </div>
                       ) : null}
 
