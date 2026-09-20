@@ -525,6 +525,10 @@ function ScreenTopNav() {
             ⌘+K
           </span>
         </div>
+        <span className="flex h-[36px] items-center gap-[8px] rounded-[4px] bg-[#1f2021] px-[12px] text-[14px] font-medium leading-[20px]">
+          <NavBadge />
+          <span className="whitespace-nowrap">In progress</span>
+        </span>
       </div>
 
       {/* Anchored right: Inter's metrics differ from the design's TikTok Sans,
@@ -778,6 +782,341 @@ function InviteDrawer() {
         </div>
       </div>
     </div>
+  );
+}
+
+/* ---- Collaboration overview — Figma "Portifolio Site", node 1843-167231 ---- */
+
+const COLLABORATIONS_HEIGHT = 934;
+const collaborationsHeight = () => COLLABORATIONS_HEIGHT;
+const TTS_UI = "/projects/tts-ui";
+
+function TtsUiAsset({
+  name,
+  size = 16,
+  className,
+}: {
+  name: string;
+  size?: number;
+  className?: string;
+}) {
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={`${TTS_UI}/${name}`}
+      alt=""
+      width={size}
+      height={size}
+      className={className}
+      style={{ width: size, height: size }}
+    />
+  );
+}
+
+const COLLABORATION_MENU = [
+  ["menu-home.svg", "Home"],
+  ["menu-quick.svg", "Quick access"],
+  ["divider", ""],
+  ["menu-orders.svg", "Orders"],
+  ["menu-products.svg", "Products"],
+  ["menu-ship.svg", "Logistics"],
+  ["divider", ""],
+  ["menu-marketing.svg", "Marketing"],
+  ["menu-crm.svg", "Customers"],
+  ["influencer-selected.svg", "Affiliate"],
+] as const;
+
+const COLLABORATION_MENU_BOTTOM = [
+  ["menu-live.svg", "LIVE & Video"],
+  ["menu-growth.svg", "Growth"],
+  ["menu-more.svg", "App"],
+  ["divider", ""],
+  ["menu-data.svg", "Analytics"],
+  ["menu-health.svg", "Account Health"],
+  ["menu-finance.svg", "Finances"],
+] as const;
+
+function CollaborationMenuItems({
+  items,
+}: {
+  items: readonly (readonly [string, string])[];
+}) {
+  return items.map(([icon, label], index) =>
+    icon === "divider" ? (
+      <div key={`divider-${index}`} className="mx-[8px] my-[7px] h-px bg-[#d3d4d5]" />
+    ) : (
+      <div key={label} className="flex h-[38px] items-center gap-[12px] px-[16px] text-[14px] leading-[20px] text-[#262627]">
+        <TtsUiAsset name={icon} size={16} className="shrink-0" />
+        <span className="whitespace-nowrap">{label}</span>
+      </div>
+    ),
+  );
+}
+
+function CollaborationSidebar() {
+  return (
+    <aside className="absolute left-0 top-[60px] h-[878px] w-[220px] overflow-hidden bg-white pt-[8px]">
+      <CollaborationMenuItems items={COLLABORATION_MENU} />
+      <div className="mx-[8px] flex h-[40px] items-center gap-[12px] rounded-[4px] bg-[#ececed] px-[16px] text-[14px] leading-[20px] text-[#017b77]">
+        <TtsUiAsset name="influencer-selected.svg" size={16} className="shrink-0" />
+        <span>Collaborations</span>
+      </div>
+      {[
+        "Find creators",
+        "Content management",
+        "Samples",
+        "Transactions",
+      ].map((label) => (
+        <div key={label} className="flex h-[38px] items-center pl-[40px] text-[14px] leading-[20px] text-[#6c6d6f]">
+          {label}
+        </div>
+      ))}
+      <CollaborationMenuItems items={COLLABORATION_MENU_BOTTOM} />
+    </aside>
+  );
+}
+
+const COLLABORATION_ROWS = [
+  {
+    name: "Summer Glow Skincare Launch",
+    meta: "Last modified on 06/03/2026  |  5 products",
+    progress: 50,
+    reviews: "43 samples review",
+    invited: "500",
+    posts: "40",
+  },
+  {
+    name: "Labor Day Gift Guide 2026",
+    meta: "Last modified on 04/12/2026  |  47 products",
+    progress: 89,
+    reviews: "287 samples review",
+    invited: "200",
+    posts: "80",
+  },
+  {
+    name: "Active Wear Spring Refresh",
+    meta: "Last modified on 03/21/2026  |  156 products",
+    progress: 100,
+    reviews: "364 samples review",
+    invited: "705",
+    posts: "321",
+  },
+  {
+    name: "Protein Snack Bar Sampling",
+    meta: "Last modified on 01/13/2026  |  22 products",
+    progress: 100,
+    reviews: "149 samples review",
+    invited: "300",
+    posts: "40",
+  },
+  {
+    name: "Home Fragrance Collection Drop",
+    meta: "Last modified on 12/18/2026  |  5 products",
+    progress: 65,
+    reviews: "70 samples review",
+    invited: "70",
+    posts: "40",
+  },
+];
+
+function CollaborationSortLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="flex items-center gap-[4px] whitespace-nowrap">
+      {children}
+      <TtsUiAsset name="sort.svg" size={12} />
+    </span>
+  );
+}
+
+function CollaborationTable() {
+  const columns = "grid-cols-[minmax(300px,1fr)_130px_160px_130px_150px_120px_90px]";
+
+  return (
+    <div className="relative w-full overflow-hidden">
+      <div className={`grid h-[44px] ${columns} bg-[#f9f9f9] text-[12px] font-medium leading-[18px] text-[#171718]`}>
+        <div className="flex items-center px-[12px]">Name</div>
+        <div className="flex items-center px-[12px]"><CollaborationSortLabel>Fee structure</CollaborationSortLabel></div>
+        <div className="flex items-center px-[12px]"><CollaborationSortLabel>Recruiting method</CollaborationSortLabel></div>
+        <div className="flex items-center px-[12px]"><CollaborationSortLabel>Status</CollaborationSortLabel></div>
+        <div className="flex items-center px-[12px]"><CollaborationSortLabel>Creators invited</CollaborationSortLabel></div>
+        <div className="flex items-center px-[12px]"><CollaborationSortLabel>Creator posts</CollaborationSortLabel></div>
+        <div className="flex items-center justify-center px-[12px]">Action</div>
+      </div>
+      {COLLABORATION_ROWS.map((row) => (
+        <div key={row.name} className={`grid h-[88px] ${columns} border-b border-[#d3d4d5] bg-white text-[14px] leading-[20px] text-[#171718]`}>
+          <div className="flex min-w-0 flex-col justify-center gap-[4px] px-[12px]">
+            <p className="truncate font-medium">{row.name}</p>
+            <p className="truncate text-[#6c6d6f]">{row.meta}</p>
+          </div>
+          <div className="flex items-center px-[12px]">
+            <span className="rounded-full bg-[#ececed] px-[8px] py-[2px] text-[12px] leading-[18px]">Commission only</span>
+          </div>
+          <div className="flex flex-col justify-center gap-[6px] px-[12px]">
+            <span>Platform outreach</span>
+            <span className="flex items-center gap-[8px] text-[12px] text-[#6c6d6f]">
+              <span className="h-[6px] w-[48px] overflow-hidden bg-[#d3d4d5]">
+                <span className="block h-full bg-[#009995]" style={{ width: `${row.progress}%` }} />
+              </span>
+              {row.progress}%
+            </span>
+          </div>
+          <div className="flex flex-col justify-center gap-[4px] px-[12px]">
+            <span>Ongoing</span>
+            <span className="text-[12px] text-[#6c6d6f]">{row.reviews}</span>
+          </div>
+          <div className="flex items-center px-[12px]">{row.invited}</div>
+          <div className="flex items-center px-[12px]">{row.posts}</div>
+          <div className="flex items-center justify-center gap-[6px] bg-white px-[8px] shadow-[-8px_0_12px_rgba(0,0,0,0.06)]">
+            <span className="rounded-[4px] bg-[#ececed] px-[9px] py-[3px] text-[12px] font-medium leading-[18px]">View</span>
+            <span className="flex size-[24px] items-center justify-center rounded-[4px] bg-[#ececed]">
+              <TtsUiAsset name="more.svg" size={16} />
+            </span>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function CollaborationOverviewScreen() {
+  const [tooltipOpen, setTooltipOpen] = useState(false);
+
+  return (
+    <div
+      className="tts-collab-ui relative h-[934px] w-[1440px] overflow-hidden bg-[#f5f5f5]"
+      onClick={() => setTooltipOpen(false)}
+    >
+      <ScreenTopNav />
+      <CollaborationSidebar />
+
+      <main className="absolute left-[220px] top-[60px] h-[973px] w-[1220px] bg-[#f5f5f5] p-[24px]">
+        <h3 className="h-[36px] text-[28px] font-bold leading-[36px] text-[#171718]">Collaborations</h3>
+
+        <div className="mt-[16px] h-[920px] w-full">
+          <div className="flex h-[114px] w-full items-end -mb-[8px]">
+            <div className="h-[114px] min-w-0 flex-1 rounded-t-[8px] bg-white p-[24px] shadow-[0_-4px_12px_rgba(0,0,0,0.12)]">
+              <div className="flex gap-[16px]">
+                <span className="flex size-[44px] shrink-0 items-center justify-center rounded-[8px] bg-[#e4f6f5]">
+                  <TtsUiAsset name="products-selected.svg" size={26} />
+                </span>
+                <div className="min-w-0">
+                  <p className="text-[16px] font-medium leading-[24px] text-black">Work with select creators</p>
+                  <p className="mt-[7px] max-w-[440px] text-[14px] leading-[20px] text-[#6c6d6f]">Get matched with the right creators for your shop, or find and invite them on your own.</p>
+                </div>
+              </div>
+            </div>
+            <div className="h-[108px] min-w-0 flex-1 rounded-t-[8px] bg-[#ececed] px-[24px] pb-[24px] pt-[16px]">
+              <div className="flex gap-[16px]">
+                <span className="flex size-[44px] shrink-0 items-center justify-center rounded-[8px] bg-[#d3d4d5] grayscale opacity-70">
+                  <TtsUiAsset name="influencer-selected.svg" size={26} />
+                </span>
+                <div className="min-w-0 text-[#6c6d6f]">
+                  <p className="text-[16px] font-medium leading-[24px]">Set up products for all creators</p>
+                  <p className="mt-[4px] max-w-[440px] text-[14px] leading-[20px]">Set commissions and let eligible creators discover and share your products with their audience.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="relative flex min-h-[806px] w-full flex-col gap-[16px] bg-white p-[24px]">
+            <div className="flex h-[40px] items-center justify-between">
+              <div className="flex h-full items-center gap-[32px] text-[16px] font-medium leading-[24px]">
+                <span>Explore opportunities</span>
+                <span className="flex h-full flex-col justify-between pt-[8px]">
+                  <span>My collaborations</span>
+                  <span className="h-[2px] w-full bg-[#009995]" />
+                </span>
+              </div>
+              <div className="flex items-center gap-[8px] text-[14px] font-medium leading-[20px]">
+                <span className="flex h-[32px] items-center gap-[4px] rounded-[4px] bg-[#f5f5f5] px-[12px]">Remaining outreach usage<TtsUiAsset name="tag.svg" size={16} /></span>
+                <span className="flex h-[32px] items-center gap-[4px] rounded-[4px] bg-[#009995] px-[12px] text-white">Invite to collaborate<TtsUiAsset name="down.svg" size={16} /></span>
+              </div>
+            </div>
+
+            <div className="grid h-[128px] w-full grid-cols-3 gap-[16px]">
+              <div className="flex flex-col justify-between rounded-[8px] bg-[#f5f5f5] p-[16px]">
+                <p className="w-[237px] text-[14px] font-medium leading-[20px] text-[#6c6d6f]">Invitations with sample request review</p>
+                <div>
+                  <p className="text-[20px] font-medium leading-[30px]">230</p>
+                  <span className="flex items-center gap-[2px] text-[14px] font-medium leading-[20px] text-[#009995]">Go to Samples<TtsUiAsset name="launch.svg" size={16} /></span>
+                </div>
+              </div>
+              <div className="flex flex-col justify-between rounded-[8px] bg-[#f5f5f5] p-[16px]">
+                <p className="w-[238px] text-[14px] font-medium leading-[20px] text-[#6c6d6f]">All flat fee invites with timely tasks</p>
+                <p className="text-[20px] font-medium leading-[30px]">20</p>
+              </div>
+              <div className={`flex flex-col justify-between rounded-[8px] p-[16px] transition-colors ${tooltipOpen ? "bg-[#e4e4e4]" : "bg-[#f5f5f5]"}`}>
+                <div className="flex items-start gap-[4px]">
+                  <p className="text-[14px] font-medium leading-[20px] text-[#6c6d6f]">Collaborations nearing invite limit</p>
+                  <button
+                    type="button"
+                    aria-label="Explain collaboration invite limit"
+                    aria-expanded={tooltipOpen}
+                    aria-controls="collaboration-invite-limit-tooltip"
+                    className="flex size-[20px] shrink-0 items-center justify-center rounded-[4px]"
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      setTooltipOpen((open) => !open);
+                    }}
+                  >
+                    <TtsUiAsset name="question-circle-gray.svg" size={16} />
+                  </button>
+                </div>
+                <span className="flex items-center gap-[6px] text-[20px] font-medium leading-[30px]">5<span className="text-[20px] font-normal text-[#6c6d6f]">→</span></span>
+              </div>
+            </div>
+
+            <div className="flex h-[32px] items-center gap-[8px] text-[14px] leading-[20px] text-black/65">
+              <div className="flex h-full w-[359px] items-center justify-between rounded-[4px] border border-black/15 bg-white px-[12px] text-black/35">Search by invitation<TtsUiAsset name="search.svg" size={16} /></div>
+              {[
+                ["Commission only", 179],
+                ["Platform outreach", 227],
+                ["Ongoing", 124],
+              ].map(([label, width]) => (
+                <div key={label} className="flex h-full items-center justify-between rounded-[4px] border border-[#d3d4d5] bg-white px-[12px]" style={{ width }}>
+                  <span>{label}</span><TtsUiAsset name="down-2.svg" size={16} />
+                </div>
+              ))}
+              <span className="px-[12px] font-medium text-[#017b77]">Reset</span>
+            </div>
+
+            <CollaborationTable />
+
+            {tooltipOpen ? (
+              <div
+                id="collaboration-invite-limit-tooltip"
+                role="tooltip"
+                className="absolute left-[744px] top-[-87px] z-30 w-[280px] rounded-[8px] bg-[#404142] px-[12px] py-[8px] text-[14px] leading-[20px] text-white shadow-[0_0_16px_rgba(0,0,0,0.2)]"
+                onClick={(event) => event.stopPropagation()}
+              >
+                All active collaborations include outreach to up to {"{number}"} creators. Once this limit is reached, additional outreach will use outreach credits.
+                <span className="absolute -bottom-[5px] right-[10px] size-0 border-x-[5px] border-t-[5px] border-x-transparent border-t-[#404142]" />
+              </div>
+            ) : null}
+          </div>
+        </div>
+      </main>
+    </div>
+  );
+}
+
+function ComplianceCollaborationsPanel() {
+  const stageRef = useRef<HTMLDivElement>(null);
+  const cameraRef = useRef<HTMLDivElement>(null);
+  const fitRef = useRef<HTMLDivElement>(null);
+
+  useDemoFit(stageRef, fitRef, 1440, cameraRef, collaborationsHeight);
+
+  return (
+    <figure className="mt-8 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-3 sm:mt-10 sm:p-6">
+      <div ref={stageRef} className="tts-collab-stage">
+        <div ref={cameraRef} className={`tts-collab-camera overflow-hidden rounded-[20px] ${UI_SHADOW}`}>
+          <div ref={fitRef} className="tts-demo-fit">
+            <CollaborationOverviewScreen />
+          </div>
+        </div>
+      </div>
+    </figure>
   );
 }
 
@@ -2356,19 +2695,7 @@ export function CaseStudyGate() {
             Legal and Product initially proposed notifying sellers when a collaboration was approaching the outreach threshold.
           </p>
 
-          <figure className="mt-8 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-3 sm:mt-10 sm:p-6">
-            <div className="relative mx-auto aspect-[1024/673] w-full max-w-[1024px] overflow-hidden rounded-[20px]">
-              <img
-                src="/projects/tts-ui/collaboration-overview.png"
-                alt="TikTok Shop Seller Center collaboration overview for the Skin Care Collection, showing outreach progress, approval rate, creator totals, and matched creator records."
-                width={1024}
-                height={673}
-                loading="lazy"
-                decoding="async"
-                className="absolute -left-[4.12%] -top-[1.29%] h-auto w-[108.25%] max-w-none"
-              />
-            </div>
-          </figure>
+          <ComplianceCollaborationsPanel />
 
           <p className="mt-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]">
             I saw a gap in this approach: <span className="font-semibold text-foreground">the platform was doing the matching, but sellers would only learn about the consequence after the risk had already accumulated with limited ability to course-correct.</span> This could erode trust in the platform-driven experience.
