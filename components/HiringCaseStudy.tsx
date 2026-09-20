@@ -40,6 +40,10 @@ export function HiringCaseStudy() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [afterSlide, setAfterSlide] = useState(0);
   const [hiringManagerSlide, setHiringManagerSlide] = useState(0);
+  const [executionMode, setExecutionMode] = useState<"before" | "after">("after");
+  const [afterAudience, setAfterAudience] = useState<
+    "operations" | "hiring-manager" | "job-applicant"
+  >("operations");
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -234,111 +238,108 @@ export function HiringCaseStudy() {
               <h2 className="font-sans text-[clamp(1.125rem,4vw,1.5rem)] font-semibold tracking-tight text-foreground">
                 Design execution
               </h2>
-            </div>
-
-            <div className="mt-10 space-y-6">
-              <figure className="rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
-                <div className="w-full aspect-video flex items-center justify-center bg-foreground/5 rounded-lg">
-                  {currentSlide === 0 && (
-                    <img
-                      src="https://www.figma.com/api/mcp/asset/59ff5460-5854-499e-afbc-92efcbf2e75c/40174.png"
-                      alt="Location management screen"
-                      className="w-full h-auto max-w-none"
-                    />
-                  )}
-                  {currentSlide === 1 && (
-                    <img
-                      src="https://www.figma.com/api/mcp/asset/c024e64c-7714-46e4-a82f-c1ed8f84e3c5/38ef3.png"
-                      alt="Candidate sourcing screen"
-                      className="w-full h-auto max-w-none"
-                    />
-                  )}
-                  {currentSlide === 2 && (
-                    <img
-                      src="https://www.figma.com/api/mcp/asset/a4ce3e61-6bbe-4b01-a18a-8ac45d80c40d/05d77.png"
-                      alt="Account level management screen"
-                      className="w-full h-auto max-w-none"
-                    />
-                  )}
-                </div>
-                <figcaption className="mt-6 font-sans text-[13px] leading-[1.6] text-foreground/60 sm:text-[14px]">
-                  {currentSlide === 0 && "Location management: Users managed location information and staff hiring directly within the platform."}
-                  {currentSlide === 1 && "Candidate sourcing: All participants were displayed in a single comprehensive table with filtering and scoring capabilities."}
-                  {currentSlide === 2 && "Account level management: Administrative settings and automation preferences were centralized in the account management section."}
-                </figcaption>
-              </figure>
-
-              <div className="flex items-center justify-center gap-2">
-                {[0, 1, 2].map((index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentSlide(index)}
-                    className={`h-2 rounded-full transition-all ${
-                      index === currentSlide
-                        ? "w-8 bg-foreground"
-                        : "w-2 bg-foreground/30 hover:bg-foreground/50"
-                    }`}
-                    aria-label={`View screen ${index + 1}`}
-                  />
-                ))}
+              <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2" aria-label="Design execution state">
+                <button
+                  type="button"
+                  aria-pressed={executionMode === "before"}
+                  onClick={() => setExecutionMode("before")}
+                  className={`min-h-[72px] rounded-xl border px-4 py-3 text-left font-sans text-[14px] leading-[1.45] transition-colors sm:text-[15px] ${
+                    executionMode === "before"
+                      ? "border-foreground bg-foreground text-background"
+                      : "border-foreground/15 bg-foreground/[0.03] text-foreground/70 hover:border-foreground/30 hover:text-foreground"
+                  }`}
+                >
+                  <span className="font-semibold">Before:</span> All in one platform used by customer success team.
+                </button>
+                <button
+                  type="button"
+                  aria-pressed={executionMode === "after"}
+                  onClick={() => setExecutionMode("after")}
+                  className={`min-h-[72px] rounded-xl border px-4 py-3 text-left font-sans text-[14px] leading-[1.45] transition-colors sm:text-[15px] ${
+                    executionMode === "after"
+                      ? "border-foreground bg-foreground text-background"
+                      : "border-foreground/15 bg-foreground/[0.03] text-foreground/70 hover:border-foreground/30 hover:text-foreground"
+                  }`}
+                >
+                  <span className="font-semibold">After:</span> Individual view and solutions for each user segments.
+                </button>
               </div>
             </div>
 
-            <div className="mt-12 border-t border-foreground/10 pt-10 sm:mt-14 sm:pt-12">
-              <h2 className="font-sans text-[clamp(1.125rem,4vw,1.5rem)] font-semibold tracking-tight text-foreground">
-                After: Hiring Manager view
-              </h2>
-            </div>
-
-            <div className="mt-10 space-y-6">
-              <figure className="rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
-                <div className="w-full aspect-video flex items-center justify-center bg-foreground/5 rounded-lg overflow-auto">
-                  {hiringManagerSlide === 0 && (
-                    <img
-                      src="https://www.figma.com/api/mcp/asset/9ee0f701-1246-4aeb-b3e9-57d2b91bc2f6/5498d.png"
-                      alt="View all talent source and interview prep in web app"
-                      className="w-full h-auto max-w-none"
-                    />
-                  )}
-                  {hiringManagerSlide === 1 && (
-                    <img
-                      src="https://www.figma.com/api/mcp/asset/5f98b044-04b9-4157-b7e4-956fbf13d318/ce628.png"
-                      alt="Scheduling and manage interview in mobile app"
-                      className="w-full h-auto max-w-none"
-                    />
-                  )}
-                </div>
-                <figcaption className="mt-6 font-sans text-[13px] leading-[1.6] text-foreground/60 sm:text-[14px]">
-                  {hiringManagerSlide === 0 && "Web application: Comprehensive view of all candidates, talent sources, and interview preparation tools for managing the hiring process across locations."}
-                  {hiringManagerSlide === 1 && "Mobile application: Scheduling and managing interviews on-the-go with calendar integration, availability management, and interview tracking."}
-                </figcaption>
-              </figure>
-
-              <div className="flex items-center justify-center gap-2">
-                {[0, 1].map((index) => (
+            {executionMode === "after" ? (
+              <div className="mt-6 grid grid-cols-1 gap-2 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-1 sm:grid-cols-3" aria-label="After design user segment">
+                {([
+                  ["operations", "Operations"],
+                  ["hiring-manager", "Hiring Manager"],
+                  ["job-applicant", "Job Applicant"],
+                ] as const).map(([value, label]) => (
                   <button
-                    key={index}
-                    onClick={() => setHiringManagerSlide(index)}
-                    className={`h-2 rounded-full transition-all ${
-                      index === hiringManagerSlide
-                        ? "w-8 bg-foreground"
-                        : "w-2 bg-foreground/30 hover:bg-foreground/50"
+                    key={value}
+                    type="button"
+                    aria-pressed={afterAudience === value}
+                    onClick={() => setAfterAudience(value)}
+                    className={`min-h-10 rounded-lg px-4 py-2 font-sans text-[14px] font-medium transition-colors ${
+                      afterAudience === value
+                        ? "bg-background text-foreground shadow-sm"
+                        : "text-foreground/55 hover:text-foreground"
                     }`}
-                    aria-label={`View screen ${index + 1}`}
-                  />
+                  >
+                    {label}
+                  </button>
                 ))}
               </div>
-            </div>
+            ) : null}
 
-            <div className="mt-12 border-t border-foreground/10 pt-10 sm:mt-14 sm:pt-12">
-              <h2 className="font-sans text-[clamp(1.125rem,4vw,1.5rem)] font-semibold tracking-tight text-foreground">
-                After: Operation view
-              </h2>
-            </div>
+            {executionMode === "before" ? (
+              <div className="mt-10 space-y-6">
+                <figure className="overflow-hidden rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
+                  <div className="flex aspect-video w-full items-center justify-center rounded-lg bg-foreground/5">
+                    {currentSlide === 0 && (
+                      <img
+                        src="https://www.figma.com/api/mcp/asset/59ff5460-5854-499e-afbc-92efcbf2e75c/40174.png"
+                        alt="Location management screen"
+                        className="h-auto w-full max-w-none"
+                      />
+                    )}
+                    {currentSlide === 1 && (
+                      <img
+                        src="https://www.figma.com/api/mcp/asset/c024e64c-7714-46e4-a82f-c1ed8f84e3c5/38ef3.png"
+                        alt="Candidate sourcing screen"
+                        className="h-auto w-full max-w-none"
+                      />
+                    )}
+                    {currentSlide === 2 && (
+                      <img
+                        src="https://www.figma.com/api/mcp/asset/a4ce3e61-6bbe-4b01-a18a-8ac45d80c40d/05d77.png"
+                        alt="Account level management screen"
+                        className="h-auto w-full max-w-none"
+                      />
+                    )}
+                  </div>
+                  <figcaption className="mt-6 font-sans text-[13px] leading-[1.6] text-foreground/60 sm:text-[14px]">
+                    {currentSlide === 0 && "Location management: Users managed location information and staff hiring directly within the platform."}
+                    {currentSlide === 1 && "Candidate sourcing: All participants were displayed in a single comprehensive table with filtering and scoring capabilities."}
+                    {currentSlide === 2 && "Account level management: Administrative settings and automation preferences were centralized in the account management section."}
+                  </figcaption>
+                </figure>
+                <div className="flex items-center justify-center gap-2">
+                  {[0, 1, 2].map((index) => (
+                    <button
+                      key={index}
+                      type="button"
+                      onClick={() => setCurrentSlide(index)}
+                      className={`h-2 rounded-full transition-all ${index === currentSlide ? "w-8 bg-foreground" : "w-2 bg-foreground/30 hover:bg-foreground/50"}`}
+                      aria-label={`View before screen ${index + 1}`}
+                    />
+                  ))}
+                </div>
+              </div>
+            ) : null}
 
-            <div className="mt-10 space-y-6">
-              <figure className="rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
-                <div className="w-full aspect-video flex items-center justify-center bg-foreground/5 rounded-lg overflow-auto">
+            {executionMode === "after" && afterAudience === "operations" ? (
+              <div className="mt-10 space-y-6">
+                <figure className="overflow-hidden rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
+                  <div className="flex aspect-video w-full items-center justify-center overflow-auto rounded-lg bg-foreground/5">
                   {afterSlide === 0 && (
                     <img
                       src="https://www.figma.com/api/mcp/asset/f2226e71-b286-4e5e-9867-00726c1740df/44af3.png"
@@ -367,22 +368,78 @@ export function HiringCaseStudy() {
                   {afterSlide === 2 && "Account level management: Dedicated company settings interface for managing organization preferences, branding, and administrative configurations."}
                 </figcaption>
               </figure>
-
               <div className="flex items-center justify-center gap-2">
                 {[0, 1, 2].map((index) => (
                   <button
                     key={index}
+                    type="button"
                     onClick={() => setAfterSlide(index)}
                     className={`h-2 rounded-full transition-all ${
                       index === afterSlide
                         ? "w-8 bg-foreground"
                         : "w-2 bg-foreground/30 hover:bg-foreground/50"
                     }`}
-                    aria-label={`View screen ${index + 1}`}
+                      aria-label={`View screen ${index + 1}`}
                   />
                 ))}
               </div>
-            </div>
+              </div>
+            ) : null}
+
+            {executionMode === "after" && afterAudience === "hiring-manager" ? (
+              <div className="mt-10 space-y-6">
+                <figure className="overflow-hidden rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
+                  <div className="flex aspect-video w-full items-center justify-center overflow-auto rounded-lg bg-foreground/5">
+                    {hiringManagerSlide === 0 && (
+                      <img
+                        src="https://www.figma.com/api/mcp/asset/9ee0f701-1246-4aeb-b3e9-57d2b91bc2f6/5498d.png"
+                        alt="View all talent source and interview prep in web app"
+                        className="h-auto w-full max-w-none"
+                      />
+                    )}
+                    {hiringManagerSlide === 1 && (
+                      <img
+                        src="https://www.figma.com/api/mcp/asset/5f98b044-04b9-4157-b7e4-956fbf13d318/ce628.png"
+                        alt="Scheduling and manage interview in mobile app"
+                        className="h-auto w-full max-w-none"
+                      />
+                    )}
+                  </div>
+                  <figcaption className="mt-6 font-sans text-[13px] leading-[1.6] text-foreground/60 sm:text-[14px]">
+                    {hiringManagerSlide === 0 && "Web application: Comprehensive view of all candidates, talent sources, and interview preparation tools for managing the hiring process across locations."}
+                    {hiringManagerSlide === 1 && "Mobile application: Scheduling and managing interviews on-the-go with calendar integration, availability management, and interview tracking."}
+                  </figcaption>
+                </figure>
+                <div className="flex items-center justify-center gap-2">
+                  {[0, 1].map((index) => (
+                    <button
+                      key={index}
+                      type="button"
+                      onClick={() => setHiringManagerSlide(index)}
+                      className={`h-2 rounded-full transition-all ${index === hiringManagerSlide ? "w-8 bg-foreground" : "w-2 bg-foreground/30 hover:bg-foreground/50"}`}
+                      aria-label={`View hiring manager screen ${index + 1}`}
+                    />
+                  ))}
+                </div>
+              </div>
+            ) : null}
+
+            {executionMode === "after" && afterAudience === "job-applicant" ? (
+              <div className="mt-10 space-y-6">
+                <figure className="overflow-hidden rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
+                  <div className="flex aspect-video w-full items-center justify-center overflow-hidden rounded-lg bg-foreground/5">
+                    <img
+                      src="/projects/hiring-app/screens/screen-16.png"
+                      alt="Job applicant mobile interview and scheduling flow"
+                      className="h-full w-full object-contain"
+                    />
+                  </div>
+                  <figcaption className="mt-6 font-sans text-[13px] leading-[1.6] text-foreground/60 sm:text-[14px]">
+                    Mobile applicant experience: Candidates complete their virtual interview, provide required information, and schedule a conversation in one guided flow.
+                  </figcaption>
+                </figure>
+              </div>
+            ) : null}
           </section>
         </div>
       </article>
