@@ -76,7 +76,9 @@ export function HiringCaseStudy() {
               Context
             </h2>
             <p className="mt-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-6 sm:text-[17px]">
-              Sprockets has launched their MVP that used by internal customer success team to help franchise business (fast food / gas stations) source hourly works and hire better for them, the core technology behind it is an AI analysis on candidates answers from an online assessment. The company faced a bottleneck to continue grow, they planned to refresh the MVP products for more self-serviced within the same target market. I joined the team to see how self-serviced should be fleshed out and still maintain its core value of mvp.
+              Sprockets had validated its MVP with franchise businesses, using <strong>AI-powered candidate assessments</strong> to help them identify and hire better hourly workers. But much of the experience was still operated by Sprockets&apos; internal Customer Success team.
+              <br />
+              To scale, the company needed to evolve from a <strong>service-led MVP into a self-service product</strong>—without losing the core value that made the MVP successful. I joined to help define what that experience should become.
             </p>
 
             <div className="grid grid-cols-1 gap-6 mt-8 sm:mt-10 sm:grid-cols-2">
