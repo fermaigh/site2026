@@ -1043,7 +1043,7 @@ function CollaborationOverviewScreen() {
                 <p className="w-[238px] text-[14px] font-medium leading-[20px] text-[#6c6d6f]">All flat fee invites with timely tasks</p>
                 <p className="text-[20px] font-medium leading-[30px]">20</p>
               </div>
-              <div className="flex flex-col justify-between rounded-[8px] bg-[#f5f5f5] p-[16px]">
+              <div className="flex flex-col justify-between rounded-[8px] bg-[#f5f5f5] p-[16px] transition-colors hover:bg-[#e4e4e4] focus-within:bg-[#e4e4e4]">
                 <div className="flex items-start gap-[4px]">
                   <p className="text-[14px] font-medium leading-[20px] text-[#6c6d6f]">Collaborations nearing invite limit</p>
                   <button
@@ -1103,6 +1103,143 @@ function ComplianceCollaborationsPanel() {
         <div ref={cameraRef} className={`tts-collab-camera overflow-hidden rounded-[20px] ${UI_SHADOW}`}>
           <div ref={fitRef} className="tts-demo-fit">
             <CollaborationOverviewScreen />
+          </div>
+        </div>
+      </div>
+    </figure>
+  );
+}
+
+/* ---- Proactive compliance state — Figma node 1846-176193 ---- */
+
+const PROACTIVE_COMPLIANCE_HEIGHT = 944;
+const proactiveComplianceHeight = () => PROACTIVE_COMPLIANCE_HEIGHT;
+
+function ProactiveProgressCard({
+  title,
+  value,
+  detail,
+}: {
+  title: string;
+  value: string;
+  detail?: string;
+}) {
+  return (
+    <div className="flex h-[132px] min-w-0 flex-1 flex-col justify-between rounded-[6px] border border-black/10 bg-[#f5f5f5] p-[16px]">
+      <p className="text-[14px] font-medium leading-[20px] text-black">{title}</p>
+      <div className="flex h-[66px] flex-col gap-[6px]">
+        <p className="text-[16px] font-medium leading-[24px] text-[#009995]">{value}</p>
+        {detail ? <p className="text-[12px] leading-[18px] text-[#6c6d6f]">{detail}</p> : null}
+      </div>
+    </div>
+  );
+}
+
+function ProactiveComplianceScreen() {
+  return (
+    <div className="tts-collab-ui relative h-[944px] w-[1440px] overflow-hidden bg-[#f5f5f5]">
+      <ScreenTopNav />
+      <CollaborationSidebar />
+
+      <main className="absolute left-[220px] top-[60px] h-[1200px] w-[1220px] bg-[#f5f5f5]">
+        <div className="absolute left-[24px] top-[24px] flex h-[58px] w-[1172px] items-start">
+          <div className="flex w-[935px] items-start gap-[8px]">
+            <ScreenBackButton />
+            <div className="flex min-w-0 flex-1 flex-col gap-[2px]">
+              <div className="flex h-[36px] items-center gap-[4px]">
+                <h3 className="max-w-[700px] truncate text-[28px] font-bold leading-[36px] text-[#171718]">Skin Care Collection</h3>
+                <span className="flex h-[20px] items-center rounded-[10px] bg-[#dbf5dd] px-[6px] text-[12px] leading-[18px] text-[#1a6d31]">Ongoing</span>
+              </div>
+              <p className="truncate text-[14px] leading-[20px] text-black/55">Updated on Aug 12, 16:00 (GMT+8:00)</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="absolute left-[24px] top-[98px] flex h-[40px] w-[1040px] items-center justify-between">
+          <div className="flex h-full items-center gap-[32px] text-[16px] font-medium leading-[24px] text-[#171718]">
+            <span className="flex h-full flex-col justify-between pt-[8px]"><span>Overview</span><span className="h-[2px] w-full bg-[#009995]" /></span>
+            <span>Detailed performance</span>
+            <span>Collaboration detail</span>
+          </div>
+          <span className="flex size-[40px] items-center justify-center rounded-[4px] bg-[#ececed]"><TtsUiAsset name="more.svg" size={16} /></span>
+        </div>
+
+        <section className="absolute left-[24px] top-[154px] flex h-[200px] w-[1040px] flex-col gap-[8px] rounded-[8px] bg-white p-[16px]">
+          <h4 className="text-[20px] font-medium leading-[28px] text-black/90">Progress</h4>
+          <div className="flex h-[132px] w-full gap-[12px]">
+            <div className="flex h-[132px] min-w-0 flex-1 flex-col justify-between rounded-[6px] border border-black/10 bg-[#f5f5f5] p-[16px]">
+              <div className="flex flex-col gap-[4px]">
+                <div className="flex items-start justify-between">
+                  <p className="text-[14px] font-medium leading-[20px] text-black">Platform outreach</p>
+                  <TtsUiAsset name="more.svg" size={16} />
+                </div>
+                <p className="text-[12px] leading-[18px] text-[#6c6d6f]">Aug 2 – Sep 2, 2026</p>
+              </div>
+              <div className="flex flex-col gap-[4px]">
+                <span className="flex h-[6px] w-full"><span className="h-full flex-1 bg-[#009995]" /><span className="h-full flex-1 bg-[#d3d4d5]" /></span>
+                <p className="text-[12px] leading-[18px] text-[#6c6d6f]">233/466 samples used</p>
+              </div>
+            </div>
+
+            <div className="group/approval flex h-[132px] min-w-0 flex-1 flex-col justify-between rounded-[6px] border border-black/10 bg-[#f5f5f5] p-[16px] transition-colors hover:bg-[#e4e4e4] focus-within:bg-[#e4e4e4]">
+              <p className="text-[14px] font-medium leading-[20px] text-black">Sample approval rate</p>
+              <div className="flex h-[66px] flex-col gap-[6px]">
+                <div className="flex items-center gap-[6px]">
+                  <p className="text-[16px] font-medium leading-[24px] text-[#009995]">18%</p>
+                  <button
+                    type="button"
+                    aria-label="Explain the sample approval rate warning"
+                    aria-describedby="sample-approval-tooltip"
+                    className="group/alert relative flex size-[16px] items-center justify-center rounded-[2px]"
+                  >
+                    <TtsUiAsset name="approval-alert.png" size={12} />
+                    <span
+                      id="sample-approval-tooltip"
+                      role="tooltip"
+                      className="pointer-events-none invisible absolute bottom-[22px] left-1/2 z-30 w-[280px] -translate-x-1/2 rounded-[8px] bg-[#404142] px-[12px] py-[8px] text-left text-[14px] font-normal leading-[20px] text-white opacity-0 shadow-[0_0_16px_rgba(0,0,0,0.2)] transition-opacity group-hover/alert:visible group-hover/alert:opacity-100 group-focus-visible/alert:visible group-focus-visible/alert:opacity-100"
+                    >
+                      Your sample approval rate is approaching the 10% threshold. If it drops below 10%, additional outreach will use outreach credits.
+                      <span className="absolute -bottom-[5px] left-1/2 size-0 -translate-x-1/2 border-x-[5px] border-t-[5px] border-x-transparent border-t-[#404142]" />
+                    </span>
+                  </button>
+                </div>
+                <button type="button" className="-ml-[3px] w-fit rounded-[3px] px-[3px] text-left text-[14px] leading-[18px] text-[#525253] transition-colors hover:bg-white/75 hover:text-[#017b77] focus-visible:bg-white/75 focus-visible:text-[#017b77] focus-visible:outline-none">View sample requests</button>
+              </div>
+            </div>
+
+            <ProactiveProgressCard title="Total creators" value="164" detail="87% match rate" />
+            <ProactiveProgressCard title="Video posted" value="200" />
+          </div>
+        </section>
+
+        <div className="absolute left-[24px] top-[370px] h-[574px] w-[1040px] overflow-hidden rounded-[4px] bg-white">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/projects/tts-ui/collaboration-detail-table.png"
+            alt="Creator collaborations table showing matched creators, products, commission rates, sample statuses, and actions."
+            width={1024}
+            height={507}
+            className="block h-auto w-[1040px] max-w-none"
+          />
+        </div>
+      </main>
+    </div>
+  );
+}
+
+function ProactiveCompliancePanel() {
+  const stageRef = useRef<HTMLDivElement>(null);
+  const cameraRef = useRef<HTMLDivElement>(null);
+  const fitRef = useRef<HTMLDivElement>(null);
+
+  useDemoFit(stageRef, fitRef, 1440, cameraRef, proactiveComplianceHeight);
+
+  return (
+    <figure className="mt-8 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-3 sm:mt-10 sm:p-6">
+      <div ref={stageRef} className="tts-collab-stage">
+        <div ref={cameraRef} className={`tts-collab-camera overflow-hidden rounded-[20px] ${UI_SHADOW}`}>
+          <div ref={fitRef} className="tts-demo-fit">
+            <ProactiveComplianceScreen />
           </div>
         </div>
       </div>
@@ -2695,149 +2832,7 @@ export function CaseStudyGate() {
             I proposed intervening earlier: Surfacing an alert when the sample approval rate begins approaching the threshold, explain what it is, and give sellers a direct path to review pending sample requests and improve the rate.
           </p>
 
-          <figure className="mt-8 sm:mt-10 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
-            <div className="bg-background rounded-lg border border-foreground/10 overflow-hidden">
-              {/* Top Navigation */}
-              <div className="flex items-center justify-between px-6 py-4 border-b border-foreground/10 bg-foreground/[0.02]">
-                <div className="flex items-center gap-2">
-                  <div className="w-6 h-6 rounded-sm bg-foreground/20" />
-                  <span className="font-semibold text-[15px] text-foreground">Seller Center</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <button className="p-2 hover:bg-foreground/5 rounded">
-                    <svg className="w-5 h-5 text-foreground/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <circle cx="12" cy="12" r="10" />
-                      <path d="M12 16v-4M12 8h.01" />
-                    </svg>
-                  </button>
-                  <div className="w-8 h-8 rounded-full bg-foreground/15" />
-                </div>
-              </div>
-
-              {/* Page Header with Back Button */}
-              <div className="px-6 py-4 border-b border-foreground/10">
-                <div className="flex items-center gap-3">
-                  <button className="p-2 hover:bg-foreground/5 rounded text-foreground/60 hover:text-foreground">
-                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M15 19l-7-7 7-7" />
-                    </svg>
-                  </button>
-                  <h2 className="text-[18px] font-semibold text-foreground">Collaboration Overview</h2>
-                </div>
-              </div>
-
-              {/* Tabs */}
-              <div className="flex gap-6 px-6 border-b border-foreground/10 bg-foreground/[0.02]">
-                <button className="py-4 text-[14px] font-medium text-foreground border-b-2 border-foreground">All</button>
-                <button className="py-4 text-[14px] text-foreground/50 hover:text-foreground/70">Active</button>
-              </div>
-
-              {/* Content */}
-              <div className="p-6 space-y-6">
-                {/* Store Collaboration Boards */}
-                <div>
-                  <h3 className="text-[15px] font-semibold text-foreground mb-4">Active Collaborations</h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    {[
-                      { store: "Default Store", desc: "Summer Collection", progress: 65 },
-                      { store: "Beauty Hub", desc: "Spring Launch", progress: 45, warning: true },
-                      { store: "Fashion Forward", desc: "New Arrivals", progress: 85 },
-                      { store: "Home & Living", desc: "Seasonal Update", progress: 30 },
-                    ].map((item, idx) => (
-                      <div key={idx} className="border border-foreground/10 rounded-lg p-4 bg-foreground/[0.02]">
-                        <div className="flex items-start justify-between mb-3">
-                          <div>
-                            <p className="text-[13px] font-semibold text-foreground">{item.store}</p>
-                            <p className="text-[12px] text-foreground/50 mt-1">{item.desc}</p>
-                          </div>
-                          <button className="text-foreground/40 hover:text-foreground/60">
-                            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                              <circle cx="12" cy="5" r="2" />
-                              <circle cx="12" cy="12" r="2" />
-                              <circle cx="12" cy="19" r="2" />
-                            </svg>
-                          </button>
-                        </div>
-                        <div className="space-y-2">
-                          <div className="w-full h-1.5 bg-foreground/10 rounded-full overflow-hidden">
-                            <div className="h-full bg-foreground" style={{width: `${item.progress}%`}} />
-                          </div>
-                          <p className="text-[11px] text-foreground/50">{item.progress}% Complete</p>
-                          {item.warning && (
-                            <div className="flex items-center gap-1 mt-2 text-[11px] text-foreground/60">
-                              <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor">
-                                <circle cx="12" cy="12" r="10" />
-                              </svg>
-                              Attention needed
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Collaborations Table */}
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-[15px] font-semibold text-foreground">All Collaborations</h3>
-                    <button className="text-[13px] text-foreground/60 hover:text-foreground">Edit invitations</button>
-                  </div>
-
-                  <div className="overflow-x-auto">
-                    <table className="w-full text-[12px]">
-                      <thead>
-                        <tr className="border-b border-foreground/10 bg-foreground/[0.02]">
-                          <th className="text-left font-medium text-foreground/70 px-4 py-3">Creator</th>
-                          <th className="text-left font-medium text-foreground/70 px-4 py-3">Product</th>
-                          <th className="text-left font-medium text-foreground/70 px-4 py-3">Sent Date</th>
-                          <th className="text-left font-medium text-foreground/70 px-4 py-3">Status</th>
-                          <th className="text-left font-medium text-foreground/70 px-4 py-3">Engagement</th>
-                          <th className="text-left font-medium text-foreground/70 px-4 py-3">Actions</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {[
-                          { creator: "Sarah Chen", product: "Blender Beauty 美妆蛋", sent: "12/15/2026", status: "Accepted", engagement: "4.2K views" },
-                          { creator: "Emma Davis", product: "Essence精华", sent: "12/10/2026", status: "In Review", engagement: "2.1K views" },
-                          { creator: "Lisa Wong", product: "Skincare Pro Kit", sent: "12/08/2026", status: "Sent", engagement: "1.8K views" },
-                          { creator: "Maya Patel", product: "Glow Serum", sent: "12/05/2026", status: "Accepted", engagement: "5.6K views" },
-                        ].map((item, idx) => (
-                          <tr key={idx} className="border-b border-foreground/5 hover:bg-foreground/[0.02]">
-                            <td className="px-4 py-3">
-                              <div className="flex items-center gap-2">
-                                <div className="w-6 h-6 rounded-full bg-foreground/15" />
-                                <span className="text-foreground">{item.creator}</span>
-                              </div>
-                            </td>
-                            <td className="px-4 py-3 text-foreground/70">{item.product}</td>
-                            <td className="px-4 py-3 text-foreground/60">{item.sent}</td>
-                            <td className="px-4 py-3">
-                              <span className={`text-[11px] font-medium px-2 py-1 rounded-full ${
-                                item.status === "Accepted" ? "bg-foreground/10 text-foreground" :
-                                item.status === "In Review" ? "bg-foreground/5 text-foreground/60" :
-                                "bg-foreground/5 text-foreground/50"
-                              }`}>
-                                {item.status}
-                              </span>
-                            </td>
-                            <td className="px-4 py-3 text-foreground/60">{item.engagement}</td>
-                            <td className="px-4 py-3">
-                              <button className="text-foreground/50 hover:text-foreground">
-                                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                  <path d="M13 9l3 3L8 20H4v-4l9-11z" />
-                                </svg>
-                              </button>
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </figure>
+          <ProactiveCompliancePanel />
 
           <p className="mt-8 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-10 sm:text-[17px]">
             This shifted compliance from a <span className="font-semibold">late-stage warning to proactive guidance</span>, which breaks down complex requirements into clear, timely information and an action sellers could take before reaching the threshold.
