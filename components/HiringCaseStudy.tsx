@@ -531,7 +531,7 @@ export function HiringCaseStudy() {
                       <img
                         src="https://www.figma.com/api/mcp/asset/5f98b044-04b9-4157-b7e4-956fbf13d318/ce628.png"
                         alt="Scheduling and manage interview in mobile app"
-                        className="h-auto w-full max-w-none"
+                        className="h-full w-full max-w-full object-contain"
                       />
                     )}
                   </div>
