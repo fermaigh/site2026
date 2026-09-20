@@ -2357,7 +2357,7 @@ export function CaseStudyGate() {
           </p>
 
           <figure className="mt-8 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-3 sm:mt-10 sm:p-6">
-            <div className="relative mx-auto aspect-[1024/673] w-full max-w-[1024px] overflow-hidden rounded-lg">
+            <div className="relative mx-auto aspect-[1024/673] w-full max-w-[1024px] overflow-hidden rounded-[20px]">
               <img
                 src="/projects/tts-ui/collaboration-overview.png"
                 alt="TikTok Shop Seller Center collaboration overview for the Skin Care Collection, showing outreach progress, approval rate, creator totals, and matched creator records."
