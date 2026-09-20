@@ -37,6 +37,7 @@ export function HiringCaseStudy() {
   const isUnlocked = useSyncExternalStore(subscribeNever, readSession);
   const [value, setValue] = useState("");
   const [error, setError] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -171,6 +172,60 @@ export function HiringCaseStudy() {
             <p className="mt-12 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-14 sm:text-[17px]">
               Continue developing into a user journey to visualize how each group of users get their jobs done, helping cross-functional teams visualize the system and prioritization roadmap.
             </p>
+
+            <div className="mt-12 border-t border-foreground/10 pt-10 sm:mt-14 sm:pt-12">
+              <h2 className="font-sans text-[clamp(1.125rem,4vw,1.5rem)] font-semibold tracking-tight text-foreground">
+                Before: All in one platform
+              </h2>
+            </div>
+
+            <div className="mt-10 space-y-6">
+              <figure className="rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
+                <div className="w-full aspect-video flex items-center justify-center bg-foreground/5 rounded-lg">
+                  {currentSlide === 0 && (
+                    <img
+                      src="https://www.figma.com/api/mcp/asset/59ff5460-5854-499e-afbc-92efcbf2e75c/40174.png"
+                      alt="Location management screen"
+                      className="w-full h-auto max-w-none"
+                    />
+                  )}
+                  {currentSlide === 1 && (
+                    <img
+                      src="https://www.figma.com/api/mcp/asset/c024e64c-7714-46e4-a82f-c1ed8f84e3c5/38ef3.png"
+                      alt="Candidate sourcing screen"
+                      className="w-full h-auto max-w-none"
+                    />
+                  )}
+                  {currentSlide === 2 && (
+                    <img
+                      src="https://www.figma.com/api/mcp/asset/a4ce3e61-6bbe-4b01-a18a-8ac45d80c40d/05d77.png"
+                      alt="Account level management screen"
+                      className="w-full h-auto max-w-none"
+                    />
+                  )}
+                </div>
+                <figcaption className="mt-6 font-sans text-[13px] leading-[1.6] text-foreground/60 sm:text-[14px]">
+                  {currentSlide === 0 && "Location management: Users managed location information and staff hiring directly within the platform."}
+                  {currentSlide === 1 && "Candidate sourcing: All participants were displayed in a single comprehensive table with filtering and scoring capabilities."}
+                  {currentSlide === 2 && "Account level management: Administrative settings and automation preferences were centralized in the account management section."}
+                </figcaption>
+              </figure>
+
+              <div className="flex items-center justify-center gap-2">
+                {[0, 1, 2].map((index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentSlide(index)}
+                    className={`h-2 rounded-full transition-all ${
+                      index === currentSlide
+                        ? "w-8 bg-foreground"
+                        : "w-2 bg-foreground/30 hover:bg-foreground/50"
+                    }`}
+                    aria-label={`View screen ${index + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
 
             <div className="mt-12 border-t border-foreground/10 pt-10 sm:mt-14 sm:pt-12">
               <h2 className="font-sans text-[clamp(1.125rem,4vw,1.5rem)] font-semibold tracking-tight text-foreground">
