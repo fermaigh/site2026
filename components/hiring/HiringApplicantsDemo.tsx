@@ -320,7 +320,11 @@ function DrawerBody({ applicant }: { applicant: Applicant }) {
   );
 }
 
-export function HiringApplicantsDemo() {
+export function HiringApplicantsDemo({
+  showHeading = true,
+}: {
+  showHeading?: boolean;
+} = {}) {
   const stageRef = useRef<HTMLDivElement>(null);
   const cameraRef = useRef<HTMLDivElement>(null);
   const uiRef = useRef<HTMLDivElement>(null);
@@ -390,10 +394,15 @@ export function HiringApplicantsDemo() {
   useDemoPlayback(cameraRef, "hiring-demo-active");
 
   return (
-    <section className="mt-16 sm:mt-20" aria-label="Applicant review live demo">
-      <h3 className="mb-8 font-sans text-[clamp(1.125rem,4vw,1.5rem)] font-semibold tracking-tight text-foreground">
-        Reviewing applicants by match score
-      </h3>
+    <section
+      className={showHeading ? "mt-16 sm:mt-20" : "w-full"}
+      aria-label="Applicant review live demo"
+    >
+      {showHeading ? (
+        <h3 className="mb-8 font-sans text-[clamp(1.125rem,4vw,1.5rem)] font-semibold tracking-tight text-foreground">
+          Reviewing applicants by match score
+        </h3>
+      ) : null}
       <div ref={stageRef} className="hiring-demo-stage">
         <div className="hiring-demo-bezel">
           <div ref={cameraRef} className="hiring-demo-camera">

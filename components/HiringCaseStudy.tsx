@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useSyncExternalStore, type FormEvent } from "react";
+import { HiringApplicantsDemo } from "@/components/hiring/HiringApplicantsDemo";
 
 const PASSCODE = "0000";
 const SESSION_KEY = "hiring-case-study-unlocked";
@@ -519,13 +520,9 @@ export function HiringCaseStudy() {
             {executionMode === "after" && afterAudience === "hiring-manager" ? (
               <div className="mt-10 space-y-6">
                 <figure className="overflow-hidden rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
-                  <div className="flex aspect-video w-full items-center justify-center overflow-auto rounded-lg bg-foreground/5">
+                  <div className="flex aspect-[1464/962] w-full items-center justify-center overflow-hidden rounded-lg bg-foreground/5">
                     {hiringManagerSlide === 0 && (
-                      <img
-                        src="https://www.figma.com/api/mcp/asset/9ee0f701-1246-4aeb-b3e9-57d2b91bc2f6/5498d.png"
-                        alt="View all talent source and interview prep in web app"
-                        className="h-auto w-full max-w-none"
-                      />
+                      <HiringApplicantsDemo showHeading={false} />
                     )}
                     {hiringManagerSlide === 1 && (
                       <img
