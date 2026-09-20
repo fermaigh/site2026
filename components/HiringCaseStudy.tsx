@@ -5,6 +5,24 @@ import { useState, useSyncExternalStore, type FormEvent } from "react";
 const PASSCODE = "0000";
 const SESSION_KEY = "hiring-case-study-unlocked";
 
+const personas = [
+  {
+    src: "https://www.figma.com/api/mcp/asset/1998ff27-84e0-40db-8905-ea34a458c8c6/43d31.png",
+    alt: "Operations persona for Operation Oma, an account owner",
+    caption: "Operations / Payer: Makes decisions at the organizational level.",
+  },
+  {
+    src: "https://www.figma.com/api/mcp/asset/6fb48395-b848-4328-bf43-3ee63feff2c0/f850b.png",
+    alt: "Hiring Manager persona for Hiring Manager Harry, a team member",
+    caption: "Hiring Manager: Manages hiring and staffing at individual locations.",
+  },
+  {
+    src: "https://www.figma.com/api/mcp/asset/87268ac2-3b6c-4bc4-91ca-be9f4103598a/9710a.png",
+    alt: "Job Applicant persona for Job Applicant Jordan",
+    caption: "Job Applicant: Applies and completes the assessment.",
+  },
+] as const;
+
 const subscribeNever = () => () => {};
 
 function readSession() {
@@ -202,22 +220,16 @@ export function HiringCaseStudy() {
 
             <div className="mt-10 space-y-6">
               <figure className="overflow-hidden rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
-                <div className="w-full overflow-hidden rounded-lg bg-foreground/5">
-                  <div
-                    className="w-[300%] transition-transform duration-300 ease-out"
-                    style={{ transform: `translateX(-${personaSlide * (100 / 3)}%)` }}
-                  >
-                    <img
-                      src="https://www.figma.com/api/mcp/asset/0931d153-f218-4453-9edb-66db7e6f6f6a/f73eb.png"
-                      alt="Detailed personas for Operations, Hiring Manager, and Job Applicant user groups"
-                      className="block h-auto w-full max-w-none"
-                    />
-                  </div>
+                <div className="flex aspect-[814/383] w-full items-center justify-center overflow-hidden rounded-[18px]">
+                  <img
+                    key={personas[personaSlide].src}
+                    src={personas[personaSlide].src}
+                    alt={personas[personaSlide].alt}
+                    className="block h-full w-full rounded-[18px] object-contain"
+                  />
                 </div>
                 <figcaption className="mt-6 font-sans text-[13px] leading-[1.6] text-foreground/60 sm:text-[14px]">
-                  {personaSlide === 0 && "Operations / Payer: Makes decisions at the organizational level."}
-                  {personaSlide === 1 && "Hiring Manager: Manages hiring and staffing at individual locations."}
-                  {personaSlide === 2 && "Job Applicant: Applies and completes the assessment."}
+                  {personas[personaSlide].caption}
                 </figcaption>
               </figure>
               <div className="flex items-center justify-center gap-2" aria-label="Persona carousel">
