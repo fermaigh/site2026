@@ -76,7 +76,7 @@ export function HiringCaseStudy() {
               Context
             </h2>
             <p className="mt-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-6 sm:text-[17px]">
-              Sprockets had validated its MVP with franchise businesses, using <strong>AI-powered candidate assessments</strong> to help them identify and hire better hourly workers. But much of the experience was still operated by Sprockets&apos; internal Customer Success team.
+              Sprockets had validated its MVP with franchise businesses, using <strong>AI-powered candidate assessments</strong>{" "}to help them identify and hire better hourly workers. But much of the experience was still operated by Sprockets&apos; internal Customer Success team.
               <br />
               To scale, the company needed to evolve from a <strong>service-led MVP into a self-service product</strong>—without losing the core value that made the MVP successful. I joined to help define what that experience should become.
             </p>
@@ -182,14 +182,13 @@ export function HiringCaseStudy() {
               </figcaption>
             </figure>
 
-            <p className="mt-12 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-14 sm:text-[17px]">
-              Continue developing into a user journey to visualize how each group of users get their jobs done, helping cross-functional teams visualize the system and prioritization roadmap.
-            </p>
-
             <div className="mt-12 border-t border-foreground/10 pt-10 sm:mt-14 sm:pt-12">
               <h2 className="font-sans text-[clamp(1.125rem,4vw,1.5rem)] font-semibold tracking-tight text-foreground">
                 Design Deliverables
               </h2>
+              <p className="mt-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-6 sm:text-[17px]">
+                I then mapped how these users interact across the end-to-end hiring journey: turning fragmented operational knowledge into a <strong>shared view of the system</strong> that helped cross-functional teams align on product priorities and roadmap.
+              </p>
             </div>
 
             <figure className="mt-10 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
