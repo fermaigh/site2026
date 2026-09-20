@@ -1199,6 +1199,9 @@ const AI_SPIN_MS = 1000;
 const AI_IDLE_MS = 1000;
 /** A mock: the match only re-runs once this many characters have changed. */
 const AI_CAPTURE_CHARS = 10;
+/** The autosave tell reappears on this beat, and stays up for this long. */
+const AI_SAVING_CYCLE_MS = 2000;
+const AI_SAVING_VISIBLE_MS = 1200;
 
 /**
  * Size of the edit between two briefs: what is left once the shared prefix
@@ -1706,8 +1709,47 @@ function AiCreatorPreview() {
   );
 }
 
-function AiPreferenceScreen() {
+/**
+ * The lighter acknowledgement the engineering constraint left room for: a
+ * recurring autosave tell, rather than matching in real time. Drawn inline
+ * because the design has no spinner glyph to reuse.
+ */
+function AiSavingTell({ shown }: { shown: boolean }) {
+  return (
+    <span
+      className={`flex items-center gap-[6px] transition-opacity duration-300 ${
+        shown ? "opacity-100" : "opacity-0"
+      }`}
+      aria-hidden={!shown}
+    >
+      <svg
+        viewBox="0 0 16 16"
+        fill="none"
+        className="size-[14px] motion-safe:animate-spin"
+        style={{ animationDuration: "1.1s" }}
+      >
+        <circle cx="8" cy="8" r="6.2" stroke="#d3d4d5" strokeWidth="1.6" />
+        <path
+          d="M8 1.8a6.2 6.2 0 0 1 6.2 6.2"
+          stroke="#848688"
+          strokeWidth="1.6"
+          strokeLinecap="round"
+        />
+      </svg>
+      <span className="text-[12px] leading-[18px] text-[#848688]">Saving</span>
+    </span>
+  );
+}
+
+function AiPreferenceScreen({
+  showMatched = true,
+  autosave = false,
+}: {
+  showMatched?: boolean;
+  autosave?: boolean;
+}) {
   const [brief, setBrief] = useState(AI_SEED);
+  const [saving, setSaving] = useState(false);
   /** The brief the creator list reflects; only advances when an edit lands. */
   const [captured, setCaptured] = useState(AI_SEED);
   const [showCriteria, setShowCriteria] = useState(false);
@@ -1736,6 +1778,19 @@ function AiPreferenceScreen() {
     if (spinTimer.current) clearTimeout(spinTimer.current);
     if (idleTimer.current) clearTimeout(idleTimer.current);
   }, []);
+
+  useEffect(() => {
+    if (!autosave) return;
+    let hide: ReturnType<typeof setTimeout>;
+    const beat = setInterval(() => {
+      setSaving(true);
+      hide = setTimeout(() => setSaving(false), AI_SAVING_VISIBLE_MS);
+    }, AI_SAVING_CYCLE_MS);
+    return () => {
+      clearInterval(beat);
+      clearTimeout(hide);
+    };
+  }, [autosave]);
 
   const runSpin = (afterwards?: () => void) => {
     setSpin((n) => n + 1);
@@ -1812,42 +1867,47 @@ function AiPreferenceScreen() {
         </div>
 
         {/* Matched creators — count and faces both follow the brief. */}
-        <div className="mt-[16px] h-[82px] w-[849px] rounded-t-[8px] bg-white p-[24px]">
-          <div className="flex w-full items-center gap-[12px]">
-            <AiIcon name="icon-success" size={24} className="shrink-0" />
-            <div className="flex min-w-0 flex-1 items-center gap-[12px]">
-              <span className="flex w-[124px] shrink-0 items-start">
-                {match.faces.map((face, i) => (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    key={face + i}
-                    src={face}
-                    alt=""
-                    width={32}
-                    height={32}
-                    className="size-[32px] shrink-0 rounded-full border border-white object-cover"
-                    style={{ marginRight: i === match.faces.length - 1 ? 0 : -11 }}
-                  />
-                ))}
+        {showMatched ? (
+          <div className="mt-[16px] h-[82px] w-[849px] rounded-t-[8px] bg-white p-[24px]">
+            <div className="flex w-full items-center gap-[12px]">
+              <AiIcon name="icon-success" size={24} className="shrink-0" />
+              <div className="flex min-w-0 flex-1 items-center gap-[12px]">
+                <span className="flex w-[124px] shrink-0 items-start">
+                  {match.faces.map((face, i) => (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      key={face + i}
+                      src={face}
+                      alt=""
+                      width={32}
+                      height={32}
+                      className="size-[32px] shrink-0 rounded-full border border-white object-cover"
+                      style={{ marginRight: i === match.faces.length - 1 ? 0 : -11 }}
+                    />
+                  ))}
+                </span>
+                <p
+                  aria-live="polite"
+                  className="whitespace-nowrap text-[14px] leading-[20px] text-[#6c6d6f]"
+                >
+                  {match.count} creators automatically matched
+                </p>
+              </div>
+              <span className="shrink-0 pt-[4px]">
+                <AiIcon name="icon-chevron-20" size={20} className="-rotate-90" />
               </span>
-              <p
-                aria-live="polite"
-                className="whitespace-nowrap text-[14px] leading-[20px] text-[#6c6d6f]"
-              >
-                {match.count} creators automatically matched
-              </p>
             </div>
-            <span className="shrink-0 pt-[4px]">
-              <AiIcon name="icon-chevron-20" size={20} className="-rotate-90" />
-            </span>
           </div>
-        </div>
+        ) : null}
 
         <div className="mt-[16px] min-h-[281px] w-[849px] rounded-[8px] bg-white py-[17px]">
           <div className="px-[15px]">
-            <p className="text-[16px] font-medium leading-[24px] text-black/92">
-              Describe your preference
-            </p>
+            <div className="flex items-center justify-between gap-[16px]">
+              <p className="text-[16px] font-medium leading-[24px] text-black/92">
+                Describe your preference
+              </p>
+              {autosave ? <AiSavingTell shown={saving} /> : null}
+            </div>
             <p className="mt-[4px] text-[14px] leading-[20px] text-[#6c6d6f]">
               Your input will help tweaking matched creators.
             </p>
@@ -1959,7 +2019,13 @@ function AiPreferenceScreen() {
   );
 }
 
-function AiPreferencePanel() {
+function AiPreferencePanel({
+  showMatched = true,
+  autosave = false,
+}: {
+  showMatched?: boolean;
+  autosave?: boolean;
+}) {
   const stageRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -1975,7 +2041,7 @@ function AiPreferencePanel() {
           className={`tts-demo-fit absolute left-0 top-0 overflow-hidden rounded-lg ${UI_SHADOW}`}
           style={{ width: AI_WIDTH, transformOrigin: "top left" }}
         >
-          <AiPreferenceScreen />
+          <AiPreferenceScreen showMatched={showMatched} autosave={autosave} />
         </div>
       </div>
     </figure>
@@ -2264,253 +2330,9 @@ export function CaseStudyGate() {
             Engineering validation revealed that real-time matching would be too costly within our constraints. Rather than removing feedback entirely, I preserved the underlying principle with a lighter interaction: <span className="font-semibold text-foreground">acknowledge that the system is capturing and interpreting seller intent as they type</span>.
           </p>
 
-          {/* Create Collaboration Full Interface */}
-          <figure className="mt-8 sm:mt-10 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              {/* Top Navigation Bar */}
-              <div className="flex items-center justify-between px-6 py-3 bg-foreground/95 border-b border-foreground/10">
-                {/* Left section */}
-                <div className="flex items-center gap-6">
-                  {/* Logo */}
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-6 bg-white/20 rounded flex items-center justify-center">
-                      <span className="text-white text-[10px] font-bold">TikTok</span>
-                    </div>
-                    <div className="w-px h-4 bg-white/20" />
-                    <span className="text-white text-[16px] font-semibold">Seller Center</span>
-                  </div>
-
-                  {/* Search */}
-                  <div className="hidden sm:flex items-center gap-2 bg-foreground/80 px-3 py-2 rounded text-[13px] max-w-xs">
-                    <svg className="w-4 h-4 text-white/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <circle cx="11" cy="11" r="8" />
-                      <path d="m21 21-4.35-4.35" />
-                    </svg>
-                    <span className="text-white/60">Ask anything</span>
-                    <span className="ml-auto text-white/40 text-[11px]">⌘+K</span>
-                  </div>
-                </div>
-
-                {/* Right section */}
-                <div className="flex items-center gap-4">
-                  {/* Assistant */}
-                  <div className="flex items-center gap-2 text-white text-[13px]">
-                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <circle cx="12" cy="12" r="10" />
-                      <path d="M8 12h8" />
-                    </svg>
-                    <span>Assistant</span>
-                  </div>
-
-                  {/* Help */}
-                  <button className="p-2 hover:bg-white/10 rounded">
-                    <svg className="w-5 h-5 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <circle cx="12" cy="12" r="10" />
-                      <path d="M12 16v-4M12 8h.01" />
-                    </svg>
-                  </button>
-
-                  {/* Divider */}
-                  <div className="w-px h-5 bg-white/20" />
-
-                  {/* Messages */}
-                  <div className="flex items-center gap-2 relative">
-                    <button className="p-2 hover:bg-white/10 rounded">
-                      <svg className="w-5 h-5 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                      </svg>
-                    </button>
-                    <span className="text-white text-[12px] font-medium">Customer Messages</span>
-                    <div className="absolute -top-1 -right-1 w-5 h-5 bg-red-600 text-white text-[10px] rounded-full flex items-center justify-center font-semibold">
-                      8
-                    </div>
-                  </div>
-
-                  {/* Notifications */}
-                  <button className="p-2 hover:bg-white/10 rounded relative">
-                    <svg className="w-5 h-5 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-                      <path d="M13.73 21a2 2 0 0 1-3.46 0" />
-                    </svg>
-                    <div className="absolute -top-1 -right-1 w-5 h-5 bg-red-600 text-white text-[10px] rounded-full flex items-center justify-center font-semibold">
-                      8
-                    </div>
-                  </button>
-
-                  {/* Account */}
-                  <div className="flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full">
-                    <div className="w-6 h-6 bg-foreground/60 rounded-full flex items-center justify-center">
-                      <span className="text-white text-[10px] font-bold">T</span>
-                    </div>
-                    <span className="text-white text-[13px] hidden sm:inline">Testaccount</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Collaboration Content */}
-              <div className="p-8">
-                {/* Header */}
-                <div className="mb-8">
-                  <div className="flex items-center gap-3 mb-6">
-                    <button className="text-foreground/60 hover:text-foreground">←</button>
-                    <h3 className="font-sans text-[24px] font-semibold text-foreground">
-                      Create collaboration
-                    </h3>
-                  </div>
-
-                  {/* Progress Steps */}
-                  <div className="flex items-center gap-4">
-                    {[
-                      { label: "General info", done: true },
-                      { label: "Products", done: true },
-                      { label: "Creators", active: true },
-                      { label: "Review", num: 4 }
-                    ].map((step, i) => (
-                      <div key={i} className="flex items-center gap-2">
-                        {step.done && (
-                          <>
-                            <div className="w-6 h-6 rounded-full bg-cyan-500 flex items-center justify-center text-white text-xs">✓</div>
-                            <span className="text-[13px] text-foreground/60">{step.label}</span>
-                          </>
-                        )}
-                        {step.active && (
-                          <>
-                            <div className="w-6 h-6 rounded-full bg-cyan-500 text-white flex items-center justify-center text-xs font-semibold">●</div>
-                            <span className="text-[13px] font-semibold text-foreground">{step.label}</span>
-                          </>
-                        )}
-                        {step.num && (
-                          <>
-                            <div className="w-6 h-6 rounded-full bg-foreground/10 flex items-center justify-center text-[11px] text-foreground/40">{step.num}</div>
-                            <span className="text-[13px] text-foreground/40">{step.label}</span>
-                          </>
-                        )}
-                        {i < 3 && <div className="w-8 h-px bg-foreground/15" />}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Two-column layout */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                  {/* Left content */}
-                  <div className="lg:col-span-2">
-                    <div className="space-y-4">
-                      <div>
-                        <h4 className="text-[15px] font-semibold text-foreground mb-1">
-                          Describe your preference
-                        </h4>
-                        <p className="text-[13px] text-cyan-600 flex items-center gap-1">
-                          <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" /></svg>
-                          Saving...
-                        </p>
-                      </div>
-                      <div className="border-2 border-blue-400 rounded p-4 bg-blue-50/30 min-h-[80px]">
-                        <p className="text-[13px] leading-[1.6] text-foreground/80">
-                          Skincare and self-care creators who post routine videos, before-and-after results, and honest product reviews. Audience skews female, 18–35, highly engaged. We'd love creators who are consistent, genuine, and open to long-term collaboration. Bonus if they've worked with beauty or personal care brands before.
-                        </p>
-                      </div>
-                      <div className="flex justify-end">
-                        <span className="text-[11px] text-foreground/50">400/500</span>
-                      </div>
-
-                      {/* Add more criteria */}
-                      <div className="flex items-center gap-2 cursor-pointer text-foreground/60 hover:text-foreground/80 pt-2">
-                        <span className="text-[13px]">▶</span>
-                        <span className="text-[13px] font-medium">Add more criteria</span>
-                        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                          <circle cx="12" cy="12" r="10" />
-                          <path d="M12 16v-4m0-4v.01" />
-                        </svg>
-                      </div>
-
-                      {/* Action buttons */}
-                      <div className="flex gap-3 pt-4">
-                        <button className="px-6 py-2 border border-foreground/20 rounded text-[14px] font-medium text-foreground/70 hover:text-foreground hover:border-foreground/40">
-                          Previous
-                        </button>
-                        <button className="px-6 py-2 bg-cyan-600 text-white rounded text-[14px] font-medium hover:bg-cyan-700">
-                          Next
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Right preview panel */}
-                  <div className="lg:col-span-1 space-y-6">
-                    {/* Creator preview header */}
-                    <div>
-                      <p className="text-[13px] font-semibold text-foreground mb-3">Creator preview</p>
-                      <div className="flex flex-col items-center">
-                        <div className="w-full max-w-xs bg-black rounded-3xl p-3 shadow-lg">
-                          <div className="bg-foreground rounded-2xl p-4 aspect-video flex items-center justify-center">
-                            <div className="text-center">
-                              <p className="text-[11px] font-medium text-white/80 mb-2">Invitation</p>
-                              <p className="text-[9px] text-white/60">Preview</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Overview tab */}
-                    <div className="border-b border-foreground/10 pb-2">
-                      <button className="text-[13px] font-medium text-foreground">Overview</button>
-                    </div>
-
-                    {/* Shop info */}
-                    <div className="space-y-3">
-                      <div>
-                        <p className="text-[12px] font-semibold text-foreground mb-2">About this shop</p>
-                        <div className="flex items-center gap-2">
-                          <div className="w-8 h-8 rounded-full bg-foreground/20" />
-                          <div>
-                            <p className="text-[13px] font-medium text-foreground">SkinCare Shop</p>
-                            <p className="text-[11px] text-foreground/50">4.8/5.0 • 154 sales</p>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div>
-                        <p className="text-[12px] font-semibold text-foreground mb-2">Preferred content type</p>
-                        <p className="text-[13px] text-foreground/70">Short video</p>
-                      </div>
-
-                      <div>
-                        <p className="text-[12px] font-semibold text-foreground mb-2">Incentives</p>
-                        <div className="space-y-1 text-[12px]">
-                          <div className="flex justify-between">
-                            <span className="text-foreground/60">Free sample</span>
-                            <span className="text-foreground">Auto-approval</span>
-                          </div>
-                          <div className="flex justify-between">
-                            <span className="text-foreground/60">Commission rate</span>
-                            <span className="text-foreground">12.45%-16.34%</span>
-                          </div>
-                          <div className="flex justify-between">
-                            <span className="text-foreground/60">Product price</span>
-                            <span className="text-foreground">$23.99-$123.99</span>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div>
-                        <p className="text-[12px] font-semibold text-foreground mb-3">Products</p>
-                        <div className="flex gap-2 mb-3">
-                          {[1, 2, 3].map((i) => (
-                            <div key={i} className="w-12 h-12 bg-foreground/15 rounded" />
-                          ))}
-                        </div>
-                        <button className="w-full py-2 bg-red-600 text-white text-[12px] font-medium rounded hover:bg-red-700">
-                          Accept
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </figure>
+          {/* The same screen as above, minus the matched-creators module:
+              the acknowledgement here is the gradient and the autosave tell. */}
+          <AiPreferencePanel showMatched={false} autosave />
 
           <p className="mt-8 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-10 sm:text-[17px]">
             This tradeoff kept the experience responsive and trustworthy, while giving us a feasible path to ship and learn.
