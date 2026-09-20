@@ -949,7 +949,7 @@ function CollaborationTable() {
             <p className="truncate text-[#6c6d6f]">{row.meta}</p>
           </div>
           <div className="flex items-center px-[12px]">
-            <span className="rounded-full bg-[#ececed] px-[8px] py-[2px] text-[12px] leading-[18px]">Commission only</span>
+            <span className="whitespace-nowrap rounded-full bg-[#ececed] px-[8px] py-[2px] text-[12px] leading-[18px]">Commission only</span>
           </div>
           <div className="flex flex-col justify-center gap-[6px] px-[12px]">
             <span>Platform outreach</span>
@@ -960,9 +960,9 @@ function CollaborationTable() {
               {row.progress}%
             </span>
           </div>
-          <div className="flex flex-col justify-center gap-[4px] px-[12px]">
+          <div className="flex flex-col justify-center gap-[4px] whitespace-nowrap px-[12px]">
             <span>Ongoing</span>
-            <span className="text-[12px] text-[#6c6d6f]">{row.reviews}</span>
+            <span className="whitespace-nowrap text-[12px] text-[#6c6d6f]">{row.reviews}</span>
           </div>
           <div className="flex items-center px-[12px]">{row.invited}</div>
           <div className="flex items-center px-[12px]">{row.posts}</div>
@@ -979,13 +979,8 @@ function CollaborationTable() {
 }
 
 function CollaborationOverviewScreen() {
-  const [tooltipOpen, setTooltipOpen] = useState(false);
-
   return (
-    <div
-      className="tts-collab-ui relative h-[934px] w-[1440px] overflow-hidden bg-[#f5f5f5]"
-      onClick={() => setTooltipOpen(false)}
-    >
+    <div className="tts-collab-ui relative h-[934px] w-[1440px] overflow-hidden bg-[#f5f5f5]">
       <ScreenTopNav />
       <CollaborationSidebar />
 
@@ -1028,7 +1023,10 @@ function CollaborationOverviewScreen() {
                 </span>
               </div>
               <div className="flex items-center gap-[8px] text-[14px] font-medium leading-[20px]">
-                <span className="flex h-[32px] items-center gap-[4px] rounded-[4px] bg-[#f5f5f5] px-[12px]">Remaining outreach usage<TtsUiAsset name="tag.svg" size={16} /></span>
+                <span className="flex h-[32px] items-center justify-center gap-[4px] overflow-hidden rounded-[4px] bg-black/5 px-[12px] py-[6px] text-center text-black/90">
+                  <span className="whitespace-nowrap">Remaining outreach usage</span>
+                  <span className="flex h-[20px] min-w-[35px] items-center justify-center rounded-[10px] bg-[#d8f5df] px-[6px] text-[12px] font-normal leading-[18px] text-[#258b3f]">800</span>
+                </span>
                 <span className="flex h-[32px] items-center gap-[4px] rounded-[4px] bg-[#009995] px-[12px] text-white">Invite to collaborate<TtsUiAsset name="down.svg" size={16} /></span>
               </div>
             </div>
@@ -1045,24 +1043,27 @@ function CollaborationOverviewScreen() {
                 <p className="w-[238px] text-[14px] font-medium leading-[20px] text-[#6c6d6f]">All flat fee invites with timely tasks</p>
                 <p className="text-[20px] font-medium leading-[30px]">20</p>
               </div>
-              <div className={`flex flex-col justify-between rounded-[8px] p-[16px] transition-colors ${tooltipOpen ? "bg-[#e4e4e4]" : "bg-[#f5f5f5]"}`}>
+              <div className="flex flex-col justify-between rounded-[8px] bg-[#f5f5f5] p-[16px]">
                 <div className="flex items-start gap-[4px]">
                   <p className="text-[14px] font-medium leading-[20px] text-[#6c6d6f]">Collaborations nearing invite limit</p>
                   <button
                     type="button"
                     aria-label="Explain collaboration invite limit"
-                    aria-expanded={tooltipOpen}
-                    aria-controls="collaboration-invite-limit-tooltip"
-                    className="flex size-[20px] shrink-0 items-center justify-center rounded-[4px]"
-                    onClick={(event) => {
-                      event.stopPropagation();
-                      setTooltipOpen((open) => !open);
-                    }}
+                    aria-describedby="collaboration-invite-limit-tooltip"
+                    className="group/question relative flex size-[20px] shrink-0 items-center justify-center rounded-[4px]"
                   >
                     <TtsUiAsset name="question-circle-gray.svg" size={16} />
+                    <span
+                      id="collaboration-invite-limit-tooltip"
+                      role="tooltip"
+                      className="pointer-events-none invisible absolute bottom-[26px] right-[-4px] z-30 w-[280px] rounded-[8px] bg-[#404142] px-[12px] py-[8px] text-left text-[14px] font-normal leading-[20px] text-white opacity-0 shadow-[0_0_16px_rgba(0,0,0,0.2)] transition-opacity group-hover/question:visible group-hover/question:opacity-100 group-focus-visible/question:visible group-focus-visible/question:opacity-100"
+                    >
+                      All active collaborations include outreach to up to {"{number}"} creators. Once this limit is reached, additional outreach will use outreach credits.
+                      <span className="absolute -bottom-[5px] right-[10px] size-0 border-x-[5px] border-t-[5px] border-x-transparent border-t-[#404142]" />
+                    </span>
                   </button>
                 </div>
-                <span className="flex items-center gap-[6px] text-[20px] font-medium leading-[30px]">5<span className="text-[20px] font-normal text-[#6c6d6f]">→</span></span>
+                <span className="flex items-center gap-[6px] text-[20px] font-medium leading-[30px]">5<TtsUiAsset name="right-arrow.png" size={16} /></span>
               </div>
             </div>
 
@@ -1082,17 +1083,6 @@ function CollaborationOverviewScreen() {
 
             <CollaborationTable />
 
-            {tooltipOpen ? (
-              <div
-                id="collaboration-invite-limit-tooltip"
-                role="tooltip"
-                className="absolute left-[744px] top-[-87px] z-30 w-[280px] rounded-[8px] bg-[#404142] px-[12px] py-[8px] text-[14px] leading-[20px] text-white shadow-[0_0_16px_rgba(0,0,0,0.2)]"
-                onClick={(event) => event.stopPropagation()}
-              >
-                All active collaborations include outreach to up to {"{number}"} creators. Once this limit is reached, additional outreach will use outreach credits.
-                <span className="absolute -bottom-[5px] right-[10px] size-0 border-x-[5px] border-t-[5px] border-x-transparent border-t-[#404142]" />
-              </div>
-            ) : null}
           </div>
         </div>
       </main>
