@@ -1179,6 +1179,26 @@ const AI_WIDTH = 1440;
 const AI_LIMIT = 500;
 /** One rotation, matched to the .ai-border animation in globals.css. */
 const AI_SPIN_MS = 1000;
+/** How long the seller has to stop typing before the edit is captured. */
+const AI_IDLE_MS = 1000;
+/** A mock: the match only re-runs once this many characters have changed. */
+const AI_CAPTURE_CHARS = 10;
+
+/**
+ * Size of the edit between two briefs: what is left once the shared prefix
+ * and suffix are trimmed. Cheaper than an edit distance and close enough to
+ * "how many characters did they change" for the capture threshold.
+ */
+function changedChars(a: string, b: string) {
+  const max = Math.min(a.length, b.length);
+  let start = 0;
+  while (start < max && a[start] === b[start]) start += 1;
+  let end = 0;
+  while (end < max - start && a[a.length - 1 - end] === b[b.length - 1 - end]) {
+    end += 1;
+  }
+  return Math.max(a.length, b.length) - start - end;
+}
 
 /** The brief the design ships with, used as the field's starting value. */
 const AI_SEED =
@@ -1672,35 +1692,88 @@ function AiCreatorPreview() {
 
 function AiPreferenceScreen() {
   const [brief, setBrief] = useState(AI_SEED);
+  /** The brief the creator list reflects; only advances when an edit lands. */
+  const [captured, setCaptured] = useState(AI_SEED);
   const [showCriteria, setShowCriteria] = useState(false);
   const [added, setAdded] = useState<string[]>([]);
   const [ticked, setTicked] = useState<string[]>([]);
   /**
-   * The field rests on a plain border. Activating it runs the gradient once —
-   * Figma calls that layer "_Border animation finite" — and it then settles
-   * into an ordinary focus border, the same teal its sibling field uses.
+   * The field rests on a plain border. The gradient runs one rotation — Figma
+   * calls that layer "_Border animation finite" — when the seller activates
+   * the field, and again when an edit is captured. Either way it settles into
+   * an ordinary focus border, the same teal its sibling field uses.
    */
   const [ring, setRing] = useState<"idle" | "spinning" | "focused">("idle");
-  /** Remounts the gradient so the one-shot replays on every activation. */
+  /** Remounts the gradient so the one-shot replays every time. */
   const [spin, setSpin] = useState(0);
   const spinTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const idleTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  /** Read inside timeouts, where the state values would be stale. */
+  const capturedRef = useRef(AI_SEED);
+  const focusedRef = useRef(false);
+  /** Set while a rotation is mid-flight, so a blur can still commit it. */
+  const pendingRef = useRef<string | null>(null);
 
-  const match = matchCreators(brief, ticked.length);
+  const match = matchCreators(captured, ticked.length);
 
   useEffect(() => () => {
     if (spinTimer.current) clearTimeout(spinTimer.current);
+    if (idleTimer.current) clearTimeout(idleTimer.current);
   }, []);
 
-  const onActivate = () => {
+  const runSpin = (afterwards?: () => void) => {
     setSpin((n) => n + 1);
     setRing("spinning");
     if (spinTimer.current) clearTimeout(spinTimer.current);
-    spinTimer.current = setTimeout(() => setRing("focused"), AI_SPIN_MS);
+    spinTimer.current = setTimeout(() => {
+      setRing(focusedRef.current ? "focused" : "idle");
+      afterwards?.();
+    }, AI_SPIN_MS);
+  };
+
+  const capture = (text: string) => {
+    capturedRef.current = text;
+    pendingRef.current = text;
+    // The list updates when the rotation finishes, so the gradient reads as
+    // the model taking the edit in rather than reporting it after the fact.
+    runSpin(() => {
+      pendingRef.current = null;
+      setCaptured(text);
+    });
+  };
+
+  const onType = (next: string) => {
+    const text = next.slice(0, AI_LIMIT);
+    setBrief(text);
+    if (idleTimer.current) clearTimeout(idleTimer.current);
+    idleTimer.current = setTimeout(() => {
+      if (changedChars(capturedRef.current, text) >= AI_CAPTURE_CHARS) {
+        capture(text);
+      }
+    }, AI_IDLE_MS);
+  };
+
+  const onActivate = () => {
+    focusedRef.current = true;
+    runSpin();
   };
 
   const onDeactivate = () => {
+    focusedRef.current = false;
     if (spinTimer.current) clearTimeout(spinTimer.current);
+    if (idleTimer.current) clearTimeout(idleTimer.current);
     setRing("idle");
+    // Blurring cancels the rotation, so commit what it was going to.
+    if (pendingRef.current !== null) {
+      setCaptured(pendingRef.current);
+      pendingRef.current = null;
+    }
+    // And take any edit that never reached its idle timer, so the list never
+    // disagrees with the field.
+    if (changedChars(capturedRef.current, brief) >= AI_CAPTURE_CHARS) {
+      capturedRef.current = brief;
+      setCaptured(brief);
+    }
   };
 
   return (
@@ -1786,7 +1859,7 @@ function AiPreferenceScreen() {
               <div className="relative flex h-full items-end gap-[8px] px-[12px] py-[6px]">
                 <textarea
                   value={brief}
-                  onChange={(event) => setBrief(event.target.value.slice(0, AI_LIMIT))}
+                  onChange={(event) => onType(event.target.value)}
                   onFocus={onActivate}
                   onBlur={onDeactivate}
                   maxLength={AI_LIMIT}
