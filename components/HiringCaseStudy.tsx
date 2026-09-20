@@ -114,24 +114,31 @@ export function HiringCaseStudy() {
             </div>
 
             <div className="mt-12 border-t border-foreground/10 pt-10 sm:mt-14 sm:pt-12">
-              <p className="font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]">
-                I went through the internal team interview, workshops and field trips to uncover who the users are. Converted knowledge into detailed personas:
+              <h2 className="font-sans text-[clamp(1.125rem,4vw,1.5rem)] font-semibold tracking-tight text-foreground">
+                Understanding Who We&apos;re Designing For
+              </h2>
+              <p className="mt-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-6 sm:text-[17px]">
+                I started by interviewing internal teams, facilitating workshops, and visiting customers in the field to understand <strong>who actually made hiring work across a franchise organization</strong>.
               </p>
-            </div>
+              <p className="mt-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]">
+                I translated those insights into three core user groups:
+              </p>
 
-            <ul className="mt-4 space-y-2 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]">
-              <li className="flex gap-3">
-                <span className="font-semibold text-foreground min-w-fit">Operation/Payer</span>
-                <span>— Decision maker - Corporation</span>
-              </li>
-              <li className="flex gap-3">
-                <span className="font-semibold text-foreground min-w-fit">Hiring manager</span>
-                <span>— Responsible for location staff - Work on site</span>
-              </li>
-              <li className="flex gap-3">
-                <span className="font-semibold text-foreground min-w-fit">Job applicants</span>
-              </li>
-            </ul>
+              <ul className="mt-4 space-y-2 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]">
+                <li className="flex gap-3">
+                  <span className="font-semibold text-foreground min-w-fit">Operations / Payer</span>
+                  <span>— Makes decisions at the organizational level</span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="font-semibold text-foreground min-w-fit">Hiring Manager</span>
+                  <span>— Manages hiring and staffing at individual locations</span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="font-semibold text-foreground min-w-fit">Job Applicant</span>
+                  <span>— Applies and completes the assessment</span>
+                </li>
+              </ul>
+            </div>
 
             <figure className="mt-10 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
               <div className="space-y-6">
