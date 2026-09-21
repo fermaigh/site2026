@@ -433,27 +433,27 @@ export function HiringCaseStudy() {
 
             {executionMode === "before" ? (
               <div className="mx-auto mt-10 w-full max-w-[900px] space-y-6">
-                <figure className="overflow-hidden rounded-[20px] border border-foreground/10 bg-foreground/[0.03] p-6">
-                  <div className="flex aspect-video w-full items-center justify-center overflow-hidden rounded-[20px] bg-foreground/5">
+                <figure className="overflow-hidden rounded-[20px] border border-foreground/10 bg-foreground/[0.03] p-4 sm:p-6">
+                  <div className="flex aspect-[814/383] w-full items-center justify-center overflow-hidden rounded-[20px] bg-foreground/5">
                     {currentSlide === 0 && (
                       <img
                         src="https://www.figma.com/api/mcp/asset/59ff5460-5854-499e-afbc-92efcbf2e75c/40174.png"
                         alt="Location management screen"
-                        className="h-auto w-full max-w-none"
+                        className="h-full w-full object-contain"
                       />
                     )}
                     {currentSlide === 1 && (
                       <img
                         src="https://www.figma.com/api/mcp/asset/c024e64c-7714-46e4-a82f-c1ed8f84e3c5/38ef3.png"
                         alt="Candidate sourcing screen"
-                        className="h-auto w-full max-w-none"
+                        className="h-full w-full object-contain"
                       />
                     )}
                     {currentSlide === 2 && (
                       <img
                         src="https://www.figma.com/api/mcp/asset/a4ce3e61-6bbe-4b01-a18a-8ac45d80c40d/05d77.png"
                         alt="Account level management screen"
-                        className="h-auto w-full max-w-none"
+                        className="h-full w-full object-contain"
                       />
                     )}
                   </div>
@@ -488,15 +488,15 @@ export function HiringCaseStudy() {
                     : "pointer-events-none opacity-0"
                 }`}
               >
-                <figure className="overflow-hidden rounded-[20px] border border-foreground/10 bg-foreground/[0.03] p-6">
-                  <div className="flex aspect-video w-full items-center justify-center overflow-auto rounded-[20px] bg-foreground/5">
+                <figure className="overflow-hidden rounded-[20px] border border-foreground/10 bg-foreground/[0.03] p-4 sm:p-6">
+                  <div className="flex aspect-[814/383] w-full items-center justify-center overflow-hidden rounded-[20px] bg-foreground/5">
                   {afterSlide === 0 && (
                     <img
                       src="https://www.figma.com/api/mcp/asset/f2226e71-b286-4e5e-9867-00726c1740df/44af3.png"
                       alt="Dashboard and report system screen"
                       loading="eager"
                       decoding="async"
-                      className="w-full h-auto max-w-none"
+                      className="h-full w-full object-contain"
                     />
                   )}
                   {afterSlide === 1 && (
@@ -505,7 +505,7 @@ export function HiringCaseStudy() {
                       alt="Source automation tool screen"
                       loading="eager"
                       decoding="async"
-                      className="w-full h-auto max-w-none"
+                      className="h-full w-full object-contain"
                     />
                   )}
                   {afterSlide === 2 && (
@@ -514,7 +514,7 @@ export function HiringCaseStudy() {
                       alt="Account level management screen"
                       loading="eager"
                       decoding="async"
-                      className="w-full h-auto max-w-none"
+                      className="h-full w-full object-contain"
                     />
                   )}
                 </div>
@@ -549,10 +549,10 @@ export function HiringCaseStudy() {
                     : "pointer-events-none opacity-0"
                 }`}
               >
-                <figure className="overflow-hidden rounded-[20px] border border-foreground/10 bg-foreground/[0.03] p-6">
-                  <div className="flex aspect-video w-full items-center justify-center overflow-hidden rounded-[20px] bg-foreground/5">
+                <figure className="overflow-hidden rounded-[20px] border border-foreground/10 bg-foreground/[0.03] p-4 sm:p-6">
+                  <div className="flex aspect-[814/383] w-full items-center justify-center overflow-hidden rounded-[20px] bg-foreground/5">
                     {hiringManagerSlide === 0 && (
-                      <div className="w-[85%]">
+                      <div className="w-[71%] max-w-full">
                         <HiringApplicantsDemo showHeading={false} />
                       </div>
                     )}
@@ -592,8 +592,8 @@ export function HiringCaseStudy() {
                     : "pointer-events-none opacity-0"
                 }`}
               >
-                <figure className="overflow-hidden rounded-[20px] border border-foreground/10 bg-foreground/[0.03] p-6">
-                  <div className="flex aspect-video w-full items-center justify-center overflow-hidden rounded-[20px] bg-foreground/5">
+                <figure className="overflow-hidden rounded-[20px] border border-foreground/10 bg-foreground/[0.03] p-4 sm:p-6">
+                  <div className="flex aspect-[814/383] w-full items-center justify-center overflow-hidden rounded-[20px] bg-foreground/5">
                     <img
                       src="/projects/hiring-app/job-applicant-flow.png"
                       alt="Four-screen mobile job applicant flow covering interview onboarding, questions, analysis, and interview scheduling"
