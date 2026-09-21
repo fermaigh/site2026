@@ -144,7 +144,8 @@ export function HiringCaseStudy() {
             </h2>
             <p className="mt-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-6 sm:text-[17px]">
               Sprockets had validated its MVP with franchise businesses, using <strong>AI-powered candidate assessments</strong>{" "}to help them identify and hire better hourly workers. But much of the experience was still operated by Sprockets&apos; internal Customer Success team.
-              <br />
+            </p>
+            <p className="mt-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]">
               To scale, the company needed to evolve from a <strong>service-led MVP into a self-service product</strong>—without losing the core value that made the MVP successful. I joined to help define what that experience should become.
             </p>
             <p className="mt-4 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]">
