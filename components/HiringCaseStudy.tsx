@@ -613,6 +613,9 @@ export function HiringCaseStudy() {
             <p className="mt-12 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-16 sm:text-[17px]">
               I <strong>initiated and drove a new design system</strong> that standardized core patterns, reduced repetitive design and engineering work, and helped the team <strong>ship faster with greater consistency as the product scaled</strong>.
             </p>
+            <p className="mt-4 font-sans text-[15px] font-semibold leading-[1.65] text-foreground sm:text-[17px]">
+              41 UI components, UX patterns, and principles were delivered.
+            </p>
 
             <div className="mt-6 space-y-4">
               <div
