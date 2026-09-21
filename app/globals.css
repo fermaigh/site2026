@@ -1503,7 +1503,7 @@ html.is-loading body {
   position: relative;
   width: 100%;
   overflow: hidden;
-  border-radius: 16px;
+  border-radius: 20px;
   background: #f5f5f5;
   box-shadow:
     0 6px 16px rgba(0, 0, 0, 0.06),
