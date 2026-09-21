@@ -109,7 +109,7 @@ export const projects: Project[] = [
     slug: "scaling-tiktok-shop-affiliates",
     title: "Scaling TikTok Shop Affiliates",
     description:
-      "Led end-to-end design for TikTok Shop Affiliate seller tools, including AI agents and AI-assisted experiences, helping millions of merchants discover, connect with, and manage creator partnerships at scale. Simplified complex workflows, driving creator-led growth and millions in weekly GMV.",
+      "Shaping how millions of sellers discover and collaborate with creators across TikTok Shop, from traditional workflows to AI agents.",
     thumbnail: "/projects/tts_thumb.png",
     thumbnailBackground: "#000000",
     caseStudy: {
@@ -185,7 +185,7 @@ export const projects: Project[] = [
     slug: "ai-powered-hiring-platform",
     title: "AI-Powered Hiring Platform",
     description:
-      "Led end-to-end design for Sprockets, helping franchise businesses hire faster and retain employees longer. Simplified the experience across employers and candidates while driving measurable business outcomes.",
+      "Transformed a service-led hiring MVP into a self-service platform for franchise businesses.",
     thumbnail: "/projects/hiring-app.webp",
     video: "/projects/hiring-app.mp4",
     caseStudy: {
@@ -304,7 +304,7 @@ export const projects: Project[] = [
     slug: "simplifying-enterprise-security",
     title: "Simplifying Enterprise Security",
     description:
-      "Led the end-to-end design of Dark Web Monitoring for Dashlane Business, transforming complex security requirements into simple, scalable experiences.",
+      "Turned complex enterprise security workflows into one of Dashlane Business's most-used SMB features.",
     video: "/projects/dark-web-monitoring.mp4",
     thumbnailBackground: "#D1DFE3",
     caseStudy: {
@@ -401,7 +401,7 @@ export const projects: Project[] = [
     slug: "growth-and-monetization",
     title: "Growth & Monetization",
     description:
-      "Led the redesign of Dashlane’s new user activation and upsell experiences across platforms, improving key conversion journeys to drive user and revenue growth.",
+      "Redesigned activation and monetization journeys across platforms, increasing conversion and retention.",
     thumbnail: "/projects/growth-monetization.webp",
     thumbnailBackground: "#F3B8B1",
     thumbnailScale: 1.25,
