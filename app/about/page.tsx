@@ -21,30 +21,23 @@ export default function AboutPage() {
         <div className="grid gap-8 md:gap-12 lg:gap-16 md:grid-cols-2 md:items-start">
           <div>
             <div className="reveal mt-8 space-y-5 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:space-y-6 sm:text-[17px]">
-              <p>Hi there! Based in Bellevue, Washington.</p>
-
               <p>
-                I've spent the past decade designing digital products, turning
-                complex problems into intuitive, easy-to-use experiences. I care
-                deeply about the details—not only how a product works, but how it
-                looks and feels.
+                I&apos;ve spent the past decade working on products where complexity
+                is unavoidable—from enterprise security and hiring systems to a
+                marketplace connecting millions of sellers and creators.
               </p>
 
               <p>
-                Lately, I've been building more in code, moving beyond Figma to
-                prototype and ship ideas faster. I love seeing ideas go from concept
-                to something real.
+                I tend to work best in ambiguous spaces: mapping systems, finding
+                the simplest product model underneath them, and staying close
+                enough to execution to make sure the details hold together.
               </p>
 
               <p>
-                I'm a minimalist and a forever lover of muted everything. Black,
-                white, and grey are usually my thing—except when I'm doodling.
-              </p>
-
-              <p>
-                Outside of work, I spend probably too much time on custom mechanical
-                keyboards. It's one of my favorite ways to spend a rainy day in the
-                Pacific&nbsp;Northwest.
+                More recently, AI and code have changed how I work. I&apos;m moving
+                beyond static design deliverables into prototypes and production,
+                shortening the distance between an idea and something people can
+                actually use.
               </p>
             </div>
 
