@@ -594,7 +594,7 @@ export function HiringCaseStudy() {
                 }`}
               >
                 <figure className="min-w-0 overflow-hidden rounded-[20px] border border-foreground/10 bg-foreground/[0.03] p-4 sm:p-6">
-                  <div className="flex aspect-[814/383] min-w-0 w-full items-center justify-center overflow-hidden rounded-[20px] bg-foreground/5">
+                  <div className="flex aspect-[814/383] min-w-0 w-full items-center justify-center overflow-hidden rounded-[20px]">
                     <img
                       src="/projects/hiring-app/job-applicant-flow.png"
                       alt="Four-screen mobile job applicant flow covering interview onboarding, questions, analysis, and interview scheduling"
