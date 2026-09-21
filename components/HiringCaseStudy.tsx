@@ -2,7 +2,7 @@
 
 import { useState, useSyncExternalStore, type FormEvent } from "react";
 import { Poppins } from "next/font/google";
-import { ChevronDown } from "lucide-react";
+import { ArrowRight, ChevronDown, Info } from "lucide-react";
 import { HiringApplicantsDemo } from "@/components/hiring/HiringApplicantsDemo";
 
 const PASSCODE = "0000";
@@ -54,9 +54,9 @@ const componentShowcaseItems = [
     caption: "Single-select dropdown: The full field opens the menu, hover clarifies the target, selection updates the field, and unavailable options remain visible but muted.",
   },
   {
-    id: "placeholder-3",
-    label: "Placeholder item 3",
-    caption: "Placeholder for an additional UI component and its supporting details.",
+    id: "match-chips",
+    label: "Match chips",
+    caption: "Match-score colors progress from strong green to cautionary yellow and red; focused states use the next stronger shade, while unknown scores remain neutral.",
   },
 ] as const;
 
@@ -944,6 +944,134 @@ export function HiringCaseStudy() {
                                   >
                                     Unavailable user group
                                   </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      ) : null}
+
+                      {item.id === "match-chips" ? (
+                        <div className="w-full max-w-2xl overflow-hidden rounded-xl border border-foreground/10 bg-background">
+                          <div className="flex flex-col gap-3 border-b border-foreground/10 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+                            <div>
+                              <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-foreground/45">
+                                Match-score color
+                              </p>
+                              <p className="mt-1 font-sans text-[14px] font-medium text-foreground">
+                                Confidence at a glance
+                              </p>
+                            </div>
+                            <span className="w-fit rounded-full bg-foreground/[0.06] px-2.5 py-1 font-mono text-[10px] text-foreground/55">
+                              Hover chips for focused color
+                            </span>
+                          </div>
+
+                          <div className="bg-[#F9FAFB] p-4 sm:p-5">
+                            <div className="hidden grid-cols-[1.15fr_0.7fr_1fr_1.25fr] gap-3 border-b border-[#E9E9E9] px-3 pb-2 font-mono text-[9px] uppercase tracking-[0.1em] text-[#87888A] sm:grid">
+                              <span>Match level</span>
+                              <span>Range</span>
+                              <span>Chip</span>
+                              <span>Default → focused</span>
+                            </div>
+
+                            <div className="divide-y divide-[#E9E9E9]">
+                              {[
+                                {
+                                  label: "Excellent match",
+                                  range: "9.0–10.0",
+                                  score: "9.6",
+                                  token: "Green 400 → 500",
+                                  colors: "#4ADE80 → #22C55E",
+                                  chip: "bg-[#4ADE80] text-black hover:bg-[#22C55E]",
+                                },
+                                {
+                                  label: "Good match",
+                                  range: "8.0–8.9",
+                                  score: "8.3",
+                                  token: "Green 200 → 300",
+                                  colors: "#BBF7D0 → #86EFAC",
+                                  chip: "bg-[#BBF7D0] text-[#123F20] hover:bg-[#86EFAC]",
+                                },
+                                {
+                                  label: "Fair match",
+                                  range: "7.0–7.9",
+                                  score: "7.5",
+                                  token: "Yellow 100 → 200",
+                                  colors: "#FDEFC0 → #FEF08A",
+                                  chip: "bg-[#FDEFC0] text-[#614B03] hover:bg-[#FEF08A]",
+                                },
+                                {
+                                  label: "Poor match",
+                                  range: "Below 7.0",
+                                  score: "4.9",
+                                  token: "Red 100 → 200",
+                                  colors: "#FFEAEA → #FECACA",
+                                  chip: "bg-[#FFEAEA] text-[#700E1D] hover:bg-[#FECACA]",
+                                },
+                              ].map((match) => (
+                                <div
+                                  key={match.label}
+                                  className="grid gap-3 px-3 py-3 sm:grid-cols-[1.15fr_0.7fr_1fr_1.25fr] sm:items-center"
+                                >
+                                  <div className="flex items-baseline justify-between gap-3 sm:block">
+                                    <p className="font-sans text-[12px] font-semibold leading-4 text-[#0A1516]">
+                                      {match.label}
+                                    </p>
+                                    <p className="font-mono text-[10px] text-[#87888A] sm:hidden">
+                                      {match.range}
+                                    </p>
+                                  </div>
+                                  <p className="hidden font-mono text-[10px] text-[#4F5457] sm:block">
+                                    {match.range}
+                                  </p>
+                                  <div>
+                                    <button
+                                      type="button"
+                                      aria-label={`${match.label}: ${match.score}`}
+                                      className={`inline-flex h-10 items-center gap-2 rounded-full px-4 font-sans text-[14px] font-semibold leading-5 transition-colors duration-150 ${match.chip}`}
+                                    >
+                                      {match.score}
+                                      <ArrowRight aria-hidden className="size-4" strokeWidth={1.75} />
+                                    </button>
+                                  </div>
+                                  <div>
+                                    <p className="font-sans text-[10px] font-semibold leading-4 text-[#4F5457]">
+                                      {match.token}
+                                    </p>
+                                    <p className="font-mono text-[9px] leading-4 text-[#87888A]">
+                                      {match.colors}
+                                    </p>
+                                  </div>
+                                </div>
+                              ))}
+
+                              <div className="grid gap-3 px-3 py-3 sm:grid-cols-[1.15fr_0.7fr_1fr_1.25fr] sm:items-center">
+                                <div className="flex items-baseline justify-between gap-3 sm:block">
+                                  <p className="font-sans text-[12px] font-semibold leading-4 text-[#0A1516]">
+                                    Unknown
+                                  </p>
+                                  <p className="font-mono text-[10px] text-[#87888A] sm:hidden">N/A</p>
+                                </div>
+                                <p className="hidden font-mono text-[10px] text-[#4F5457] sm:block">N/A</p>
+                                <div className="group relative w-fit">
+                                  <button
+                                    type="button"
+                                    aria-label="Unknown score: waiting for response"
+                                    className="inline-flex h-10 items-center gap-2 rounded-full px-4 font-sans text-[14px] font-semibold leading-5 text-[#87888A]"
+                                  >
+                                    N/A
+                                    <Info aria-hidden className="size-4" strokeWidth={1.75} />
+                                  </button>
+                                  <span className="pointer-events-none absolute bottom-[calc(100%+6px)] left-1/2 z-10 -translate-x-1/2 translate-y-1 rounded-[4px] bg-white px-3 py-2 font-sans text-[11px] font-semibold whitespace-nowrap text-[#4F5457] opacity-0 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-1px_rgba(0,0,0,0.06)] transition-[opacity,transform] duration-150 group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100">
+                                    Waiting for response
+                                  </span>
+                                </div>
+                                <div>
+                                  <p className="font-sans text-[10px] font-semibold leading-4 text-[#4F5457]">
+                                    Gray 600
+                                  </p>
+                                  <p className="font-mono text-[9px] leading-4 text-[#87888A]">#87888A</p>
                                 </div>
                               </div>
                             </div>
