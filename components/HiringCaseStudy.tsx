@@ -152,7 +152,7 @@ export function HiringCaseStudy() {
             </p>
 
             <div className="grid grid-cols-1 gap-6 mt-8 sm:mt-10 sm:grid-cols-2">
-              <figure className="rounded-xl border border-foreground/10 p-6 overflow-hidden">
+              <figure className="rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
                 <div className="flex aspect-[2/1] w-full items-center justify-center overflow-hidden">
                   <img
                     src="https://www.figma.com/api/mcp/asset/95eeec98-a249-4ec3-a55b-6dcd5ee49443/2be08.svg"
@@ -165,7 +165,7 @@ export function HiringCaseStudy() {
                 </figcaption>
               </figure>
 
-              <figure className="rounded-xl border border-foreground/10 p-6 overflow-hidden">
+              <figure className="rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
                 <div className="flex aspect-[2/1] w-full items-center justify-center overflow-hidden">
                   <img
                     src="https://www.figma.com/api/mcp/asset/f55d7c46-19e4-451d-9e8e-62ae0b37ce1b/6f59c.svg"
@@ -206,7 +206,7 @@ export function HiringCaseStudy() {
               </ul>
             </div>
 
-            <figure className="mt-10 rounded-xl border border-foreground/10 p-6 overflow-hidden">
+            <figure className="mt-10 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
               <div className="space-y-6">
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <img
@@ -249,8 +249,8 @@ export function HiringCaseStudy() {
               </p>
             </div>
 
-            <figure className="mt-10 rounded-xl border border-foreground/10 p-6 overflow-hidden">
-              <div className="w-full overflow-hidden rounded-lg">
+            <figure className="mt-10 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
+              <div className="w-full overflow-hidden rounded-lg bg-foreground/5">
                 <img
                   src="https://www.figma.com/api/mcp/asset/37e42041-998a-4705-b619-7e7ebdd03bdf/2dbff.png"
                   alt="User journey diagram showing how Operation, Hiring Manager, and Applicant users navigate through the hiring platform"
@@ -263,9 +263,9 @@ export function HiringCaseStudy() {
             </figure>
 
             <div className="mt-10 space-y-6">
-              <figure className="overflow-hidden rounded-xl border border-foreground/10 p-6">
+              <figure className="overflow-hidden rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
                 <div
-                  className="relative aspect-[814/383] w-full overflow-hidden rounded-[18px]"
+                  className="relative aspect-[814/383] w-full overflow-hidden rounded-[18px] bg-foreground/[0.04]"
                   aria-busy={!loadedPersonaSlides[personaSlide]}
                 >
                   {personas.map((persona, index) => (
@@ -338,8 +338,8 @@ export function HiringCaseStudy() {
               </div>
             </div>
 
-            <figure className="mt-10 rounded-xl border border-foreground/10 p-6 overflow-hidden">
-              <div className="w-full aspect-auto flex items-center justify-center rounded-lg overflow-x-auto">
+            <figure className="mt-10 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
+              <div className="w-full aspect-auto flex items-center justify-center bg-foreground/5 rounded-lg overflow-x-auto">
                 <img
                   src="https://www.figma.com/api/mcp/asset/079a6df6-1e55-4bb0-8b3c-176a5f4ab378/b262e.png"
                   alt="Detailed workflow diagram showing CRM, Account Owner, Hiring Manager, and Applicants user flows and platform touchpoints"
@@ -433,8 +433,8 @@ export function HiringCaseStudy() {
 
             {executionMode === "before" ? (
               <div className="mt-10 space-y-6">
-                <figure className="overflow-hidden rounded-xl border border-foreground/10 p-6">
-                  <div className="flex aspect-video w-full items-center justify-center rounded-lg">
+                <figure className="overflow-hidden rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
+                  <div className="flex aspect-video w-full items-center justify-center rounded-lg bg-foreground/5">
                     {currentSlide === 0 && (
                       <img
                         src="https://www.figma.com/api/mcp/asset/59ff5460-5854-499e-afbc-92efcbf2e75c/40174.png"
@@ -479,8 +479,8 @@ export function HiringCaseStudy() {
 
             {executionMode === "after" && afterAudience === "operations" ? (
               <div className="mt-10 space-y-6">
-                <figure className="overflow-hidden rounded-xl border border-foreground/10 p-6">
-                  <div className="flex aspect-video w-full items-center justify-center overflow-auto rounded-lg">
+                <figure className="overflow-hidden rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
+                  <div className="flex aspect-video w-full items-center justify-center overflow-auto rounded-lg bg-foreground/5">
                   {afterSlide === 0 && (
                     <img
                       src="https://www.figma.com/api/mcp/asset/f2226e71-b286-4e5e-9867-00726c1740df/44af3.png"
@@ -529,8 +529,8 @@ export function HiringCaseStudy() {
 
             {executionMode === "after" && afterAudience === "hiring-manager" ? (
               <div className="mt-10 space-y-6">
-                <figure className="overflow-hidden rounded-xl border border-foreground/10 p-6">
-                  <div className="flex aspect-[1464/962] w-full items-center justify-center overflow-hidden rounded-lg">
+                <figure className="overflow-hidden rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
+                  <div className="flex aspect-[1464/962] w-full items-center justify-center overflow-hidden rounded-lg bg-foreground/5">
                     {hiringManagerSlide === 0 && (
                       <HiringApplicantsDemo showHeading={false} />
                     )}
@@ -563,8 +563,8 @@ export function HiringCaseStudy() {
 
             {executionMode === "after" && afterAudience === "job-applicant" ? (
               <div className="mt-10 space-y-6">
-                <figure className="overflow-hidden rounded-xl border border-foreground/10 p-6">
-                  <div className="flex aspect-[2048/1109] w-full items-center justify-center overflow-hidden rounded-lg">
+                <figure className="overflow-hidden rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
+                  <div className="flex aspect-[2048/1109] w-full items-center justify-center overflow-hidden rounded-lg bg-foreground/5">
                     <img
                       src="/projects/hiring-app/job-applicant-flow.png"
                       alt="Four-screen mobile job applicant flow covering interview onboarding, questions, analysis, and interview scheduling"
@@ -610,8 +610,8 @@ export function HiringCaseStudy() {
                 ))}
               </div>
 
-              <figure className="overflow-hidden rounded-xl border border-foreground/10 p-6">
-                <div className="grid min-h-[280px] overflow-hidden rounded-lg">
+              <figure className="overflow-hidden rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
+                <div className="grid min-h-[280px] overflow-hidden rounded-lg bg-foreground/5">
                   {componentShowcaseItems.map((item, index) => (
                     <div
                       key={item.id}
