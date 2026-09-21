@@ -477,14 +477,25 @@ export function HiringCaseStudy() {
               </div>
             ) : null}
 
-            {executionMode === "after" && afterAudience === "operations" ? (
-              <div className="mt-10 space-y-6">
+            {executionMode === "after" ? (
+              <div className="mt-10 grid">
+              <div
+                aria-hidden={afterAudience !== "operations"}
+                inert={afterAudience !== "operations"}
+                className={`col-start-1 row-start-1 space-y-6 transition-opacity duration-300 ease-out motion-reduce:transition-none ${
+                  afterAudience === "operations"
+                    ? "relative z-10 opacity-100"
+                    : "pointer-events-none opacity-0"
+                }`}
+              >
                 <figure className="overflow-hidden rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
                   <div className="flex aspect-video w-full items-center justify-center overflow-auto rounded-lg bg-foreground/5">
                   {afterSlide === 0 && (
                     <img
                       src="https://www.figma.com/api/mcp/asset/f2226e71-b286-4e5e-9867-00726c1740df/44af3.png"
                       alt="Dashboard and report system screen"
+                      loading="eager"
+                      decoding="async"
                       className="w-full h-auto max-w-none"
                     />
                   )}
@@ -492,6 +503,8 @@ export function HiringCaseStudy() {
                     <img
                       src="https://www.figma.com/api/mcp/asset/67e92ba9-6741-422d-9da4-50dde9677813/3f10c.png"
                       alt="Source automation tool screen"
+                      loading="eager"
+                      decoding="async"
                       className="w-full h-auto max-w-none"
                     />
                   )}
@@ -499,6 +512,8 @@ export function HiringCaseStudy() {
                     <img
                       src="https://www.figma.com/api/mcp/asset/60e0334e-775d-4527-a482-ba27b237a1fa/98008.png"
                       alt="Account level management screen"
+                      loading="eager"
+                      decoding="async"
                       className="w-full h-auto max-w-none"
                     />
                   )}
@@ -525,10 +540,15 @@ export function HiringCaseStudy() {
                 ))}
               </div>
               </div>
-            ) : null}
-
-            {executionMode === "after" && afterAudience === "hiring-manager" ? (
-              <div className="mt-10 space-y-6">
+              <div
+                aria-hidden={afterAudience !== "hiring-manager"}
+                inert={afterAudience !== "hiring-manager"}
+                className={`col-start-1 row-start-1 space-y-6 transition-opacity duration-300 ease-out motion-reduce:transition-none ${
+                  afterAudience === "hiring-manager"
+                    ? "relative z-10 opacity-100"
+                    : "pointer-events-none opacity-0"
+                }`}
+              >
                 <figure className="overflow-hidden rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
                   <div className="flex aspect-[1464/962] w-full items-center justify-center overflow-hidden rounded-lg bg-foreground/5">
                     {hiringManagerSlide === 0 && (
@@ -538,6 +558,8 @@ export function HiringCaseStudy() {
                       <img
                         src="https://www.figma.com/api/mcp/asset/5f98b044-04b9-4157-b7e4-956fbf13d318/ce628.png"
                         alt="Scheduling and manage interview in mobile app"
+                        loading="eager"
+                        decoding="async"
                         className="h-full w-full max-w-full object-contain"
                       />
                     )}
@@ -559,10 +581,15 @@ export function HiringCaseStudy() {
                   ))}
                 </div>
               </div>
-            ) : null}
-
-            {executionMode === "after" && afterAudience === "job-applicant" ? (
-              <div className="mt-10 space-y-6">
+              <div
+                aria-hidden={afterAudience !== "job-applicant"}
+                inert={afterAudience !== "job-applicant"}
+                className={`col-start-1 row-start-1 space-y-6 transition-opacity duration-300 ease-out motion-reduce:transition-none ${
+                  afterAudience === "job-applicant"
+                    ? "relative z-10 opacity-100"
+                    : "pointer-events-none opacity-0"
+                }`}
+              >
                 <figure className="overflow-hidden rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
                   <div className="flex aspect-[2048/1109] w-full items-center justify-center overflow-hidden rounded-lg bg-foreground/5">
                     <img
@@ -570,6 +597,8 @@ export function HiringCaseStudy() {
                       alt="Four-screen mobile job applicant flow covering interview onboarding, questions, analysis, and interview scheduling"
                       width={2048}
                       height={1109}
+                      loading="eager"
+                      decoding="async"
                       className="h-full w-full object-contain"
                     />
                   </div>
@@ -577,6 +606,7 @@ export function HiringCaseStudy() {
                     Mobile applicant experience: Candidates complete their virtual interview, provide required information, and schedule a conversation in one guided flow.
                   </figcaption>
                 </figure>
+              </div>
               </div>
             ) : null}
 
