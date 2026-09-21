@@ -22,7 +22,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Xiaoye Lin — Product Designer",
   description:
-    "AI native, design thoughtful, strategic and useful products.",
+    "Product designer turning complex systems into thoughtful, scalable products, from marketplaces and enterprise software to AI-native experiences.",
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
