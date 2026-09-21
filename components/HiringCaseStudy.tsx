@@ -152,7 +152,7 @@ export function HiringCaseStudy() {
             </p>
 
             <div className="grid grid-cols-1 gap-6 mt-8 sm:mt-10 sm:grid-cols-2">
-              <figure className="rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
+              <figure className="overflow-hidden rounded-[20px] border border-foreground/10 bg-foreground/[0.03] p-6">
                 <div className="flex aspect-[2/1] w-full items-center justify-center overflow-hidden">
                   <img
                     src="https://www.figma.com/api/mcp/asset/95eeec98-a249-4ec3-a55b-6dcd5ee49443/2be08.svg"
@@ -165,7 +165,7 @@ export function HiringCaseStudy() {
                 </figcaption>
               </figure>
 
-              <figure className="rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
+              <figure className="overflow-hidden rounded-[20px] border border-foreground/10 bg-foreground/[0.03] p-6">
                 <div className="flex aspect-[2/1] w-full items-center justify-center overflow-hidden">
                   <img
                     src="https://www.figma.com/api/mcp/asset/f55d7c46-19e4-451d-9e8e-62ae0b37ce1b/6f59c.svg"
@@ -206,36 +206,36 @@ export function HiringCaseStudy() {
               </ul>
             </div>
 
-            <figure className="mt-10 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
+            <figure className="mt-10 overflow-hidden rounded-[20px] border border-foreground/10 bg-foreground/[0.03] p-6">
               <div className="space-y-6">
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <img
                     src="https://www.figma.com/api/mcp/asset/0931d153-f218-4453-9edb-66db7e6f6f6a/2ff33.png"
                     alt="Research workshop - affinity mapping left"
-                    className="rounded-lg w-full h-auto object-cover border border-foreground/5"
+                    className="h-auto w-full rounded-[20px] border border-foreground/5 object-cover"
                   />
                   <img
                     src="https://www.figma.com/api/mcp/asset/0931d153-f218-4453-9edb-66db7e6f6f6a/888a6.png"
                     alt="Research workshop - affinity mapping right"
-                    className="rounded-lg w-full h-auto object-cover border border-foreground/5"
+                    className="h-auto w-full rounded-[20px] border border-foreground/5 object-cover"
                   />
                 </div>
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <img
                     src="https://www.figma.com/api/mcp/asset/0931d153-f218-4453-9edb-66db7e6f6f6a/4f251.png"
                     alt="Research documentation - interview notes"
-                    className="rounded-lg w-full h-auto object-cover border border-foreground/5"
+                    className="h-auto w-full rounded-[20px] border border-foreground/5 object-cover"
                   />
                   <img
                     src="https://www.figma.com/api/mcp/asset/0931d153-f218-4453-9edb-66db7e6f6f6a/8c77b.png"
                     alt="Research documentation - findings synthesis"
-                    className="rounded-lg w-full h-auto object-cover border border-foreground/5"
+                    className="h-auto w-full rounded-[20px] border border-foreground/5 object-cover"
                   />
                 </div>
                 <img
                   src="https://www.figma.com/api/mcp/asset/0931d153-f218-4453-9edb-66db7e6f6f6a/d15b3.png"
                   alt="User journey and interaction flows"
-                  className="rounded-lg w-full h-auto object-cover border border-foreground/5"
+                  className="h-auto w-full rounded-[20px] border border-foreground/5 object-cover"
                 />
               </div>
             </figure>
@@ -249,8 +249,8 @@ export function HiringCaseStudy() {
               </p>
             </div>
 
-            <figure className="mt-10 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
-              <div className="w-full overflow-hidden rounded-lg bg-foreground/5">
+            <figure className="mt-10 overflow-hidden rounded-[20px] border border-foreground/10 bg-foreground/[0.03] p-6">
+              <div className="w-full overflow-hidden rounded-[20px] bg-foreground/5">
                 <img
                   src="https://www.figma.com/api/mcp/asset/37e42041-998a-4705-b619-7e7ebdd03bdf/2dbff.png"
                   alt="User journey diagram showing how Operation, Hiring Manager, and Applicant users navigate through the hiring platform"
@@ -263,9 +263,9 @@ export function HiringCaseStudy() {
             </figure>
 
             <div className="mt-10 space-y-6">
-              <figure className="overflow-hidden rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
+              <figure className="overflow-hidden rounded-[20px] border border-foreground/10 bg-foreground/[0.03] p-6">
                 <div
-                  className="relative aspect-[814/383] w-full overflow-hidden rounded-[18px] bg-foreground/[0.04]"
+                  className="relative aspect-[814/383] w-full overflow-hidden rounded-[20px] bg-foreground/[0.04]"
                   aria-busy={!loadedPersonaSlides[personaSlide]}
                 >
                   {personas.map((persona, index) => (
@@ -292,7 +292,7 @@ export function HiringCaseStudy() {
                             }
                           });
                       }}
-                      className={`absolute inset-0 block h-full w-full rounded-[18px] object-contain transition-opacity duration-300 ease-out ${
+                      className={`absolute inset-0 block h-full w-full rounded-[20px] object-contain transition-opacity duration-300 ease-out ${
                         index === visiblePersonaSlide ? "opacity-100" : "opacity-0"
                       }`}
                     />
@@ -338,8 +338,8 @@ export function HiringCaseStudy() {
               </div>
             </div>
 
-            <figure className="mt-10 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
-              <div className="w-full aspect-auto flex items-center justify-center bg-foreground/5 rounded-lg overflow-x-auto">
+            <figure className="mt-10 overflow-hidden rounded-[20px] border border-foreground/10 bg-foreground/[0.03] p-6">
+              <div className="flex w-full items-center justify-center overflow-x-auto rounded-[20px] bg-foreground/5">
                 <img
                   src="https://www.figma.com/api/mcp/asset/079a6df6-1e55-4bb0-8b3c-176a5f4ab378/b262e.png"
                   alt="Detailed workflow diagram showing CRM, Account Owner, Hiring Manager, and Applicants user flows and platform touchpoints"
@@ -433,8 +433,8 @@ export function HiringCaseStudy() {
 
             {executionMode === "before" ? (
               <div className="mx-auto mt-10 w-full max-w-[900px] space-y-6">
-                <figure className="overflow-hidden rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
-                  <div className="flex aspect-video w-full items-center justify-center rounded-lg bg-foreground/5">
+                <figure className="overflow-hidden rounded-[20px] border border-foreground/10 bg-foreground/[0.03] p-6">
+                  <div className="flex aspect-video w-full items-center justify-center overflow-hidden rounded-[20px] bg-foreground/5">
                     {currentSlide === 0 && (
                       <img
                         src="https://www.figma.com/api/mcp/asset/59ff5460-5854-499e-afbc-92efcbf2e75c/40174.png"
@@ -488,8 +488,8 @@ export function HiringCaseStudy() {
                     : "pointer-events-none opacity-0"
                 }`}
               >
-                <figure className="overflow-hidden rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
-                  <div className="flex aspect-video w-full items-center justify-center overflow-auto rounded-lg bg-foreground/5">
+                <figure className="overflow-hidden rounded-[20px] border border-foreground/10 bg-foreground/[0.03] p-6">
+                  <div className="flex aspect-video w-full items-center justify-center overflow-auto rounded-[20px] bg-foreground/5">
                   {afterSlide === 0 && (
                     <img
                       src="https://www.figma.com/api/mcp/asset/f2226e71-b286-4e5e-9867-00726c1740df/44af3.png"
@@ -549,8 +549,8 @@ export function HiringCaseStudy() {
                     : "pointer-events-none opacity-0"
                 }`}
               >
-                <figure className="overflow-hidden rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
-                  <div className="flex aspect-video w-full items-center justify-center overflow-hidden rounded-lg bg-foreground/5">
+                <figure className="overflow-hidden rounded-[20px] border border-foreground/10 bg-foreground/[0.03] p-6">
+                  <div className="flex aspect-video w-full items-center justify-center overflow-hidden rounded-[20px] bg-foreground/5">
                     {hiringManagerSlide === 0 && (
                       <div className="w-[85%]">
                         <HiringApplicantsDemo showHeading={false} />
@@ -592,8 +592,8 @@ export function HiringCaseStudy() {
                     : "pointer-events-none opacity-0"
                 }`}
               >
-                <figure className="overflow-hidden rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
-                  <div className="flex aspect-video w-full items-center justify-center overflow-hidden rounded-lg bg-foreground/5">
+                <figure className="overflow-hidden rounded-[20px] border border-foreground/10 bg-foreground/[0.03] p-6">
+                  <div className="flex aspect-video w-full items-center justify-center overflow-hidden rounded-[20px] bg-foreground/5">
                     <img
                       src="/projects/hiring-app/job-applicant-flow.png"
                       alt="Four-screen mobile job applicant flow covering interview onboarding, questions, analysis, and interview scheduling"
@@ -621,7 +621,7 @@ export function HiringCaseStudy() {
 
             <div className="mt-6 space-y-4">
               <div
-                className="flex w-full gap-1 overflow-x-auto rounded-xl border border-foreground/10 bg-foreground/[0.03] p-1"
+                className="flex w-full gap-1 overflow-x-auto rounded-xl border border-foreground/10 bg-foreground/[0.03] p-1 dark:border-foreground/15 dark:bg-foreground/[0.06]"
                 role="tablist"
                 aria-label="UI component showcase"
               >
@@ -634,10 +634,10 @@ export function HiringCaseStudy() {
                     aria-selected={componentShowcaseItem === index}
                     aria-controls={`component-panel-${item.id}`}
                     onClick={() => setComponentShowcaseItem(index)}
-                    className={`min-h-10 shrink-0 rounded-lg px-4 py-2 font-sans text-[14px] font-medium transition-colors ${
+                    className={`min-h-10 shrink-0 rounded-lg px-4 py-2 font-sans text-[14px] font-medium outline-none transition-colors focus-visible:ring-2 focus-visible:ring-foreground/30 ${
                       componentShowcaseItem === index
-                        ? "bg-background text-foreground shadow-sm"
-                        : "text-foreground/55 hover:text-foreground"
+                        ? "bg-background text-foreground shadow-sm dark:bg-foreground/[0.12] dark:text-foreground dark:ring-1 dark:ring-foreground/20 dark:shadow-none"
+                        : "text-foreground/55 hover:bg-foreground/[0.04] hover:text-foreground dark:text-foreground/60 dark:hover:bg-foreground/[0.08] dark:hover:text-foreground"
                     }`}
                   >
                     {item.label}
@@ -645,8 +645,8 @@ export function HiringCaseStudy() {
                 ))}
               </div>
 
-              <figure className="overflow-hidden rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
-                <div className="grid min-h-[280px] overflow-hidden rounded-lg bg-foreground/5">
+              <figure className="overflow-hidden rounded-[20px] border border-foreground/10 bg-foreground/[0.03] p-6">
+                <div className="grid min-h-[280px] overflow-hidden rounded-[20px] bg-foreground/5">
                   {componentShowcaseItems.map((item, index) => (
                     <div
                       key={item.id}
@@ -661,7 +661,7 @@ export function HiringCaseStudy() {
                       }`}
                     >
                       {item.id === "font" ? (
-                        <div className="w-full max-w-2xl overflow-hidden rounded-xl border border-foreground/10 bg-background">
+                        <div className="w-full max-w-2xl overflow-hidden rounded-[20px] border border-foreground/10 bg-background">
                           <div className="flex flex-col gap-4 border-b border-foreground/10 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
                             <div>
                               <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-foreground/45">
@@ -718,7 +718,7 @@ export function HiringCaseStudy() {
                       ) : null}
 
                       {item.id === "color" ? (
-                        <div className="w-full max-w-2xl overflow-hidden rounded-xl border border-foreground/10 bg-background">
+                        <div className="w-full max-w-2xl overflow-hidden rounded-[20px] border border-foreground/10 bg-background">
                           <div className="flex flex-col gap-3 border-b border-foreground/10 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
                             <div>
                               <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-foreground/45">
@@ -788,7 +788,7 @@ export function HiringCaseStudy() {
                       ) : null}
 
                       {item.id === "buttons" ? (
-                        <div className="w-full max-w-2xl overflow-hidden rounded-xl border border-foreground/10 bg-background">
+                        <div className="w-full max-w-2xl overflow-hidden rounded-[20px] border border-foreground/10 bg-background">
                           <div className="flex flex-col gap-3 border-b border-foreground/10 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
                             <div>
                               <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-foreground/45">
@@ -870,7 +870,7 @@ export function HiringCaseStudy() {
                       ) : null}
 
                       {item.id === "dropdown" ? (
-                        <div className="w-full max-w-2xl overflow-hidden rounded-xl border border-foreground/10 bg-background">
+                        <div className="w-full max-w-2xl overflow-hidden rounded-[20px] border border-foreground/10 bg-background">
                           <div className="flex flex-col gap-3 border-b border-foreground/10 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
                             <div>
                               <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-foreground/45">
@@ -987,7 +987,7 @@ export function HiringCaseStudy() {
                       ) : null}
 
                       {item.id === "match-chips" ? (
-                        <div className="w-full max-w-2xl overflow-hidden rounded-xl border border-foreground/10 bg-background">
+                        <div className="w-full max-w-2xl overflow-hidden rounded-[20px] border border-foreground/10 bg-background">
                           <div className="flex flex-col gap-3 border-b border-foreground/10 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
                             <div>
                               <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-foreground/45">
@@ -1115,7 +1115,7 @@ export function HiringCaseStudy() {
                       ) : null}
 
                       {item.id.startsWith("placeholder") ? (
-                        <div className="w-full max-w-sm rounded-xl border border-dashed border-foreground/20 bg-background/40 p-8 text-center">
+                        <div className="w-full max-w-sm rounded-[20px] border border-dashed border-foreground/20 bg-background/40 p-8 text-center">
                           <div className="mx-auto size-10 rounded-lg bg-foreground/10" />
                           <p className="mt-4 font-sans text-[15px] font-medium text-foreground/60">
                             {item.label}
