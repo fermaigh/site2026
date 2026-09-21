@@ -387,7 +387,7 @@ export function HiringCaseStudy() {
             </div>
 
             {executionMode === "after" ? (
-              <div className="mt-6 grid grid-cols-1 gap-2 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-1 dark:border-foreground/15 dark:bg-foreground/[0.06] sm:grid-cols-3" aria-label="After design user segment">
+              <div className="mx-auto mt-6 grid w-full max-w-[900px] grid-cols-1 gap-2 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-1 dark:border-foreground/15 dark:bg-foreground/[0.06] sm:grid-cols-3" aria-label="After design user segment">
                 {([
                   [
                     "operations",
@@ -432,7 +432,7 @@ export function HiringCaseStudy() {
             ) : null}
 
             {executionMode === "before" ? (
-              <div className="mt-10 space-y-6">
+              <div className="mx-auto mt-10 w-full max-w-[900px] space-y-6">
                 <figure className="overflow-hidden rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
                   <div className="flex aspect-video w-full items-center justify-center rounded-lg bg-foreground/5">
                     {currentSlide === 0 && (
@@ -478,7 +478,7 @@ export function HiringCaseStudy() {
             ) : null}
 
             {executionMode === "after" ? (
-              <div className="mt-10 grid">
+              <div className="mx-auto mt-10 grid w-full max-w-[900px]">
               <div
                 aria-hidden={afterAudience !== "operations"}
                 inert={afterAudience !== "operations"}
@@ -550,9 +550,11 @@ export function HiringCaseStudy() {
                 }`}
               >
                 <figure className="overflow-hidden rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
-                  <div className="flex aspect-[1464/962] w-full items-center justify-center overflow-hidden rounded-lg bg-foreground/5">
+                  <div className="flex aspect-video w-full items-center justify-center overflow-hidden rounded-lg bg-foreground/5">
                     {hiringManagerSlide === 0 && (
-                      <HiringApplicantsDemo showHeading={false} />
+                      <div className="w-[85%]">
+                        <HiringApplicantsDemo showHeading={false} />
+                      </div>
                     )}
                     {hiringManagerSlide === 1 && (
                       <img
@@ -591,7 +593,7 @@ export function HiringCaseStudy() {
                 }`}
               >
                 <figure className="overflow-hidden rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6">
-                  <div className="flex aspect-[2048/1109] w-full items-center justify-center overflow-hidden rounded-lg bg-foreground/5">
+                  <div className="flex aspect-video w-full items-center justify-center overflow-hidden rounded-lg bg-foreground/5">
                     <img
                       src="/projects/hiring-app/job-applicant-flow.png"
                       alt="Four-screen mobile job applicant flow covering interview onboarding, questions, analysis, and interview scheduling"
@@ -610,7 +612,7 @@ export function HiringCaseStudy() {
               </div>
             ) : null}
 
-            <p className="mt-12 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-16 sm:text-[17px]">
+            <p className="mt-8 font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:mt-10 sm:text-[17px]">
               I <strong>initiated and drove a new design system</strong> that standardized core patterns, reduced repetitive design and engineering work, and helped the team <strong>ship faster with greater consistency as the product scaled</strong>.
             </p>
             <p className="mt-4 font-sans text-[15px] font-semibold leading-[1.65] text-foreground sm:text-[17px]">
