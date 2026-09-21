@@ -21,8 +21,9 @@ export function SiteHero() {
             <PronunciationAudio />
           </p>
           <p className="mt-2 max-w-xl font-sans text-[14px] leading-relaxed text-pretty text-foreground/70 sm:text-[15px] md:text-[16px]">
-            AI native, design thoughtful, strategic and useful products for
-            10+&nbsp;years
+            Product designer turning complex systems into thoughtful, scalable
+            products, from marketplaces and enterprise software to AI-native
+            experiences.
           </p>
         </div>
       </div>
