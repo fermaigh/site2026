@@ -1673,7 +1673,7 @@ const AI_IDLE_MS = 1000;
 /** A mock: the match only re-runs once this many characters have changed. */
 const AI_CAPTURE_CHARS = 10;
 /** The autosave tell reappears on this beat, and stays up for this long. */
-const AI_SAVING_CYCLE_MS = 2000;
+const AI_SAVING_CYCLE_MS = 4000;
 const AI_SAVING_VISIBLE_MS = 1200;
 
 /**
