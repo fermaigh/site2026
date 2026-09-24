@@ -3,9 +3,9 @@
 import { useEffect } from "react";
 
 /** Gap between neighbours in one cascade. */
-const STEP_MS = 70;
+const STEP_MS = 80;
 /** Cap the stagger so a tall screenful never waits seconds for its last block. */
-const MAX_STEPS = 6;
+const MAX_STEPS = 4;
 
 declare global {
   interface Window {
@@ -20,8 +20,8 @@ function inDocumentOrder(a: Element, b: Element) {
 }
 
 /**
- * Wipes `.reveal` blocks in as they reach the viewport, staggered in document
- * order so a screenful arrives top to bottom.
+ * Resolves `.reveal` blocks from blurred to crisp as they reach the viewport,
+ * staggered in document order so a screenful arrives top to bottom.
  */
 export function RevealOnScroll() {
   useEffect(() => {
@@ -47,30 +47,15 @@ export function RevealOnScroll() {
           .sort(inDocumentOrder);
 
         arriving.forEach((el, index) => {
-          // Get element position for diagonal effect
-          const rect = el.getBoundingClientRect();
-          const viewportWidth = window.innerWidth;
-          const viewportHeight = window.innerHeight;
-
-          // Normalize positions to 0-1 range
-          const verticalNorm = Math.max(0, Math.min(1, rect.top / viewportHeight));
-          const horizontalNorm = Math.max(0, Math.min(1, rect.left / viewportWidth));
-
-          // Combine position-based delay with document order delay
-          // Vertical position weighted more heavily (80%) than horizontal (20%)
-          const positionFactor = Math.min(verticalNorm * 0.8 + horizontalNorm * 0.2, 1);
-          const positionSteps = Math.ceil(positionFactor * 2); // 0-2 extra steps for subtle diagonal
-          const totalSteps = Math.min(index + positionSteps, MAX_STEPS);
-
           el.style.setProperty(
-            "--reveal-delay",
-            `${totalSteps * STEP_MS}ms`,
+            "--reveal-stagger",
+            `${Math.min(index, MAX_STEPS) * STEP_MS}ms`,
           );
           el.classList.add("is-revealing");
           observer.unobserve(el);
         });
       },
-      { rootMargin: "0px 0px -6% 0px", threshold: 0.01 },
+      { rootMargin: "0px 0px -8% 0px", threshold: 0.04 },
     );
 
     // Hand the element back to plain layout once it has played, so nothing is
@@ -80,7 +65,7 @@ export function RevealOnScroll() {
       if (!el.classList?.contains("is-revealing")) return;
       el.classList.remove("is-revealing");
       el.classList.add("is-revealed");
-      el.style.removeProperty("--reveal-delay");
+      el.style.removeProperty("--reveal-stagger");
     };
     document.addEventListener("animationend", onAnimationEnd, true);
 
