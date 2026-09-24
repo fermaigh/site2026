@@ -150,19 +150,21 @@
   }
 }
 
-/* Quiet, faster entrance motion */
-/* Content wipes in from its left edge. RevealOnScroll staggers elements in
-   document order, so a screenful cascades down the page. */
-@keyframes reveal-wipe {
-  from {
-    clip-path: inset(0 100% 0 0);
+/* Spell-inspired blur reveal: content resolves from soft and slightly lifted
+   to crisp without changing layout or clipping shadows from the live demos. */
+@keyframes reveal-blur {
+  0% {
+    filter: blur(12px);
     opacity: 0;
-    transform: translateX(-10px);
+    transform: translate3d(0, 14px, 0) scale(0.99);
   }
-  to {
-    clip-path: inset(0 0 0 0);
+  45% {
     opacity: 1;
-    transform: translateX(0);
+  }
+  100% {
+    filter: blur(0);
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
   }
 }
 
@@ -192,32 +194,32 @@
 }
 
 /* Unarmed — no JS, or reduced motion — leaves every block plainly visible.
-   The waiting state hides with opacity alone, deliberately: a clip-path here
-   zeroes the element's own intersection rect, so IntersectionObserver would
-   never see it arrive and it would stay hidden forever. The keyframes own the
-   clip instead, which is safe because by then it has been unobserved. */
+   The waiting state uses opacity only so IntersectionObserver still receives
+   the element's natural layout box. */
 .reveal-armed .reveal {
   opacity: 0;
 }
 
 .reveal-armed .reveal.is-revealing {
-  animation: reveal-wipe 0.62s cubic-bezier(0.33, 1, 0.68, 1) both;
-  animation-delay: var(--reveal-delay, 0ms);
-  will-change: clip-path, opacity, transform;
+  animation: reveal-blur 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(
+    var(--reveal-delay, 0ms) + var(--reveal-stagger, 0ms)
+  );
+  backface-visibility: hidden;
+  will-change: filter, opacity, transform;
 }
 
-/* Drop the clip once it has played: inset(0) still clips, which would cut the
-   shadows the live demos let spill past their edges. */
+/* Hand the element back to normal painting after the effect has played. */
 .reveal-armed .reveal.is-revealed {
-  clip-path: none;
+  filter: none;
   opacity: 1;
   transform: none;
   animation: none;
+  backface-visibility: visible;
   will-change: auto;
 }
 
-/* Hand-placed tiers remain a sensible starting offset; the observer overrides
-   them inline with the real document-order position. */
+/* Authored tiers combine with the observer's small in-view cascade. */
 .reveal-delay-1 {
   --reveal-delay: 60ms;
 }
@@ -1368,7 +1370,7 @@ html.is-loading body {
 
   /* Belt and braces: even if the root were armed, nothing stays hidden. */
   .reveal-armed .reveal {
-    clip-path: none;
+    filter: none;
     opacity: 1;
     transform: none;
   }
