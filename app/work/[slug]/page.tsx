@@ -158,6 +158,9 @@ export default async function CaseStudyPage({ params }: PageProps) {
   }
 
   const { caseStudy } = project;
+  const teamFollowsYear =
+    project.slug === "scaling-tiktok-shop-affiliates" ||
+    project.slug === "ai-powered-hiring-platform";
   const hasMeta =
     caseStudy.role ||
     caseStudy.team ||
@@ -183,8 +186,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
                     <MetaLine label="Role" value={caseStudy.role} />
                   )
                 ) : null}
-                {caseStudy.team &&
-                project.slug !== "scaling-tiktok-shop-affiliates" ? (
+                {caseStudy.team && !teamFollowsYear ? (
                   <MetaLine label="Team" value={caseStudy.team} />
                 ) : null}
                 {caseStudy.year ? (
@@ -192,8 +194,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
                 ) : caseStudy.duration ? (
                   <MetaLine label="Duration" value={caseStudy.duration} />
                 ) : null}
-                {caseStudy.team &&
-                project.slug === "scaling-tiktok-shop-affiliates" ? (
+                {caseStudy.team && teamFollowsYear ? (
                   <MetaLine label="Team" value={caseStudy.team} />
                 ) : null}
                 {caseStudy.platform ? (
