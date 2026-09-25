@@ -90,6 +90,8 @@ export type Project = {
   slug: string;
   title: string;
   description: RichText;
+  /** Compact capability labels shown below the description on the landing page */
+  labels?: string[];
   /** Grey placeholder until a real thumbnail is added */
   thumbnail?: string;
   /** Autoplaying muted loop video shown in place of the still thumbnail when set */
@@ -110,6 +112,7 @@ export const projects: Project[] = [
     title: "Scaling TikTok Shop Affiliates",
     description:
       "Shaping how millions of sellers discover and collaborate with creators across TikTok Shop, from traditional workflows to AI agents.",
+    labels: ["AI", "System", "End-to-end"],
     thumbnail: "/projects/tts_thumb.png",
     thumbnailBackground: "#000000",
     caseStudy: {
@@ -186,6 +189,7 @@ export const projects: Project[] = [
     title: "AI-Powered Hiring Platform",
     description:
       "Transformed a service-led hiring MVP into a self-service platform for franchise businesses.",
+    labels: ["Ambiguity", "0-1", "Design System"],
     thumbnail: "/projects/hiring-app.webp",
     video: "/projects/hiring-app.mp4",
     caseStudy: {
