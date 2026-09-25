@@ -132,7 +132,8 @@ export const projects: Project[] = [
     thumbnailBackground: "#000000",
     caseStudy: {
       role: "Senior Product Designer leading Creator–Seller Affiliate collaboration across",
-      year: "2024–Present",
+      team: "Global cross-functional team",
+      year: "2024–2006",
       platform: "Web and mobile",
       sections: [
         {
