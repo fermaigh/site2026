@@ -78,6 +78,21 @@ export function ProjectRow({
           <p className="mt-2 max-w-md font-sans text-[14px] leading-relaxed text-pretty text-foreground/55 sm:mt-3 sm:text-[15px] md:text-[16px]">
             <RichTextContent value={project.description} />
           </p>
+          {project.labels?.length ? (
+            <ul
+              className="mt-4 flex flex-wrap gap-2"
+              aria-label={`${project.title} project focus`}
+            >
+              {project.labels.map((label) => (
+                <li
+                  key={label}
+                  className="rounded-full border border-foreground/10 bg-foreground/[0.04] px-2.5 py-1 font-sans text-[11px] font-medium leading-none text-foreground/60 sm:text-[12px]"
+                >
+                  {label}
+                </li>
+              ))}
+            </ul>
+          ) : null}
         </div>
       </div>
     </article>
