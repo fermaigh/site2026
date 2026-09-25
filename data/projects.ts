@@ -309,6 +309,7 @@ export const projects: Project[] = [
     title: "Simplifying Enterprise Security",
     description:
       "Turned complex enterprise security workflows into one of Dashlane Business's most-used SMB features.",
+    labels: ["System", "0-1"],
     video: "/projects/dark-web-monitoring.mp4",
     thumbnailBackground: "#D1DFE3",
     caseStudy: {
@@ -406,6 +407,7 @@ export const projects: Project[] = [
     title: "Growth & Monetization",
     description:
       "Redesigned activation and monetization journeys across platforms, increasing conversion and retention.",
+    labels: ["Activation", "Cross-platform"],
     thumbnail: "/projects/growth-monetization.webp",
     thumbnailBackground: "#F3B8B1",
     thumbnailScale: 1.25,
