@@ -6,6 +6,7 @@ import { HiringApplicantsDemo } from "@/components/hiring/HiringApplicantsDemo";
 import { ScreenWall } from "@/components/ScreenWall";
 import { TransitionLink } from "@/components/TransitionLink";
 import { TtsProductDemo } from "@/components/tts/TtsProductDemo";
+import { TikTokShopRoleLine } from "@/components/TikTokShopRoleLine";
 import {
   getCaseStudyProjects,
   getProject,
@@ -176,7 +177,11 @@ export default async function CaseStudyPage({ params }: PageProps) {
             {hasMeta ? (
               <div className="space-y-1">
                 {caseStudy.role ? (
-                  <MetaLine label="Role" value={caseStudy.role} />
+                  project.slug === "scaling-tiktok-shop-affiliates" ? (
+                    <TikTokShopRoleLine value={caseStudy.role} />
+                  ) : (
+                    <MetaLine label="Role" value={caseStudy.role} />
+                  )
                 ) : null}
                 {caseStudy.team ? (
                   <MetaLine label="Team" value={caseStudy.team} />
