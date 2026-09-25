@@ -277,6 +277,116 @@
     transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* Enterprise client marks in the Sprockets impact list. They behave like the
+   inline TikTok brand moment: icons stay compact for a pointer and each name
+   unfolds on hover, while touch devices see the complete labels immediately. */
+.franchise-brand-list {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.38rem;
+  margin-left: 0.25rem;
+  vertical-align: -0.42rem;
+}
+
+.franchise-brand {
+  display: inline-flex;
+  width: var(--franchise-brand-width);
+  height: 1.75rem;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+  border: 1px solid rgb(0 0 0 / 8%);
+  border-radius: 0.52rem;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 10%);
+  transform: rotate(-1deg);
+  transform-origin: left center;
+  transition:
+    width 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s ease;
+}
+
+.franchise-brand:nth-child(even) {
+  transform: rotate(1.25deg);
+}
+
+.franchise-brand-mark {
+  width: 1.08rem;
+  height: 1.08rem;
+  flex: none;
+  margin-left: 0.34rem;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.franchise-brand-name {
+  margin-left: 0.46rem;
+  padding-right: 0.62rem;
+  font-size: 0.7rem;
+  font-weight: 650;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  opacity: 1;
+  transform: translateX(0);
+  transition:
+    opacity 0.25s ease,
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.franchise-brand.is-mcdonalds {
+  background: #da291c;
+  color: #ffc72c;
+}
+
+.franchise-brand.is-mcdonalds .franchise-brand-name,
+.franchise-brand.is-chickfila {
+  color: #fff;
+}
+
+.franchise-brand.is-chickfila {
+  background: #dd0031;
+}
+
+.franchise-brand.is-burgerking {
+  background: #f5ebdc;
+  color: #d62300;
+}
+
+.franchise-brand.is-burgerking .franchise-brand-name {
+  color: #502314;
+}
+
+.franchise-brand.is-tacobell {
+  background: #702082;
+  color: #fff;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .franchise-brand {
+    width: 1.8rem;
+  }
+
+  .franchise-brand-name {
+    opacity: 0;
+    transform: translateX(-0.35rem);
+  }
+
+  .franchise-brand:hover {
+    width: var(--franchise-brand-width);
+    box-shadow: 0 4px 12px rgb(0 0 0 / 16%);
+    transform: translateY(-1px) rotate(0);
+  }
+
+  .franchise-brand:hover .franchise-brand-mark {
+    transform: rotate(-7deg) scale(1.06);
+  }
+
+  .franchise-brand:hover .franchise-brand-name {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 @media (hover: hover) and (pointer: fine) {
   .tiktok-shop-brand {
     width: 1.75rem;
@@ -1448,7 +1558,10 @@ html.is-loading body {
 
   .tiktok-shop-brand,
   .tiktok-shop-brand-mark,
-  .tiktok-shop-brand-name {
+  .tiktok-shop-brand-name,
+  .franchise-brand,
+  .franchise-brand-mark,
+  .franchise-brand-name {
     transition: none;
   }
 
