@@ -210,9 +210,9 @@ export const projects: Project[] = [
     video: "/projects/hiring-app.mp4",
     caseStudy: {
       role: "Lead Product Designer",
-      team: "Founder, 2 PMs, 8 Engineers, 2 Designers",
-      duration: "2023–2024",
-      ownership: "Hiring Manager Core experience, Franchise Admin tool, Job Applicant experiences",
+      team: "Startup",
+      year: "2023–2024",
+      platform: "Mostly Web",
       lead: {
         parts: [
           "Joined shortly after ",
