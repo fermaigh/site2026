@@ -183,13 +183,18 @@ export default async function CaseStudyPage({ params }: PageProps) {
                     <MetaLine label="Role" value={caseStudy.role} />
                   )
                 ) : null}
-                {caseStudy.team ? (
+                {caseStudy.team &&
+                project.slug !== "scaling-tiktok-shop-affiliates" ? (
                   <MetaLine label="Team" value={caseStudy.team} />
                 ) : null}
                 {caseStudy.year ? (
                   <MetaLine label="Year" value={caseStudy.year} />
                 ) : caseStudy.duration ? (
                   <MetaLine label="Duration" value={caseStudy.duration} />
+                ) : null}
+                {caseStudy.team &&
+                project.slug === "scaling-tiktok-shop-affiliates" ? (
+                  <MetaLine label="Team" value={caseStudy.team} />
                 ) : null}
                 {caseStudy.platform ? (
                   <MetaLine label="Platform" value={caseStudy.platform} />
