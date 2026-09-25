@@ -7,7 +7,15 @@ export type RichTextBold = {
   bold: string;
 };
 
-export type RichTextPart = string | RichTextLink | RichTextBold;
+export type RichTextFranchiseBrands = {
+  franchiseBrands: true;
+};
+
+export type RichTextPart =
+  | string
+  | RichTextLink
+  | RichTextBold
+  | RichTextFranchiseBrands;
 
 /** Plain string, or mixed text + links + bold spans for inline emphasis */
 export type RichText =
@@ -24,13 +32,20 @@ function isRichTextBold(part: RichTextPart): part is RichTextBold {
   return typeof part === "object" && "bold" in part;
 }
 
+export function isRichTextFranchiseBrands(
+  part: RichTextPart,
+): part is RichTextFranchiseBrands {
+  return typeof part === "object" && "franchiseBrands" in part;
+}
+
 export function richTextToPlain(value: RichText): string {
   if (typeof value === "string") return value;
   return value.parts
     .map((part) => {
       if (typeof part === "string") return part;
       if (isRichTextLink(part)) return part.text;
-      return part.bold;
+      if (isRichTextBold(part)) return part.bold;
+      return "McDonald's, Chick-fil-A, Burger King, and Taco Bell";
     })
     .join("");
 }
@@ -231,9 +246,7 @@ export const projects: Project[] = [
                 "Enabled ",
                 { bold: "enterprise adoption" },
                 " across brands including ",
-                {
-                  bold: "McDonald's, Chick-fil-A, Burger King, and Taco Bell",
-                },
+                { franchiseBrands: true },
               ],
             },
             {
