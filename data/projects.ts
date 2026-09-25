@@ -45,7 +45,7 @@ export function richTextToPlain(value: RichText): string {
       if (typeof part === "string") return part;
       if (isRichTextLink(part)) return part.text;
       if (isRichTextBold(part)) return part.bold;
-      return "McDonald's, Chick-fil-A, Burger King, and Taco Bell";
+      return "McDonald's, Chick-fil-A, Taco Bell, Domino's, Jersey Mike's, and Ricky Rockets Fuel Center";
     })
     .join("");
 }
