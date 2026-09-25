@@ -347,18 +347,28 @@
   background: #dd0031;
 }
 
-.franchise-brand.is-burgerking {
-  background: #f5ebdc;
-  color: #d62300;
-}
-
-.franchise-brand.is-burgerking .franchise-brand-name {
-  color: #502314;
-}
-
 .franchise-brand.is-tacobell {
   background: #702082;
   color: #fff;
+}
+
+.franchise-brand.is-dominos {
+  background: #006491;
+  color: #fff;
+}
+
+.franchise-brand.is-jerseymikes {
+  background: #0b315f;
+  color: #fff;
+}
+
+.franchise-brand.is-rickyrockets {
+  background: #14213d;
+  color: #fff;
+}
+
+.franchise-brand.is-rickyrockets .franchise-brand-mark {
+  color: #f7c948;
 }
 
 @media (hover: hover) and (pointer: fine) {
