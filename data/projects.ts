@@ -116,7 +116,7 @@ export const projects: Project[] = [
     thumbnail: "/projects/tts_thumb.png",
     thumbnailBackground: "#000000",
     caseStudy: {
-      role: "Senior Product Designer leading Creator–Seller Affiliate collaboration across TikTok Shop Affiliate",
+      role: "Senior Product Designer leading Creator–Seller Affiliate collaboration across",
       year: "2024–Present",
       platform: "Web and mobile",
       sections: [
