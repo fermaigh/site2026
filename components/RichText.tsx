@@ -1,6 +1,8 @@
 import { HoverArrow } from "@/components/HoverArrow";
+import { FranchiseBrandIcons } from "@/components/FranchiseBrandIcons";
 import {
   isRichTextBold,
+  isRichTextFranchiseBrands,
   isRichTextLink,
   type RichText,
 } from "@/data/projects";
@@ -43,6 +45,10 @@ export function RichTextContent({ value }: { value: RichText }) {
               {part.bold}
             </strong>
           );
+        }
+
+        if (isRichTextFranchiseBrands(part)) {
+          return <FranchiseBrandIcons key={`${index}-franchise-brands`} />;
         }
 
         return null;
