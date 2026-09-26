@@ -275,26 +275,21 @@ export const projects: Project[] = [
       duration: "2023",
       ownership:
         "Feature discovery, domain verification, breach reporting, and remediation",
-      lead: {
-        parts: [
-          "I joined Dashlane’s B2B team in early 2023 and led the design of ",
-          { bold: "Dark Web Monitoring" },
-          " for ",
-          {
-            text: "Dashlane Business",
-            href: "https://www.dashlane.com/darkwebinsights",
-          },
-          ". I partnered with product and engineering to transform complex security requirements into a ",
-          { bold: "simple, actionable experience" },
-          ".",
-        ],
-      },
       sections: [
         {
           heading: "Overview",
           body: {
             parts: [
-              "Dark Web Monitoring scans company email domains for potential breaches. Through research and rapid iteration, I designed an experience that helped ",
+              "I joined Dashlane’s B2B team in early 2023 and led the design of ",
+              { bold: "Dark Web Monitoring" },
+              " for ",
+              {
+                text: "Dashlane Business",
+                href: "https://www.dashlane.com/darkwebinsights",
+              },
+              ". I partnered with product and engineering to transform complex security requirements into a ",
+              { bold: "simple, actionable experience" },
+              ". Dark Web Monitoring scans company email domains for potential breaches. Through research and rapid iteration, I designed an experience that helped ",
               { bold: "IT administrators" },
               " discover risks, understand reports, and ",
               { bold: "take action" },
@@ -317,38 +312,6 @@ export const projects: Project[] = [
                     "Shaped one of Dashlane Business’s ",
                     { bold: "three most-used features" },
                     " among SMB customers.",
-                  ],
-                },
-              ],
-            },
-            {
-              heading: "My contributions",
-              bullets: [
-                {
-                  parts: [
-                    { bold: "Led design" },
-                    " from discovery through delivery.",
-                  ],
-                },
-                {
-                  parts: [
-                    "Conducted ",
-                    { bold: "user and competitive research" },
-                    ".",
-                  ],
-                },
-                {
-                  parts: [
-                    "Simplified ",
-                    { bold: "complex security workflows" },
-                    ".",
-                  ],
-                },
-                {
-                  parts: [
-                    "Designed ",
-                    { bold: "feature discovery and domain verification" },
-                    ".",
                   ],
                 },
               ],
