@@ -446,13 +446,14 @@
   color: #ffc72c;
 }
 
-.franchise-brand.is-mcdonalds .franchise-brand-name,
-.franchise-brand.is-chickfila {
+.franchise-brand.is-mcdonalds .franchise-brand-name {
   color: #fff;
 }
 
 .franchise-brand.is-chickfila {
-  background: #dd0031;
+  border-color: rgb(221 0 49 / 18%);
+  background: #fff;
+  color: #dd0031;
 }
 
 .franchise-brand.is-tacobell {
