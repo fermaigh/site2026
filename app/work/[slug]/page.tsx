@@ -7,6 +7,7 @@ import { ScreenWall } from "@/components/ScreenWall";
 import { TransitionLink } from "@/components/TransitionLink";
 import { TtsProductDemo } from "@/components/tts/TtsProductDemo";
 import { TikTokShopRoleLine } from "@/components/TikTokShopRoleLine";
+import { SprocketsRoleLine } from "@/components/SprocketsRoleLine";
 import {
   getCaseStudyProjects,
   getProject,
@@ -182,6 +183,8 @@ export default async function CaseStudyPage({ params }: PageProps) {
                 {caseStudy.role ? (
                   project.slug === "scaling-tiktok-shop-affiliates" ? (
                     <TikTokShopRoleLine value={caseStudy.role} />
+                  ) : project.slug === "ai-powered-hiring-platform" ? (
+                    <SprocketsRoleLine value={caseStudy.role} />
                   ) : (
                     <MetaLine label="Role" value={caseStudy.role} />
                   )
