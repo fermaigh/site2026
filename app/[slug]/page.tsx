@@ -194,7 +194,8 @@ export default async function CaseStudyPage({ params }: PageProps) {
                     <TikTokShopRoleLine value={caseStudy.role} />
                   ) : project.slug === "ai-powered-hiring-platform" ? (
                     <SprocketsRoleLine value={caseStudy.role} />
-                  ) : project.slug === "growth-and-monetization" ? (
+                  ) : project.slug === "growth-and-monetization" ||
+                    project.slug === "simplifying-enterprise-security" ? (
                     <DashlaneRoleLine value={caseStudy.role} />
                   ) : (
                     <MetaLine label="Role" value={caseStudy.role} />
