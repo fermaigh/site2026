@@ -301,23 +301,24 @@ export function DarkWebDashboardDemo() {
         Dark Web Monitoring dashboard
       </h3>
       <figure
-        ref={stageRef}
         className="w-full rounded-[20px] border border-foreground/10 bg-foreground/[0.03] p-3 sm:p-5"
         aria-label="Interactive Dashlane admin dashboard showing Password Health and Dark Web Insights"
       >
-        <div
-          ref={cameraRef}
-          className="relative w-full overflow-hidden rounded-[20px] bg-[#f5f7f7] shadow-[0_12px_35px_rgba(21,45,49,0.11)]"
-          style={{ aspectRatio: `${UI_WIDTH} / ${UI_HEIGHT}` }}
-        >
+        <div ref={stageRef} className="w-full">
           <div
-            ref={fitRef}
-            className="relative overflow-hidden rounded-[20px] bg-[#f5f7f7] font-sans text-[#263135]"
-            style={{ width: UI_WIDTH, height: UI_HEIGHT, transformOrigin: "top left" }}
+            ref={cameraRef}
+            className="relative w-full overflow-hidden rounded-[20px] bg-[#f5f7f7] shadow-[0_12px_35px_rgba(21,45,49,0.11)]"
+            style={{ aspectRatio: `${UI_WIDTH} / ${UI_HEIGHT}` }}
           >
-            <BrowserChrome />
-            <Sidebar />
-            <Dashboard />
+            <div
+              ref={fitRef}
+              className="relative overflow-hidden rounded-[20px] bg-[#f5f7f7] font-sans text-[#263135]"
+              style={{ width: UI_WIDTH, height: UI_HEIGHT, transformOrigin: "top left" }}
+            >
+              <BrowserChrome />
+              <Sidebar />
+              <Dashboard />
+            </div>
           </div>
         </div>
       </figure>
