@@ -278,13 +278,21 @@
 }
 
 /* Sprockets uses the same compact-to-label brand interaction as TikTok Shop. */
+.sprockets-brand-slot {
+  display: inline-block;
+  width: 6.15rem;
+  height: 1.65rem;
+  vertical-align: -0.38rem;
+  white-space: nowrap;
+}
+
 .sprockets-brand {
   display: inline-flex;
   width: 6.15rem;
   height: 1.65rem;
   align-items: center;
   overflow: hidden;
-  vertical-align: -0.38rem;
+  vertical-align: top;
   white-space: nowrap;
   border: 1px solid rgb(17 84 94 / 15%);
   border-radius: 0.48rem;
@@ -1659,6 +1667,7 @@ html.is-loading body {
   .tiktok-shop-brand-mark,
   .tiktok-shop-brand-name,
   .sprockets-brand,
+  .sprockets-brand-slot,
   .sprockets-brand-mark,
   .sprockets-brand-name,
   .franchise-brand,

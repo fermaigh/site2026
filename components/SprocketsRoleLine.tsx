@@ -19,12 +19,14 @@ export function SprocketsRoleLine({ value }: { value: string }) {
     <p>
       <span className="font-medium text-foreground">Role:</span>{" "}
       <strong className="font-semibold text-foreground">{value}</strong>{" "}
-      <span className="sprockets-brand" role="img" aria-label="Sprockets">
-        <span className="sprockets-brand-mark">
-          <SprocketsMark />
-        </span>
-        <span className="sprockets-brand-name" aria-hidden="true">
-          Sprockets
+      <span className="sprockets-brand-slot">
+        <span className="sprockets-brand" role="img" aria-label="Sprockets">
+          <span className="sprockets-brand-mark">
+            <SprocketsMark />
+          </span>
+          <span className="sprockets-brand-name" aria-hidden="true">
+            Sprockets
+          </span>
         </span>
       </span>
     </p>
