@@ -309,31 +309,12 @@
 
 .sprockets-brand-mark {
   display: grid;
-  width: 1.05rem;
-  height: 1.18rem;
+  width: 1.08rem;
+  height: 1.08rem;
   flex: none;
   margin-left: 0.32rem;
   place-items: center;
   transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.sprockets-brand-logo-crop {
-  position: relative;
-  display: block;
-  width: 1.05rem;
-  height: 1.05rem;
-  overflow: hidden;
-  border-radius: 999px;
-}
-
-.sprockets-brand-logo {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 2.5rem;
-  max-width: none;
-  height: auto;
-  transform: translate(-50%, -50%);
 }
 
 .sprockets-brand-name {

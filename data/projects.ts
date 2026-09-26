@@ -209,7 +209,7 @@ export const projects: Project[] = [
     thumbnail: "/projects/hiring-app.webp",
     video: "/projects/hiring-app.mp4",
     caseStudy: {
-      role: "Solo designer at",
+      role: "Solo Product Designer at",
       team: "Startup",
       year: "2023–2024",
       platform: "Mostly Web",

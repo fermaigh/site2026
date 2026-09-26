@@ -176,6 +176,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
   const contentSections = introImpact
     ? caseStudy.sections.filter((section) => section !== introImpact)
     : caseStudy.sections;
+  const leadBelowDivider = Boolean(introImpact);
 
   return (
     <PageShell>
@@ -215,20 +216,25 @@ export default async function CaseStudyPage({ params }: PageProps) {
                 ) : null}
               </div>
             ) : null}
-            {caseStudy.lead ? (
+            {caseStudy.lead && !leadBelowDivider ? (
               <p>
                 <RichTextContent value={caseStudy.lead} />
               </p>
             ) : null}
           </div>
-          {introImpact ? (
-            <section className="mt-8 sm:mt-10">
-              <CaseStudySectionContent section={introImpact} />
-            </section>
-          ) : null}
         </header>
 
         <div className="mt-12 space-y-10 border-t border-foreground/10 pt-10 sm:mt-16 sm:space-y-14 sm:pt-14 md:mt-20 md:pt-16">
+          {caseStudy.lead && leadBelowDivider ? (
+            <p className="reveal reveal-delay-1 w-full font-sans text-[15px] leading-[1.65] text-pretty text-foreground/80 sm:text-[17px]">
+              <RichTextContent value={caseStudy.lead} />
+            </p>
+          ) : null}
+          {introImpact ? (
+            <section className="reveal reveal-delay-2">
+              <CaseStudySectionContent section={introImpact} />
+            </section>
+          ) : null}
           {contentSections.map((section, index) => (
             <section
               key={section.heading ?? `section-${index}`}

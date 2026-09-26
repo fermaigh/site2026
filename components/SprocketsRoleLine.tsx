@@ -2,15 +2,14 @@ import Image from "next/image";
 
 function SprocketsMark() {
   return (
-    <span className="sprockets-brand-logo-crop" aria-hidden="true">
-      <Image
-        src="/projects/hiring-app/sprockets-logo.png"
-        alt=""
-        width={207}
-        height={87}
-        className="sprockets-brand-logo"
-      />
-    </span>
+    <Image
+      src="/projects/hiring-app/sprockets-mark.svg"
+      alt=""
+      width={208}
+      height={208}
+      className="block size-full"
+      aria-hidden="true"
+    />
   );
 }
 
