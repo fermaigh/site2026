@@ -226,20 +226,6 @@ export const projects: Project[] = [
           bullets: [
             {
               parts: [
-                "↑ ",
-                { bold: "87% interview conversation rate" },
-                " for clients using Sprockets",
-              ],
-            },
-            {
-              parts: [
-                "↓ ",
-                { bold: "27% 90-day employee turnover" },
-                " for clients using Sprockets",
-              ],
-            },
-            {
-              parts: [
                 "Enabled ",
                 { bold: "enterprise adoption" },
                 " across brands including ",
@@ -253,31 +239,6 @@ export const projects: Project[] = [
                   text: "acquisition by Humanly.io",
                   href: "https://www.humanly.io/blog/humanly-expands-to-create-an-end-to-end-conversational-ai-hiring-platform",
                 },
-              ],
-            },
-          ],
-        },
-        {
-          heading: "My contributions",
-          bullets: [
-            {
-              parts: [
-                "Shaped ",
-                { bold: "product strategy and vision" },
-                " alongside company leadership.",
-              ],
-            },
-            {
-              parts: [
-                { bold: "Led end-to-end design" },
-                " across multiple product areas, from concept to launch.",
-              ],
-            },
-            {
-              parts: [
-                "Established scalable design processes and a ",
-                { bold: "design system" },
-                " to accelerate delivery.",
               ],
             },
           ],
