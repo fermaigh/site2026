@@ -45,7 +45,7 @@ export function richTextToPlain(value: RichText): string {
       if (typeof part === "string") return part;
       if (isRichTextLink(part)) return part.text;
       if (isRichTextBold(part)) return part.bold;
-      return "McDonald's, Chick-fil-A, Taco Bell, Domino's, Jersey Mike's, and Ricky Rockets Fuel Center";
+      return "McDonald's, Chick-fil-A, Taco Bell, Domino's, and Jersey Mike's";
     })
     .join("");
 }
@@ -209,7 +209,7 @@ export const projects: Project[] = [
     thumbnail: "/projects/hiring-app.webp",
     video: "/projects/hiring-app.mp4",
     caseStudy: {
-      role: "Lead Product Designer who owned Admin tool, Hiring Manager Core experience and Job Applicant experiences at",
+      role: "Solo designer at",
       team: "Startup",
       year: "2023–2024",
       platform: "Mostly Web",

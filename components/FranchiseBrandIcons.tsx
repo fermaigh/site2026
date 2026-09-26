@@ -39,12 +39,6 @@ const brands: Brand[] = [
     className: "is-jerseymikes",
     width: "7.65rem",
   },
-  {
-    id: "rickyrockets",
-    label: "Ricky Rockets Fuel Center",
-    className: "is-rickyrockets",
-    width: "11.1rem",
-  },
 ];
 
 function ChickFilAMark() {
@@ -103,26 +97,12 @@ function JerseyMikesMark() {
   );
 }
 
-function RickyRocketsMark() {
-  return (
-    <svg viewBox="0 0 24 24" className="block size-full" aria-hidden="true">
-      <path
-        d="M14.9 3.1c2.7.2 4.8 2.3 5 5-1.6 3-3.8 5.5-6.6 7.4l-4.8-4.8c1.9-2.8 4.4-5 7.4-6.6Z"
-        fill="currentColor"
-      />
-      <circle cx="15.8" cy="8.2" r="2" fill="#14213d" />
-      <path d="m8.8 12.4-3.5.7-2.2 2.2 4.8.2.9-3.1Zm2.8 2.8-.7 3.5-2.2 2.2-.2-4.8 3.1-.9Z" fill="#ffb000" />
-      <path d="m7.4 16.6-2.7 2.7M8.9 18.1l-1.8 2" stroke="#ff4d2e" strokeWidth="1.8" strokeLinecap="round" />
-    </svg>
-  );
-}
-
 export function FranchiseBrandIcons() {
   return (
     <span
       className="franchise-brand-list"
       role="list"
-      aria-label="McDonald's, Chick-fil-A, Taco Bell, Domino's, Jersey Mike's, and Ricky Rockets Fuel Center"
+      aria-label="McDonald's, Chick-fil-A, Taco Bell, Domino's, and Jersey Mike's"
     >
       {brands.map((brand) => (
         <span
@@ -139,8 +119,6 @@ export function FranchiseBrandIcons() {
               <DominosMark />
             ) : brand.id === "jerseymikes" ? (
               <JerseyMikesMark />
-            ) : brand.id === "rickyrockets" ? (
-              <RickyRocketsMark />
             ) : (
               <svg
                 viewBox="0 0 24 24"
