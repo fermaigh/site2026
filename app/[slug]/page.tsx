@@ -10,6 +10,7 @@ import { TikTokShopRoleLine } from "@/components/TikTokShopRoleLine";
 import { SprocketsRoleLine } from "@/components/SprocketsRoleLine";
 import { DashlaneRoleLine } from "@/components/DashlaneRoleLine";
 import { DarkWebVideoDemo } from "@/components/dashlane/DarkWebVideoDemo";
+import { GrowthVideoDemos } from "@/components/dashlane/GrowthVideoDemos";
 import {
   getCaseStudyProjects,
   getProject,
@@ -275,6 +276,12 @@ export default async function CaseStudyPage({ params }: PageProps) {
         {caseStudy.showcase === "dark-web-video" ? (
           <div className="reveal reveal-delay-3 mt-10 w-full sm:mt-12">
             <DarkWebVideoDemo />
+          </div>
+        ) : null}
+
+        {caseStudy.showcase === "growth-videos" ? (
+          <div className="reveal reveal-delay-3 mt-10 w-full sm:mt-12">
+            <GrowthVideoDemos />
           </div>
         ) : null}
 
