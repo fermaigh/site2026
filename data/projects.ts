@@ -215,13 +215,9 @@ export const projects: Project[] = [
       platform: "Mostly Web",
       lead: {
         parts: [
-          "Joined shortly after ",
-          { bold: "MVP launch" },
-          " to help scale the product. Partnered with founders and cross-functional teams to identify ",
-          { bold: "high-impact opportunities for growth" },
-          ", validate solutions, and deliver customer experiences that accelerated product maturity and ",
-          { bold: "business growth" },
-          ".",
+          "Joined after MVP validation to help define the next stage of the product: transforming a service-led hiring workflow into a ",
+          { bold: "scalable self-service platform" },
+          ". Led design across research, product strategy, end-to-end workflows, and system foundations, helping reduce operational dependency while improving customer outcomes and supporting enterprise growth.",
         ],
       },
       sections: [
