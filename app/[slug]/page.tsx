@@ -9,7 +9,7 @@ import { TtsProductDemo } from "@/components/tts/TtsProductDemo";
 import { TikTokShopRoleLine } from "@/components/TikTokShopRoleLine";
 import { SprocketsRoleLine } from "@/components/SprocketsRoleLine";
 import { DashlaneRoleLine } from "@/components/DashlaneRoleLine";
-import { DarkWebDashboardDemo } from "@/components/dashlane/DarkWebDashboardDemo";
+import { DarkWebVideoDemo } from "@/components/dashlane/DarkWebVideoDemo";
 import {
   getCaseStudyProjects,
   getProject,
@@ -272,9 +272,9 @@ export default async function CaseStudyPage({ params }: PageProps) {
           </div>
         ) : null}
 
-        {caseStudy.showcase === "dark-web-dashboard" ? (
+        {caseStudy.showcase === "dark-web-video" ? (
           <div className="reveal reveal-delay-3 mt-10 w-full sm:mt-12">
-            <DarkWebDashboardDemo />
+            <DarkWebVideoDemo />
           </div>
         ) : null}
 

@@ -98,7 +98,7 @@ export type CaseStudy = {
   /** Link to passcode-gated work, shown in place of a closing note */
   gatedLink?: { label: string; href: string };
   /** Live product UI demo rendered below the closing note */
-  showcase?: "target-collaboration" | "hiring-applicants" | "dark-web-dashboard";
+  showcase?: "target-collaboration" | "hiring-applicants" | "dark-web-video";
 };
 
 export type Project = {
@@ -315,7 +315,7 @@ export const projects: Project[] = [
         },
       ],
       closingNote: "Full case study details available upon request.",
-      showcase: "dark-web-dashboard",
+      showcase: "dark-web-video",
     },
   },
   {
