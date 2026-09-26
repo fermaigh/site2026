@@ -240,7 +240,7 @@
   height: 1.65rem;
   align-items: center;
   overflow: hidden;
-  vertical-align: -0.38rem;
+  vertical-align: -0.28rem;
   white-space: nowrap;
   border: 1px solid rgb(255 255 255 / 14%);
   border-radius: 0.48rem;
@@ -282,7 +282,7 @@
   display: inline-block;
   width: 6.15rem;
   height: 1.65rem;
-  vertical-align: -0.38rem;
+  vertical-align: -0.28rem;
   white-space: nowrap;
 }
 
@@ -359,7 +359,7 @@
   align-items: center;
   gap: 0.38rem;
   margin-left: 0.25rem;
-  vertical-align: -0.42rem;
+  vertical-align: -0.32rem;
 }
 
 .franchise-brand {

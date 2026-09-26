@@ -1,7 +1,7 @@
 function FooterBrandIcon({ children }: { children: React.ReactNode }) {
   return (
     <span
-      className="mx-0.5 inline-flex size-[1.05em] shrink-0 items-center justify-center align-[-0.15em] text-foreground/40"
+      className="mx-0.5 inline-flex size-[1.05em] shrink-0 items-center justify-center align-[-0.05em] text-foreground/40"
       aria-hidden
     >
       {children}

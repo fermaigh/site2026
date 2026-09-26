@@ -6,7 +6,7 @@ export function HoverBackArrow({ className = "" }: { className?: string }) {
   return (
     <span
       aria-hidden
-      className={`relative inline-block size-[0.85em] shrink-0 overflow-hidden align-[-0.05em] ${className}`}
+      className={`relative inline-block size-[0.85em] shrink-0 overflow-hidden align-baseline ${className}`}
     >
       <span className="absolute inset-0 flex items-center justify-center transition-transform duration-300 ease-in group-hover:-translate-x-[110%] group-active:-translate-x-[110%]">
         <span className="inline-block -rotate-[135deg]">↗</span>
