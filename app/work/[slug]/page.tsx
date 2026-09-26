@@ -169,6 +169,13 @@ export default async function CaseStudyPage({ params }: PageProps) {
     caseStudy.duration ||
     caseStudy.platform ||
     caseStudy.ownership;
+  const introImpact =
+    project.slug === "ai-powered-hiring-platform"
+      ? caseStudy.sections.find((section) => section.heading === "Impact")
+      : undefined;
+  const contentSections = introImpact
+    ? caseStudy.sections.filter((section) => section !== introImpact)
+    : caseStudy.sections;
 
   return (
     <PageShell>
@@ -214,10 +221,15 @@ export default async function CaseStudyPage({ params }: PageProps) {
               </p>
             ) : null}
           </div>
+          {introImpact ? (
+            <section className="mt-8 sm:mt-10">
+              <CaseStudySectionContent section={introImpact} />
+            </section>
+          ) : null}
         </header>
 
         <div className="mt-12 space-y-10 border-t border-foreground/10 pt-10 sm:mt-16 sm:space-y-14 sm:pt-14 md:mt-20 md:pt-16">
-          {caseStudy.sections.map((section, index) => (
+          {contentSections.map((section, index) => (
             <section
               key={section.heading ?? `section-${index}`}
               className={`reveal reveal-delay-${Math.min(index + 1, 3)}`}
