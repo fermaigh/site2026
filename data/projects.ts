@@ -281,15 +281,10 @@ export const projects: Project[] = [
           body: {
             parts: [
               "I joined Dashlane’s B2B team in early 2023 and led the design of ",
-              { bold: "Dark Web Monitoring" },
-              " for ",
-              {
-                text: "Dashlane Business",
-                href: "https://www.dashlane.com/darkwebinsights",
-              },
+              { bold: "Dark Web Insight" },
               ". I partnered with product and engineering to transform complex security requirements into a ",
               { bold: "simple, actionable experience" },
-              ". Dark Web Monitoring scans company email domains for potential breaches. Through research and rapid iteration, I designed an experience that helped ",
+              ". Dark Web Insight scans company email domains for potential breaches. Through research and rapid iteration, I designed an experience that helped ",
               { bold: "IT administrators" },
               " discover risks, understand reports, and ",
               { bold: "take action" },
@@ -340,47 +335,21 @@ export const projects: Project[] = [
       year: "2020–2021",
       ownership:
         "Onboarding, subscription plans, and cross-platform upsell experiences",
-      lead: {
-        parts: [
-          "I led design across Dashlane’s ",
-          { bold: "acquisition and subscription journeys" },
-          ", partnering with a global team to drive ",
-          { bold: "user activation, retention, and revenue growth" },
-          " across web, desktop, and mobile.",
-        ],
-      },
       sections: [
         {
           heading: "Overview",
           body: {
             parts: [
-              "I redesigned new-user onboarding around ",
-              { bold: "Autofill" },
-              "—Dashlane’s core “aha moment”—and led the UX for a ",
+              "I led design across Dashlane’s ",
+              { bold: "acquisition and subscription journeys" },
+              ", partnering with a global team to drive ",
+              { bold: "user activation, retention, and revenue growth" },
+              " across web, desktop, and mobile. I also led the UX for a ",
               { bold: "global subscription revamp" },
-              " introducing a new mid-tier plan. I also identified early-funnel friction and tested targeted improvements across key conversion touchpoints.",
+              " introducing a new mid-tier plan, identified early-funnel friction, and tested targeted improvements across key conversion touchpoints.",
             ],
           },
           blocks: [
-            {
-              heading: "Impact",
-              bullets: [
-                {
-                  parts: [{ bold: "23%+ free-to-paid conversion" }],
-                },
-                {
-                  parts: [
-                    { bold: "5%+ improvement in first-month retention" },
-                  ],
-                },
-                {
-                  parts: [
-                    { bold: "12% lift in conversion" },
-                    " by improving Premium trial visibility",
-                  ],
-                },
-              ],
-            },
             {
               heading: "My contributions",
               bullets: [
@@ -414,13 +383,6 @@ export const projects: Project[] = [
                     " for quick wins, improving ",
                     { bold: "activation and conversion" },
                     " based on behavioral data and churn analysis.",
-                  ],
-                },
-                {
-                  parts: [
-                    "Aligned stakeholders across ",
-                    { bold: "product, engineering, data, and marketing" },
-                    ".",
                   ],
                 },
               ],

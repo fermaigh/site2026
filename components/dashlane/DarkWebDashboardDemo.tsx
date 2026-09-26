@@ -298,7 +298,7 @@ export function DarkWebDashboardDemo() {
   return (
     <>
       <h3 className="mb-8 font-sans text-[clamp(1.125rem,4vw,1.5rem)] font-semibold tracking-tight text-foreground">
-        Dark Web Monitoring dashboard
+        Dark Web Insight dashboard
       </h3>
       <figure
         className="w-full rounded-[20px] border border-foreground/10 bg-foreground/[0.03] p-3 sm:p-5"
