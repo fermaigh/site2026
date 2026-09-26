@@ -217,33 +217,19 @@ export const projects: Project[] = [
         parts: [
           "Joined after MVP validation to help define the next stage of the product: transforming a service-led hiring workflow into a ",
           { bold: "scalable self-service platform" },
-          ". Led design across research, product strategy, end-to-end workflows, and system foundations, helping reduce operational dependency while improving customer outcomes and supporting enterprise growth.",
+          ". Led design across research, product strategy, end-to-end workflows, and system foundations, helping reduce operational dependency while improving customer outcomes and supporting enterprise growth. Enabled ",
+          { bold: "enterprise adoption" },
+          " across brands including ",
+          { franchiseBrands: true },
+          ", and helped scale the product through the company's ",
+          {
+            text: "acquisition by Humanly.io",
+            href: "https://www.humanly.io/blog/humanly-expands-to-create-an-end-to-end-conversational-ai-hiring-platform",
+          },
+          ".",
         ],
       },
-      sections: [
-        {
-          heading: "Impact",
-          bullets: [
-            {
-              parts: [
-                "Enabled ",
-                { bold: "enterprise adoption" },
-                " across brands including ",
-                { franchiseBrands: true },
-              ],
-            },
-            {
-              parts: [
-                "Helped scale the product through the company's ",
-                {
-                  text: "acquisition by Humanly.io",
-                  href: "https://www.humanly.io/blog/humanly-expands-to-create-an-end-to-end-conversational-ai-hiring-platform",
-                },
-              ],
-            },
-          ],
-        },
-      ],
+      sections: [],
       gallery: {
         caption:
           "A cross-section of the platform — manager dashboards, applicant scoring, campaign tooling, franchise administration, and the candidate-facing mobile flow.",

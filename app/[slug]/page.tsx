@@ -176,7 +176,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
   const contentSections = introImpact
     ? caseStudy.sections.filter((section) => section !== introImpact)
     : caseStudy.sections;
-  const leadBelowDivider = Boolean(introImpact);
+  const leadBelowDivider = project.slug === "ai-powered-hiring-platform";
 
   return (
     <PageShell>
