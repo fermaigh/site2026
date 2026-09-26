@@ -373,7 +373,7 @@ export const projects: Project[] = [
       role: "Product Designer",
       team:
         "18-person cross-functional Growth team across Product, Design, Engineering, Data, and Marketing",
-      duration: "2020–2021",
+      year: "2020–2021",
       ownership:
         "Onboarding, subscription plans, and cross-platform upsell experiences",
       lead: {
