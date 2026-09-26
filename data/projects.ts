@@ -270,7 +270,7 @@ export const projects: Project[] = [
     video: "/projects/dark-web-monitoring.mp4",
     thumbnailBackground: "#D1DFE3",
     caseStudy: {
-      role: "Product Designer",
+      role: "Product Designer at",
       team: "Product, Engineering, and cross-functional partners",
       duration: "2023",
       ownership:
@@ -333,7 +333,7 @@ export const projects: Project[] = [
     thumbnailScale: 1.25,
     thumbnailOffsetY: -10,
     caseStudy: {
-      role: "Product Designer",
+      role: "Product Designer at",
       team:
         "18-person cross-functional Growth team across Product, Design, Engineering, Data, and Marketing",
       year: "2020–2021",
