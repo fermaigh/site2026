@@ -1,6 +1,7 @@
 import { LandingTopBar } from "@/components/LandingTopBar";
 import { VideoAvatarFrame } from "@/components/VideoAvatarFrame";
 import { PronunciationAudio } from "@/components/PronunciationAudio";
+import { TransitionLink } from "@/components/TransitionLink";
 
 export function SiteHero() {
   return (
@@ -12,7 +13,12 @@ export function SiteHero() {
 
         <div className="min-w-0 flex-1">
           <h1 className="font-sans text-[clamp(1.5rem,5.5vw,2.25rem)] font-semibold leading-tight tracking-tight text-foreground">
-            Xiaoye Lin{" "}
+            <TransitionLink
+              href="/about"
+              className="transition-opacity hover:opacity-70 active:opacity-60"
+            >
+              Xiaoye Lin
+            </TransitionLink>{" "}
             <span aria-hidden className="font-normal wave-emoji inline-block origin-[70%_70%] align-[0.04em]">
               👋
             </span>
