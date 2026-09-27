@@ -2928,19 +2928,24 @@ html.is-loading body {
   animation: ai-border-drift 1s linear 1 both;
 }
 
-/* Dashlane mobile upgrade demo — Figma frames 1931:60051 and 1931:60082. */
+/* Dashlane mobile upgrade demo — Figma frames 1931:60051, 1931:60082, and 1931:59993. */
 .dashlane-phone-screen {
   clip-path: inset(0 round 52px);
 }
 
 .dashlane-tools-screen {
   z-index: 2;
-  animation: dashlane-tools-sequence 14s ease-in-out infinite;
+  animation: dashlane-tools-sequence 18s ease-in-out infinite;
 }
 
 .dashlane-paywall-screen {
   z-index: 3;
-  animation: dashlane-paywall-sequence 14s ease-in-out infinite;
+  animation: dashlane-paywall-sequence 18s ease-in-out infinite;
+}
+
+.dashlane-plan-screen {
+  z-index: 4;
+  animation: dashlane-plan-sequence 18s ease-in-out infinite;
 }
 
 .dashlane-touch-indicator {
@@ -2959,21 +2964,22 @@ html.is-loading body {
   opacity: 0;
   pointer-events: none;
   will-change: transform, opacity;
-  animation: dashlane-touch-sequence 14s ease-in-out infinite;
+  animation: dashlane-touch-sequence 18s ease-in-out infinite;
 }
 
 .dashlane-password-card {
   transform-origin: center;
-  animation: dashlane-password-press 14s ease-in-out infinite;
+  animation: dashlane-password-press 18s ease-in-out infinite;
 }
 
 .dashlane-plan-button {
   transform-origin: center;
-  animation: dashlane-plan-press 14s ease-in-out infinite;
+  animation: dashlane-plan-press 18s ease-in-out infinite;
 }
 
 .dashlane-tools-screen,
 .dashlane-paywall-screen,
+.dashlane-plan-screen,
 .dashlane-touch-indicator,
 .dashlane-password-card,
 .dashlane-plan-button {
@@ -2982,6 +2988,7 @@ html.is-loading body {
 
 .dashlane-mobile-active .dashlane-tools-screen,
 .dashlane-mobile-active .dashlane-paywall-screen,
+.dashlane-mobile-active .dashlane-plan-screen,
 .dashlane-mobile-active .dashlane-touch-indicator,
 .dashlane-mobile-active .dashlane-password-card,
 .dashlane-mobile-active .dashlane-plan-button {
@@ -2990,11 +2997,11 @@ html.is-loading body {
 
 @keyframes dashlane-tools-sequence {
   0%,
-  24% {
+  18% {
     opacity: 1;
     transform: translateX(0);
   }
-  30%,
+  23%,
   100% {
     opacity: 0;
     transform: translateX(-100%);
@@ -3003,68 +3010,89 @@ html.is-loading body {
 
 @keyframes dashlane-paywall-sequence {
   0%,
-  24% {
+  18% {
     opacity: 1;
     transform: translateX(100%);
   }
-  30%,
-  92% {
+  23%,
+  57% {
     opacity: 1;
     transform: translateX(0);
   }
-  97%,
+  58%,
   100% {
     opacity: 0;
     transform: translateX(0);
   }
 }
 
+@keyframes dashlane-plan-sequence {
+  0%,
+  49% {
+    opacity: 1;
+    transform: translateY(100%);
+  }
+  57%,
+  92% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  97% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+}
+
 @keyframes dashlane-touch-sequence {
   0%,
-  6% {
+  4% {
     opacity: 0;
     transform: translate(317px, 560px) scale(1);
   }
-  9% {
+  6% {
     opacity: 1;
     transform: translate(317px, 560px) scale(1);
   }
-  18%,
-  19% {
+  13%,
+  14% {
     opacity: 1;
     transform: translate(261px, 326px) scale(1);
   }
-  21% {
+  15% {
     opacity: 1;
     transform: translate(261px, 326px) scale(0.7);
   }
-  23% {
+  17% {
     opacity: 1;
     transform: translate(261px, 326px) scale(1);
   }
-  26%,
-  38% {
+  20%,
+  30% {
     opacity: 0;
     transform: translate(261px, 326px) scale(1);
   }
-  41% {
+  33% {
     opacity: 1;
     transform: translate(295px, 575px) scale(1);
   }
-  55%,
-  57% {
+  44%,
+  45% {
     opacity: 1;
     transform: translate(170px, 674px) scale(1);
   }
-  59% {
+  46% {
     opacity: 1;
     transform: translate(170px, 674px) scale(0.7);
   }
-  61% {
+  48% {
     opacity: 1;
     transform: translate(170px, 674px) scale(1);
   }
-  65%,
+  51%,
   100% {
     opacity: 0;
     transform: translate(170px, 674px) scale(1);
@@ -3073,13 +3101,13 @@ html.is-loading body {
 
 @keyframes dashlane-password-press {
   0%,
-  19%,
-  24%,
+  14%,
+  18%,
   100% {
     background: #fff;
     transform: scale(1);
   }
-  21% {
+  15% {
     background: #edf5f6;
     transform: scale(0.97);
   }
@@ -3087,13 +3115,13 @@ html.is-loading body {
 
 @keyframes dashlane-plan-press {
   0%,
-  57%,
-  62%,
+  45%,
+  49%,
   100% {
     background: transparent;
     transform: scale(1);
   }
-  59% {
+  46% {
     background: rgba(14, 100, 118, 0.08);
     transform: scale(0.97);
   }
@@ -3112,6 +3140,7 @@ html.is-loading body {
   }
 
   .dashlane-paywall-screen,
+  .dashlane-plan-screen,
   .dashlane-touch-indicator {
     display: none;
   }

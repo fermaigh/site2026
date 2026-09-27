@@ -170,6 +170,107 @@ function PaywallScreen() {
   );
 }
 
+type Plan = {
+  name: string;
+  price: string;
+  description: React.ReactNode;
+  trial?: string;
+};
+
+const plans: Plan[] = [
+  {
+    name: "Essentials",
+    price: "$3.99",
+    description: (
+      <>
+        Get unlimited passwords synced across <strong>2 devices</strong>.
+      </>
+    ),
+  },
+  {
+    name: "Premium",
+    price: "$6.49",
+    trial: "You’re on a free trial",
+    description: (
+      <>
+        Get unlimited passwords synced across <strong>unlimited devices</strong>,
+        plus Dark Web Monitoring and VPN protection.
+      </>
+    ),
+  },
+  {
+    name: "Family",
+    price: "$8.99",
+    description: (
+      <>
+        Protect the whole family with <strong>6 individual Premium accounts</strong>{" "}
+        for one low price.
+      </>
+    ),
+  },
+];
+
+function PlanOptionsScreen() {
+  return (
+    <div className="dashlane-plan-screen absolute inset-0 bg-white">
+      <div className="absolute inset-x-0 top-0 h-[88px] bg-[#d9e6e9]">
+        <StatusBar />
+        <div className="absolute inset-x-0 top-[46px] h-[42px]">
+          <div className="absolute left-[9px] top-[10px] flex items-start gap-[5px]">
+            <img src={`${ASSET_ROOT}/chevron-left.svg`} alt="" />
+            <span className="text-[17px] leading-[22px] tracking-[-0.408px] text-[#0e6476]">
+              Back
+            </span>
+          </div>
+          <p className="absolute inset-x-0 top-[8px] text-center text-[17px] font-semibold leading-[22px] tracking-[-0.408px] text-[#0e353d]">
+            Plan options
+          </p>
+        </div>
+      </div>
+
+      <div className="absolute left-4 top-[101px] h-8 w-[343px] overflow-hidden rounded-[8.91px] bg-[rgba(118,118,128,0.12)]">
+        <div className="absolute inset-y-0.5 left-0.5 w-[174px] rounded-[6.93px] border border-black/[0.04] bg-white shadow-[0_3px_8px_rgba(0,0,0,0.12),0_3px_1px_rgba(0,0,0,0.04)]" />
+        <span className="absolute left-0 top-1/2 w-[177px] -translate-y-1/2 text-center text-[17px] font-semibold leading-[23px] tracking-[-0.41px] text-[#0e353d]">
+          Monthly prices
+        </span>
+        <span className="absolute right-0 top-1/2 w-[176px] -translate-y-1/2 text-center text-[17px] leading-[23px] tracking-[-0.41px] text-[#0e353d]">
+          Annual prices
+        </span>
+      </div>
+
+      <span className="absolute left-[220px] top-[139px] rounded-[2px] bg-[#d8ebdb] px-1 py-0.5 text-[13px] font-medium leading-[14px] text-[#086618]">
+        SAVE UP TO $20
+      </span>
+
+      <div className="absolute left-4 top-[173px] flex w-[343px] flex-col gap-[14px]">
+        {plans.map((plan) => (
+          <div key={plan.name} className="relative h-[159px] rounded-[5px] bg-[#f5f4f3]">
+            <h4 className="absolute left-4 top-[27px] text-[26px] font-bold leading-[30px] text-[#0e353d]">
+              {plan.name}
+            </h4>
+            <p className="absolute right-4 top-7 text-right text-black">
+              <span className="text-[17px] font-semibold leading-[23px] tracking-[-0.41px]">
+                {plan.price}
+              </span>
+              <span className="text-[13px] leading-[23px]">/month</span>
+            </p>
+            {plan.trial ? (
+              <p className="absolute left-4 top-[58px] text-[13px] leading-none text-[#615b57]">
+                {plan.trial}
+              </p>
+            ) : null}
+            <p className="absolute bottom-4 left-4 right-[22px] text-[13px] leading-[15px] text-[#615b57] [&_strong]:font-bold">
+              {plan.description}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      <HomeBar />
+    </div>
+  );
+}
+
 function DashlanePhone() {
   return (
     <div
@@ -185,6 +286,7 @@ function DashlanePhone() {
       <div className="dashlane-phone-screen absolute inset-[10px] overflow-hidden rounded-[52px] bg-white font-[-apple-system,BlinkMacSystemFont,'SF_Pro_Text','Helvetica_Neue',sans-serif]">
         <ToolsScreen />
         <PaywallScreen />
+        <PlanOptionsScreen />
         <span className="dashlane-touch-indicator" aria-hidden="true" />
       </div>
 
