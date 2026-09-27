@@ -1,10 +1,5 @@
 const demos = [
   {
-    title: "Autofill",
-    src: "/projects/dashlane-autofill-demo.mp4",
-    ariaLabel: "Dashlane Autofill product walkthrough",
-  },
-  {
     title: "Onboarding",
     src: "/projects/dashlane-onboarding-demo.mp4",
     ariaLabel: "Dashlane onboarding product walkthrough",
