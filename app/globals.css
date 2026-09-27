@@ -2928,9 +2928,191 @@ html.is-loading body {
   animation: ai-border-drift 1s linear 1 both;
 }
 
+/* Dashlane mobile upgrade demo — Figma frames 1931:60051 and 1931:60082. */
+.dashlane-phone-screen {
+  clip-path: inset(0 round 52px);
+}
+
+.dashlane-tools-screen {
+  z-index: 2;
+  animation: dashlane-tools-sequence 14s ease-in-out infinite;
+}
+
+.dashlane-paywall-screen {
+  z-index: 3;
+  animation: dashlane-paywall-sequence 14s ease-in-out infinite;
+}
+
+.dashlane-touch-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 40;
+  width: 36px;
+  height: 36px;
+  border: 2px solid rgba(14, 53, 61, 0.55);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.66);
+  box-shadow:
+    0 3px 10px rgba(14, 53, 61, 0.2),
+    inset 0 0 0 4px rgba(14, 100, 118, 0.09);
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform, opacity;
+  animation: dashlane-touch-sequence 14s ease-in-out infinite;
+}
+
+.dashlane-password-card {
+  transform-origin: center;
+  animation: dashlane-password-press 14s ease-in-out infinite;
+}
+
+.dashlane-plan-button {
+  transform-origin: center;
+  animation: dashlane-plan-press 14s ease-in-out infinite;
+}
+
+.dashlane-tools-screen,
+.dashlane-paywall-screen,
+.dashlane-touch-indicator,
+.dashlane-password-card,
+.dashlane-plan-button {
+  animation-play-state: paused;
+}
+
+.dashlane-mobile-active .dashlane-tools-screen,
+.dashlane-mobile-active .dashlane-paywall-screen,
+.dashlane-mobile-active .dashlane-touch-indicator,
+.dashlane-mobile-active .dashlane-password-card,
+.dashlane-mobile-active .dashlane-plan-button {
+  animation-play-state: running;
+}
+
+@keyframes dashlane-tools-sequence {
+  0%,
+  24% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  30%,
+  100% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes dashlane-paywall-sequence {
+  0%,
+  24% {
+    opacity: 1;
+    transform: translateX(100%);
+  }
+  30%,
+  92% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  97%,
+  100% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+}
+
+@keyframes dashlane-touch-sequence {
+  0%,
+  6% {
+    opacity: 0;
+    transform: translate(317px, 560px) scale(1);
+  }
+  9% {
+    opacity: 1;
+    transform: translate(317px, 560px) scale(1);
+  }
+  18%,
+  19% {
+    opacity: 1;
+    transform: translate(261px, 326px) scale(1);
+  }
+  21% {
+    opacity: 1;
+    transform: translate(261px, 326px) scale(0.7);
+  }
+  23% {
+    opacity: 1;
+    transform: translate(261px, 326px) scale(1);
+  }
+  26%,
+  38% {
+    opacity: 0;
+    transform: translate(261px, 326px) scale(1);
+  }
+  41% {
+    opacity: 1;
+    transform: translate(295px, 575px) scale(1);
+  }
+  55%,
+  57% {
+    opacity: 1;
+    transform: translate(170px, 674px) scale(1);
+  }
+  59% {
+    opacity: 1;
+    transform: translate(170px, 674px) scale(0.7);
+  }
+  61% {
+    opacity: 1;
+    transform: translate(170px, 674px) scale(1);
+  }
+  65%,
+  100% {
+    opacity: 0;
+    transform: translate(170px, 674px) scale(1);
+  }
+}
+
+@keyframes dashlane-password-press {
+  0%,
+  19%,
+  24%,
+  100% {
+    background: #fff;
+    transform: scale(1);
+  }
+  21% {
+    background: #edf5f6;
+    transform: scale(0.97);
+  }
+}
+
+@keyframes dashlane-plan-press {
+  0%,
+  57%,
+  62%,
+  100% {
+    background: transparent;
+    transform: scale(1);
+  }
+  59% {
+    background: rgba(14, 100, 118, 0.08);
+    transform: scale(0.97);
+  }
+}
+
 
 @media (prefers-reduced-motion: reduce) {
   .ai-border {
     animation: none;
+  }
+
+  .dashlane-tools-screen,
+  .dashlane-password-card,
+  .dashlane-plan-button {
+    animation: none;
+  }
+
+  .dashlane-paywall-screen,
+  .dashlane-touch-indicator {
+    display: none;
   }
 }

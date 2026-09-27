@@ -1,3 +1,5 @@
+import { DashlaneMobileDemo } from "@/components/dashlane/DashlaneMobileDemo";
+
 const demos = [
   {
     title: "Onboarding",
@@ -28,6 +30,7 @@ export function GrowthVideoDemos() {
           </div>
         </section>
       ))}
+      <DashlaneMobileDemo />
     </div>
   );
 }
