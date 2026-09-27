@@ -29,7 +29,12 @@ const tools: Tool[] = [
     interactive: true,
   },
   { label: "VPN", display: "VPN", icon: "vpn.svg", upgrade: true },
-  { label: "Dark Web Monitoring", display: "Dark Web\nMonitoring", icon: "dark-web.svg", upgrade: true },
+  {
+    label: "Dark Web Monitoring",
+    display: "Dark Web\nMonitoring",
+    icon: "dark-web-active-scan.svg",
+    upgrade: true,
+  },
 ];
 
 type Tab = {
@@ -72,7 +77,7 @@ function HomeBar() {
 function ToolsScreen() {
   return (
     <div className="dashlane-tools-screen absolute inset-0 bg-[#f5f4f3]">
-      <div className="absolute inset-x-0 top-10 h-12 bg-[#d9e6e9]">
+      <div className="absolute inset-x-0 top-0 h-[88px] bg-[#d9e6e9]">
         <img
           src={`${ASSET_ROOT}/bell.svg`}
           alt=""
