@@ -5,7 +5,7 @@ import Image from "next/image";
 import { LocalTime } from "@/components/LocalTime";
 
 export function LandingTopBar() {
-  const logoRef = useRef<HTMLDivElement>(null);
+  const logoRef = useRef<HTMLButtonElement>(null);
 
   const handleLogoHover = () => {
     if (!logoRef.current) return;
@@ -23,10 +23,13 @@ export function LandingTopBar() {
 
   return (
     <div className="reveal flex items-center justify-between gap-4 pb-6 pt-6 sm:pb-8 sm:pt-10 md:pb-10 md:pt-14">
-      <div
+      <button
+        type="button"
         ref={logoRef}
-        className="logo-hover"
+        className="logo-hover border-0 bg-transparent p-0"
         onMouseEnter={handleLogoHover}
+        onClick={() => window.location.reload()}
+        aria-label="Refresh page"
       >
         <Image
           src="/site-icon.png"
@@ -36,7 +39,7 @@ export function LandingTopBar() {
           priority
           className="block size-6 rounded-full"
         />
-      </div>
+      </button>
       <LocalTime />
     </div>
   );
