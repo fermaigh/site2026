@@ -137,7 +137,7 @@ export const projects: Project[] = [
     caseStudy: {
       role: "Senior Product Designer leading Creator–Seller Affiliate collaboration across",
       team: "Global cross-functional team",
-      year: "2024–2006",
+      year: "2024–2026",
       platform: "Web and mobile",
       sections: [
         {
