@@ -393,17 +393,17 @@ export function HiringCaseStudy() {
                   [
                     "operations",
                     "Operations",
-                    "/projects/hiring-app/sprockets-mark.svg",
+                    "/projects/hiring-app/deliverable-operations-icon.png",
                   ],
                   [
                     "hiring-manager",
                     "Hiring Manager",
-                    "/projects/hiring-app/sprockets-mark.svg",
+                    "/projects/hiring-app/deliverable-hiring-manager-icon.png",
                   ],
                   [
                     "job-applicant",
                     "Job Applicant",
-                    "/projects/hiring-app/sprockets-mark.svg",
+                    "/projects/hiring-app/deliverable-job-applicant-icon.png",
                   ],
                 ] as const).map(([value, label, avatar]) => (
                   <button
