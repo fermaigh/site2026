@@ -16,17 +16,17 @@ const sprocketsHeading = Poppins({
 
 const personas = [
   {
-    src: "https://www.figma.com/api/mcp/asset/1998ff27-84e0-40db-8905-ea34a458c8c6/43d31.png",
+    src: "/projects/hiring-app/persona-operations.png",
     alt: "Operations persona for Operation Oma, an account owner",
     caption: "Operations / Payer: Makes decisions at the organizational level.",
   },
   {
-    src: "https://www.figma.com/api/mcp/asset/6fb48395-b848-4328-bf43-3ee63feff2c0/f850b.png",
+    src: "/projects/hiring-app/persona-hiring-manager.png",
     alt: "Hiring Manager persona for Hiring Manager Harry, a team member",
     caption: "Hiring Manager: Manages hiring and staffing at individual locations.",
   },
   {
-    src: "https://www.figma.com/api/mcp/asset/7da1ec5a-6022-4f1e-bcb9-99cf54cf3136/47e04.png",
+    src: "/projects/hiring-app/persona-job-applicant.png",
     alt: "Job Applicant persona for Job Applicant Jordan",
     caption: "Job Applicant: Applies and completes the assessment.",
   },
@@ -211,30 +211,30 @@ export function HiringCaseStudy() {
               <div className="space-y-6">
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <img
-                    src="https://www.figma.com/api/mcp/asset/0931d153-f218-4453-9edb-66db7e6f6f6a/2ff33.png"
+                    src="/projects/hiring-app/research-affinity-left.png"
                     alt="Research workshop - affinity mapping left"
                     className="h-auto w-full rounded-[20px] border border-foreground/5 object-cover"
                   />
                   <img
-                    src="https://www.figma.com/api/mcp/asset/0931d153-f218-4453-9edb-66db7e6f6f6a/888a6.png"
+                    src="/projects/hiring-app/research-affinity-right.png"
                     alt="Research workshop - affinity mapping right"
                     className="h-auto w-full rounded-[20px] border border-foreground/5 object-cover"
                   />
                 </div>
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <img
-                    src="https://www.figma.com/api/mcp/asset/0931d153-f218-4453-9edb-66db7e6f6f6a/4f251.png"
+                    src="/projects/hiring-app/research-interview-notes.png"
                     alt="Research documentation - interview notes"
                     className="h-auto w-full rounded-[20px] border border-foreground/5 object-cover"
                   />
                   <img
-                    src="https://www.figma.com/api/mcp/asset/0931d153-f218-4453-9edb-66db7e6f6f6a/8c77b.png"
+                    src="/projects/hiring-app/research-findings.png"
                     alt="Research documentation - findings synthesis"
                     className="h-auto w-full rounded-[20px] border border-foreground/5 object-cover"
                   />
                 </div>
                 <img
-                  src="https://www.figma.com/api/mcp/asset/0931d153-f218-4453-9edb-66db7e6f6f6a/d15b3.png"
+                  src="/projects/hiring-app/research-process.png"
                   alt="User journey and interaction flows"
                   className="h-auto w-full rounded-[20px] border border-foreground/5 object-cover"
                 />
@@ -253,7 +253,7 @@ export function HiringCaseStudy() {
             <figure className="mt-10 overflow-hidden rounded-[20px] border border-foreground/10 bg-foreground/[0.03] p-6">
               <div className="w-full overflow-hidden rounded-[20px] bg-foreground/5">
                 <img
-                  src="https://www.figma.com/api/mcp/asset/37e42041-998a-4705-b619-7e7ebdd03bdf/2dbff.png"
+                  src="/projects/hiring-app/user-journey-map.png"
                   alt="User journey diagram showing how Operation, Hiring Manager, and Applicant users navigate through the hiring platform"
                   className="block h-auto w-full max-w-none"
                 />
@@ -342,7 +342,7 @@ export function HiringCaseStudy() {
             <figure className="mt-10 overflow-hidden rounded-[20px] border border-foreground/10 bg-foreground/[0.03] p-6">
               <div className="flex w-full items-center justify-center overflow-x-auto rounded-[20px] bg-foreground/5">
                 <img
-                  src="https://www.figma.com/api/mcp/asset/079a6df6-1e55-4bb0-8b3c-176a5f4ab378/b262e.png"
+                  src="/projects/hiring-app/workflow-map.png"
                   alt="Detailed workflow diagram showing CRM, Account Owner, Hiring Manager, and Applicants user flows and platform touchpoints"
                   className="w-full h-auto max-w-none"
                 />
@@ -393,17 +393,17 @@ export function HiringCaseStudy() {
                   [
                     "operations",
                     "Operations",
-                    "https://www.figma.com/api/mcp/asset/4ecf0ea9-fc6e-4143-a74b-cf1e21248c97/1b704.png",
+                    "/projects/hiring-app/sprockets-mark.svg",
                   ],
                   [
                     "hiring-manager",
                     "Hiring Manager",
-                    "https://www.figma.com/api/mcp/asset/1bd36dc2-f40c-414e-b0e0-435bad631aa3/52aea.png",
+                    "/projects/hiring-app/sprockets-mark.svg",
                   ],
                   [
                     "job-applicant",
                     "Job Applicant",
-                    "https://www.figma.com/api/mcp/asset/fdc30ef2-80e3-476b-b6eb-6b843bc82f6b/47e83.png",
+                    "/projects/hiring-app/sprockets-mark.svg",
                   ],
                 ] as const).map(([value, label, avatar]) => (
                   <button
@@ -438,21 +438,21 @@ export function HiringCaseStudy() {
                   <div className="flex aspect-[814/383] w-full items-center justify-center overflow-hidden rounded-[20px] bg-foreground/5">
                     {currentSlide === 0 && (
                       <img
-                        src="https://www.figma.com/api/mcp/asset/59ff5460-5854-499e-afbc-92efcbf2e75c/40174.png"
+                        src="/projects/hiring-app/before-locations.png"
                         alt="Location management screen"
                         className="h-full w-full object-contain"
                       />
                     )}
                     {currentSlide === 1 && (
                       <img
-                        src="https://www.figma.com/api/mcp/asset/c024e64c-7714-46e4-a82f-c1ed8f84e3c5/38ef3.png"
+                        src="/projects/hiring-app/sourcing-filtering.png"
                         alt="Candidate sourcing screen"
                         className="h-full w-full object-contain"
                       />
                     )}
                     {currentSlide === 2 && (
                       <img
-                        src="https://www.figma.com/api/mcp/asset/a4ce3e61-6bbe-4b01-a18a-8ac45d80c40d/05d77.png"
+                        src="/projects/hiring-app/account-management.png"
                         alt="Account level management screen"
                         className="h-full w-full object-contain"
                       />
@@ -493,7 +493,7 @@ export function HiringCaseStudy() {
                   <div className="flex aspect-[814/383] min-w-0 w-full items-center justify-center overflow-hidden rounded-[20px] bg-foreground/5">
                   {afterSlide === 0 && (
                     <img
-                      src="https://www.figma.com/api/mcp/asset/f2226e71-b286-4e5e-9867-00726c1740df/44af3.png"
+                      src="/projects/hiring-app/operations-dashboard.png"
                       alt="Dashboard and report system screen"
                       loading="eager"
                       decoding="async"
@@ -502,7 +502,7 @@ export function HiringCaseStudy() {
                   )}
                   {afterSlide === 1 && (
                     <img
-                      src="https://www.figma.com/api/mcp/asset/67e92ba9-6741-422d-9da4-50dde9677813/3f10c.png"
+                      src="/projects/hiring-app/sourcing-automation.png"
                       alt="Source automation tool screen"
                       loading="eager"
                       decoding="async"
@@ -511,7 +511,7 @@ export function HiringCaseStudy() {
                   )}
                   {afterSlide === 2 && (
                     <img
-                      src="https://www.figma.com/api/mcp/asset/60e0334e-775d-4527-a482-ba27b237a1fa/98008.png"
+                      src="/projects/hiring-app/account-management.png"
                       alt="Account level management screen"
                       loading="eager"
                       decoding="async"
@@ -559,7 +559,7 @@ export function HiringCaseStudy() {
                     )}
                     {hiringManagerSlide === 1 && (
                       <img
-                        src="https://www.figma.com/api/mcp/asset/5f98b044-04b9-4157-b7e4-956fbf13d318/ce628.png"
+                        src="/projects/hiring-app/interview-mobile.png"
                         alt="Scheduling and manage interview in mobile app"
                         loading="eager"
                         decoding="async"

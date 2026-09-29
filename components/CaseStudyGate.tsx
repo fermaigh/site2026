@@ -2525,7 +2525,7 @@ function DeliverableScreenshot() {
   return (
     <figure className="mt-8 sm:mt-10 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-6 overflow-hidden">
       <img
-        src="https://www.figma.com/api/mcp/asset/d29a64d4-dbf5-45be-95ca-4085825685ac/daa65.png"
+        src="/projects/tiktok-case-study/final-deliverables.png"
         alt="Final deliverables - Seller landing and creation experience screens"
         className="w-full h-auto rounded-lg"
       />
