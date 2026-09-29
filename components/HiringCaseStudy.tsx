@@ -250,8 +250,8 @@ export function HiringCaseStudy() {
               </p>
             </div>
 
-            <figure className="mt-10 overflow-hidden rounded-[20px] border border-foreground/10 bg-foreground/[0.03] p-6">
-              <div className="w-full overflow-hidden rounded-[20px] bg-foreground/5">
+            <figure className="mt-10 overflow-hidden">
+              <div className="w-full overflow-hidden">
                 <img
                   src="/projects/hiring-app/user-journey-map.png"
                   alt="User journey diagram showing how Operation, Hiring Manager, and Applicant users navigate through the hiring platform"
