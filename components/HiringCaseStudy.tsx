@@ -445,7 +445,7 @@ export function HiringCaseStudy() {
                     )}
                     {currentSlide === 1 && (
                       <img
-                        src="/projects/hiring-app/sourcing-filtering.png"
+                        src="/projects/hiring-app/candidate-sourcing-screen.png"
                         alt="Candidate sourcing screen"
                         className="h-full w-full object-contain"
                       />
