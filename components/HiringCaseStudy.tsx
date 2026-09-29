@@ -559,7 +559,7 @@ export function HiringCaseStudy() {
                     )}
                     {hiringManagerSlide === 1 && (
                       <img
-                        src="/projects/hiring-app/interview-mobile.png"
+                        src="/projects/hiring-app/hiring-manager-mobile-scheduling.png"
                         alt="Scheduling and manage interview in mobile app"
                         loading="eager"
                         decoding="async"
