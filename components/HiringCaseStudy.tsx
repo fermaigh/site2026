@@ -156,7 +156,7 @@ export function HiringCaseStudy() {
               <figure className="overflow-hidden rounded-[20px] border border-foreground/10 bg-foreground/[0.03] p-6">
                 <div className="flex aspect-[2/1] w-full items-center justify-center overflow-hidden">
                   <img
-                    src="/projects/hiring-app/sourcing-filtering.png"
+                    src="/projects/hiring-app/sourcing-filtering.svg"
                     alt="Sourcing and filtering illustration showing candidate filtering interface"
                     className="h-full w-full max-w-[360px] object-contain"
                   />
@@ -169,7 +169,7 @@ export function HiringCaseStudy() {
               <figure className="overflow-hidden rounded-[20px] border border-foreground/10 bg-foreground/[0.03] p-6">
                 <div className="flex aspect-[2/1] w-full items-center justify-center overflow-hidden">
                   <img
-                    src="/projects/hiring-app/job-application.png"
+                    src="/projects/hiring-app/job-application.svg"
                     alt="Job application illustration showing candidate profile and application status"
                     className="h-full w-full max-w-[90px] object-contain"
                   />
