@@ -435,7 +435,7 @@ export function HiringCaseStudy() {
             {executionMode === "before" ? (
               <div className="mt-10 w-full space-y-6">
                 <figure className="overflow-hidden rounded-[20px] border border-foreground/10 bg-foreground/[0.03] p-4 sm:p-6">
-                  <div className="flex aspect-[814/383] w-full items-center justify-center overflow-hidden rounded-[20px]">
+                  <div className="flex aspect-[8/5] w-full items-center justify-center overflow-hidden rounded-[20px]">
                     {currentSlide === 0 && (
                       <img
                         src="/projects/hiring-app/before-locations.png"
@@ -490,7 +490,7 @@ export function HiringCaseStudy() {
                 }`}
               >
                 <figure className="min-w-0 overflow-hidden rounded-[20px] border border-foreground/10 bg-foreground/[0.03] p-4 sm:p-6">
-                  <div className="flex aspect-[814/383] min-w-0 w-full items-center justify-center overflow-hidden rounded-[20px]">
+                  <div className="flex aspect-[8/5] min-w-0 w-full items-center justify-center overflow-hidden rounded-[20px]">
                   {afterSlide === 0 && (
                     <img
                       src="/projects/hiring-app/operations-dashboard.png"
@@ -551,9 +551,9 @@ export function HiringCaseStudy() {
                 }`}
               >
                 <figure className="min-w-0 overflow-hidden rounded-[20px] border border-foreground/10 bg-foreground/[0.03] p-4 sm:p-6">
-                  <div className="flex aspect-[814/383] min-w-0 w-full items-center justify-center overflow-hidden rounded-[20px]">
+                  <div className="flex aspect-[8/5] min-w-0 w-full items-center justify-center overflow-hidden rounded-[20px]">
                     {hiringManagerSlide === 0 && (
-                      <div className="w-[71%] min-w-0 max-w-full">
+                      <div className="w-[92%] min-w-0 max-w-full">
                         <HiringApplicantsDemo showHeading={false} />
                       </div>
                     )}
@@ -594,7 +594,7 @@ export function HiringCaseStudy() {
                 }`}
               >
                 <figure className="min-w-0 overflow-hidden rounded-[20px] border border-foreground/10 bg-foreground/[0.03] p-4 sm:p-6">
-                  <div className="flex aspect-[814/383] min-w-0 w-full items-center justify-center overflow-hidden rounded-[20px]">
+                  <div className="flex aspect-[8/5] min-w-0 w-full items-center justify-center overflow-hidden rounded-[20px]">
                     <img
                       src="/projects/hiring-app/job-applicant-flow.png"
                       alt="Four-screen mobile job applicant flow covering interview onboarding, questions, analysis, and interview scheduling"
