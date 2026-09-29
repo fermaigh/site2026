@@ -388,7 +388,7 @@ export function HiringCaseStudy() {
             </div>
 
             {executionMode === "after" ? (
-              <div className="mx-auto mt-6 grid w-full max-w-[900px] grid-cols-1 gap-2 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-1 dark:border-foreground/15 dark:bg-foreground/[0.06] sm:grid-cols-3" aria-label="After design user segment">
+              <div className="mt-6 grid w-full grid-cols-1 gap-2 rounded-xl border border-foreground/10 bg-foreground/[0.03] p-1 dark:border-foreground/15 dark:bg-foreground/[0.06] sm:grid-cols-3" aria-label="After design user segment">
                 {([
                   [
                     "operations",
@@ -433,7 +433,7 @@ export function HiringCaseStudy() {
             ) : null}
 
             {executionMode === "before" ? (
-              <div className="mx-auto mt-10 w-full max-w-[900px] space-y-6">
+              <div className="mt-10 w-full space-y-6">
                 <figure className="overflow-hidden rounded-[20px] border border-foreground/10 bg-foreground/[0.03] p-4 sm:p-6">
                   <div className="flex aspect-[814/383] w-full items-center justify-center overflow-hidden rounded-[20px]">
                     {currentSlide === 0 && (
@@ -479,7 +479,7 @@ export function HiringCaseStudy() {
             ) : null}
 
             {executionMode === "after" ? (
-              <div className="mx-auto mt-10 grid w-full min-w-0 max-w-[900px]">
+              <div className="mt-10 grid w-full min-w-0">
               <div
                 aria-hidden={afterAudience !== "operations"}
                 inert={afterAudience !== "operations"}
