@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1216 446" role="img" aria-labelledby="title description">
+  <title id="title">Franchise organization structures by company size</title>
+  <desc id="description">Organization charts comparing small, medium, and large franchise management structures.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0 0 7 3.5 0 7Z" fill="#111111"/>
+    </marker>
+    <style>
+      .section { font: 700 12px Inter, Arial, sans-serif; fill: #111111; }
+      .label { font: 400 11px Inter, Arial, sans-serif; fill: #111111; }
+      .box { fill: #ffffff; stroke: #111111; stroke-width: 1.25; }
+      .line { fill: none; stroke: #111111; stroke-width: 1.15; stroke-linecap: square; stroke-linejoin: miter; }
+      .arrow { marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <!-- Small -->
+  <g aria-label="Small franchise structure">
+    <text class="section" x="88" y="70">Small</text>
+    <rect class="box" x="88" y="86" width="86" height="54" rx="4"/>
+    <text class="label" x="101" y="109">
+      <tspan x="101">Regional</tspan>
+      <tspan x="101" dy="16">Manager</tspan>
+    </text>
+
+    <path class="line" d="M131 140V278"/>
+    <path class="line arrow" d="M131 183H153"/>
+    <path class="line arrow" d="M131 227H153"/>
+    <path class="line arrow" d="M131 271H153"/>
+
+    <rect class="box" x="153" y="166" width="90" height="34" rx="4"/>
+    <rect class="box" x="153" y="210" width="90" height="34" rx="4"/>
+    <rect class="box" x="153" y="254" width="90" height="34" rx="4"/>
+    <text class="label" x="164" y="187">General Mng</text>
+    <text class="label" x="164" y="231">General Mng</text>
+    <text class="label" x="164" y="275">General Mng</text>
+  </g>
+
+  <!-- Medium -->
+  <g aria-label="Medium franchise structure">
+    <text class="section" x="369" y="70">Medium</text>
+    <rect class="box" x="369" y="86" width="86" height="54" rx="4"/>
+    <text class="label" x="382" y="109">
+      <tspan x="382">Area</tspan>
+      <tspan x="382" dy="16">manager</tspan>
+    </text>
+
+    <path class="line arrow" d="M412 140V180"/>
+    <path class="line" d="M434 140V160H513V180"/>
+
+    <rect class="box" x="369" y="184" width="86" height="54" rx="4"/>
+    <text class="label" x="379" y="206">
+      <tspan x="379">District</tspan>
+      <tspan x="379" dy="16">manager (140)</tspan>
+    </text>
+
+    <rect class="box" x="480" y="184" width="86" height="54" rx="4"/>
+    <text class="label" x="491" y="206">
+      <tspan x="491">District</tspan>
+      <tspan x="491" dy="16">manager (2)</tspan>
+    </text>
+
+    <path class="line" d="M386 238V364"/>
+    <path class="line arrow" d="M386 267H408"/>
+    <path class="line arrow" d="M386 302H408"/>
+    <path class="line arrow" d="M386 337H408"/>
+    <path class="line arrow" d="M386 372H408"/>
+
+    <rect class="box" x="408" y="250" width="90" height="34" rx="4"/>
+    <rect class="box" x="408" y="285" width="90" height="34" rx="4"/>
+    <rect class="box" x="408" y="320" width="90" height="34" rx="4"/>
+    <rect class="box" x="408" y="355" width="90" height="34" rx="4"/>
+    <text class="label" x="419" y="271">General Mng</text>
+    <text class="label" x="419" y="306">General Mng</text>
+    <text class="label" x="419" y="341">…</text>
+    <text class="label" x="419" y="376">General Mng</text>
+
+    <path class="line" d="M523 238V319"/>
+    <path class="line arrow" d="M523 267H545"/>
+    <path class="line arrow" d="M523 302H545"/>
+    <rect class="box" x="545" y="250" width="90" height="34" rx="4"/>
+    <rect class="box" x="545" y="285" width="90" height="34" rx="4"/>
+    <text class="label" x="556" y="271">General Mng</text>
+    <text class="label" x="556" y="306">General Mng</text>
+  </g>
+
+  <!-- Large -->
+  <g aria-label="Large franchise structure">
+    <text class="section" x="767" y="70">Large</text>
+    <rect class="box" x="767" y="86" width="86" height="54" rx="4"/>
+    <text class="label" x="780" y="109">
+      <tspan x="780">Area</tspan>
+      <tspan x="780" dy="16">manager</tspan>
+    </text>
+
+    <path class="line arrow" d="M810 140V180"/>
+    <path class="line" d="M832 140V160H909V180"/>
+    <path class="line" d="M832 140V160H1009V180"/>
+
+    <rect class="box" x="767" y="184" width="86" height="54" rx="4"/>
+    <text class="label" x="777" y="206">
+      <tspan x="777">District</tspan>
+      <tspan x="777" dy="16">manager (140)</tspan>
+    </text>
+
+    <rect class="box" x="876" y="184" width="86" height="54" rx="4"/>
+    <text class="label" x="915" y="216" text-anchor="middle">…</text>
+
+    <rect class="box" x="985" y="184" width="86" height="54" rx="4"/>
+    <text class="label" x="995" y="206">
+      <tspan x="995">District</tspan>
+      <tspan x="995" dy="16">manager (12)</tspan>
+    </text>
+
+    <path class="line" d="M784 238V364"/>
+    <path class="line arrow" d="M784 267H806"/>
+    <path class="line arrow" d="M784 302H806"/>
+    <path class="line arrow" d="M784 337H806"/>
+    <path class="line arrow" d="M784 372H806"/>
+    <rect class="box" x="806" y="250" width="90" height="34" rx="4"/>
+    <rect class="box" x="806" y="285" width="90" height="34" rx="4"/>
+    <rect class="box" x="806" y="320" width="90" height="34" rx="4"/>
+    <rect class="box" x="806" y="355" width="90" height="34" rx="4"/>
+    <text class="label" x="817" y="271">General Mng</text>
+    <text class="label" x="817" y="306">General Mng</text>
+    <text class="label" x="817" y="341">…</text>
+    <text class="label" x="817" y="376">General Mng</text>
+
+    <path class="line" d="M1028 238V319"/>
+    <path class="line arrow" d="M1028 267H1050"/>
+    <path class="line arrow" d="M1028 302H1050"/>
+    <rect class="box" x="1050" y="250" width="90" height="34" rx="4"/>
+    <rect class="box" x="1050" y="285" width="90" height="34" rx="4"/>
+    <text class="label" x="1061" y="271">General Mng</text>
+    <text class="label" x="1061" y="306">General Mng</text>
+  </g>
+</svg>

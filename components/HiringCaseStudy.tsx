@@ -234,9 +234,9 @@ export function HiringCaseStudy() {
                   />
                 </div>
                 <img
-                  src="/projects/hiring-app/research-process.png"
-                  alt="User journey and interaction flows"
-                  className="h-auto w-full rounded-[20px] border border-foreground/5 object-cover"
+                  src="/projects/hiring-app/franchise-organization-structures.svg"
+                  alt="Small, medium, and large franchise organization structures with regional, area, district, and general manager roles"
+                  className="block h-auto w-full"
                 />
               </div>
             </figure>
