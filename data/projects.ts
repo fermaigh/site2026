@@ -127,26 +127,6 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    slug: "vi-ai-fitness-companion",
-    title: "Vi: an AI fitness companion",
-    description:
-      "An adaptive AI fitness companion designed to make personalized training feel clear, supportive, and motivating.",
-    labels: ["AI", "Fitness", "0–1"],
-    thumbnail: "/projects/vi-ai-fitness-companion.svg",
-    thumbnailBackground: "#D9D6FF",
-    caseStudy: {
-      lead:
-        "Vi is an AI fitness companion that turns personal goals and daily signals into guidance that feels useful, approachable, and human.",
-      sections: [
-        {
-          heading: "Case study in progress",
-          body:
-            "The product story, design process, and outcomes will be added here as the project develops.",
-        },
-      ],
-    },
-  },
-  {
     slug: "scaling-tiktok-shop-affiliates",
     title: "Scaling TikTok Shop Affiliates",
     description:
@@ -416,6 +396,26 @@ export const projects: Project[] = [
       ],
       closingNote: "Full case study details available upon request.",
       showcase: "growth-videos",
+    },
+  },
+  {
+    slug: "vi-ai-fitness-companion",
+    title: "Vi: an AI fitness companion",
+    description:
+      "An adaptive AI fitness companion designed to make personalized training feel clear, supportive, and motivating.",
+    labels: ["AI", "Fitness", "0–1"],
+    thumbnail: "/projects/vi-project-intro.webp",
+    thumbnailBackground: "#EEEEEE",
+    caseStudy: {
+      lead:
+        "Vi is an AI fitness companion that turns personal goals and daily signals into guidance that feels useful, approachable, and human.",
+      sections: [
+        {
+          heading: "Case study in progress",
+          body:
+            "The product story, design process, and outcomes will be added here as the project develops.",
+        },
+      ],
     },
   },
 ];
