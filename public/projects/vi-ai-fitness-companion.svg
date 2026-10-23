@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Vi AI fitness companion</title>
+  <desc id="desc">Abstract fitness companion interface with activity rings, movement data, and personalized guidance.</desc>
+  <defs>
+    <linearGradient id="background" x1="212" y1="112" x2="1395" y2="920" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EEE9FF"/>
+      <stop offset="0.48" stop-color="#CBC5FF"/>
+      <stop offset="1" stop-color="#A8D7FF"/>
+    </linearGradient>
+    <linearGradient id="card" x1="580" y1="214" x2="1008" y2="838" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#24203B"/>
+      <stop offset="1" stop-color="#11101B"/>
+    </linearGradient>
+    <linearGradient id="ring" x1="661" y1="340" x2="933" y2="592" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#A8FFCE"/>
+      <stop offset="0.48" stop-color="#7CE7FF"/>
+      <stop offset="1" stop-color="#A58BFF"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feDropShadow dx="0" dy="32" stdDeviation="38" flood-color="#332D70" flood-opacity="0.24"/>
+    </filter>
+    <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="54"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="1000" rx="64" fill="url(#background)"/>
+  <circle cx="312" cy="228" r="168" fill="#FFFFFF" fill-opacity="0.3" filter="url(#soft)"/>
+  <circle cx="1321" cy="785" r="205" fill="#7EE7D1" fill-opacity="0.28" filter="url(#soft)"/>
+
+  <g opacity="0.72">
+    <circle cx="298" cy="356" r="118" fill="none" stroke="#FFFFFF" stroke-width="24" stroke-opacity="0.46"/>
+    <path d="M298 238a118 118 0 1 1-99 182" fill="none" stroke="#7666FF" stroke-width="24" stroke-linecap="round"/>
+    <circle cx="1291" cy="326" r="82" fill="#FFFFFF" fill-opacity="0.26"/>
+    <path d="M1254 326h74M1291 289v74" stroke="#5146B8" stroke-width="14" stroke-linecap="round"/>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="522" y="112" width="556" height="776" rx="72" fill="url(#card)"/>
+    <rect x="546" y="136" width="508" height="728" rx="54" fill="#181625" stroke="#FFFFFF" stroke-opacity="0.09" stroke-width="2"/>
+  </g>
+
+  <g font-family="Inter, Arial, sans-serif">
+    <text x="604" y="217" fill="#FFFFFF" font-size="31" font-weight="650">Good morning, Xiaoye</text>
+    <text x="604" y="257" fill="#C9C4DF" font-size="20">Let’s make today count.</text>
+
+    <circle cx="800" cy="443" r="132" fill="none" stroke="#302D42" stroke-width="26"/>
+    <circle cx="800" cy="443" r="132" fill="none" stroke="url(#ring)" stroke-width="26" stroke-linecap="round" stroke-dasharray="688 142" transform="rotate(-90 800 443)"/>
+    <text x="800" y="426" fill="#FFFFFF" font-size="64" font-weight="700" text-anchor="middle">72</text>
+    <text x="800" y="466" fill="#C9C4DF" font-size="18" font-weight="550" letter-spacing="2" text-anchor="middle">READINESS</text>
+    <text x="800" y="503" fill="#A8FFCE" font-size="18" font-weight="600" text-anchor="middle">Ready to train</text>
+
+    <rect x="596" y="623" width="408" height="108" rx="28" fill="#242136"/>
+    <circle cx="650" cy="677" r="29" fill="#A8FFCE"/>
+    <path d="M636 679l10 10 20-25" fill="none" stroke="#171523" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="700" y="668" fill="#FFFFFF" font-size="22" font-weight="650">Today’s plan</text>
+    <text x="700" y="699" fill="#C9C4DF" font-size="17">32 min · Full body strength</text>
+
+    <rect x="596" y="755" width="408" height="58" rx="29" fill="#A997FF"/>
+    <text x="800" y="792" fill="#171523" font-size="19" font-weight="700" text-anchor="middle">Start workout</text>
+  </g>
+
+  <g filter="url(#shadow)" font-family="Inter, Arial, sans-serif">
+    <rect x="1110" y="526" width="312" height="160" rx="34" fill="#FFFFFF" fill-opacity="0.88"/>
+    <circle cx="1164" cy="580" r="25" fill="#A997FF"/>
+    <path d="M1151 580h26M1164 567v26" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round"/>
+    <text x="1205" y="574" fill="#27223C" font-size="20" font-weight="700">Vi adjusted your plan</text>
+    <text x="1142" y="622" fill="#5D5870" font-size="17">A lighter session fits your</text>
+    <text x="1142" y="648" fill="#5D5870" font-size="17">recovery today.</text>
+  </g>
+
+  <g filter="url(#shadow)" font-family="Inter, Arial, sans-serif">
+    <rect x="178" y="595" width="292" height="140" rx="32" fill="#FFFFFF" fill-opacity="0.86"/>
+    <text x="215" y="643" fill="#27223C" font-size="19" font-weight="700">Weekly movement</text>
+    <path d="M218 699c31-16 43-52 75-38 29 13 38-24 65-16 25 7 30-25 66-31" fill="none" stroke="#7666FF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="424" cy="614" r="8" fill="#7666FF"/>
+  </g>
+</svg>
