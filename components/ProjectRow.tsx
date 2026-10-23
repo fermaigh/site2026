@@ -57,6 +57,7 @@ export function ProjectRow({
                 src={project.thumbnail}
                 alt=""
                 fill
+                loading={index === 0 ? "eager" : "lazy"}
                 className="object-cover"
                 style={mediaTransform ? { transform: mediaTransform } : undefined}
                 sizes="(max-width: 768px) 100vw, (max-width: 1080px) 60vw, 648px"
