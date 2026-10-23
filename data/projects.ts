@@ -403,7 +403,7 @@ export const projects: Project[] = [
     title: "Vi: an AI fitness companion",
     description:
       "An adaptive AI fitness companion designed to make personalized training feel clear, supportive, and motivating.",
-    labels: ["AI", "Fitness", "0–1"],
+    labels: ["0-1", "Mobile", "Hardware"],
     thumbnail: "/projects/vi-project-intro.webp",
     thumbnailBackground: "#EEEEEE",
     caseStudy: {
