@@ -407,6 +407,11 @@ export const projects: Project[] = [
     thumbnail: "/projects/vi-project-intro.webp",
     thumbnailBackground: "#EEEEEE",
     caseStudy: {
+      role: "Product UI/UX Designer",
+      team: "Product, Engineering, AI, and Hardware",
+      year: "2016–2017",
+      ownership:
+        "Mobile app experience, interaction design, and visual design across the Vi wearable ecosystem",
       lead:
         "Vi is an AI fitness companion that turns personal goals and daily signals into guidance that feels useful, approachable, and human.",
       sections: [
