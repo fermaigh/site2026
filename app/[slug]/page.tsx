@@ -9,6 +9,7 @@ import { TtsProductDemo } from "@/components/tts/TtsProductDemo";
 import { TikTokShopRoleLine } from "@/components/TikTokShopRoleLine";
 import { SprocketsRoleLine } from "@/components/SprocketsRoleLine";
 import { DashlaneRoleLine } from "@/components/DashlaneRoleLine";
+import { ViRoleLine } from "@/components/ViRoleLine";
 import { DarkWebVideoDemo } from "@/components/dashlane/DarkWebVideoDemo";
 import { GrowthVideoDemos } from "@/components/dashlane/GrowthVideoDemos";
 import {
@@ -199,6 +200,8 @@ export default async function CaseStudyPage({ params }: PageProps) {
                   ) : project.slug === "growth-and-monetization" ||
                     project.slug === "simplifying-enterprise-security" ? (
                     <DashlaneRoleLine value={caseStudy.role} />
+                  ) : project.slug === "vi-ai-fitness-companion" ? (
+                    <ViRoleLine value={caseStudy.role} />
                   ) : (
                     <MetaLine label="Role" value={caseStudy.role} />
                   )

@@ -407,7 +407,7 @@ export const projects: Project[] = [
     thumbnail: "/projects/vi-project-intro.webp",
     thumbnailBackground: "#EEEEEE",
     caseStudy: {
-      role: "Product UI/UX Designer",
+      role: "Product UI/UX Designer at",
       team: "Product, Engineering, AI, and Hardware",
       year: "2016–2017",
       ownership:
