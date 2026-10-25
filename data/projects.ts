@@ -412,8 +412,6 @@ export const projects: Project[] = [
       year: "2016–2017",
       ownership:
         "Mobile app experience, interaction design, and visual design across the Vi wearable ecosystem",
-      lead:
-        "Vi is an AI fitness companion that turns personal goals and daily signals into guidance that feels useful, approachable, and human.",
       sections: [
         {
           heading: "Case study in progress",
