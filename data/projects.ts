@@ -398,29 +398,6 @@ export const projects: Project[] = [
       showcase: "growth-videos",
     },
   },
-  {
-    slug: "vi-ai-fitness-companion",
-    title: "Vi: an AI fitness companion",
-    description:
-      "An adaptive AI fitness companion designed to make personalized training feel clear, supportive, and motivating.",
-    labels: ["0-1", "Mobile", "Hardware"],
-    thumbnail: "/projects/vi-project-intro.webp",
-    thumbnailBackground: "#EEEEEE",
-    caseStudy: {
-      role: "Product UI/UX Designer at",
-      team: "Product, Engineering, AI, and Hardware",
-      year: "2016–2017",
-      ownership:
-        "Mobile app experience, interaction design, and visual design across the Vi wearable ecosystem",
-      sections: [
-        {
-          heading: "Case study in progress",
-          body:
-            "The product story, design process, and outcomes will be added here as the project develops.",
-        },
-      ],
-    },
-  },
 ];
 
 export function getProject(slug: string): Project | undefined {
